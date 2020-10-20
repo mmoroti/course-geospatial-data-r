@@ -226,6 +226,19 @@ raster::plot(ra_lay, col = viridis::viridis(10))
 
 ---
 
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+```r
+# plot
+raster::plot(ra_lay, col = viridis::viridis(100))
+```
+
+---
+
 background-image: url(img/geo_raster_multi_raster.png)
 background-size: 350px
 background-position: 50% 90%
@@ -394,15 +407,19 @@ ra &lt;- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
 ra
 ```
 
-```
-## class      : RasterLayer 
-## dimensions : 6000, 6000, 3.6e+07  (nrow, ncol, ncell)
-## resolution : 0.0008333333, 0.0008333333  (x, y)
-## extent     : -50, -45, -25, -20  (xmin, xmax, ymin, ymax)
-## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : /home/mude/data/github/disciplina-analise-geoespacial/03_dados/raster/srtm_27_17.tif 
-## names      : srtm_27_17 
-## values     : -32768, 32767  (min, max)
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Rio Claro
+
+```r
+# rio claro
+rc_2019 &lt;- geobr::read_municipality(code_muni = 3543907, year = 2019, showProgress = FALSE) %&gt;% 
+  sf::st_transform(crs = 4326)
+rc_2019
 ```
 
 ---
@@ -416,6 +433,47 @@ ra
 ```r
 # plot
 raster::plot(ra, col = viridis::viridis(10))
+plot(rc_2019$geom, col = "red", add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_crop_mask_buffer_square.png)
+background-size: 700px
+background-position: 50% 80%
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+
+```r
+# mask
+ra_rc &lt;- raster::crop(ra_rc, rc_2019)
+ra_rc
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+
+```r
+# plot
+raster::plot(ra_rc, col = viridis::viridis(10))
+plot(rc_2019$geom, lwd = 2, add = TRUE)
 ```
 
 ---
@@ -559,16 +617,6 @@ fi &lt;- dir(path = here::here("03_dados", "raster"), pattern = "wc") %&gt;%
 fi
 ```
 
-```
-##  [1] "wc2.1_10m_bio_1.tif"  "wc2.1_10m_bio_10.tif" "wc2.1_10m_bio_11.tif"
-##  [4] "wc2.1_10m_bio_12.tif" "wc2.1_10m_bio_13.tif" "wc2.1_10m_bio_14.tif"
-##  [7] "wc2.1_10m_bio_15.tif" "wc2.1_10m_bio_16.tif" "wc2.1_10m_bio_17.tif"
-## [10] "wc2.1_10m_bio_18.tif" "wc2.1_10m_bio_19.tif" "wc2.1_10m_bio_2.tif" 
-## [13] "wc2.1_10m_bio_3.tif"  "wc2.1_10m_bio_4.tif"  "wc2.1_10m_bio_5.tif" 
-## [16] "wc2.1_10m_bio_6.tif"  "wc2.1_10m_bio_7.tif"  "wc2.1_10m_bio_8.tif" 
-## [19] "wc2.1_10m_bio_9.tif"
-```
-
 ---
 
 # 7.4 Importar dados matriciais
@@ -581,17 +629,6 @@ fi
 # import stack
 st &lt;- raster::stack(here::here("03_dados", "raster", fi))
 st
-```
-
-```
-## class      : RasterStack 
-## dimensions : 1080, 2160, 2332800, 19  (nrow, ncol, ncell, nlayers)
-## resolution : 0.1666667, 0.1666667  (x, y)
-## extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
-## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## names      : wc2.1_10m_bio_1, wc2.1_10m_bio_10, wc2.1_10m_bio_11, wc2.1_10m_bio_12, wc2.1_10m_bio_13, wc2.1_10m_bio_14, wc2.1_10m_bio_15, wc2.1_10m_bio_16, wc2.1_10m_bio_17, wc2.1_10m_bio_18, wc2.1_10m_bio_19, wc2.1_10m_bio_2, wc2.1_10m_bio_3, wc2.1_10m_bio_4, wc2.1_10m_bio_5, ... 
-## min values :      -54.724354,       -37.781418,       -66.311249,         0.000000,         0.000000,         0.000000,         0.000000,         0.000000,         0.000000,         0.000000,         0.000000,        1.000000,        9.131122,        0.000000,      -29.686001, ... 
-## max values :        30.98764,         38.21617,         29.15299,      11191.00000,       2381.00000,        484.00000,        229.00169,       5284.00000,       1507.00000,       5282.00000,       4467.00000,        21.14754,       100.00000,      2363.84595,        48.08275, ...
 ```
 
 ---
@@ -622,17 +659,6 @@ class: inverse, center, middle
 ra
 ```
 
-```
-## class      : RasterLayer 
-## dimensions : 6000, 6000, 3.6e+07  (nrow, ncol, ncell)
-## resolution : 0.0008333333, 0.0008333333  (x, y)
-## extent     : -50, -45, -25, -20  (xmin, xmax, ymin, ymax)
-## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : /home/mude/data/github/disciplina-analise-geoespacial/03_dados/raster/srtm_27_17.tif 
-## names      : srtm_27_17 
-## values     : -32768, 32767  (min, max)
-```
-
 - *class*: classe raster do objeto
 - *dimensions*: número de linhas, colunas, células e camadas
 - *resolution*: largura e altura da célula
@@ -653,31 +679,17 @@ ra
 ```r
 class(ra)
 ```
-
-```
-## [1] "RasterLayer"
-## attr(,"package")
-## [1] "raster"
-```
 --
 #### Dimensões
 
 ```r
 dim(ra)
 ```
-
-```
-## [1] 6000 6000    1
-```
 --
 #### Número de camadas
 
 ```r
 nlayers(ra)
-```
-
-```
-## [1] 1
 ```
 
 ---
@@ -703,29 +715,17 @@ background-position: 50% 90%
 ```r
 nrow(ra)
 ```
-
-```
-## [1] 6000
-```
 --
 #### Número de colunas
 
 ```r
 ncol(ra)
 ```
-
-```
-## [1] 6000
-```
 --
 #### Número de células
 
 ```r
 ncell(ra)
-```
-
-```
-## [1] 3.6e+07
 ```
 
 ---
@@ -752,19 +752,11 @@ background-position: 50% 80%
 # raster resolution
 res(ra)
 ```
-
-```
-## [1] 0.0008333333 0.0008333333
-```
 --
 
 ```r
 # stack resolution
 res(st)
-```
-
-```
-## [1] 0.1666667 0.1666667
 ```
 
 ---
@@ -791,27 +783,11 @@ background-position: 50% 90%
 # raster extent
 extent(ra)
 ```
-
-```
-## class      : Extent 
-## xmin       : -50 
-## xmax       : -45 
-## ymin       : -25 
-## ymax       : -20
-```
 --
 
 ```r
 # stack extent
 extent(st)
-```
-
-```
-## class      : Extent 
-## xmin       : -180 
-## xmax       : 180 
-## ymin       : -90 
-## ymax       : 90
 ```
 
 ---
@@ -826,19 +802,11 @@ extent(st)
 # projection
 projection(ra)
 ```
-
-```
-## [1] "+proj=longlat +datum=WGS84 +no_defs"
-```
 --
 
 ```r
 # projection
 projection(st)
-```
-
-```
-## [1] "+proj=longlat +datum=WGS84 +no_defs"
 ```
 
 ---
@@ -853,23 +821,11 @@ projection(st)
 # raster names
 names(ra)
 ```
-
-```
-## [1] "srtm_27_17"
-```
 --
 
 ```r
 # stack names
 names(st)
-```
-
-```
-##  [1] "wc2.1_10m_bio_1"  "wc2.1_10m_bio_10" "wc2.1_10m_bio_11" "wc2.1_10m_bio_12"
-##  [5] "wc2.1_10m_bio_13" "wc2.1_10m_bio_14" "wc2.1_10m_bio_15" "wc2.1_10m_bio_16"
-##  [9] "wc2.1_10m_bio_17" "wc2.1_10m_bio_18" "wc2.1_10m_bio_19" "wc2.1_10m_bio_2" 
-## [13] "wc2.1_10m_bio_3"  "wc2.1_10m_bio_4"  "wc2.1_10m_bio_5"  "wc2.1_10m_bio_6" 
-## [17] "wc2.1_10m_bio_7"  "wc2.1_10m_bio_8"  "wc2.1_10m_bio_9"
 ```
 
 ---
@@ -993,7 +949,7 @@ background-position: 50% 90%
 ### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
 
 ```r
-ra
+ra_rc
 ```
 
 ---
@@ -1013,8 +969,8 @@ utm23
 
 ```r
 # reprojection
-ra_utm23 &lt;- raster::projectRaster(ra, crs = utm23, res = 90, method = "bilinear")
-ra_utm23
+ra_rc_utm23 &lt;- raster::projectRaster(ra_rc, crs = utm23, res = 90, method = "bilinear")
+ra_rc_utm23
 ```
 
 [*] https://epsg.io/31983
@@ -1031,7 +987,7 @@ ra_utm23
 
 ```r
 # plot
-plot(ra_utm23, col = viridis::viridis(10))
+plot(ra_rc_utm23, col = viridis::viridis(10))
 ```
 
 ---
@@ -1216,12 +1172,100 @@ class: inverse, center, middle
 ---
 
 # 7.7 Manipulação de dados raster
-## Seleção de raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
 
 ```r
-# map
-raster::plot(st[[1:5]])
+# raster - row 1, column 1
+ra[1, 1]
 ```
+--
+
+```r
+# cell is 1
+ra[1]
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
+
+```r
+# stack - row 1, column 1
+st[1, 1]
+```
+--
+
+```r
+# cell is 1
+st[1]
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer
+
+```r
+# selection layer in stack
+st_bio01 &lt;- raster::subset(st, "wc2.1_10m_bio_1")
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer [[]]
+
+```r
+# selection layer in stack
+st_bio01 &lt;- st[["wc2.1_10m_bio_1"]]
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer [[]]
+
+```r
+# selection layer in stack
+st_bio01 &lt;- st[[1]]
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer $
+
+```r
+# selection layer in stack
+st_bio01 &lt;- st$wc2.1_10m_bio_1
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
 
 ---
 
@@ -1382,18 +1426,6 @@ ra_fast
 ```r
 rec_uso_raster &lt;- fasterize::fasterize(sf = rec_bairros, ra_fast)
 rec_uso_raster
-```
-
----
-
-# 8.20 Reprojeção e exportar dados matriciais
-# Reprojeção
-
-```r
-ra_mask_utm &lt;- raster::projectRaster(ra_mask, CRS = 31965)
-ra_mask_utm
-
-plot(ra_mask_utm)
 ```
 
 ---

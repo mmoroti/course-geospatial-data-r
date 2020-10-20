@@ -219,6 +219,18 @@ raster::plot(ra_lay, col = viridis::viridis(10))
 
 ---
 
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+```{r}
+# plot
+raster::plot(ra_lay, col = viridis::viridis(100))
+```
+
+---
+
 background-image: url(img/geo_raster_multi_raster.png)
 background-size: 350px
 background-position: 50% 90%
@@ -374,10 +386,24 @@ raster::getData(name = "SRTM", lon = -47, lat = -23,
 ## Importar uma camada
 
 ### RasterLayer
-```{r eval=TRUE}
+```{r }
 # import raster
 ra <- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
 ra
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Rio Claro
+```{r }
+# rio claro
+rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019, showProgress = FALSE) %>% 
+  sf::st_transform(crs = 4326)
+rc_2019
 ```
 
 ---
@@ -390,6 +416,45 @@ ra
 ```{r}
 # plot
 raster::plot(ra, col = viridis::viridis(10))
+plot(rc_2019$geom, col = "red", add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_crop_mask_buffer_square.png)
+background-size: 700px
+background-position: 50% 80%
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+```{r}
+# mask
+ra_rc <- raster::crop(ra_rc, rc_2019)
+ra_rc
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+```{r}
+# plot
+raster::plot(ra_rc, col = viridis::viridis(10))
+plot(rc_2019$geom, lwd = 2, add = TRUE)
 ```
 
 ---
@@ -523,7 +588,7 @@ unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"))
 ## Importar várias camadas
 
 ### Listar arquivos
-```{r eval=TRUE}
+```{r }
 # list files
 fi <- dir(path = here::here("03_dados", "raster"), pattern = "wc") %>% 
   grep(".tif", ., value = TRUE)
@@ -537,7 +602,7 @@ fi
 ## Importar várias camadas
 
 ### RasterStack
-```{r eval=TRUE}
+```{r }
 # import stack
 st <- raster::stack(here::here("03_dados", "raster", fi))
 st
@@ -565,7 +630,7 @@ class: inverse, center, middle
 # 7.5 Descrição de objetos raster
 
 ## Informações
-```{r eval=TRUE}
+```{r }
 ra
 ```
 
@@ -585,17 +650,17 @@ ra
 ## Informações
 
 #### Classe
-```{r eval=TRUE}
+```{r }
 class(ra)
 ```
 --
 #### Dimensões
-```{r eval=TRUE}
+```{r }
 dim(ra)
 ```
 --
 #### Número de camadas
-```{r eval=TRUE}
+```{r }
 nlayers(ra)
 ```
 
@@ -618,17 +683,17 @@ background-position: 50% 90%
 ## Informações
 
 #### Número de linhas
-```{r eval=TRUE}
+```{r }
 nrow(ra)
 ```
 --
 #### Número de colunas
-```{r eval=TRUE}
+```{r }
 ncol(ra)
 ```
 --
 #### Número de células
-```{r eval=TRUE}
+```{r }
 ncell(ra)
 ```
 
@@ -651,12 +716,12 @@ background-position: 50% 80%
 ## Informações
 
 ### Resolução
-```{r eval=TRUE}
+```{r }
 # raster resolution
 res(ra)
 ```
 --
-```{r eval=TRUE}
+```{r }
 # stack resolution
 res(st)
 ```
@@ -680,12 +745,12 @@ background-position: 50% 90%
 ## Informações
 
 ### Extenção
-```{r eval = TRUE}
+```{r }
 # raster extent
 extent(ra)
 ```
 --
-```{r eval = TRUE}
+```{r }
 # stack extent
 extent(st)
 ```
@@ -697,12 +762,12 @@ extent(st)
 ## Informações
 
 ### Projeção
-```{r eval=TRUE}
+```{r }
 # projection
 projection(ra)
 ```
 --
-```{r eval=TRUE}
+```{r }
 # projection
 projection(st)
 ```
@@ -714,12 +779,12 @@ projection(st)
 ## Informações
 
 ### Nomes
-```{r eval=TRUE}
+```{r }
 # raster names
 names(ra)
 ```
 --
-```{r eval=TRUE}
+```{r }
 # stack names
 names(st)
 ```
@@ -838,7 +903,7 @@ background-position: 50% 90%
 
 ### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
 ```{r}
-ra
+ra_rc
 ```
 
 ---
@@ -856,8 +921,8 @@ utm23
 --
 ```{r}
 # reprojection
-ra_utm23 <- raster::projectRaster(ra, crs = utm23, res = 90, method = "bilinear")
-ra_utm23
+ra_rc_utm23 <- raster::projectRaster(ra_rc, crs = utm23, res = 90, method = "bilinear")
+ra_rc_utm23
 ```
 
 [*] https://epsg.io/31983
@@ -873,7 +938,7 @@ ra_utm23
 ### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
 ```{r}
 # plot
-plot(ra_utm23, col = viridis::viridis(10))
+plot(ra_rc_utm23, col = viridis::viridis(10))
 ```
 
 ---
@@ -907,13 +972,13 @@ plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
 ## Converter CRS global
 
 ### Projeção de Mollweide: preserva as relações de área
-```{r}
+```{r eval=FALSE}
 # proj4string mollweide
 moll <- "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 moll
 ```
 --
-```{r}
+```{r eval=FALSE}
 # reprojection
 bio01_moll <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, method = "bilinear")
 bio01_moll
@@ -942,13 +1007,13 @@ plot(bio01_moll, col = viridis::viridis(10))
 ## Converter CRS global
 
 ### Projeção de Winkel Tripel: mínimo de distorção para área, direção e distância
-```{r}
+```{r eval=FALSE}
 # proj4string winkel tripel
 wintri <- "+proj=wintri +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 wintri
 ```
 --
-```{r}
+```{r eval=FALSE}
 # reprojection
 bio01_wintri <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = wintri, res = 25e3, method = "bilinear")
 bio01_wintri
@@ -975,13 +1040,13 @@ plot(bio01_wintri, col = viridis::viridis(10))
 ## Converter CRS global
 
 ### Projeção de Eckert IV: presenva a área e com meridianos elípticos
-```{r}
+```{r eval=FALSE}
 # proj4string eckert iv
 eck4 <- "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 eck4
 ```
 --
-```{r}
+```{r eval=FALSE}
 # reprojection
 bio01_eck4 <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = eck4, res = 25e3, method = "bilinear")
 bio01_eck4
@@ -1010,13 +1075,13 @@ plot(bio01_eck4, col = viridis::viridis(10))
 ## Converter CRS global
 
 ### Projeção azimutal de Lambert: preserva os tamanhos relativos e senso de direção a partir do centro
-```{r}
+```{r eval=FALSE}
 # proj4string lambert 
 laea <- "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
 laea
 ```
 --
-```{r}
+```{r eval=FALSE}
 # reprojection
 bio01_laea <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = laea, res = 25e3, method = "bilinear")
 bio01_laea
@@ -1094,6 +1159,19 @@ st_bio01
 
 ## Subset do raster
 
+### Seleção de RasterLayer no StackLayer
+```{r}
+# selection layer in stack
+st_bio01 <- raster::raster(st, layer = 1)
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
 ### Seleção de RasterLayer no StackLayer [[]]
 ```{r}
 # selection layer in stack
@@ -1131,10 +1209,6 @@ st_bio01
 
 # 7.7 Manipulação de dados raster
 
----
-
-# 7.7 Manipulação de dados raster
-
 ## Seleção de raster
 ```{r}
 # map
@@ -1144,36 +1218,174 @@ raster::plot(st$wc2.0_bio_10m_01 )
 ---
 
 # 7.7 Manipulação de dados raster
-## Álgebra de raster
-```{r}
-# calculadora de raster
-ra_15 <- ra > 15
-ra_15
-```
 
---
-
+## Resumir informações do raster
 ```{r}
-# map
-raster::plot(ra_15)
+# mean from all cells
+raster::cellStats(ra_rc, mean)
 ```
 
 ---
 
 # 7.7 Manipulação de dados raster
-## Álgebra de raster
+
+## Resumir informações do raster
 ```{r}
-# calculadora de raster
-ra2 <- ra * ra
-ra2
+# mean from all cells
+raster::cellStats(st[[1:3]], mean)
 ```
 
---
+---
 
+# 7.7 Manipulação de dados raster
+
+## Resumir informações do raster
+```{r}
+# count cells
+raster::freq(ra_rc)
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Resumir informações do raster
+```{r}
+# count cells
+raster::freq(st[[1:3]])
+```
+
+---
+
+class: inverse, center, middle
+# Operação espaciais
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# upper 600
+ra_rc_up_600 <- ra_rc > 600
+ra_rc_up_600
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
 ```{r}
 # map
-raster::plot(ra2)
+raster::plot(ra_rc_up_600)
 ```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# bottom
+ra_rc_bot_600 <- ra_rc <= 600
+ra_rc_bot_600
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# map
+raster::plot(ra_rc_bot_600)
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# sum
+ra_rc2 <- ra_rc + ra_rc
+ra_rc2
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# map
+raster::plot(ra_rc2)
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# prod
+ra_rc_up_600_val <- ra_rc * ra_rc_up_600
+ra_rc_up_600_val
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# map
+raster::plot(ra_rc_up_600_val)
+plot(rc_2019$geom, add = TRUE)
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# replace
+ra_rc_up_600_val_999 <- ra_rc_up_600_val
+```
+--
+```{r}
+ra_rc_up_600_val_999[ra_rc_up_600_val_999 > 800] <- 999
+ra_rc_up_600_val_999
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# map
+raster::plot(ra_rc_up_600_val_999)
+plot(rc_2019$geom, add = TRUE)
+```
+
+---
+
+# 7.8 Operação espaciais
+
+## Operações locais - álgebra de raster
+```{r}
+# map
+raster::plot(ra_rc_up_600_val)
+plot(rc_2019$geom, add = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+# Operação geométricas
 
 ---
 
@@ -1208,6 +1420,11 @@ res(ra_01)[1]
 
 ---
 
+class: inverse, center, middle
+# Interações raster-vetor
+
+---
+
 # 8.18 Operação espaciais de dados matriciais
 ### Extração pela máscara
 ```{r}
@@ -1225,7 +1442,6 @@ ra_crop
 
 plot(ra_crop)
 ```
-
 
 ---
 
@@ -1250,6 +1466,11 @@ po_ext
 
 hist(po_ext)
 ```
+
+---
+
+class: inverse, center, middle
+# Conversões raster-vetor
 
 ---
 
