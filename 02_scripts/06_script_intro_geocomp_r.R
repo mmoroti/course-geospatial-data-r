@@ -1,7 +1,7 @@
 #' ---
 #' title: aula 06 - estrutura e manejo de dados vetoriais 
 #' author: mauricio vancine
-#' date: 2020-10-20
+#' date: 2020-10-22
 #' ---
 
 # topics ------------------------------------------------------------------
@@ -157,6 +157,9 @@ plot(rc_sf$geometry, pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf$g
 # 6.4 importar dados ------------------------------------------------------
 # create directory
 dir.create(here::here("03_dados", "vetor"))
+
+# increase time to download
+options(timeout = 600)
 
 # download points
 for(i in c(".dbf", ".prj", ".shp", ".shx")){
@@ -564,13 +567,13 @@ plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, grati
 plot(rc_2019_cent, col = "red", pch = 20, add = TRUE)
 
 # 2. centroids
-rc_2019_sirgas2000_utm23s_grid_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s_grid)
-rc_2019_sirgas2000_utm23s_grid_cent
+rc_2019_sirgas2000_utm23s_hex_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s_hex)
+rc_2019_sirgas2000_utm23s_hex_cent
 
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid_cent, col = "red", pch = 20, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_cent, col = "blue", pch = 20, add = TRUE)
 
 # 3. buffer
 rc_spr_forest_buf <- rc_spr_forest %>% 

@@ -1941,8 +1941,8 @@ plot(rc_2019_cent, col = "red", pch = 20, add = TRUE)
 ## 2. Centroides
 ```{r}
 # 2. centroids
-rc_2019_sirgas2000_utm23s_grid_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s_grid)
-rc_2019_sirgas2000_utm23s_grid_cent
+rc_2019_sirgas2000_utm23s_hex_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s_hex)
+rc_2019_sirgas2000_utm23s_hex_cent
 ```
 
 ---
@@ -1953,8 +1953,8 @@ rc_2019_sirgas2000_utm23s_grid_cent
 ```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid_cent, col = "red", pch = 20, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_cent, col = "blue", pch = 20, add = TRUE)
 ```
 
 ---

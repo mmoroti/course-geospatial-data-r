@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, eval=F,warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 

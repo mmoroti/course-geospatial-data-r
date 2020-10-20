@@ -23752,7 +23752,7 @@ co110_sf
 
 ```r
 # plot
-plot(co110_sf$geometry, col = "gray", main = NA)
+plot(co110_sf$geometry, col = "gray", main = NA, graticule = TRUE)
 ```
 
 &lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-73-1.png" width="90%" style="display: block; margin: auto;" /&gt;
@@ -47511,7 +47511,7 @@ rc_2019_sirgas2000_utm23s_rp
 ## Geometry set for 1000 features 
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: 215978.7 ymin: 7504073 xmax: 246294.6 ymax: 7537907
+## bbox:           xmin: 215453.1 ymin: 7504188 xmax: 246190.3 ymax: 7537958
 ## projected CRS:  SIRGAS 2000 / UTM zone 23S
 ## First 5 geometries:
 ```
@@ -47546,7 +47546,7 @@ rc_use_forest_rp
 ## Geometry set for 1000 features 
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: 217697.9 ymin: 7504353 xmax: 246171 ymax: 7537256
+## bbox:           xmin: 216323.7 ymin: 7504286 xmax: 246026.7 ymax: 7537807
 ## projected CRS:  SIRGAS 2000 / UTM zone 23S
 ## First 5 geometries:
 ```
@@ -47900,28 +47900,28 @@ plot(rc_2019_cent, col = "red", pch = 20, add = TRUE)
 
 ```r
 # 2. centroids
-rc_2019_sirgas2000_utm23s_grid_cent &lt;- sf::st_centroid(rc_2019_sirgas2000_utm23s_grid)
-rc_2019_sirgas2000_utm23s_grid_cent
+rc_2019_sirgas2000_utm23s_hex_cent &lt;- sf::st_centroid(rc_2019_sirgas2000_utm23s_hex)
+rc_2019_sirgas2000_utm23s_hex_cent
 ```
 
 ```
-## Simple feature collection with 288 features and 0 fields
+## Simple feature collection with 187 features and 0 fields
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: 216151.7 ymin: 7504729 xmax: 246151.7 ymax: 7538729
+## bbox:           xmin: 215151.7 ymin: 7503729 xmax: 247151.7 ymax: 7538370
 ## projected CRS:  SIRGAS 2000 / UTM zone 23S
 ## First 10 features:
 ##                           x
-## 1  POINT (216151.7 7504729)
-## 2  POINT (218151.7 7504729)
-## 3  POINT (220151.7 7504729)
-## 4  POINT (222151.7 7504729)
-## 5  POINT (224151.7 7504729)
-## 6  POINT (226151.7 7504729)
-## 7  POINT (228151.7 7504729)
-## 8  POINT (230151.7 7504729)
-## 9  POINT (232151.7 7504729)
-## 10 POINT (234151.7 7504729)
+## 1  POINT (215151.7 7527978)
+## 2  POINT (216151.7 7526245)
+## 3  POINT (216151.7 7529710)
+## 4  POINT (217151.7 7527978)
+## 5  POINT (217151.7 7531442)
+## 6  POINT (218151.7 7529710)
+## 7  POINT (219151.7 7527978)
+## 8  POINT (219151.7 7531442)
+## 9  POINT (220151.7 7526245)
+## 10 POINT (220151.7 7529710)
 ```
 
 ---
@@ -47933,8 +47933,8 @@ rc_2019_sirgas2000_utm23s_grid_cent
 ```r
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid_cent, col = "red", pch = 20, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_cent, col = "blue", pch = 20, add = TRUE)
 ```
 
 &lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-133-1.png" width="45%" style="display: block; margin: auto;" /&gt;
