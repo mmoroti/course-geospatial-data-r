@@ -469,11 +469,11 @@ class: inverse, center, middle
 &lt;br&gt;
 `log10(cumsum(1:100))`
 &lt;br&gt;
-`sum(sqrt(rnorm(100)))`
+`sum(sqrt(abs(rnorm(100))))`
 &lt;br&gt;
-`prod(sort(sample(1:10, 10000, rep = TRUE)))`
+`sum(sort(sample(1:10, 10000, rep = TRUE)))`
 
-<div class="countdown" id="timer_5f8e16ef" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8ef6a8" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -500,10 +500,10 @@ log10(cumsum(1:100))
 
 ```r
 # 2.
-sum(sort(rnorm(100)))
+sum(sort(abs(rnorm(100))))
 
-100 %&gt;% 
-  rnorm %&gt;% 
+rnorm(100) %&gt;% 
+  abs %&gt;% 
   sort %&gt;% 
   sum
 ```
@@ -516,11 +516,12 @@ sum(sort(rnorm(100)))
 
 ```r
 # 3.
-scale(sample(1:10, 10000, rep = TRUE))
+sum(sort(sample(1:10, 10000, rep = TRUE)))
 
 1:10 %&gt;% 
   sample(10000, rep = TRUE) %&gt;% 
-  scale
+  sort %&gt;% 
+  sum
 ```
 
 ---
@@ -2827,7 +2828,7 @@ class: inverse, center, middle
 # Exercício 10
 ### Combine as colunas `country`, `state`, `state_abbreviation`, `municipality`, `site`, em uma coluna chamada `local_total` separadas por `, (vírgula + espaço)`, atribuindo o resultado a um novo objeto, utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f8e16ff" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8ef4b5" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -4014,7 +4015,7 @@ si_local$local_total
 
 # Exercício 11
 ### Quanto indivíduos por há por família nos locais amostrados? Apenas para as 1000 primeiras linhas da tabela `sp`
-<div class="countdown" id="timer_5f8e148b" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8ef3dc" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -5508,7 +5509,7 @@ class: inverse, center, middle
 
 ### Adicione essas novas colunas `alt_log, tem_log e pre_log`, que são a operação `log10` das colunas `altitude,	temperature e	precipitation` e atribua ao mesmo objeto `si` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f8e1800" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8ef5e1" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5549,7 +5550,7 @@ si[, 25:28]
 
 ### Ordene os dados em forma decrescente pela coluna `altitude`, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f8e154d" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8ef36a" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5594,7 +5595,7 @@ si_ar
 
 ###  Filtre as linhas com `altitude` maior que 1000 mm, `temperature` menor que 15 ºC e `precipitation` maior que 1000 mm, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f8e14d1" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8ef555" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -5641,7 +5642,7 @@ si_fi
 
 ### Amostre 200 linhas aleatoriamente com número de espécies maior que 15 espécies, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-<div class="countdown" id="timer_5f8e17e1" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8ef510" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -6413,7 +6414,7 @@ lubridate::today()
 ```
 
 ```
-## [1] "2020-10-19"
+## [1] "2020-10-20"
 ```
 
 --
@@ -6427,7 +6428,7 @@ lubridate::now()
 ```
 
 ```
-## [1] "2020-10-19 19:33:49 -03"
+## [1] "2020-10-20 11:25:26 -03"
 ```
 
 quando eu preparava essa aula...
@@ -6445,7 +6446,7 @@ agora
 ```
 
 ```
-## [1] "2020-10-19 19:33:49 -03"
+## [1] "2020-10-20 11:25:26 -03"
 ```
 --
 
@@ -6773,7 +6774,7 @@ lubridate::with_tz(agora, tzone = "GMT")
 ```
 
 ```
-## [1] "2020-10-19 22:33:49 GMT"
+## [1] "2020-10-20 14:25:26 GMT"
 ```
 
 ```r
@@ -6781,7 +6782,7 @@ lubridate::with_tz(agora, tzone = "Europe/Stockholm")
 ```
 
 ```
-## [1] "2020-10-20 00:33:49 CEST"
+## [1] "2020-10-20 16:25:26 CEST"
 ```
 --
 &lt;br&gt;&lt;br&gt;
@@ -6792,7 +6793,7 @@ lubridate::force_tz(agora, tzone = "GMT")
 ```
 
 ```
-## [1] "2020-10-19 19:33:49 GMT"
+## [1] "2020-10-20 11:25:26 GMT"
 ```
 
 ---
@@ -6815,7 +6816,7 @@ r_interval
 ```
 
 ```
-## [1] 2011-11-30 UTC--2020-10-19 UTC
+## [1] 2011-11-30 UTC--2020-10-20 UTC
 ```
 
 ```r
@@ -6894,9 +6895,9 @@ reunioes
 ```
 
 ```
-##  [1] "2020-10-19" "2020-10-26" "2020-11-02" "2020-11-09" "2020-11-16"
-##  [6] "2020-11-23" "2020-11-30" "2020-12-07" "2020-12-14" "2020-12-21"
-## [11] "2020-12-28"
+##  [1] "2020-10-20" "2020-10-27" "2020-11-03" "2020-11-10" "2020-11-17"
+##  [6] "2020-11-24" "2020-12-01" "2020-12-08" "2020-12-15" "2020-12-22"
+## [11] "2020-12-29"
 ```
 
 ---
@@ -6914,7 +6915,7 @@ r_interval
 ```
 
 ```
-## [1] 2011-11-30 UTC--2020-10-19 UTC
+## [1] 2011-11-30 UTC--2020-10-20 UTC
 ```
 --
 
@@ -6924,7 +6925,7 @@ r_interval / lubridate::dyears(1)
 ```
 
 ```
-## [1] 8.887064
+## [1] 8.889802
 ```
 
 ```r
@@ -6932,7 +6933,7 @@ r_interval / lubridate::ddays(1)
 ```
 
 ```
-## [1] 3246
+## [1] 3247
 ```
 
 ---
@@ -6949,7 +6950,7 @@ lubridate::as.period(r_interval)
 ```
 
 ```
-## [1] "8y 10m 19d 0H 0M 0S"
+## [1] "8y 10m 20d 0H 0M 0S"
 ```
 --
 
@@ -6959,7 +6960,7 @@ lubridate::as.period(namoro_interval)
 ```
 
 ```
-## [1] "12y 3m 24d 0H 0M 0S"
+## [1] "12y 3m 25d 0H 0M 0S"
 ```
 
 ---
@@ -7178,6 +7179,28 @@ background-position: 10% 70%, 90% 80%
 ### [Webinar de purrr avançado](https://youtu.be/vb1lD9_AFcU) - Curso-R
 
 ### [purrr tutorial](https://jennybc.github.io/purrr-tutorial/) - Jennifer (Jenny) Bryan
+
+---
+
+class: clear
+background-image: url(img/package_furrr.png)
+background-size: 400px
+
+---
+
+background-image: url(img/package_furrr.png)
+background-size: 300px
+background-position: 50% 65%
+
+# 4.12 furrr
+
+## Programação funcional paralelizada
+
+### Faz o mapeamento em paralelo mais integrado possível
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://www.tidyverse.org/blog/2020/10/furrr-0-2-0/
 
 ---
 

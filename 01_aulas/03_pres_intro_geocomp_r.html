@@ -436,7 +436,7 @@ sa_sem_rep
 ```
 
 ```
-##  [1] 69 61 18 50 74 34 86 13 71 19
+##  [1] 62 65 19 49 28 78 16 39 72 87
 ```
 
 --
@@ -449,10 +449,10 @@ sa_com_rep
 ```
 
 ```
-##   [1]  2 10  1  4  7  9  9  9 10  2  9  1  2  3  5  4  2  8  1  9  3 10  7  2  6
-##  [26]  9  8  8  1  2 10  6 10  2  8  9  4  4  5  4 10  3  5  3  7  3  5  3  2  1
-##  [51]  7  7  1  5  1 10  8  2  4  5  5 10  3  4  8  2  1  9  2  7  6  7  9  3 10
-##  [76]  2  5  7 10  2  2  5 10  8  7  7  7  2  5  6  1  8  4  3  4  7  6  4  2  7
+##   [1]  1  5  3  6  7  8  2  8  6  1  7  6  1  6  4 10  6  8  3  8  2  2  3  4  7
+##  [26] 10 10 10  4  7  8  2  8  7  8  1  2  4  4  4  6 10  2  1  9  2  1  6  7  8
+##  [51]  6  1  1  2  3  7  7  7  3  1  9 10  4 10  7  5  6  3  1 10  2  3  6  6  6
+##  [76]  1  1  5  4  9  9  9  3  2  5  7  2  8  4  8  4  6  3  5  7  3  9  6  2  1
 ```
 
 ---
@@ -468,7 +468,7 @@ class: inverse, middle, center
 ### Escolham números para jogar na mega-sena
 ### Lembrando: são 6 valores de 1 a 60 e atribuam a um objeto
 
-<div class="countdown" id="timer_5f8ce30a" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8f00a5" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -486,7 +486,7 @@ mega_num
 ```
 
 ```
-## [1] 31 57 15 40 43 48
+## [1] 22 17 36 40  7 55
 ```
 
 ---
@@ -732,7 +732,7 @@ class: clear, inverse, middle, center
 
 `cont, cont, cont, ...., cont, trat, trat, ...., trat`
 
-<div class="countdown" id="timer_5f8ce40a" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8f0363" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -958,7 +958,7 @@ class: inverse, middle, center
 
 ### Criem uma matriz chamada "ma", resultante da disposição de um vetor composto por 10000 valores aleatórios entre 0 e 10. A matriz deve conter 100 linhas e ser disposta por colunas
 
-<div class="countdown" id="timer_5f8ce3dd" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8f0130" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1214,7 +1214,7 @@ pe
 ```
 
 ```
-## [1] 1 1 0 1
+## [1] 0 1 1 0
 ```
 --
 
@@ -1243,10 +1243,10 @@ df
 
 ```
 ##          pa pe   tr
-## 1 parcela_1  1 trat
+## 1 parcela_1  0 trat
 ## 2 parcela_2  1 trat
-## 3 parcela_3  0 cont
-## 4 parcela_4  1 cont
+## 3 parcela_3  1 cont
+## 4 parcela_4  0 cont
 ```
 --
 
@@ -1257,7 +1257,7 @@ str(df)
 ```
 ## 'data.frame':	4 obs. of  3 variables:
 ##  $ pa: chr  "parcela_1" "parcela_2" "parcela_3" "parcela_4"
-##  $ pe: int  1 1 0 1
+##  $ pe: int  0 1 1 0
 ##  $ tr: Factor w/ 2 levels "cont","trat": 2 2 1 1
 ```
 
@@ -1276,10 +1276,10 @@ df_c
 
 ```
 ##      pa          pe  tr 
-## [1,] "parcela_1" "1" "2"
+## [1,] "parcela_1" "0" "2"
 ## [2,] "parcela_2" "1" "2"
-## [3,] "parcela_3" "0" "1"
-## [4,] "parcela_4" "1" "1"
+## [3,] "parcela_3" "1" "1"
+## [4,] "parcela_4" "0" "1"
 ```
 --
 
@@ -1288,7 +1288,7 @@ str(df_c)
 ```
 
 ```
-##  chr [1:4, 1:3] "parcela_1" "parcela_2" "parcela_3" "parcela_4" "1" "1" "0" ...
+##  chr [1:4, 1:3] "parcela_1" "parcela_2" "parcela_3" "parcela_4" "0" "1" "1" ...
 ##  - attr(*, "dimnames")=List of 2
 ##   ..$ : NULL
 ##   ..$ : chr [1:3] "pa" "pe" "tr"
@@ -1312,7 +1312,7 @@ class: inverse, middle, center
 
 `ab: 50 valores aleatórios entre 0 a 5`
 
-<div class="countdown" id="timer_5f8ce52c" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_5f8f0362" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 

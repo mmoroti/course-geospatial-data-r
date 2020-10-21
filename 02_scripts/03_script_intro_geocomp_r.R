@@ -517,11 +517,14 @@ da <- read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
 # ver os dados
 da
 
+row.names(da) <- da$id
+da
+
 # conferir a classe
 class(da)
 
 # ler e atribuir uma planilha simples (.txt) a um objeto
-da <- read.table("ATLANTIC_AMPHIBIANS_sites.txt", header = TRUE, sep = "\t")
+da <- read.table("ATLANTIC_AMPHIBIANS_sites.txt", row.names = 1, header = TRUE, sep = "\t")
 da
 
 # pacote openxlsx
@@ -595,12 +598,12 @@ da_sp
 # 3.10 Exportar dados -----------------------------------------------------
 # planilha eletronica (.csv)
 write.csv(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.csv", 
-          row.names = FALSE, quote = FALSE)
+          row.names = FALSE)
 
 
 # planilha de texto (.txt)
 write.table(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.txt", 
-            row.names = FALSE, quote = FALSE)
+            row.names = FALSE, quote = FALSE, sep = ";")
 
 # planilha eletronica (.xlsx)
 openxlsx::write.xlsx(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.xlsx", 

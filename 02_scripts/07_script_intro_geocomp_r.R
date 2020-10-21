@@ -180,9 +180,7 @@ values(ra_rc)
 ra_rc[]
 
 # stack values
-getValues(st) %>% head
 values(st) %>% head
-st[] %>% head
 
 # 7.6 conversao do crs ----------------------------------------------------
 # projection
@@ -256,7 +254,6 @@ bio01_laea
 raster::plot(bio01_laea, col = viridis::viridis(10))
 
 # 7.7 manipulacao de dados raster -----------------------------------------
-
 # indexacao de linha-coluna ou id da celula
 # raster - row 1, column 1
 ra[1, 1]

@@ -404,9 +404,9 @@ class: inverse, center, middle
 <br>
 `log10(cumsum(1:100))`
 <br>
-`sum(sqrt(rnorm(100)))`
+`sum(sqrt(abs(rnorm(100))))`
 <br>
-`prod(sort(sample(1:10, 10000, rep = TRUE)))`
+`sum(sort(sample(1:10, 10000, rep = TRUE)))`
 
 ```{r echo=FALSE}
 countdown(minutes = 5, seconds = 00, color_background = "gray30")
@@ -433,10 +433,10 @@ log10(cumsum(1:100))
   
 ```{r eval=FALSE}
 # 2.
-sum(sort(rnorm(100)))
+sum(sort(abs(rnorm(100))))
 
-100 %>% 
-  rnorm %>% 
+rnorm(100) %>% 
+  abs %>% 
   sort %>% 
   sum
 ```
@@ -448,11 +448,12 @@ sum(sort(rnorm(100)))
 
 ```{r eval=FALSE}
 # 3.
-scale(sample(1:10, 10000, rep = TRUE))
+sum(sort(sample(1:10, 10000, rep = TRUE)))
 
 1:10 %>% 
   sample(10000, rep = TRUE) %>% 
-  scale
+  sort %>% 
+  sum
 ```
 
 ---
@@ -2755,6 +2756,28 @@ background-position: 10% 70%, 90% 80%
 ### [Webinar de purrr avançado](https://youtu.be/vb1lD9_AFcU) - Curso-R
 
 ### [purrr tutorial](https://jennybc.github.io/purrr-tutorial/) - Jennifer (Jenny) Bryan
+
+---
+
+class: clear
+background-image: url(img/package_furrr.png)
+background-size: 400px
+
+---
+
+background-image: url(img/package_furrr.png)
+background-size: 300px
+background-position: 50% 65%
+
+# 4.12 furrr
+
+## Programação funcional paralelizada
+
+### Faz o mapeamento em paralelo mais integrado possível
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+[*] https://www.tidyverse.org/blog/2020/10/furrr-0-2-0/
 
 ---
 

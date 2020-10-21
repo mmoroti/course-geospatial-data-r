@@ -4,7 +4,6 @@
 #' date: 2020-10-20
 #' ---
 
-
 # packages ----------------------------------------------------------------
 library(tidyverse)
 library(here)
@@ -159,18 +158,22 @@ si_unite <- tidyr::unite(si, "lat_lon", latitude:longitude, sep = ",")
 si_unite$lat_lon
 
 # com pipes
-si_unite <- si %>% 
-  tidyr::unite("lat_lon", latitude:longitude, sep = ",")
+si_unite <- si%>% 
+  tidyr::unite("lat_lon", c(latitude:longitude, municipality), sep = ",")
 si_unite$lat_lon
   
 # 2 separate
 # separar os dados de "period" em quatro colunas dos seus valores
 si_separate <- si %>% 
-  tidyr::separate("period", c("mo", "da", "tw", "ni"), remove = FALSE)
+  tidyr::separate("period", c("mo", "da", "tw", "ni"), remove = FALSE, fill = "right")
 si_separate[, c(1, 9:13)]
 
 # 3 separate_rows()
 # Separar os dados de "period" na mesma coluna e repetindo os valores
+si_separate_row <- si %>% 
+  tidyr::separate_rows("period")
+si_separate_row[, c(1, 9:13)]
+
 si_separate_row <- si %>% 
   tidyr::separate_rows("period")
 si_separate_row[, c(1, 9:13)]
@@ -200,7 +203,7 @@ si_replace_na
 # 4. values_fill: valor para preencher os NAs
 
 # sites
-si[, c("id", "record", "species_number")]
+si[, c("id", "state_abbreviation", "species_number")]
 
 si_wide <- si %>% 
   tidyr::pivot_wider(id_cols = id, 
@@ -228,15 +231,33 @@ sp_wide
 
 si_long <- si_wide %>% 
   tidyr::pivot_longer(cols = -id, 
-                      names_to = "record", 
-                      values_to = "species_number")
+                      names_to = "state_abbreviation", 
+                      values_to = "species_number") %>% 
+  dplyr::filter(species_number != 0)
 si_long
 
-# exercicio 10 ------------------------------------------------------------
+sp_long <- sp_wide %>% 
+  tidyr::pivot_longer(cols = -id, 
+                      names_to = "species", 
+                      values_to = "individuals") %>% 
+  dplyr::filter(individuals != 0)
+sp_long
 
+# exercicio 10 ------------------------------------------------------------
+si_un <- si %>% 
+  tidyr::unite("local_total", country:site, sep = ", ")
+si_un$local_total
 
 # exercicio 11 ------------------------------------------------------------
-
+family_wide <- sp[1:1000, ] %>% 
+  tidyr::replace_na(list(individuals = 0)) %>% 
+  tidyr::drop_na(family) %>% 
+  tidyr::pivot_wider(id_cols = id, 
+                     names_from = family, 
+                     values_from = individuals, 
+                     values_fn = list(individuals = sum),
+                     values_fill = list(individuals = 0))
+family_wide
 
 
 # 4.7 dplyr ---------------------------------------------------------------
@@ -267,7 +288,11 @@ si_select
 
 #  starts_with(), ends_with() e contains()
 si_select <- si %>% 
-  select(contains("sp"))
+  select(contains("method"))
+si_select
+
+si_select <- si %>% 
+  dplyr::select(1:10)
 si_select
 
 # 2 pull
@@ -276,9 +301,10 @@ si_pull <- si %>%
   pull(id)
 si_pull
 
-si_pull <- si %>% 
-  pull(species_number)
-si_pull
+si %>% 
+  pull(species_number) %>% 
+  hist
+
 
 # 3 rename
 si_rename <- si %>%
@@ -289,6 +315,12 @@ si_rename
 si_mutate <- si %>% 
   mutate(record_factor = as.factor(record))
 si_mutate$record_factor
+
+si %>% 
+  dplyr::mutate(species_number_hell = sqrt(species_number)) %>% # hellinger
+  dplyr::rename(sph = species_number_hell) %>%  # rename
+  dplyr::pull() %>%  # vector
+  hist # hist
 
 # 5 arrange
 si_arrange <- si %>% 
@@ -331,6 +363,10 @@ si_filter
 si_filter <- si %>% 
   filter(species_number > 5 | state_abbreviation == "BR-SP")
 si_filter
+
+si_filter <- si %>% 
+  dplyr::filter(state_abbreviation %in% c("BR-SP", "BR-MG", "BR-ES", "BR-RJ"))
+si_filter$state_abbreviation %>% table
 
 # 7 distinct
 si_distinct <- si %>% 
@@ -411,11 +447,18 @@ da
 
 
 # exercicio 12 ------------------------------------------------------------
-
-
+dplyr::mutate(si, 
+              alt_log = log10(altitude), 
+              tem_log = log10(temperature),
+              pre_log = log10(precipitation)) %>% 
+  dplyr::select(alt_log, tem_log, pre_log)
 
 # exercicio 13 ------------------------------------------------------------
-
+si_fi <- si %>% 
+  dplyr::filter(altitude > 1000,
+                temperature < 15,
+                precipitation > 1000)
+si_fi
 
 
 # exercicio 14 ------------------------------------------------------------
@@ -423,6 +466,10 @@ da
 
 
 # exercicio 15 ------------------------------------------------------------
+si_sa <- si %>% 
+  dplyr::sample_n(200) %>% 
+  dplyr::filter(species_number > 15)
+si_sa
 
 
 # 4.8 stringr -------------------------------------------------------------
