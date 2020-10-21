@@ -1,5 +1,5 @@
 #' ---
-#' title: aula 07 - estrutura_rc e manejo de dados matriciais
+#' title: aula 07 - estrutura e manipulação de dados matriciais
 #' author: mauricio vancine
 #' date: 2020-10-23
 #' ---
@@ -58,6 +58,7 @@ raster::plot(ra_rc_lay, col = viridis::viridis(100))
 set.seed(42)
 ra_rc_sta <- raster::stack(raster::raster(volcano), 
                         raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
                         raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
 ra_rc_sta
 
@@ -68,6 +69,7 @@ raster::plot(ra_rc_sta, col = viridis::viridis(10))
 set.seed(42)
 ra_rc_bri <- raster::brick(raster::raster(volcano), 
                         raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
                         raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
 ra_rc_bri
 
@@ -179,8 +181,20 @@ getValues(ra_rc)
 values(ra_rc)
 ra_rc[]
 
+# raster values histogram
+ra %>% 
+  raster::values() %>% 
+  hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
+
 # stack values
-values(st) %>% head
+values(st[[1:3]]) %>% head
+
+# stack values - pairs
+st[[1:3]] %>% 
+  raster::values() %>% 
+  tibble::as_tibble() %>% 
+  dplyr::sample_n(1e3) %>% 
+  pairs(cex = 1.3, pch = 20, col = adjustcolor("gray50", .7))
 
 # 7.6 conversao do crs ----------------------------------------------------
 # projection
@@ -189,6 +203,10 @@ ra_rc
 # proj4string utm 23 s
 utm23 <- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 utm23
+
+# reprojection raster
+ra_rc_utm23 <- raster::projectRaster(ra_rc, crs = utm23)
+ra_rc_utm23
 
 # reprojection raster
 ra_rc_utm23 <- raster::projectRaster(ra_rc, crs = utm23, res = 90, method = "bilinear")
@@ -260,5 +278,31 @@ ra[1, 1]
 
 # cell is 1
 ra[1]
+
+# selection layer in stack
+st_bio01 <- raster::subset(st, "wc2.1_10m_bio_1")
+st_bio01
+
+# selection layer in stack
+st_bio01 <- raster::raster(st, layer = 1)
+st_bio01
+
+# selection layer in stack
+st_bio01 <- st[["wc2.1_10m_bio_1"]]
+st_bio01
+
+# selection layer in stack
+st_bio01 <- st[[1]]
+st_bio01
+
+# selection layer in stack
+st_bio01 <- st$wc2.1_10m_bio_1
+st_bio01
+
+# map
+raster::plot(st_bio01, col = viridis::viridis(10))
+
+# names
+names(ra_rc)
 
 # end ---------------------------------------------------------------------

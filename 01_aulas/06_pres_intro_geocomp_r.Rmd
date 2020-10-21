@@ -527,6 +527,26 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/geo_data_fbds.png)
+background-size: 500px
+background-position: 50% 95%
+
+# 6.4 Importar dados
+
+### Fundação Brasileira Desenvolvimento Sustentável (FBDS)
+
+Em 2015, a FBDS deu início ao *Projeto de Mapeamento em Alta Resoluçăo dos Biomas Brasileiros*: 
+- Cobertura da terra
+- Hidrografia (nascentes, rios e lagos)
+- Áreas de Preservaçăo Permanente (APP)
+
+O mapeamento foi concluído para os municípios dos biomas *Mata Atlântica e Cerrado*
+
+Site: https://www.fbds.org.br/<br>
+Repositório: http://geo.fbds.org.br/
+
+---
+
 # 6.4 Importar dados
 
 ## Download
@@ -1039,7 +1059,7 @@ si
 
 ## Add as duas colunas de `lon` e `lat`
 ```{r}
-# .add column
+# add column
 si <- si %>% 
   dplyr::mutate(lon = longitude, lat = latitude, .before = 1)
 si
@@ -1603,6 +1623,29 @@ rc_spr_forest
 
 # 6.9 Operações espaciais
 
+## 1. Subset espacial [] - dentro
+```{r}
+# spatial subsetting - inside
+rc_spr_forest <- rc_spr[rc_use_forest, ]
+rc_spr_forest
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## 1. Subset espacial [] - dentro
+```{r fig.align='center', out.width='45%'}
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
+```
+
+---
+
+# 6.9 Operações espaciais
+
 ## 1. Subset espacial - fora
 ```{r}
 # spatial subsetting - outside
@@ -1615,46 +1658,13 @@ rc_spr_forest_out
 
 # 6.9 Operações espaciais
 
-## 1. Subset espacial [] - dentro
-```{r}
-# spatial subsetting - inside
-rc_spr_forest <- rc_spr[rc_use_forest, ]
-rc_spr_forest
-```
-
----
-
-# 6.9 Operações espaciais
-
-## 1. Subset espacial []
+## 1. Subset espacial - fora
 ```{r fig.align='center', out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest_out$geometry, col = "steelblue", pch = 20, cex = 1, add = TRUE)
 plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
-```
-
----
-
-# 6.9 Operações espaciais
-
-## 1. Subset espacial [] - fora - atente para a vírgula!
-```{r}
-# spatial subsetting - outside - comma!
-rc_spr_forest_out <- rc_spr[is.na(rc_use_forest)]
-rc_spr_forest_out
-```
-
----
-
-# 6.9 Operações espaciais
-
-## 1. Subset espacial []
-```{r fig.align='center', out.width='45%'}
-# plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
-plot(rc_spr_forest_out$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
 ```
 
 ---
@@ -1825,8 +1835,7 @@ rc_2019_sirgas2000_utm23s_grid_in_spr_count
 ## 4. Quadrículas
 ```{r fig.align='center', out.width='50%'}
 # map
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -1872,8 +1881,7 @@ rc_2019_sirgas2000_utm23s_hex_spr_count
 ## 5. Hexágonos
 ```{r fig.align='center', out.width='50%'}
 # map
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_hex_spr_count, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -1931,7 +1939,7 @@ rc_2019_cent
 ```{r fig.align='center', out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_cent, col = "red", pch = 20, add = TRUE)
+plot(rc_2019_cent$geom, cex = 3, col = "red", pch = 20, add = TRUE)
 ```
 
 ---

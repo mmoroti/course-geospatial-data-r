@@ -95,6 +95,20 @@ background-position: 50% 50%
 
 ---
 
+background-image: url(img/general_information.jpeg)
+background-size: 400px
+background-position: 50% 50%
+
+# 5.1 Geoprocessamento
+
+## Resumo da leitura
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+*[http://www.ufrrj.br/lga/tiagomarino/artigos/oqueegeoprocessamento.pdf]
+
+---
+
 background-image: url(img/geo_geotec_geoprocess01.png)
 background-size: 380px
 background-position: 50% 95%
@@ -911,6 +925,9 @@ https://www.worldclim.org/
 
 - **EarthEnv**: dados de cobertura da terra, nuvens, relevo e hidrografia <br>
 https://www.earthenv.org/
+
+- **Global Forest Watch**: dados de uso e cobertura para todo o planeta <br>
+https://www.globalforestwatch.org/
 
 ---
 

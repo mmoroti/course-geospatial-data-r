@@ -661,6 +661,26 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/geo_data_fbds.png)
+background-size: 500px
+background-position: 50% 95%
+
+# 6.4 Importar dados
+
+### Fundação Brasileira Desenvolvimento Sustentável (FBDS)
+
+Em 2015, a FBDS deu início ao *Projeto de Mapeamento em Alta Resoluçăo dos Biomas Brasileiros*: 
+- Cobertura da terra
+- Hidrografia (nascentes, rios e lagos)
+- Áreas de Preservaçăo Permanente (APP)
+
+O mapeamento foi concluído para os municípios dos biomas *Mata Atlântica e Cerrado*
+
+Site: https://www.fbds.org.br/&lt;br&gt;
+Repositório: http://geo.fbds.org.br/
+
+---
+
 # 6.4 Importar dados
 
 ## Download
@@ -1998,7 +2018,7 @@ si
 ## Add as duas colunas de `lon` e `lat`
 
 ```r
-# .add column
+# add column
 si &lt;- si %&gt;% 
   dplyr::mutate(lon = longitude, lat = latitude, .before = 1)
 si
@@ -47225,6 +47245,53 @@ rc_spr_forest
 
 # 6.9 Operações espaciais
 
+## 1. Subset espacial [] - dentro
+
+```r
+# spatial subsetting - inside
+rc_spr_forest &lt;- rc_spr[rc_use_forest, ]
+rc_spr_forest
+```
+
+```
+## Simple feature collection with 169 features and 5 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: 217622.9 ymin: 7505568 xmax: 246181.4 ymax: 7537185
+## projected CRS:  SIRGAS 2000 / UTM zone 23S
+## First 10 features:
+##    GEOCODIGO MUNICIPIO UF CD_UF    HIDRO                 geometry
+## 1    3543907 RIO CLARO SP    35 nascente POINT (217622.9 7528315)
+## 2    3543907 RIO CLARO SP    35 nascente POINT (217836.5 7528103)
+## 4    3543907 RIO CLARO SP    35 nascente POINT (218288.9 7528237)
+## 9    3543907 RIO CLARO SP    35 nascente POINT (218583.5 7528215)
+## 15   3543907 RIO CLARO SP    35 nascente POINT (219062.2 7528499)
+## 19   3543907 RIO CLARO SP    35 nascente POINT (219246.2 7529011)
+## 23   3543907 RIO CLARO SP    35 nascente POINT (219554.5 7528573)
+## 46   3543907 RIO CLARO SP    35 nascente POINT (220534.8 7528014)
+## 50   3543907 RIO CLARO SP    35 nascente POINT (220754.5 7530181)
+## 54   3543907 RIO CLARO SP    35 nascente POINT (220958.3 7526278)
+```
+
+---
+
+# 6.9 Operações espaciais
+
+## 1. Subset espacial [] - dentro
+
+```r
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
+```
+
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-105-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 6.9 Operações espaciais
+
 ## 1. Subset espacial - fora
 
 ```r
@@ -47258,95 +47325,17 @@ rc_spr_forest_out
 
 # 6.9 Operações espaciais
 
-## 1. Subset espacial [] - dentro
-
-```r
-# spatial subsetting - inside
-rc_spr_forest &lt;- rc_spr[rc_use_forest, ]
-rc_spr_forest
-```
-
-```
-## Simple feature collection with 169 features and 5 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 217622.9 ymin: 7505568 xmax: 246181.4 ymax: 7537185
-## projected CRS:  SIRGAS 2000 / UTM zone 23S
-## First 10 features:
-##    GEOCODIGO MUNICIPIO UF CD_UF    HIDRO                 geometry
-## 1    3543907 RIO CLARO SP    35 nascente POINT (217622.9 7528315)
-## 2    3543907 RIO CLARO SP    35 nascente POINT (217836.5 7528103)
-## 4    3543907 RIO CLARO SP    35 nascente POINT (218288.9 7528237)
-## 9    3543907 RIO CLARO SP    35 nascente POINT (218583.5 7528215)
-## 15   3543907 RIO CLARO SP    35 nascente POINT (219062.2 7528499)
-## 19   3543907 RIO CLARO SP    35 nascente POINT (219246.2 7529011)
-## 23   3543907 RIO CLARO SP    35 nascente POINT (219554.5 7528573)
-## 46   3543907 RIO CLARO SP    35 nascente POINT (220534.8 7528014)
-## 50   3543907 RIO CLARO SP    35 nascente POINT (220754.5 7530181)
-## 54   3543907 RIO CLARO SP    35 nascente POINT (220958.3 7526278)
-```
-
----
-
-# 6.9 Operações espaciais
-
-## 1. Subset espacial []
+## 1. Subset espacial - fora
 
 ```r
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest_out$geometry, col = "steelblue", pch = 20, cex = 1, add = TRUE)
 plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-106-1.png" width="45%" style="display: block; margin: auto;" /&gt;
-
----
-
-# 6.9 Operações espaciais
-
-## 1. Subset espacial [] - fora - atente para a vírgula!
-
-```r
-# spatial subsetting - outside - comma!
-rc_spr_forest_out &lt;- rc_spr[is.na(rc_use_forest)]
-rc_spr_forest_out
-```
-
-```
-## Simple feature collection with 1220 features and 0 fields
-## geometry type:  POINT
-## dimension:      XY
-## bbox:           xmin: 217622.9 ymin: 7504132 xmax: 246367.4 ymax: 7537855
-## projected CRS:  SIRGAS 2000 / UTM zone 23S
-## First 10 features:
-##                    geometry
-## 1  POINT (217622.9 7528315)
-## 2  POINT (217836.5 7528103)
-## 3  POINT (217988.9 7528203)
-## 4  POINT (218288.9 7528237)
-## 5  POINT (218346.6 7530583)
-## 6  POINT (218393.1 7528031)
-## 7  POINT (218508.3 7528470)
-## 8  POINT (218535.4 7530642)
-## 9  POINT (218583.5 7528215)
-## 10 POINT (218760.1 7530258)
-```
-
----
-
-# 6.9 Operações espaciais
-
-## 1. Subset espacial []
-
-```r
-# plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
-plot(rc_spr_forest_out$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
-```
-
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-108-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-107-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47493,7 +47482,7 @@ plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, grati
 plot(rc_spr_use[10], col = rc_spr_use$color, pch = 20, add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-113-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-112-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47511,7 +47500,7 @@ rc_2019_sirgas2000_utm23s_rp
 ## Geometry set for 1000 features 
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: 215453.1 ymin: 7504188 xmax: 246190.3 ymax: 7537958
+## bbox:           xmin: 215501.9 ymin: 7504032 xmax: 245955.8 ymax: 7537921
 ## projected CRS:  SIRGAS 2000 / UTM zone 23S
 ## First 5 geometries:
 ```
@@ -47528,7 +47517,7 @@ plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, grati
 plot(rc_2019_sirgas2000_utm23s_rp, pch = 20, cex = .5, col = "red", add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-115-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-114-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47546,7 +47535,7 @@ rc_use_forest_rp
 ## Geometry set for 1000 features 
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: 216323.7 ymin: 7504286 xmax: 246026.7 ymax: 7537807
+## bbox:           xmin: 215656.6 ymin: 7504374 xmax: 246237.1 ymax: 7537894
 ## projected CRS:  SIRGAS 2000 / UTM zone 23S
 ## First 5 geometries:
 ```
@@ -47564,7 +47553,7 @@ plot(rc_use_forest$geom, col = "forestgreen", add = TRUE)
 plot(rc_use_forest_rp, pch = 20, cex = .5, col = "red", add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-117-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-116-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47612,7 +47601,7 @@ plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, grati
 plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-119-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-118-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47658,7 +47647,7 @@ plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, grati
 plot(rc_2019_sirgas2000_utm23s_grid_in, col = adjustcolor("red", .1), add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-121-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-120-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47701,11 +47690,10 @@ rc_2019_sirgas2000_utm23s_grid_in_spr_count
 
 ```r
 # map
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-123-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-122-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47753,7 +47741,7 @@ plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, grati
 plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-125-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-124-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47796,11 +47784,10 @@ rc_2019_sirgas2000_utm23s_hex_spr_count
 
 ```r
 # map
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_hex_spr_count, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-127-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-126-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47852,7 +47839,7 @@ plot(rc_riv$geometry, col = "steelblue", add = TRUE)
 plot(rc_riv_simp$geometry, col = adjustcolor("red", .7), add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-129-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-128-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47887,10 +47874,10 @@ rc_2019_cent
 ```r
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_cent, col = "red", pch = 20, add = TRUE)
+plot(rc_2019_cent$geom, cex = 3, col = "red", pch = 20, add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-131-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-130-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47937,7 +47924,7 @@ plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
 plot(rc_2019_sirgas2000_utm23s_hex_cent, col = "blue", pch = 20, add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-133-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-132-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -47985,7 +47972,7 @@ plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
 plot(rc_spr_forest_buf$geom, col = adjustcolor("white", 0), add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-135-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-134-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -48020,7 +48007,7 @@ plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
 plot(rc_spr_forest_buf_union, col = adjustcolor("white", 0), add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-137-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-136-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -48059,7 +48046,7 @@ plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
 plot(rc_riv_spr_forest_buf_int$geometry, col = "blue", add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-139-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-138-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -48098,7 +48085,7 @@ plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
 plot(rc_riv_spr_forest_buf_dif$geometry, col = "blue", add = TRUE)
 ```
 
-&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-141-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-140-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 

@@ -14,7 +14,7 @@
 class: center, middle, inverse, title-slide
 
 # Introdução à análise geoespacial com R <br><br><br>
-## 7 Estrutura e manejo de dados matriciais <br><br><br>
+## 7 Estrutura e manipulação de dados matriciais <br><br><br>
 ### Maurício H. Vancine <br> Milton C. Ribeiro
 ### 23/10/2020
 
@@ -258,10 +258,11 @@ background-position: 50% 90%
 ```r
 # stack
 set.seed(42)
-ra_sta &lt;- raster::stack(raster::raster(volcano), 
-                        raster::raster(matrix(rnorm(5307), nrow = 87)),
-                        raster::raster(matrix(rbinom(5307, 1, .5), nrow = 87)))
-ra_sta
+ra_rc_sta &lt;- raster::stack(raster::raster(volcano), 
+                        raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
+                        raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
+ra_rc_sta
 ```
 
 ---
@@ -308,10 +309,11 @@ background-position: 50% 90%
 ```r
 # brick
 set.seed(42)
-ra_bri &lt;- raster::brick(raster::raster(volcano), 
-                        raster::raster(matrix(rnorm(5307), nrow = 87)),
-                        raster::raster(matrix(rbinom(5307, 1, .5), nrow = 87)))
-ra_bri
+ra_rc_bri &lt;- raster::brick(raster::raster(volcano), 
+                        raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
+                        raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
+ra_rc_bri
 ```
 
 ---
@@ -656,7 +658,7 @@ class: inverse, center, middle
 ## Informações
 
 ```r
-ra
+ra_rc
 ```
 
 - *class*: classe raster do objeto
@@ -677,19 +679,19 @@ ra
 #### Classe
 
 ```r
-class(ra)
+class(ra_rc)
 ```
 --
 #### Dimensões
 
 ```r
-dim(ra)
+dim(ra_rc)
 ```
 --
 #### Número de camadas
 
 ```r
-nlayers(ra)
+nlayers(ra_rc)
 ```
 
 ---
@@ -713,19 +715,19 @@ background-position: 50% 90%
 #### Número de linhas
 
 ```r
-nrow(ra)
+nrow(ra_rc)
 ```
 --
 #### Número de colunas
 
 ```r
-ncol(ra)
+ncol(ra_rc)
 ```
 --
 #### Número de células
 
 ```r
-ncell(ra)
+ncell(ra_rc)
 ```
 
 ---
@@ -750,7 +752,7 @@ background-position: 50% 80%
 
 ```r
 # raster resolution
-res(ra)
+res(ra_rc)
 ```
 --
 
@@ -781,7 +783,7 @@ background-position: 50% 90%
 
 ```r
 # raster extent
-extent(ra)
+extent(ra_rc)
 ```
 --
 
@@ -800,7 +802,7 @@ extent(st)
 
 ```r
 # projection
-projection(ra)
+projection(ra_rc)
 ```
 --
 
@@ -819,7 +821,7 @@ projection(st)
 
 ```r
 # raster names
-names(ra)
+names(ra_rc)
 ```
 --
 
@@ -849,7 +851,8 @@ background-position: 50% 90%
 ### Valores
 
 ```r
-getValues(ra)
+# raster values
+getValues(ra_rc)
 ```
 
 ---
@@ -861,7 +864,8 @@ getValues(ra)
 ### Valores
 
 ```r
-values(ra)
+# raster values
+values(ra_rc)
 ```
 
 ---
@@ -873,7 +877,8 @@ values(ra)
 ### Valores
 
 ```r
-ra[]
+# raster values
+ra_rc[]
 ```
 
 ---
@@ -885,6 +890,7 @@ ra[]
 ### Valores
 
 ```r
+# raster values histogram
 ra %&gt;% 
   raster::values() %&gt;% 
   hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
@@ -899,7 +905,8 @@ ra %&gt;%
 ### Valores
 
 ```r
-raster::values(st[[1:3]])
+# stack values
+values(st[[1:3]]) %&gt;% head
 ```
 
 ---
@@ -911,6 +918,7 @@ raster::values(st[[1:3]])
 ### Valores
 
 ```r
+# stack values - pairs
 st[[1:3]] %&gt;% 
   raster::values() %&gt;% 
   tibble::as_tibble() %&gt;% 
@@ -955,10 +963,15 @@ background-position: 50% 90%
 ### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
 
 ```r
+# projection
 ra_rc
 ```
 
 ---
+
+background-image: url(img/geo_utm_zones.png)
+background-size: 400px
+background-position: 80% 80%
 
 # 7.6 Conversão do CRS
 
@@ -971,17 +984,44 @@ ra_rc
 utm23 &lt;- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 utm23
 ```
---
+
+```
+## [1] "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://epsg.io/31983
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
+
+```r
+# reprojection
+ra_rc_utm23 &lt;- raster::projectRaster(ra_rc, crs = utm23)
+ra_rc_utm23
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local - especificando parâmetros
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
 
 ```r
 # reprojection
 ra_rc_utm23 &lt;- raster::projectRaster(ra_rc, crs = utm23, res = 90, method = "bilinear")
 ra_rc_utm23
 ```
-
-[*] https://epsg.io/31983
-
-[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm
 
 ---
 
@@ -1024,6 +1064,10 @@ plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
 
 ---
 
+background-image: url(img/geo_proj_moll.png)
+background-size: 450px
+background-position: 80% 80%
+
 # 7.6 Conversão do CRS
 
 ## Converter CRS global
@@ -1035,17 +1079,29 @@ plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
 moll &lt;- "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 moll
 ```
---
 
-```r
-# reprojection
-bio01_moll &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, method = "bilinear")
-bio01_moll
 ```
+## [1] "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://epsg.io/54009
 
 [*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/mollweide.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide
+
+```r
+# reprojection
+bio01_moll &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, method = "bilinear")
+```
 
 ---
 
@@ -1062,6 +1118,10 @@ plot(bio01_moll, col = viridis::viridis(10))
 
 ---
 
+background-image: url(img/geo_proj_wintri.png)
+background-size: 320px
+background-position: 50% 80%
+
 # 7.6 Conversão do CRS
 
 ## Converter CRS global
@@ -1073,15 +1133,28 @@ plot(bio01_moll, col = viridis::viridis(10))
 wintri &lt;- "+proj=wintri +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 wintri
 ```
---
+
+```
+## [1] "+proj=wintri +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/winkel-tripel.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Winkel Tripel
 
 ```r
 # reprojection
 bio01_wintri &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = wintri, res = 25e3, method = "bilinear")
 bio01_wintri
 ```
-
-[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/winkel-tripel.htm
 
 ---
 
@@ -1098,6 +1171,10 @@ plot(bio01_wintri, col = viridis::viridis(10))
 
 ---
 
+background-image: url(img/geo_proj_eck4.png)
+background-size: 400px
+background-position: 80% 82%
+
 # 7.6 Conversão do CRS
 
 ## Converter CRS global
@@ -1109,17 +1186,30 @@ plot(bio01_wintri, col = viridis::viridis(10))
 eck4 &lt;- "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 eck4
 ```
---
+
+```
+## [1] "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://epsg.io/54012
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/eckert-iv.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV
 
 ```r
 # reprojection
 bio01_eck4 &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = eck4, res = 25e3, method = "bilinear")
 bio01_eck4
 ```
-
-[*] https://epsg.io/54012
-
-[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/eckert-iv.htm
 
 ---
 
@@ -1136,6 +1226,10 @@ plot(bio01_eck4, col = viridis::viridis(10))
 
 ---
 
+background-image: url(img/geo_proj_laea.png)
+background-size: 180px
+background-position: 50% 78%
+
 # 7.6 Conversão do CRS
 
 ## Converter CRS global
@@ -1147,15 +1241,26 @@ plot(bio01_eck4, col = viridis::viridis(10))
 laea &lt;- "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
 laea
 ```
---
+
+```
+## [1] "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
 
 ```r
 # reprojection
 bio01_laea &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = laea, res = 25e3, method = "bilinear")
 bio01_laea
 ```
-
-[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
 
 ---
 

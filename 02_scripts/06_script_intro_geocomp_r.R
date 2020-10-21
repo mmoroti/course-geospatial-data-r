@@ -35,14 +35,17 @@ library(tidyverse)
 
 # 6.3 classes sf ----------------------------------------------------------
 # simple feature geometries (sfg)
+
 # simple
 # sf::st_point()
 # sf::st_linestring()
 # sf::st_polygon()
+
 # multi
 # sf::st_multipoint()
 # sf::st_multilinestring()
 # sf::st_multipolygon()
+
 # collections
 # sf::st_geometrycollection()
 
@@ -87,6 +90,10 @@ pol
 plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
 
 # simple feature columns (sfc)
+# sf::st_sfc()
+# sf::st_geometry_type()
+# sf::st_crs()
+
 # sfc point
 point1 <- sf::st_point(c(5, 2))
 point1
@@ -346,7 +353,7 @@ rc_2019_wgs84_gcs
 co110_sf
 
 # plot
-plot(co110_sf$geometry, col = "gray")
+plot(co110_sf$geometry, col = "gray", graticule = TRUE)
 
 # mollweide projection
 co110_sf_moll <- sf::st_transform(co110_sf, crs = "+proj=moll")
@@ -427,6 +434,22 @@ rc_use_area <- rc_use %>%
   sf::st_drop_geometry()
 rc_use_area
 
+# feature manipulation
+# dplyr::filter()
+# dplyr::distinc()
+# dplyr::slice()
+# dplyr::n_sample()
+# dplyr::group_by()
+# dplyr::summarise()
+
+# attribute table manipulation
+# dplyr::select()
+# dplyr::pull()
+# dplyr::rename()
+# dplyr::mutate()
+# dplyr::arrange()
+# dplyr::*_join()
+
 # 6.9 operacoes espaciais -------------------------------------------------
 # 1. spatial subsetting
 sf::st_intersects(x = rc_spr, y = rc_use_forest)
@@ -439,11 +462,6 @@ rc_spr_forest <- rc_spr %>%
   dplyr::filter(sf::st_intersects(x = ., y = rc_use_forest, sparse = FALSE))
 rc_spr_forest
 
-# 1. spatial subsetting - outside
-rc_spr_forest_out <- rc_spr %>% 
-  dplyr::filter(!sf::st_intersects(x = ., y = rc_use_forest, sparse = FALSE))
-rc_spr_forest_out
-
 # 1. spatial subsetting - inside
 rc_spr_forest <- rc_spr[rc_use_forest, ]
 rc_spr_forest
@@ -453,14 +471,16 @@ plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, grati
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
 plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
 
-# 1. spatial subsetting - outside - comma!
-rc_spr_forest_out <- rc_spr[is.na(rc_use_forest)]
+# 1. spatial subsetting - outside
+rc_spr_forest_out <- rc_spr %>% 
+  dplyr::filter(!sf::st_intersects(x = ., y = rc_use_forest, sparse = FALSE))
 rc_spr_forest_out
 
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
-plot(rc_spr_forest_out$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
+plot(rc_spr_forest_out$geometry, col = "steelblue", pch = 20, cex = 1, add = TRUE)
+plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
 
 # 2. spatial join
 rc_spr_use <- rc_spr %>% 
@@ -526,8 +546,7 @@ rc_2019_sirgas2000_utm23s_grid_in_spr_count <- rc_2019_sirgas2000_utm23s_grid_in
 rc_2019_sirgas2000_utm23s_grid_in_spr_count
 
 # map
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count["n"], axes = TRUE, graticule = TRUE)
 
 # 5. hexagon
 rc_2019_sirgas2000_utm23s_hex <- rc_2019_sirgas2000_utm23s %>% 
@@ -545,8 +564,7 @@ rc_2019_sirgas2000_utm23s_hex_spr_count <- rc_2019_sirgas2000_utm23s_hex %>%
 rc_2019_sirgas2000_utm23s_hex_spr_count
 
 # map
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_hex_spr_count, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_spr_count["n"], axes = TRUE, graticule = TRUE)
 
 # 6.10 operacoes geometricas ----------------------------------------------
 # 1. simplification
@@ -564,7 +582,7 @@ rc_2019_cent
 
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_cent, col = "red", pch = 20, add = TRUE)
+plot(rc_2019_cent$geom, cex = 3, col = "red", pch = 20, add = TRUE)
 
 # 2. centroids
 rc_2019_sirgas2000_utm23s_hex_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s_hex)
