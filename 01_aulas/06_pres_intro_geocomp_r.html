@@ -45283,7 +45283,7 @@ rc_2019_sirgas2000_utm23s &lt;- sf::st_transform(rc_2019, crs = 31983)
 
 ## Converter CRS local
 
-### Mapa
+### plota
 &lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-76-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -45933,6 +45933,11 @@ dplyr::mutate()
 dplyr::arrange()
 dplyr::*_join()
 ```
+
+---
+
+class: inverse, center, middle
+# Operações espaciais
 
 ---
 
@@ -47500,7 +47505,7 @@ rc_2019_sirgas2000_utm23s_rp
 ## Geometry set for 1000 features 
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: 215501.9 ymin: 7504032 xmax: 245955.8 ymax: 7537921
+## bbox:           xmin: 215736.3 ymin: 7504019 xmax: 246228 ymax: 7537946
 ## projected CRS:  SIRGAS 2000 / UTM zone 23S
 ## First 5 geometries:
 ```
@@ -47535,7 +47540,7 @@ rc_use_forest_rp
 ## Geometry set for 1000 features 
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: 215656.6 ymin: 7504374 xmax: 246237.1 ymax: 7537894
+## bbox:           xmin: 216217.7 ymin: 7504380 xmax: 246047.6 ymax: 7537935
 ## projected CRS:  SIRGAS 2000 / UTM zone 23S
 ## First 5 geometries:
 ```
@@ -47689,7 +47694,7 @@ rc_2019_sirgas2000_utm23s_grid_in_spr_count
 ## 4. Quadrículas
 
 ```r
-# map
+# plot
 plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
 
@@ -47783,11 +47788,16 @@ rc_2019_sirgas2000_utm23s_hex_spr_count
 ## 5. Hexágonos
 
 ```r
-# map
+# plot
 plot(rc_2019_sirgas2000_utm23s_hex_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 &lt;img src="06_pres_intro_geocomp_r_files/figure-html/unnamed-chunk-126-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, center, middle
+# Operações geométricas
 
 ---
 

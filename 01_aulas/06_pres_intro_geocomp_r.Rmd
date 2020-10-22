@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, fig.align='center', warning = FALSE, message = FALSE)
 if(!require(emo)) devtools::install_github("hadley/emo")
 if(!require(sf)) install.packages("sf")
 if(!require(tidyverse)) install.packages("tidyverse")
@@ -265,7 +265,7 @@ po <- sf::st_point(vec)
 po
 ```
 
-```{r fig.align='center', out.width='35%'}
+```{r , out.width='35%'}
 # plot
 plot(po, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
@@ -283,7 +283,7 @@ po_mul <- sf::st_multipoint(multipoint_matrix)
 po_mul
 ```
 
-```{r fig.align='center', out.width='35%'}
+```{r , out.width='35%'}
 # plot
 plot(po_mul, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
@@ -301,7 +301,7 @@ lin <- sf::st_linestring(multipoint_matrix)
 lin
 ```
 
-```{r fig.align='center', out.width='35%'}
+```{r , out.width='35%'}
 # plot
 plot(lin, lwd = 2, axes = TRUE, graticule = TRUE)
 ```
@@ -319,7 +319,7 @@ pol <- sf::st_polygon(polygon_list)
 pol
 ```
 
-```{r fig.align='center', out.width='35%'}
+```{r , out.width='35%'}
 # plot
 plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
 ```
@@ -367,7 +367,7 @@ sf::st_geometry_type(points_sfc)
 # 6.3 Classes sf
 
 ## Simple feature columns (sfc)
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(points_sfc, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
@@ -392,7 +392,7 @@ sf::st_geometry_type(po_pol_sfc)
 # 6.3 Classes sf
 
 ## Simple feature columns (sfc)
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE, graticule = TRUE)
 ```
@@ -428,7 +428,7 @@ sf::st_crs(points_sfc_wgs)
 # 6.3 Classes sf
 
 ## Simple feature columns (sfc)
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
@@ -488,7 +488,7 @@ class(rc_sf)
 # 6.3 Classes sf
 
 ## A classe sf
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - plotar a primeira coluna
 ```
@@ -498,7 +498,7 @@ plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - pl
 # 6.3 Classes sf
 
 ## A classe sf
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[2] - plotar a segunda coluna
 ```
@@ -508,7 +508,7 @@ plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[2] - pl
 # 6.3 Classes sf
 
 ## A classe sf
-```{r fig.align='center', fig.height=6.7, out.width='50%'}
+```{r , fig.height=6.7, out.width='50%'}
 # plot
 plot(rc_sf$geometry, pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf$geometry - plotar apenas a geometria
 ```
@@ -617,7 +617,7 @@ rc_spr
 # 6.4 Importar dados
 
 ## Dados preexistentes
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_spr$geometry, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -638,7 +638,7 @@ rc_riv
 # 6.4 Importar dados
 
 ## Dados preexistentes
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_riv$geometry, col = "steelblue", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -659,7 +659,7 @@ rc_use
 # 6.4 Importar dados
 
 ## Dados preexistentes
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_use[5], col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -692,7 +692,7 @@ gps_gpx
 # 6.4 Importar dados
 
 ## Dados de GPS (.gpx)
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(gps_gpx$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -713,7 +713,7 @@ gps_kml
 # 6.4 Importar dados
 
 ## Dados de GPS (.kml)
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(gps_kml$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -758,7 +758,7 @@ br_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(br_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -780,7 +780,7 @@ br_1872
 
 ## Dados de pacotes: geobr
 
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -801,7 +801,7 @@ sp_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(sp_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -822,7 +822,7 @@ sp_mun_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -843,7 +843,7 @@ rc_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -864,7 +864,7 @@ bi_2019
 # 6.4 Importar dados
 
 ## Dados de pacotes: geobr
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(bi_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -932,7 +932,7 @@ sa
 # 6.4 Importar dados
 
 ## Dados de pacotes: rnaturalearth
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(sa$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -953,7 +953,7 @@ coastline
 # 6.4 Importar dados
 
 ## Dados de pacotes: rnaturalearth
-```{r fig.align='center', fig.height=4, out.width='100%'}
+```{r , fig.height=4, out.width='100%'}
 # plot
 plot(coastline$geometry, col = "blue", main = NA)
 ```
@@ -1082,7 +1082,7 @@ si_ve
 # 6.6 Converter dados sf
 
 ## Converter dados de planilhas em sf
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(si_ve$geometry, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -1130,7 +1130,7 @@ co110_sf
 # 6.6 Converter dados sf
 
 ## Converter `sf` para `sp`
-```{r fig.align='center', fig.height=4, out.width='90%'}
+```{r , fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf$geometry, col = "gray", main = NA, graticule = TRUE)
 ```
@@ -1180,8 +1180,8 @@ rc_2019_sirgas2000_utm23s <- sf::st_transform(rc_2019, crs = 31983)
 
 ## Converter CRS local
 
-### Mapa
-```{r echo=FALSE, fig.align='center', fig.height=4, out.width='80%'}
+### plota
+```{r echo=FALSE, , fig.height=4, out.width='80%'}
 library(tidyverse)
 p1 <- ggplot() +
   geom_sf(data = rc_2019) +
@@ -1261,7 +1261,7 @@ co110_sf
 # 6.7 Conversão do CRS
 
 ## Converter CRS global
-```{r fig.align='center', fig.height=4, out.width='90%'}
+```{r , fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf$geometry, col = "gray", graticule = TRUE)
 ```
@@ -1295,7 +1295,7 @@ co110_sf_moll <- sf::st_transform(co110_sf, crs = "+proj=moll")
 ## Converter CRS global
 
 ### Projeção de Mollweide
-```{r fig.align='center', fig.height=4, out.width='90%'}
+```{r , fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_moll$geometry, col = "gray", graticule = TRUE)
 ```
@@ -1327,7 +1327,7 @@ co110_sf_wintri <- lwgeom::st_transform_proj(co110_sf, crs = "+proj=wintri")
 ## Converter CRS global
 
 ### Projeção de Winkel Tripel
-```{r fig.align='center', fig.height=4, out.width='90%'}
+```{r , fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_wintri$geometry, col = "gray")
 ```
@@ -1361,7 +1361,7 @@ co110_sf_eck4 <- sf::st_transform(co110_sf, crs = "+proj=eck4")
 ## Converter CRS global
 
 ### Projeção de Eckert IV
-```{r fig.align='center', fig.height=4, out.width='90%'}
+```{r , fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_eck4$geometry, col = "gray", graticule = TRUE)
 ```
@@ -1393,7 +1393,7 @@ co110_sf_laea1 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lo
 ## Converter CRS global
 
 ### Projeção azimutal de Lambert
-```{r fig.align='center', fig.height=4, out.width='90%'}
+```{r , fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_laea1$geometry, col = "gray", graticule = TRUE)
 ```
@@ -1425,7 +1425,7 @@ co110_sf_laea2 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lo
 ## Converter CRS global
 
 ### Projeção azimutal de Lambert
-```{r fig.align='center', fig.height=4, out.width='90%'}
+```{r , fig.height=4, out.width='90%'}
 # plot
 plot(co110_sf_laea2$geometry, col = "gray", graticule = TRUE)
 ```
@@ -1465,7 +1465,7 @@ rc_use_forest
 # 6.8 Operações de atributos
 
 ## 1. Subset de atributos
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
@@ -1513,7 +1513,7 @@ rc_spr_n
 # 6.8 Operações de atributos
 
 ## 3. Aggregation de atributos
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot 
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_n$geometry, pch = 20, col = "blue", add = TRUE)
@@ -1576,6 +1576,11 @@ dplyr::*_join()
 
 ---
 
+class: inverse, center, middle
+# Operações espaciais
+
+---
+
 # 6.9 Operações espaciais
 
 ## Modificação de objetos espaciais baseado na sua **localização e formato**
@@ -1635,7 +1640,7 @@ rc_spr_forest
 # 6.9 Operações espaciais
 
 ## 1. Subset espacial [] - dentro
-```{r fig.align='center', out.width='45%'}
+```{r out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
@@ -1659,7 +1664,7 @@ rc_spr_forest_out
 # 6.9 Operações espaciais
 
 ## 1. Subset espacial - fora
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
@@ -1719,7 +1724,7 @@ rc_spr_use
 # 6.9 Operações espaciais
 
 ## 2. Join espacial
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_use[10], col = rc_spr_use$color, pch = 20, add = TRUE)
@@ -1741,7 +1746,7 @@ rc_2019_sirgas2000_utm23s_rp
 # 6.9 Operações espaciais
 
 ## 3. Pontos aleatórios
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_rp, pch = 20, cex = .5, col = "red", add = TRUE)
@@ -1763,7 +1768,7 @@ rc_use_forest_rp
 # 6.9 Operações espaciais
 
 ## 3. Pontos aleatórios
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_use_forest$geom, col = "forestgreen", add = TRUE)
@@ -1788,7 +1793,7 @@ rc_2019_sirgas2000_utm23s_grid
 # 6.9 Operações espaciais
 
 ## 4. Quadrículas
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
@@ -1810,7 +1815,7 @@ rc_2019_sirgas2000_utm23s_grid_in
 # 6.9 Operações espaciais
 
 ## 4. Quadrículas
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_grid_in, col = adjustcolor("red", .1), add = TRUE)
@@ -1833,8 +1838,8 @@ rc_2019_sirgas2000_utm23s_grid_in_spr_count
 # 6.9 Operações espaciais
 
 ## 4. Quadrículas
-```{r fig.align='center', out.width='50%'}
-# map
+```{r , out.width='50%'}
+# plot
 plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
 
@@ -1856,7 +1861,7 @@ rc_2019_sirgas2000_utm23s_hex
 # 6.9 Operações espaciais
 
 ## 5. Hexágonos
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
@@ -1879,10 +1884,15 @@ rc_2019_sirgas2000_utm23s_hex_spr_count
 # 6.9 Operações espaciais
 
 ## 5. Hexágonos
-```{r fig.align='center', out.width='50%'}
-# map
+```{r , out.width='50%'}
+# plot
 plot(rc_2019_sirgas2000_utm23s_hex_spr_count["n"], main = NA, axes = TRUE, graticule = TRUE)
 ```
+
+---
+
+class: inverse, center, middle
+# Operações geométricas
 
 ---
 
@@ -1913,7 +1923,7 @@ rc_riv_simp
 # 6.10 Operações geométricas
 
 ## 1. Simplificação
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_riv$geometry, col = "steelblue", add = TRUE)
@@ -1936,7 +1946,7 @@ rc_2019_cent
 # 6.10 Operações geométricas
 
 ## 2. Centroides
-```{r fig.align='center', out.width='50%'}
+```{r , out.width='50%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_cent$geom, cex = 3, col = "red", pch = 20, add = TRUE)
@@ -1958,7 +1968,7 @@ rc_2019_sirgas2000_utm23s_hex_cent
 # 6.10 Operações geométricas
 
 ## 2. Centroides
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
@@ -1982,7 +1992,7 @@ rc_spr_forest_buf
 # 6.10 Operações geométricas
 
 ## 3. Buffer
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
@@ -2005,7 +2015,7 @@ rc_spr_forest_buf_union
 # 6.10 Operações geométricas
 
 ## 4. União (Dissolve)
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
@@ -2028,7 +2038,7 @@ rc_riv_spr_forest_buf_int
 # 6.10 Operações geométricas
 
 ## 5. Corte (Clip) - intersecção
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
@@ -2052,7 +2062,7 @@ rc_riv_spr_forest_buf_dif
 # 6.10 Operações geométricas
 
 ## 5. Corte (Clip)
-```{r fig.align='center', out.width='45%'}
+```{r , out.width='45%'}
 # plot
 plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)

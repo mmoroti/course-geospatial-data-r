@@ -25,6 +25,7 @@ if(!require(writexl)) install.packages("writexl", dep = TRUE)
 if(!require(geobr)) install.packages("geobr")
 if(!require(rnaturalearth)) install.packages("rnaturalearth", dep = TRUE)
 if(!require(sf)) install.packages("sf", dep = TRUE)
+if(!require(lwgeom)) install.packages("lwgeom", dep = TRUE)
 
 # raster
 if(!require(raster)) install.packages("raster", dep = TRUE)

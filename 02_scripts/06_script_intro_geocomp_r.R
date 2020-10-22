@@ -205,7 +205,7 @@ rc_use <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), qui
 rc_use
 
 # plot
-plot(rc_use[5], col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use$geometry, col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
 
 # import gps data
 gps_gpx <- sf::read_sf(here::here("03_dados", "vetor", "waypoints.gpx"), layer = "waypoints")
@@ -223,42 +223,42 @@ plot(gps_kml$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, g
 
 # import data from packages
 # brazil 2019
-br_2019 <- geobr::read_country(year = 2019, showProgress = FALSE)
+br_2019 <- geobr::read_country(year = 2019)
 br_2019
 
 # plot
 plot(br_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # brazil 1872
-br_1872 <- geobr::read_country(year = 1872, showProgress = FALSE)
+br_1872 <- geobr::read_country(year = 1872)
 br_1872
 
 # plot
 plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # sao paulo state
-sp_2019 <- geobr::read_state(code_state = "SP", year = 2019, showProgress = FALSE)
+sp_2019 <- geobr::read_state(code_state = "SP", year = 2019)
 sp_2019
 
 # plot
 plot(sp_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # sao paulo municipalities
-sp_mun_2019 <- geobr::read_municipality(code_muni = "SP", year = 2019, showProgress = FALSE)
+sp_mun_2019 <- geobr::read_municipality(code_muni = "SP", year = 2019)
 sp_mun_2019
 
 # plot
 plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # rio claro
-rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019, showProgress = FALSE)
+rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019)
 rc_2019
 
 # plot
 plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # biomes
-bi_2019 <- geobr::read_biomes(year = 2019, showProgress = FALSE)
+bi_2019 <- geobr::read_biomes(year = 2019)
 bi_2019
 
 # plot

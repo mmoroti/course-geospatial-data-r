@@ -60,183 +60,22 @@ background-position: 45% 70%, 90% 90%
 
 ---
 
-# 4 Visualização de dados
-
-## **Importância dos gráficos**
-
-&lt;br&gt;&lt;br&gt;
-
-### Melhor forma de **apresentar** e **discutir** seus dados
-
---
-
-### Faz uma **síntese** para melhor entendimento
-
---
-
-### Necessário em quase todas as **análises estatísticas**
-
---
-
-### Necessário em quase todas as **publicações**, trabalhos de consultoria, TCC, dissertação, tese 
-
----
-
-class: clear, inverse, center, middle
-
-# E que dados vamos usar?
-
----
-
-class: clear, inverse, center, middle
-
-background-image: url(img/general_real_data.jpg)
-background-size: 500px
-background-position: 50% 30%
-
----
-
-class: clear, inverse, center, middle
-
-# Vamos importar os dados do data paper de anfíbios
-
----
-
-background-image: url(img/general_data_eu_mesmo.png)
-background-size: 600px
-background-position: 50% 90%
-
-# Importar dados para gráficos
-
-## ATLANTIC AMPHIBIANS: a dataset of amphibian communities from the Atlantic Forests of South America
-
-### Eu mesmo et al. (2018)
-
----
-
-# Importar dados para gráficos
-
-```r
-# package
-library(tidyverse)
-
-# directory
-setwd("/home/mude/data/github/minicurso-tidyverse/03_dados")
-
-# importar
-da &lt;- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
-da
-
-# verificar
-dplyr::glimpse(da)
-```
-
-
-
----
-
-# 4.1 Principais pacotes para gráficos
-
-## Atualmente, há **três principais pacotes** para gerar **gráficos gerais** no R:
-
-&lt;br&gt;
-
---
-
-#### **1 graphics**: simples, porém útil para visualizações rápidas de quase todos os formatos de arquivos `plot()`
-
-&lt;br&gt;
-
---
-
-#### **2 ggplot2**: complexos, demandam mais tempo para realização, mas ficam muito bons `ggplot()`
-
-&lt;br&gt;
-
---
-
-#### **3 ggpubr**: fornece algumas funções simplificadas para criar gráficos para publicação, baseados no "ggplot2" `gg*()`
-
----
-
-class: clear
-background-image: url(img/package_graphics.png)
-background-size: 400px
-background-position: 50% 50%
-
----
-
-background-image: url(img/package_graphics.png)
-background-size: 250px
-background-position: 85% 85%
-
-# 4.1 Principais pacotes para gráficos
-
-## **graphics**
-
-### Default do R e mais simples
-
---
-
-### Pode ser utilizado para objetos de **diversas classes**
-
---
-
-### Possui funções como:
-
-`plot()`&lt;br&gt;
-`hist()`&lt;br&gt;
-`barplot()`&lt;br&gt;
-`boxplot()`&lt;br&gt;
-`abline()`&lt;br&gt;
-`points()`&lt;br&gt;
-`lines()`&lt;br&gt;
-`polygon()`&lt;br&gt;
-
----
-
-# 4.1 Principais pacotes para gráficos
-
-## **graphics**
-
-
-```r
-# graphics
-plot(species_number ~ effort_months, data = da)
-```
-
----
-
-class: clear
+class: clear, center, middle
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
 
 ---
 
-background-image: url(img/cheatsheet_ggplot2.png)
-background-size: 600px
-background-position: 50% 50%
+background-image: url(img/stats_illustrations_ggplot2_obra_prima_pt.png)
+background-size: 450px
+background-position: 95% 80%
 
-# 4.1 ggplot2
-
-## Data Visualization Cheatsheet
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
-
----
-
-background-image: url(img/package_ggplot2.png)
-background-size: 250px
-background-position: 85% 85%
-
-# 4.1 Principais pacotes para gráficos
+# 5 Mapas usando ggplot2
 
 ## **ggplot2**
 
-### Integrado ao tidyverse, possui uma sintaxe própria
+### Integrado ao **tidyverse**, possui uma sintaxe própria
 
 --
 
@@ -254,74 +93,238 @@ background-position: 85% 85%
 `coord_() +`&lt;br&gt;
 `theme_()`&lt;br&gt;
 
----
-
-background-image: url(img/plot_ggplot2.png)
-background-size: 600px
-background-position: 50% 70%
-
-# 4.1 Principais pacotes para gráficos
-
-## **ggplot2**
+Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
-# 4.1 Principais pacotes para gráficos
+background-image: url(img/cover_grammar_graphics.jpg),url(img/ggplot2_structure.png)
+background-size: 160px,630px
+background-position: 7% 55%,85% 55%
+
+# 5 Mapas usando ggplot2
+
+## The Grammar of Graphics (1999)
+
+O pacote `ggplot2` implementa uma adaptação da **gramática dos gráficos** em "layers"
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+Fonte: https://medium.com/tdebeus/think-about-the-grammar-of-graphics-when-improving-your-graphs-18e3744d8d18
+
+---
+
+background-image: url(img/plot_ggplot.gif)
+background-size: 750px
+background-position: 50% 45%
+
+# 5 Mapas usando ggplot2
 
 ## **ggplot2**
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+Fonte: https://medium.com/tdebeus/think-about-the-grammar-of-graphics-when-improving-your-graphs-18e3744d8d18
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Mapa do limite de Rio Claro/SP
 
 ```r
-# ggplot2
-library(ggplot2)
-ggplot(data = da) + aes(effort_months, species_number) + geom_point()
+# rio claro limit
+ggplot() +
+  geom_sf(data = rio_claro_limit)
 ```
 
 ---
 
-class: clear
-background-image: url(img/package_ggpubr.png)
-background-size: 300px
+# 5 Mapas usando ggplot2
+
+### Mapa do limite de Rio Claro/SP - cor e preenchimento
+
+```r
+# rio claro limit color and fill
+ggplot() +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA)
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Limite e uso e cobertura da terra
+
+```r
+# rio claro limit fill + land use
+ggplot() +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
+  geom_sf(data = polygons_land_use)
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Limite e uso e cobertura da terra com cores
+
+```r
+# rio claro limit fill + land use with colors
+ggplot() +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
+  geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA)
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Limite e uso e cobertura da terra com cores (inverter)
+
+```r
+# land use with colors + rio claro limit fill
+ggplot() +
+  geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA) 
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Definir cores para as classes
+
+```r
+# land use and choose colors + rio claro limit fill 
+ggplot() +
+  geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
+  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green"))
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Mudar o CRS (Sistema de Coordenadas)
+
+```r
+# land use and choose colors + rio claro limit fill + coords
+ggplot() +
+  geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
+  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
+  coord_sf(datum = sf::st_crs(polygons_land_use))
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Mudar o tema
+
+```r
+# land use and choose colors + rio claro limit fill + coords + themes
+ggplot() +
+  geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
+  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
+  coord_sf(datum = sf::st_crs(polygons_land_use)) +
+  theme_bw()
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Adicionar barra de escala e norte
+
+```r
+# land use and choose colors + rio claro limit fill + coords + themes + scalebar + north
+ggplot() +
+  geom_sf(data = polygons_land_use, aes(fill = CLASSE_USO), color = NA) +
+  geom_sf(data = rio_claro_limit, color = "black", fill = NA) +
+  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
+  coord_sf(datum = sf::st_crs(polygons_land_use)) +
+  theme_bw() +
+  annotation_scale(location = "br", width_hint = .3) +
+  annotation_north_arrow(location = "br", which_north = "true", 
+                         pad_x = unit(0, "cm"), pad_y = unit(.8, "cm"),
+                         style = north_arrow_fancy_orienteering)
+```
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Adicionar barra de escala e norte
+
+
+---
+
+# 5 Mapas usando ggplot2
+
+### Exportar
+
+```r
+# export
+ggsave(filename = "map_rio_claro_land_use.png",
+       path = "/home/mude/data/gitlab/liver/werlive_02/data",
+       width = 20, 
+       height = 20, 
+       units = "cm", 
+       dpi = 300)
+```
+
+---
+
+class: inverse, middle, center
+
+# 6. Considerações finais
+
+---
+
+background-image: url(img/cheatsheet_sf.png)
+background-size: 600px
 background-position: 50% 50%
 
----
+# Dica de material
 
-background-image: url(img/package_ggpubr.png)
-background-size: 250px
-background-position: 85% 85%
+## Simple Features (sf) Cheat Sheet
 
-# 4.1 Principais pacotes para gráficos
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-## **ggpubr**
-
-### Funções fáceis de usar para criar e personalizar plots para publicação baseadas no "ggplot2"
-
---
-
-### Necessita de funções específicas para gerar **gráficos específicos**
-
---
-
-### Funções:
-
-`gghistogram()`&lt;br&gt;
-`ggdensity()`&lt;br&gt;
-`ggboxplot()`&lt;br&gt;
-`ggviolin()`&lt;br&gt;
-`ggbarplot()`&lt;br&gt;
-`ggscatter()`&lt;br&gt;
+[*] https://github.com/rstudio/cheatsheets/raw/master/sf.pdf
 
 ---
 
-# 4.1 Principais pacotes para gráficos
+background-image: url(img/cheatsheet_ggplot2.png)
+background-size: 600px
+background-position: 50% 50%
 
-## **ggpubr**
+# Dica de material
 
+## Data Visualization Cheatsheet
 
-```r
-library(ggpubr)
-ggscatter(da, x = "effort_months", y = "species_number")
-```
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+
+---
+
+background-image: url(img/cover_ggplot2.jpg)
+background-size: 230px
+background-position: 50% 63%
+
+# Dica de livros
+
+## Livros
+
+### ggplot2 (2009, 2016)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://ggplot2.tidyverse.org/
 
 ---
 

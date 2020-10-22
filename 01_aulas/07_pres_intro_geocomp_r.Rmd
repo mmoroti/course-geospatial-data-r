@@ -2,7 +2,7 @@
 title: "Introdução à análise geoespacial com R <br><br><br>"
 subtitle: "7 Estrutura e manipulação de dados matriciais <br><br><br>"
 author: "Maurício H. Vancine <br> Milton C. Ribeiro"
-date: "23/10/2020"
+date: "22/10/2020"
 output:
   xaringan::moon_reader:
     css: [metropolis, metropolis-fonts]
@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, eval=FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, fig.align = 'center', out.width='40%', warning = FALSE, message = FALSE)
 if(!require(raster)) install.packages("raster")
 if(!require(sf)) install.packages("sf")
 if(!require(tidyverse)) install.packages("tidyverse")
@@ -249,11 +249,11 @@ background-position: 50% 90%
 ```{r}
 # stack
 set.seed(42)
-ra_rc_sta <- raster::stack(raster::raster(volcano), 
-                        raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
-                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
-                        raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
-ra_rc_sta
+ra_sta <- raster::stack(raster::raster(volcano), 
+                           raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                           raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
+                           raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
+ra_sta
 ```
 
 ---
@@ -261,7 +261,7 @@ ra_rc_sta
 # 7.3 Classes raster
 
 ## RasterStack
-```{r}
+```{r out.width='50%'}
 # plot
 raster::plot(ra_sta, col = viridis::viridis(10))
 ```
@@ -298,11 +298,11 @@ background-position: 50% 90%
 ```{r}
 # brick
 set.seed(42)
-ra_rc_bri <- raster::brick(raster::raster(volcano), 
-                        raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
-                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
-                        raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
-ra_rc_bri
+ra_bri <- raster::brick(raster::raster(volcano), 
+                           raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                           raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
+                           raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
+ra_bri
 ```
 
 ---
@@ -310,7 +310,7 @@ ra_rc_bri
 # 7.3 Classes raster
 
 ## RasterBrick
-```{r}
+```{r out.width='50%'}
 # plot
 raster::plot(ra_bri, col = viridis::viridis(10))
 ```
@@ -388,7 +388,7 @@ raster::getData(name = "SRTM", lon = -47, lat = -23,
 ## Importar uma camada
 
 ### RasterLayer
-```{r }
+```{r}
 # import raster
 ra <- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
 ra
@@ -401,7 +401,7 @@ ra
 ## Importar uma camada
 
 ### Rio Claro
-```{r }
+```{r}
 # rio claro
 rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019, showProgress = FALSE) %>% 
   sf::st_transform(crs = 4326)
@@ -418,7 +418,7 @@ rc_2019
 ```{r}
 # plot
 raster::plot(ra, col = viridis::viridis(10))
-plot(rc_2019$geom, col = "red", add = TRUE)
+plot(rc_2019$geom, col = adjustcolor("red", .5), add = TRUE)
 ```
 
 ---
@@ -441,8 +441,8 @@ background-position: 50% 80%
 
 ### Crop do RasterLayer
 ```{r}
-# mask
-ra_rc <- raster::crop(ra_rc, rc_2019)
+# crop
+ra_rc <- raster::crop(ra, rc_2019)
 ra_rc
 ```
 
@@ -456,7 +456,7 @@ ra_rc
 ```{r}
 # plot
 raster::plot(ra_rc, col = viridis::viridis(10))
-plot(rc_2019$geom, lwd = 2, add = TRUE)
+plot(rc_2019$geom, col = adjustcolor("red", .3), lwd = 2, add = TRUE)
 ```
 
 ---
@@ -580,7 +580,8 @@ download.file(url = "https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_1
 ### Unzip
 ```{r eval=FALSE}
 # unzip
-unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"))
+unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"),
+      exdir = here::here("03_dados", "raster"))
 ```
 
 ---
@@ -590,7 +591,7 @@ unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"))
 ## Importar várias camadas
 
 ### Listar arquivos
-```{r }
+```{r}
 # list files
 fi <- dir(path = here::here("03_dados", "raster"), pattern = "wc") %>% 
   grep(".tif", ., value = TRUE)
@@ -604,7 +605,7 @@ fi
 ## Importar várias camadas
 
 ### RasterStack
-```{r }
+```{r}
 # import stack
 st <- raster::stack(here::here("03_dados", "raster", fi))
 st
@@ -617,8 +618,8 @@ st
 ## Importar várias camadas
 
 ### RasterStack
-```{r eval=FALSE}
-# map
+```{r}
+# plot
 raster::plot(st[[1:2]], col = viridis::viridis(10))
 ```
 
@@ -632,7 +633,7 @@ class: inverse, center, middle
 # 7.5 Descrição de objetos raster
 
 ## Informações
-```{r }
+```{r}
 ra_rc
 ```
 
@@ -652,17 +653,17 @@ ra_rc
 ## Informações
 
 #### Classe
-```{r }
+```{r}
 class(ra_rc)
 ```
 --
 #### Dimensões
-```{r }
+```{r}
 dim(ra_rc)
 ```
 --
 #### Número de camadas
-```{r }
+```{r}
 nlayers(ra_rc)
 ```
 
@@ -685,17 +686,17 @@ background-position: 50% 90%
 ## Informações
 
 #### Número de linhas
-```{r }
+```{r}
 nrow(ra_rc)
 ```
 --
 #### Número de colunas
-```{r }
+```{r}
 ncol(ra_rc)
 ```
 --
 #### Número de células
-```{r }
+```{r}
 ncell(ra_rc)
 ```
 
@@ -718,12 +719,12 @@ background-position: 50% 80%
 ## Informações
 
 ### Resolução
-```{r }
+```{r}
 # raster resolution
 res(ra_rc)
 ```
 --
-```{r }
+```{r}
 # stack resolution
 res(st)
 ```
@@ -747,12 +748,12 @@ background-position: 50% 90%
 ## Informações
 
 ### Extenção
-```{r }
+```{r}
 # raster extent
 extent(ra_rc)
 ```
 --
-```{r }
+```{r}
 # stack extent
 extent(st)
 ```
@@ -764,12 +765,12 @@ extent(st)
 ## Informações
 
 ### Projeção
-```{r }
+```{r}
 # projection
 projection(ra_rc)
 ```
 --
-```{r }
+```{r}
 # projection
 projection(st)
 ```
@@ -781,12 +782,12 @@ projection(st)
 ## Informações
 
 ### Nomes
-```{r }
+```{r}
 # raster names
 names(ra_rc)
 ```
 --
-```{r }
+```{r}
 # stack names
 names(st)
 ```
@@ -812,31 +813,17 @@ background-position: 50% 90%
 ### Valores
 ```{r}
 # raster values
-getValues(ra_rc)
+getValues(ra_rc) %>% head
 ```
-
----
-
-# 7.5 Descrição de objetos raster
-
-## Informações
-
-### Valores
+--
 ```{r}
 # raster values
-values(ra_rc)
+values(ra_rc) %>% head
 ```
-
----
-
-# 7.5 Descrição de objetos raster
-
-## Informações
-
-### Valores
+--
 ```{r}
 # raster values
-ra_rc[]
+ra_rc[] %>% head
 ```
 
 ---
@@ -848,7 +835,7 @@ ra_rc[]
 ### Valores
 ```{r}
 # raster values histogram
-ra %>% 
+ra_rc %>% 
   raster::values() %>% 
   hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
 ```
@@ -872,13 +859,13 @@ values(st[[1:3]]) %>% head
 ## Informações
 
 ### Valores
-```{r}
+```{r out.width='35%'}
 # stack values - pairs
 st[[1:3]] %>% 
   raster::values() %>% 
   tibble::as_tibble() %>% 
   dplyr::sample_n(1e3) %>% 
-  pairs(cex = 1.3, pch = 20, col = adjustcolor("gray50", .7))
+  pairs(cex = 1.4, pch = 20, col = adjustcolor("steelblue", .7))
 ```
 
 ---
@@ -932,13 +919,13 @@ background-position: 80% 80%
 ## Converter CRS local
 
 ### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
-```{r eval=TRUE}
-# proj4string utm 23 s
+```{r}
+# proj4string utm 23s
 utm23 <- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 utm23
 ```
 
-<br><br><br><br><br>
+<br><br><br><br><br><br>
 
 [*] https://epsg.io/31983
 
@@ -974,12 +961,26 @@ ra_rc_utm23
 
 # 7.6 Conversão do CRS
 
+## Converter CRS local - especificando parâmetros
+
+### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
+```{r}
+# reprojection vector
+rc_2019_utm23 <- sf::st_transform(rc_2019, crs = utm23)
+rc_2019_utm23
+```
+
+---
+
+# 7.6 Conversão do CRS
+
 ## Converter CRS local
 
 ### WGS84/GCS -> SIRGAS2000/UTM23S (proj4string)
 ```{r}
 # plot
-plot(ra_rc_utm23, col = viridis::viridis(10))
+raster::plot(ra_rc_utm23, col = viridis::viridis(10))
+plot(rc_2019_utm23$geom, col = adjustcolor("red", .3), lwd = 2, add = TRUE)
 ```
 
 ---
@@ -1003,7 +1004,7 @@ st$wc2.1_10m_bio_1
 ### Datum WGS84 e coordenadas geográficas
 ```{r}
 # plot
-plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
+raster::plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
 ```
 
 ---
@@ -1017,7 +1018,7 @@ background-position: 80% 80%
 ## Converter CRS global
 
 ### Projeção de Mollweide: preserva as relações de área
-```{r eval=T}
+```{r}
 # proj4string mollweide
 moll <- "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 moll
@@ -1039,6 +1040,7 @@ moll
 ```{r}
 # reprojection
 bio01_moll <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, method = "bilinear")
+bio01_moll
 ```
 
 ---
@@ -1050,7 +1052,7 @@ bio01_moll <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, 
 ### Projeção de Mollweide
 ```{r}
 # plot
-plot(bio01_moll, col = viridis::viridis(10))
+raster::plot(bio01_moll, col = viridis::viridis(10))
 ```
 
 ---
@@ -1064,7 +1066,7 @@ background-position: 50% 80%
 ## Converter CRS global
 
 ### Projeção de Winkel Tripel: mínimo de distorção para área, direção e distância
-```{r eval=T}
+```{r}
 # proj4string winkel tripel
 wintri <- "+proj=wintri +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 wintri
@@ -1081,7 +1083,7 @@ wintri
 ## Converter CRS global
 
 ### Projeção de Winkel Tripel
-```{r eval=FALSE}
+```{r}
 # reprojection
 bio01_wintri <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = wintri, res = 25e3, method = "bilinear")
 bio01_wintri
@@ -1096,7 +1098,7 @@ bio01_wintri
 ### Projeção de Winkel Tripel
 ```{r}
 # plot
-plot(bio01_wintri, col = viridis::viridis(10))
+raster::plot(bio01_wintri, col = viridis::viridis(10))
 ```
 
 ---
@@ -1110,7 +1112,7 @@ background-position: 80% 82%
 ## Converter CRS global
 
 ### Projeção de Eckert IV: presenva a área e com meridianos elípticos
-```{r eval=T}
+```{r}
 # proj4string eckert iv
 eck4 <- "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
 eck4
@@ -1129,7 +1131,7 @@ eck4
 ## Converter CRS global
 
 ### Projeção de Eckert IV
-```{r eval=FALSE}
+```{r}
 # reprojection
 bio01_eck4 <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = eck4, res = 25e3, method = "bilinear")
 bio01_eck4
@@ -1144,7 +1146,7 @@ bio01_eck4
 ### Projeção de Eckert IV
 ```{r}
 # plot
-plot(bio01_eck4, col = viridis::viridis(10))
+raster::plot(bio01_eck4, col = viridis::viridis(10))
 ```
 
 ---
@@ -1158,7 +1160,7 @@ background-position: 50% 78%
 ## Converter CRS global
 
 ### Projeção azimutal de Lambert: preserva os tamanhos relativos e senso de direção a partir do centro
-```{r eval=T}
+```{r}
 # proj4string lambert 
 laea <- "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
 laea
@@ -1173,7 +1175,7 @@ laea
 # 7.6 Conversão do CRS
 
 ## Converter CRS global
-```{r eval=FALSE}
+```{r}
 # reprojection
 bio01_laea <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = laea, res = 25e3, method = "bilinear")
 bio01_laea
@@ -1188,7 +1190,7 @@ bio01_laea
 ### Projeção azimutal de Lambert
 ```{r}
 # plot
-plot(bio01_laea, col = viridis::viridis(10))
+raster::plot(bio01_laea, col = viridis::viridis(10))
 ```
 
 ---
@@ -1224,7 +1226,14 @@ ra[1]
 # stack - row 1, column 1
 st[1, 1]
 ```
---
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
 ```{r}
 # cell is 1
 st[1]
@@ -1303,7 +1312,7 @@ st_bio01
 
 ### Seleção de RasterLayer no StackLayer $
 ```{r}
-# map
+# plot
 raster::plot(st_bio01, col = viridis::viridis(10))
 ```
 
@@ -1333,7 +1342,7 @@ names(ra_rc)
 
 ## Renomear rasters
 ```{r}
-# name
+# names
 names(st)
 ```
 --
@@ -1421,8 +1430,9 @@ ra_rc2
 
 ### Álgebra de raster 
 ```{r}
-# map
-raster::plot(ra_rc2)
+# plot
+raster::plot(ra_rc2, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1446,9 +1456,9 @@ ra_rc_km
 
 ### Álgebra de raster 
 ```{r}
-# map
-raster::plot(ra_rc_km)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_km, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1472,9 +1482,9 @@ ra_rc_log10
 
 ### Álgebra de raster 
 ```{r}
-# map
-raster::plot(ra_rc_log10)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_log10, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1498,9 +1508,9 @@ ra_rc_up_600
 
 ### Álgebra de raster por valor
 ```{r}
-# map
+# plot
 raster::plot(ra_rc_up_600)
-plot(rc_2019$geom, add = TRUE)
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1524,9 +1534,9 @@ ra_rc_bot_600
 
 ### Álgebra de raster por valor
 ```{r}
-# map
+# plot
 raster::plot(ra_rc_bot_600)
-plot(rc_2019$geom, add = TRUE)
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1553,7 +1563,14 @@ ra_rc[]
 ra_rc_up_700 <- ra_rc
 ra_rc_up_700
 ```
---
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Alterar valores
 ```{r}
 # values bottom 700 == NA
 ra_rc_up_700[ra_rc_up_700 < 700] <- NA
@@ -1568,9 +1585,9 @@ ra_rc_up_700
 
 ### Alterar valores
 ```{r}
-# map
-raster::plot(ra_rc_up_700)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_up_700, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1593,6 +1610,7 @@ background-position: 50% 70%
 
 ### Reclassify
 ```{r}
+# matrix for reclassification
 rcl  <- matrix(c(400,500,4, 
                  500,600,5, 
                  600,700,6,
@@ -1611,6 +1629,7 @@ rcl
 
 ### Reclassify
 ```{r}
+# reclassify
 ra_rc_rcl <- raster::reclassify(ra_rc, rcl = rcl)
 ra_rc_rcl
 ```
@@ -1624,8 +1643,8 @@ ra_rc_rcl
 ### Reclassify
 ```{r}
 # plot
-raster::plot(ra_rc_rcl)
-plot(rc_2019$geom, add = TRUE)
+raster::plot(ra_rc_rcl, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1660,7 +1679,7 @@ background-position: 20% 65%,50% 70%
 
 ### Moving window
 ```{r}
-# map
+# moving window
 ra_rc_mw_sd <- raster::focal(ra_rc, w = matrix(1, nrow = 3, ncol = 3), fun = sd)
 ra_rc_mw_sd
 ```
@@ -1673,9 +1692,9 @@ ra_rc_mw_sd
 
 ### Moving window
 ```{r}
-# map
-raster::plot(ra_rc_mw_sd)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_mw_sd, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1684,6 +1703,7 @@ plot(rc_2019$geom, add = TRUE)
 
 ## Operação zonal
 ```{r}
+# zonal statistics
 raster::zonal(ra_rc, ra_rc_rcl, fun = "mean")
 ```
 
@@ -1693,6 +1713,7 @@ raster::zonal(ra_rc, ra_rc_rcl, fun = "mean")
 
 ## Operação zonal
 ```{r}
+# zonal statistics
 ra_rc_stats <- data.frame(raster::zonal(ra_rc, ra_rc_rcl, fun = "summary"))
 colnames(ra_rc_stats) <- c("zone", "min", "1qt", "median", "mean", "3qt", "max")
 ra_rc_stats
@@ -1702,6 +1723,16 @@ ra_rc_stats
 
 class: inverse, center, middle
 # Operações geométricas
+
+---
+
+background-image: url(img/geo_raster_resolution_diff.png)
+background-size: 900px
+background-position: 50% 50%
+
+# 7.9 Operações geométricas
+
+## Agregação e desagregação
 
 ---
 
@@ -1727,7 +1758,7 @@ background-position: 50% 90%
 
 # 7.9 Operações geométricas
 
-## Agregação
+## Agregação - aumenta o tamanho do pixel
 ```{r}
 # resolution
 res(ra_rc)[1]
@@ -1738,11 +1769,6 @@ res(ra_rc)[1]
 ra_rc_agg_mean <- raster::aggregate(ra_rc, fact = 10, fun = "mean")
 ra_rc_agg_mean
 ```
---
-```{r}
-# new resolution
-res(ra_rc_agg_mean)[1]
-```
 
 ---
 
@@ -1750,9 +1776,9 @@ res(ra_rc_agg_mean)[1]
 
 ## Agregação
 ```{r}
-# map
-raster::plot(ra_rc_agg_mean)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1769,7 +1795,7 @@ background-position: 50% 70%
 
 # 7.9 Operações geométricas
 
-## Desagregação
+## Desagregação - diminui o tamanho do pixel
 ```{r}
 # resolution
 res(ra_rc)[1]
@@ -1780,21 +1806,16 @@ res(ra_rc)[1]
 ra_rc_dis_bil <- raster::disaggregate(ra_rc, fact = 2, fun = "bilinear")
 ra_rc_dis_bil
 ```
---
-```{r}
-# new resolution
-res(ra_rc_dis_bil)[1]
-```
 
 ---
 
 # 7.9 Operações geométricas
 
-## Agregação
+## Desagregação
 ```{r}
-# map
-raster::plot(ra_rc_dis_bil)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_dis_bil, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1833,8 +1854,9 @@ ra_rc_crop
 
 ### Crop
 ```{r}
-plot(ra_rc_crop)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_crop, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1858,8 +1880,9 @@ ra_rc_mask
 
 ### Mask
 ```{r}
-plot(ra_rc_mask)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_mask, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1883,10 +1906,11 @@ ra_rc_crop_mask
 
 ## Raster cropping
 
-### Mask
+### Crop and Mask
 ```{r}
-plot(ra_rc_crop_mask)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_crop_mask, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1895,7 +1919,7 @@ plot(rc_2019$geom, add = TRUE)
 
 ## Raster cropping
 
-### Crop and Mask
+### Crop and Mask inverse
 ```{r}
 # crop and mask inverse - adjust extension and limit
 ra_rc_crop_mask_inv <- ra %>% 
@@ -1912,8 +1936,9 @@ ra_rc_crop_mask_inv
 
 ### Crop and Mask inverse
 ```{r}
-plot(ra_rc_crop_mask_inv)
-plot(rc_2019$geom, add = TRUE)
+# plot
+raster::plot(ra_rc_crop_mask_inv, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 ```
 
 ---
@@ -1925,7 +1950,7 @@ plot(rc_2019$geom, add = TRUE)
 ### Crop and Mask
 ```{r}
 # download atlantic forest
-af <- geobr::read_biomes(year = 2004) %>% 
+af <- geobr::read_biomes(year = 2004, showProgress = FALSE) %>% 
   dplyr::filter(name_biome == "Mata Atlântica")
 af
 ```
@@ -1939,7 +1964,7 @@ af
 ### Crop and Mask
 ```{r}
 # plot
-plot(af$geom, main = NA, axes = TRUE, gratidule = TRUE)
+plot(af$geom, col = "gray", main = NA, axes = TRUE, gratidule = TRUE)
 ```
 
 ---
@@ -1963,9 +1988,10 @@ st_af_crop_mask
 
 ## Raster cropping
 
-### Mask
+### Crop and Mask
 ```{r}
-plot(st_af_crop_mask[[1:12]])
+# plot
+raster::plot(st_af_crop_mask[[1:4]], col = viridis::viridis(10))
 ```
 
 ---
@@ -1990,7 +2016,6 @@ rc_spr
 
 ### Importar pontos
 ```{r}
-# import points
 # plot
 plot(rc_spr$geometry, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019$geom, add = TRUE)
@@ -2001,6 +2026,8 @@ plot(rc_2019$geom, add = TRUE)
 # 7.10 Interações raster-vetor
 
 ## Raster extraction
+
+### Extração
 ```{r}
 # extraction
 rc_spr_ele <- raster::extract(ra_rc, rc_spr)
@@ -2012,6 +2039,8 @@ rc_spr_ele
 # 7.10 Interações raster-vetor
 
 ## Raster extraction
+
+### Extração
 ```{r}
 # extraction
 rc_spr_ele <- rc_spr %>% 
@@ -2025,9 +2054,8 @@ rc_spr_ele
 
 ## Raster extraction
 
-### Importar pontos
+### Extração
 ```{r}
-# import points
 # plot
 plot(rc_spr_ele["elev"], pch = 20, main = NA, axes = TRUE, graticule = TRUE)
 ```
@@ -2036,7 +2064,21 @@ plot(rc_spr_ele["elev"], pch = 20, main = NA, axes = TRUE, graticule = TRUE)
 
 # 7.10 Interações raster-vetor
 
-## Zonal Statistics
+## Raster extraction
+
+### Extração
+```{r fig.height=4}
+# histogram
+rc_spr_ele %>% 
+  dplyr::pull(elev) %>% 
+  hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Zonal statistics
 
 ### Buffers
 ```{r}
@@ -2054,12 +2096,12 @@ rc_spr_buf
 
 # 7.10 Interações raster-vetor
 
-## Zonal Statistics
+## Zonal statistics
 
 ### Buffers
 ```{r}
 # plot
-plot(rc_spr_buf$geometry, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_buf$geometry, col = adjustcolor("steelblue", .7), pch = 20, main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_2019$geom, add = TRUE)
 ```
 
@@ -2067,10 +2109,11 @@ plot(rc_2019$geom, add = TRUE)
 
 # 7.10 Interações raster-vetor
 
-## Zonal Statistics
+## Zonal statistics
 
 ### Buffers
 ```{r}
+# zonal statistics
 raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE, df = TRUE)
 ```
 
@@ -2078,13 +2121,13 @@ raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE, df = TRUE)
 
 # 7.10 Interações raster-vetor
 
-## Zonal Statistics
+## Zonal statistics
 
 ### Buffers
 ```{r}
+# zonal statistics
 rc_spr_buf <- rc_spr_buf %>% 
-  dplyr::mutate(elev_mean = raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE),
-                elev_sd = raster::extract(x = ra_rc, y = rc_spr_buf, fun = sd, na.rm = TRUE))
+  dplyr::mutate(elev_mean = raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE))
 rc_spr_buf
 ```
 
@@ -2092,7 +2135,7 @@ rc_spr_buf
 
 # 7.10 Interações raster-vetor
 
-## Raster extraction
+## Zonal statistics
 
 ### Buffers
 ```{r}
@@ -2102,20 +2145,16 @@ plot(rc_spr_buf["elev_mean"], pch = 20, main = NA, axes = TRUE, graticule = TRUE
 
 ---
 
-# 7.10 Interações raster-vetor
-
-## Raster extraction
-
-### Buffers
-```{r}
-# plot
-plot(rc_spr_buf["elev_sd"], pch = 20, main = NA, axes = TRUE, graticule = TRUE)
-```
+class: inverse, center, middle
+# Conversões raster-vetor
 
 ---
 
-class: inverse, center, middle
-# Conversões raster-vetor
+background-image: url(img/geo_data_convert.png)
+background-size: 500px
+background-position: 50% 50%
+
+# 7.11 Conversões raster-vetor
 
 ---
 
@@ -2123,6 +2162,7 @@ class: inverse, center, middle
 
 ## Rasterização de pontos
 ```{r}
+# rasterize points
 rc_spr_rast <- raster::rasterize(x = rc_spr, y = ra_rc_agg_mean, field = 1, fun = "count")
 rc_spr_rast
 ```
@@ -2134,41 +2174,24 @@ rc_spr_rast
 ## Rasterização de pontos
 ```{r}
 # plot
-plot(rc_spr_rast)
-plot(rc_spr$geometry, pch = 20, cex = .5, col = adjustcolor("black", .5), add = TRUE)
+raster::plot(rc_spr_rast, col = viridis::viridis(10))
+plot(rc_spr$geometry, pch = 20, cex = 1, col = adjustcolor("gray50", .6), add = TRUE)
 ```
+
+---
+
+class: inverse, center, middle
+# Será que existe relação entre a elevação e o número de nascentes?
 
 ---
 
 # 7.11 Conversões raster-vetor
 
-## Rasterização de linhas
+## Estatística
 ```{r}
-# import lines
-rc_riv <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_RIOS_SIMPLES.shp"), quiet = TRUE) %>% 
-  sf::st_transform(crs = 4326)
-rc_riv
-```
-
----
-
-# 7.11 Conversões raster-vetor
-
-## Rasterização de linhas
-```{r}
-rc_riv_rast <- raster::rasterize(x = rc_riv, y = ra_rc_agg_mean)
-rc_riv_rast
-```
-
----
-
-# 7.11 Conversões raster-vetor
-
-## Rasterização de linhas
-```{r}
-# plot
-plot(rc_riv_rast)
-plot(rc_riv$geometry, pch = 20, cex = .5, col = adjustcolor("black", .5), add = TRUE)
+# statistics
+plot(ra_rc_agg_mean[], rc_spr_rast[], col = adjustcolor("gray30", .5), 
+     pch = 20, cex = 1.5, bty = "l", xlab = "Elevação (m)", ylab = "Número de nascentes")
 ```
 
 ---
@@ -2180,7 +2203,8 @@ plot(rc_riv$geometry, pch = 20, cex = .5, col = adjustcolor("black", .5), add = 
 # import polygons
 rc_use <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), quiet = TRUE) %>% 
   dplyr::mutate(CLASSE_USO = as.factor(CLASSE_USO)) %>% 
-    sf::st_transform(crs = 4326)
+  sf::st_transform(crs = 4326)
+rc_use
 ```
 
 ---
@@ -2189,6 +2213,7 @@ rc_use <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), qui
 
 ## Rasterização de polígonos
 ```{r}
+# rasterize polygons
 rc_use_rast <- raster::rasterize(x = rc_use, y = ra_rc_agg_mean, field = "CLASSE_USO")
 rc_use_rast
 ```
@@ -2200,8 +2225,8 @@ rc_use_rast
 ## Rasterização de polígonos
 ```{r}
 # plot
-plot(rc_use_rast)
-plot(rc_2019$geom, add = TRUE)
+raster::plot(rc_use_rast, col = viridis::viridis(10))
+plot(rc_use$geom, add = TRUE)
 ```
 
 ---
@@ -2212,7 +2237,7 @@ plot(rc_2019$geom, add = TRUE)
 
 ### Fasterize
 ```{r}
-# pacote
+# package fasterize
 # install.packages("fasterize")
 library(fasterize)
 ```
@@ -2225,8 +2250,9 @@ library(fasterize)
 
 ### Fasterize
 ```{r}
-ra_use_rc_fast <- fasterize::fasterize(sf = rc_use, raster = ra_rc_agg_mean, field = "CLASSE_USO")
-ra_use_rc_fast
+# rasterize with fasterize
+rc_use_fast <- fasterize::fasterize(sf = rc_use, raster = ra_rc_agg_mean, field = "CLASSE_USO")
+rc_use_fast
 ```
 
 ---
@@ -2238,26 +2264,153 @@ ra_use_rc_fast
 ### Fasterize
 ```{r}
 # plot
-plot(ra_use_rc_fast)
-plot(rc_2019$geom, add = TRUE)
+raster::plot(rc_use_fast, col = viridis::viridis(10))
+plot(rc_use$geom, add = TRUE)
 ```
 
 ---
+
+background-image: url(img/geo_raster_vectorization_points.png)
+background-size: 700px
+background-position: 50% 70%
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para pontos
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para pontos
+```{r}
+# vectorization points
+ra_rc_agg_mean_points = raster::rasterToPoints(ra_rc_agg_mean, spatial = TRUE) %>% 
+  sf::st_as_sf()
+ra_rc_agg_mean_points
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para pontos
+```{r}
+# plot
+raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
+plot(ra_rc_agg_mean_points, pch = 20, main = FALSE, add = TRUE)
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_vectorization_lines_contour.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para linhas
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para linhas
+```{r}
+# vectorization points
+ra_rc_agg_mean_lines = raster::rasterToContour(ra_rc_agg_mean) %>% 
+  sf::st_as_sf()
+ra_rc_agg_mean_lines
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para linhas
+```{r}
+# plot
+raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
+plot(ra_rc_agg_mean_lines$geometry, col = "white", pch = 20, lwd = 2, main = FALSE, add = TRUE)
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_vectorization_polygons.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos
+```{r}
+# vectorization polygons
+rc_use_fast_polygon <- raster::rasterToPolygons(rc_use_fast) %>% 
+  sf::st_as_sf() %>% 
+  dplyr::group_by(layer) %>% 
+  summarise()
+rc_use_fast_polygon
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos
+```{r}
+# plot
+raster::plot(rc_use_fast, col = viridis::viridis(10))
+plot(rc_use_fast_polygon, col = viridis::viridis(5), pch = 20, lwd = 2, main = FALSE, add = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+# Exportar rasters
+
+---
+
+background-image: url(img/geo_raster_single_raster.png)
+background-size: 250px
+background-position: 50% 90%
 
 # 7.12 Exportar dados matriciais
 
 ## Exportar raster
-```{r}
-raster::writeRaster(ra_mask_utm, "ra_mask_utm.tif")
+```{r eval=FALSE}
+# export raster
+raster::writeRaster(x = ra_rc, 
+                    filename = here::here("03_dados", "raster", "srtm_27_17_rc"),
+                    format = "GTiff",
+                    progress = "text",
+                    overwrite = TRUE)
 ```
 
 ---
 
+background-image: url(img/geo_raster_multi_raster.png)
+background-size: 250px
+background-position: 50% 90%
+
 # 7.12 Exportar dados matriciais
 
 ## Exportar stack ou brick
-```{r}
-raster::writeRaster(ra_mask_utm, "ra_mask_utm.tif")
+```{r eval=FALSE}
+# export stack
+raster::writeRaster(x = st_af_crop_mask, 
+                    filename = here::here("03_dados", "raster", names(st_af_crop_mask)), 
+                    bylayer = TRUE, 
+                    format = "GTiff",
+                    progress = "text",
+                    overwrite = TRUE)
 ```
 
 ---
