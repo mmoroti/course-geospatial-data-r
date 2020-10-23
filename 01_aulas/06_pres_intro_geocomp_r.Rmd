@@ -1443,7 +1443,7 @@ class: inverse, center, middle
 
 ### Operações:
 1. Subset de atributos
-1. Join de atrinutos 
+1. Join de atributos 
 1. Aggregation de atributos
 1. Criação de atributos
 1. Outros operações
@@ -1475,7 +1475,7 @@ plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
 
 # 6.8 Operações de atributos
 
-## 2. Join de atrinutos 
+## 2. Join de atributos 
 ```{r}
 # 2. attribute joining - create data
 da_class <- tibble::tibble(CLASSE_USO = rc_use$CLASSE_USO, 
@@ -1487,7 +1487,7 @@ da_class
 
 # 6.8 Operações de atributos
 
-## 2. Join de atrinutos 
+## 2. Join de atributos 
 ```{r}
 # 2. attribute joining - join
 rc_use_class <- dplyr::left_join(rc_use, da_class, by = "CLASSE_USO") %>% 
@@ -2085,7 +2085,7 @@ background-position: 50% 60%,50% 90%
 ## Exportar como shapefile
 ```{r eval=FALSE}
 # export shapefile
-sf::write_sf(obj = rc_spr_forest_buf, 
+sf::st_write(obj = rc_spr_forest_buf, 
              dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.shp"),
              layer = "rc_spr_forest_buf.shp",
              driver = "ESRI Shapefile")
@@ -2102,7 +2102,7 @@ background-position: 13% 60%,90% 70%
 ## Exportar como geopackage
 ```{r eval=FALSE}
 # export geopackage
-sf::write_sf(obj = rc_spr_forest_buf, 
+sf::st_write(obj = rc_spr_forest_buf, 
              dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.gpkg"),
              layer = "rc_spr_forest_buf")
 ```
@@ -2124,7 +2124,7 @@ background-position: 13% 60%,90% 70%
 ## Exportar como geopackage
 ```{r eval=FALSE}
 # export geopackage
-sf::write_sf(obj = rc_spr_forest_buf_union, 
+sf::st_write(obj = rc_spr_forest_buf_union, 
              dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.gpkg"),
              layer = "rc_spr_forest_buf_union")
 

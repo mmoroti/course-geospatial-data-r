@@ -524,8 +524,7 @@ plot(rc_use_forest_rp, pch = 20, cex = .5, col = "red", add = TRUE)
 
 # 4. grid
 rc_2019_sirgas2000_utm23s_grid <- rc_2019_sirgas2000_utm23s %>% 
-  sf::st_make_grid(cellsize = 2000) %>% 
-  sf::st_as_sf()
+  sf::st_make_grid(cellsize = 2000)
 rc_2019_sirgas2000_utm23s_grid
 
 # plot
@@ -569,6 +568,9 @@ plot(rc_2019_sirgas2000_utm23s_hex_spr_count["n"], axes = TRUE, graticule = TRUE
 # 6.10 operacoes geometricas ----------------------------------------------
 # 1. simplification
 rc_riv_simp <- sf::st_simplify(rc_riv, dTolerance = 1e4)
+rc_riv_simp
+
+rc_riv_simp <- sf::st_simplify(rc_2019, dTolerance = 1e4)
 rc_riv_simp
 
 # plot
@@ -632,18 +634,18 @@ plot(rc_riv_spr_forest_buf_dif$geometry, col = "blue", add = TRUE)
 
 # 6.11 exportar dados -----------------------------------------------------
 # export shapefile
-sf::write_sf(obj = rc_spr_forest_buf, 
+sf::st_write(obj = rc_spr_forest_buf, 
              dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.shp"),
              layer = "rc_spr_forest_buf.shp",
              driver = "ESRI Shapefile")
 
 # export geopackage
-sf::write_sf(obj = rc_spr_forest_buf, 
+sf::st_write(obj = rc_spr_forest_buf, 
              dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.gpkg"),
              layer = "rc_spr_forest_buf")
 
 # export geopackage
-sf::write_sf(obj = rc_spr_forest_buf_union, 
+sf::st_write(obj = rc_spr_forest_buf_union, 
              dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.gpkg"),
              layer = "rc_spr_forest_buf_union")
 

@@ -78,7 +78,7 @@ raster::plot(ra_bri, col = viridis::viridis(10))
 
 # 7.4 importar dados matriciais -------------------------------------------
 # create directory
-dir.create(here::here("03_dados", "raster"))
+dir.create(here::here("03_dados", "raster2"))
 
 # elevation data
 # increase time to download
@@ -86,7 +86,7 @@ options(timeout = 600)
 
 # download
 raster::getData(name = "SRTM", lon = -47, lat = -23,
-                path = here::here("03_dados", "raster"))
+                path = here::here("03_dados", "raster2"))
 
 # import raster
 ra <- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
@@ -184,7 +184,7 @@ ra_rc[] %>% head
 # raster values histogram
 ra_rc %>% 
   raster::values() %>% 
-  hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
+  hist(col = "steelblue", br = 10, border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
 
 # stack values
 values(st[[1:3]]) %>% head
@@ -316,10 +316,10 @@ names(ra_rc)
 names(st)
 
 # rename
-names(st) <- c("bio01", paste0("bio", 10:19), paste0("bio", 2:9))
+names(st) <- c("bio01", paste0("bio", 10:19), paste0("bio0", 2:9))
 
 # names
-names(ra_rc)
+names(st)
 
 # summarize information
 # mean from all cells
@@ -587,7 +587,7 @@ plot(rc_use$geom, add = TRUE)
 library(fasterize)
 
 # rasterize with fasterize
-rc_use_fast <- fasterize::fasterize(sf = rc_use, raster = ra_rc_agg_mean, field = "CLASSE_USO")
+rc_use_fast <- fasterize::fasterize(sf = rc_use, raster = ra_rc, field = "CLASSE_USO")
 rc_use_fast
 
 # plot
@@ -604,8 +604,8 @@ raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
 plot(ra_rc_agg_mean_points, pch = 20, main = FALSE, add = TRUE)
 plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 
-# vectorization points
-ra_rc_agg_mean_lines = raster::rasterToContour(ra_rc_agg_mean) %>% 
+# vectorization lines
+ra_rc_agg_mean_lines = raster::rasterToContour(ra_rc_agg_mean, 100) %>% 
   sf::st_as_sf()
 ra_rc_agg_mean_lines
 
@@ -615,7 +615,7 @@ plot(ra_rc_agg_mean_lines$geometry, col = "white", pch = 20, lwd = 2, main = FAL
 plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 
 # vectorization points
-rc_use_fast_polygon = raster::rasterToPolygons(rc_use_fast) %>% 
+rc_use_fast_polygon <- raster::rasterToPolygons(rc_use_fast) %>% 
   sf::st_as_sf() %>% 
   dplyr::group_by(layer) %>% 
   summarise()
@@ -623,7 +623,8 @@ rc_use_fast_polygon
 
 # plot
 raster::plot(rc_use_fast, col = viridis::viridis(10))
-plot(ra_use_rc_fast_polygon, col = viridis::viridis(5), pch = 20, lwd = 2, main = FALSE, add = TRUE)
+plot(rc_use_fast_polygon, col = viridis::viridis(5), 
+     pch = 20, lwd = 2, main = FALSE, add = TRUE)
 
 # export raster
 raster::writeRaster(x = ra_rc, 

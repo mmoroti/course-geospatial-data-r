@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, fig.align = 'center', out.width='40%', warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, fig.align = 'center', out.width='40%', eval=F,warning = FALSE, message = FALSE)
 if(!require(raster)) install.packages("raster")
 if(!require(sf)) install.packages("sf")
 if(!require(tidyverse)) install.packages("tidyverse")
@@ -415,7 +415,7 @@ rc_2019
 ## Importar uma camada
 
 ### RasterLayer
-```{r}
+```{r,eval=T}
 # plot
 raster::plot(ra, col = viridis::viridis(10))
 plot(rc_2019$geom, col = adjustcolor("red", .5), add = TRUE)
@@ -440,7 +440,7 @@ background-position: 50% 80%
 ## Importar uma camada
 
 ### Crop do RasterLayer
-```{r}
+```{r,eval=T}
 # crop
 ra_rc <- raster::crop(ra, rc_2019)
 ra_rc
@@ -453,7 +453,7 @@ ra_rc
 ## Importar uma camada
 
 ### Crop do RasterLayer
-```{r}
+```{r,eval=T}
 # plot
 raster::plot(ra_rc, col = viridis::viridis(10))
 plot(rc_2019$geom, col = adjustcolor("red", .3), lwd = 2, add = TRUE)
@@ -618,7 +618,7 @@ st
 ## Importar várias camadas
 
 ### RasterStack
-```{r}
+```{r,eval=T}
 # plot
 raster::plot(st[[1:2]], col = viridis::viridis(10))
 ```
@@ -815,12 +815,26 @@ background-position: 50% 90%
 # raster values
 getValues(ra_rc) %>% head
 ```
---
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
 ```{r}
 # raster values
 values(ra_rc) %>% head
 ```
---
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
 ```{r}
 # raster values
 ra_rc[] %>% head
@@ -859,7 +873,7 @@ values(st[[1:3]]) %>% head
 ## Informações
 
 ### Valores
-```{r out.width='35%'}
+```{r out.width='35'}
 # stack values - pairs
 st[[1:3]] %>% 
   raster::values() %>% 
@@ -1348,7 +1362,7 @@ names(st)
 --
 ```{r}
 # rename
-names(st) <- c("bio01", paste0("bio", 10:19), paste0("bio", 2:9))
+names(st) <- c("bio01", paste0("bio", 10:19), paste0("bio0", 2:9))
 ```
 --
 ```{r}
@@ -2379,8 +2393,8 @@ class: inverse, center, middle
 ---
 
 background-image: url(img/geo_raster_single_raster.png)
-background-size: 250px
-background-position: 50% 90%
+background-size: 350px
+background-position: 50% 80%
 
 # 7.12 Exportar dados matriciais
 
@@ -2397,8 +2411,8 @@ raster::writeRaster(x = ra_rc,
 ---
 
 background-image: url(img/geo_raster_multi_raster.png)
-background-size: 250px
-background-position: 50% 90%
+background-size: 350px
+background-position: 50% 80%
 
 # 7.12 Exportar dados matriciais
 
