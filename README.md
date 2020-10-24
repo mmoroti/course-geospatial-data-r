@@ -89,21 +89,23 @@ Para rodar as linhas, basta colocar o cursor na linha de código a ser executada
 
 ## Slides
 
-- [Aula 01](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/01_aulas/00_pres_intro_geocomp_r.html)
-- [Aula 02]()
-- [Aula 03]()
-- [Aula 04]()
-- [Aula 05]()
-- [Aula 06]()
-- [Aula 07]()
-- [Aula 08]()
+- [Aula 00](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/00_pres_intro_geocomp_r.html)
+- [Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/01_pres_intro_geocomp_r.html)
+- [Aula 02]([Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/02_pres_intro_geocomp_r.html))
+- [Aula 03]([Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/03_pres_intro_geocomp_r.html))
+- [Aula 04]([Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/04_pres_intro_geocomp_r.html))
+- [Aula 05]([Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/05_pres_intro_geocomp_r.html))
+- [Aula 06]([Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/06_pres_intro_geocomp_r.html))
+- [Aula 07]([Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/07_pres_intro_geocomp_r.html))
+- [Aula 08]([Aula 01](https://mauriciovancine.github.io/disciplina-analise-geoespacial-r/01_aulas/08_pres_intro_geocomp_r.html))
 
 ---
 
 ## Scripts
 
-- [Aula 03]()
-- [Aula 04]()
-- [Aula 06]()
-- [Aula 07]()
-- [Aula 08]()
+- [Instalar pacotes](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/02_scripts/00_script_install_packages.R)
+- [Aula 03](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/02_scripts/03_script_intro_geocomp_r.R)
+- [Aula 04](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/02_scripts/04_script_intro_geocomp_r.R)
+- [Aula 06](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/02_scripts/06_script_intro_geocomp_r.R)
+- [Aula 07](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/02_scripts/07_script_intro_geocomp_r.R)
+- [Aula 08](https://github.com/mauriciovancine/disciplina-analise-geoespacial-r/blob/master/02_scripts/08_script_intro_geocomp_r.R)
