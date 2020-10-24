@@ -593,7 +593,7 @@ map_use_gg <- ggplot() +
   labs(x = "Longitude", y = "Latitude", title = "Cobertura da terra Rio Claro/SP (2015)", fill = "Legenda") +
   theme(legend.position = c(.18,.18),
         legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90))
+        axis.text.y = element_text(angle = 90, hjust = .5))
 map_use_gg
 ```
 
@@ -619,7 +619,7 @@ map_use_gg <- ggplot() +
   labs(x = "Longitude", y = "Latitude", title = "Cobertura da terra Rio Claro/SP (2015)", fill = "Legenda") +
   theme(legend.position = c(.18,.18),
         legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90))
+        axis.text.y = element_text(angle = 90, hjust = .5))
 map_use_gg
 ```
 
@@ -644,7 +644,7 @@ ggplot() +
   labs(x = "Longitude", y = "Latitude", title = "Nascentes Rio Claro/SP (2015)") +
   theme(legend.position = c(.18,.18),
         legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90))
+        axis.text.y = element_text(angle = 90, hjust = .5))
 ```
 
 ---
@@ -668,7 +668,7 @@ ggplot() +
   labs(x = "Longitude", y = "Latitude", title = "Nascentes Rio Claro/SP (2015)") +
   theme(legend.position = c(.18,.18),
         legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90))
+        axis.text.y = element_text(angle = 90, hjust = .5))
 ```
 
 ---
@@ -692,7 +692,7 @@ ggplot() +
   labs(x = "Longitude", y = "Latitude", title = "Rios Rio Claro/SP (2015)") +
   theme(legend.position = c(.18,.18),
         legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90))
+        axis.text.y = element_text(angle = 90, hjust = .5))
 ```
 
 ---
@@ -716,7 +716,7 @@ ggplot() +
   labs(x = "Longitude", y = "Latitude", title = "Rios Rio Claro/SP (2015)") +
   theme(legend.position = c(.18,.18),
         legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90))
+        axis.text.y = element_text(angle = 90, hjust = .5))
 ```
 
 ---
@@ -758,10 +758,10 @@ tm_shape(rc_2019_utm) +
 ### Limite e cobertura da terra
 ```{r out.width='35%'}
 # rio claro limit fill + land use
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons()
+tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black") 
 ```
 
 ---
@@ -773,10 +773,10 @@ tm_shape(rc_2019_utm) +
 ### Limite e cobertura da terra com cores
 ```{r out.width='35%'}
 # rio claro limit fill + land use with colors
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO")
+tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black") 
 ```
 
 ---
@@ -788,10 +788,11 @@ tm_shape(rc_2019_utm) +
 ### Definir cores para as classes
 ```{r out.width='35%'}
 # land use and choose colors + rio claro limit fill 
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO", pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda")
+tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", 
+          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black")
 ```
 
 ---
@@ -803,10 +804,11 @@ tm_shape(rc_2019_utm) +
 ### Add coordenadas
 ```{r out.width='30%'}
 # land use and choose colors + rio claro limit fill + coords
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO", pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", 
+          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black") +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90))
 ```
 
@@ -819,10 +821,11 @@ tm_shape(rc_2019_utm) +
 ### Adicionar barra de escala e norte
 ```{r eval=FALSE}
 # land use and choose colors + rio claro limit fill + coords + themes + scalebar + north
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO", pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", 
+          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black") +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar()
@@ -837,10 +840,11 @@ tm_shape(rc_2019_utm) +
 ### Adicionar barra de escala e norte
 ```{r echo=FALSE, out.width='50%'}
 # land use and choose colors + rio claro limit fill + coords + themes + scalebar + north
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO", pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", 
+          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black") +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar()
@@ -855,10 +859,11 @@ tm_shape(rc_2019_utm) +
 ### Add título, nome dos eixos e atribuir a um objeto
 ```{r eval=FALSE}
 # land use and choose colors + rio claro limit fill + coords + themes + scalebar + north + names
-map_use_tmap <- tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO", pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+map_use_tmap <- tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", 
+          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black") +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
@@ -877,10 +882,11 @@ map_use_tmap
 ### Add título, nome dos eixos e atribuir a um objeto
 ```{r echo=FALSE, out.width='55%'}
 # land use and choose colors + rio claro limit fill + coords + themes + scalebar + north + names
-map_use_tmap <- tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO", pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+map_use_tmap <- tm_shape(rc_use) +
+  tm_fill(col = "CLASSE_USO", 
+          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
+  tm_shape(rc_2019_utm) +
+  tm_borders(lwd = 2, col = "black") +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
@@ -902,7 +908,8 @@ map_use_tmap
 tm_shape(rc_2019_utm) +
   tm_polygons() +
   tm_shape(rc_spr) +
-  tm_bubbles(col = "blue", size = .5, alpha = .5) +
+  tm_bubbles(col = "HIDRO", pal = "blue",
+             size = .2, alpha = .5) +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
@@ -922,14 +929,15 @@ tm_shape(rc_2019_utm) +
 # springs 
 tm_shape(rc_2019_utm) +
   tm_polygons() +
-  tm_shape(rc_riv) +
-  tm_lines(col = "steelblue") +
+  tm_shape(rc_spr) +
+  tm_bubbles(col = "HIDRO", pal = "blue",
+             size = .2, alpha = .5) +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
-  tm_layout(main.title = "Rios Rio Claro/SP (2015)")
+  tm_layout(main.title = "Nascentes Rio Claro/SP (2015)")
 ```
 
 ---
@@ -944,8 +952,10 @@ tm_shape(rc_2019_utm) +
 tm_shape(rc_2019_utm) +
   tm_polygons() +
   tm_shape(rc_riv) +
-  tm_lines(col = "steelblue") +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
+  tm_lines(col = "HIDRO", pal = "steelblue") +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
   tm_xlab("Longitude") +
@@ -964,14 +974,16 @@ tm_shape(rc_2019_utm) +
 # rivers
 tm_shape(rc_2019_utm) +
   tm_polygons() +
-  tm_shape(rc_use) +
-  tm_polygons(col = "CLASSE_USO", pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
+  tm_shape(rc_riv) +
+  tm_lines(col = "HIDRO", pal = "steelblue") +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
-  tm_layout(main.title = "Cobertura da terra Rio Claro/SP (2015)")
+  tm_layout(main.title = "Rios Rio Claro/SP (2015)")
 ```
 
 ---
@@ -1166,7 +1178,9 @@ map_elev_tmap
 ```{r eval=FALSE}
 # elevation map
 map_elev_tmap <- tm_shape(elev) +
-  tm_raster(pal = cptcity::cpt(pal = "gmt_GMT_dem4"), n = 10, title = "Legenda") +
+  tm_raster(pal = cptcity::cpt(pal = "gmt_GMT_dem4"), 
+            n = 20,
+            title = "Legenda") +
   tm_shape(rc_2019) +
   tm_borders() +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
@@ -1175,6 +1189,7 @@ map_elev_tmap <- tm_shape(elev) +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
   tm_layout(legend.position = c("left", "bottom"), 
+            legend.outside = TRUE,
             main.title = "Elevação Rio Claro/SP (2015)")
 map_elev_tmap
 ```
@@ -1187,7 +1202,9 @@ map_elev_tmap
 ```{r echo=FALSE,out.width='55%'}
 # elevation map
 map_elev_tmap <- tm_shape(elev) +
-  tm_raster(pal = cptcity::cpt(pal = "gmt_GMT_dem4"), n = 10, title = "Legenda") +
+  tm_raster(pal = cptcity::cpt(pal = "gmt_GMT_dem4"), 
+            n = 20,
+            title = "Legenda") +
   tm_shape(rc_2019) +
   tm_borders() +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
@@ -1196,6 +1213,7 @@ map_elev_tmap <- tm_shape(elev) +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
   tm_layout(legend.position = c("left", "bottom"), 
+            legend.outside = TRUE,
             main.title = "Elevação Rio Claro/SP (2015)")
 map_elev_tmap
 ```
@@ -1261,7 +1279,7 @@ br_years <- tm_shape(br) +
   tm_facets(along = "year", free.coords = FALSE)
 
 # export
-tmap_animation(br_years, filename = "geo_br_years.gif", delay = 25)
+tmap_animation(br_years, filename = here::here("03_dados", "mapas", "geo_br_years.gif"), delay = 25)
 ```
 
 ---
@@ -1297,7 +1315,7 @@ map_elev_tmap
 # export
 ggsave(map_use_gg, 
        filename = "map_rio_claro_land_use_gg.png",
-       path = here::here("03_dados"),
+       path = here::here("03_dados", "mapas"),
        width = 20, 
        height = 20, 
        units = "cm", 
@@ -1315,7 +1333,7 @@ ggsave(map_use_gg,
 # export
 ggsave(map_elev_gg, 
        filename = "map_rio_claro_elevation_gg.png",
-       path = here::here("03_dados"),
+       path = here::here("03_dados", "mapas"),
        width = 20, 
        height = 20, 
        units = "cm", 
@@ -1332,8 +1350,7 @@ ggsave(map_elev_gg,
 ```{r eval=FALSE}
 # export
 tmap_save(map_use_tmap, 
-          filename = "map_rio_claro_land_use_tmap.png",
-          path = here::here("03_dados"),
+          filename = here::here("03_dados", "mapas", "map_rio_claro_land_use_tmap.png"),
           width = 20, 
           height = 20, 
           units = "cm", 
@@ -1350,8 +1367,7 @@ tmap_save(map_use_tmap,
 ```{r eval=FALSE}
 # export
 tmap_save(map_elev_tmap, 
-          filename = "map_rio_claro_elevation_tmap.png",
-          path = here::here("03_dados"),
+          filename = here::here("03_dados", "mapas", "map_rio_claro_elevation_tmap.png"),
           width = 20, 
           height = 20, 
           units = "cm", 

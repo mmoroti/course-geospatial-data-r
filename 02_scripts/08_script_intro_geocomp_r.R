@@ -204,7 +204,7 @@ ggplot() +
 ## tmap
 # rio claro limit
 tm_shape(rc_2019_utm) +
-  tm_polygons()
+  tm_borders(lwd = 2, col = "black") 
 
 # rio claro limit fill + land use
 tm_shape(rc_use) +
@@ -233,7 +233,7 @@ tm_shape(rc_use) +
   tm_borders(lwd = 2, col = "black") +
   tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90))
 
-# land use and choose colors + rio claro limit fill + coords
+# land use and choose colors + rio claro limit fill + coords + scalebar + north
 tm_shape(rc_use) +
   tm_fill(col = "CLASSE_USO", 
           pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
@@ -389,7 +389,7 @@ br_years <- tm_shape(br) +
 br_years
 
 # export
-tmap_animation(br_years, filename = "geo_br_years.gif", delay = 25)
+tmap_animation(br_years, filename = here::here("03_dados", "mapas", "geo_br_years.gif"), delay = 25)
 
 # 8.9 mapas interativos ---------------------------------------------------
 # change plot tmap
@@ -435,7 +435,6 @@ tmap_save(map_elev_tmap,
           height = 20, 
           units = "cm", 
           dpi = 300)
-
 
 # muito obrigado pela paciencia e atencao =]
 
