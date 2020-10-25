@@ -3,6 +3,13 @@
 #' author: mauricio vancine
 #' date: 2020-10-22
 #' ---
+ 
+# packages ----------------------------------------------------------------
+library(sp)
+library(sf)
+library(geobr)
+library(rnaturalearth)
+library(tidyverse)
 
 # topics ------------------------------------------------------------------
 # 6.1 pacotes
@@ -16,13 +23,6 @@
 # 6.9 operacoes espaciais
 # 6.10 operacoes geometricas
 # 6.11 exportar dados vetoriais
-
-# packages ----------------------------------------------------------------
-library(sp)
-library(sf)
-library(geobr)
-library(rnaturalearth)
-library(tidyverse)
 
 # 6.1 pacotes -------------------------------------------------------------
 # sp

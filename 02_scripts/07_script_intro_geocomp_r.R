@@ -4,6 +4,14 @@
 #' date: 2020-10-22
 #' ---
 
+# packages ----------------------------------------------------------------
+library(raster)
+library(sf)
+library(tidyverse)
+library(geobr)
+library(rnaturalearth)
+library(viridis)
+
 # topics ------------------------------------------------------------------
 # 7.1 pacotes
 # 7.2 sados raster
@@ -17,14 +25,6 @@
 # 7.10 intera_rccoes raster-vetor
 # 7.11 conversoes raster-vetor
 # 7.12 exportar dados matriciais
-
-# packages ----------------------------------------------------------------
-library(raster)
-library(sf)
-library(tidyverse)
-library(geobr)
-library(rnaturalearth)
-library(viridis)
 
 # 7.1 pacotes -------------------------------------------------------------
 # raster

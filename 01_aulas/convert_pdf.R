@@ -1,19 +1,16 @@
 #' ---
 #' title: convert to xaringan presentation to pdf
 #' author: mauricio vancine
-#' date: 2020-10-16
+#' date: 2020-10-24
 #' ---
 
 # packages
 library(pagedown)
 library(xaringan)
 library(tidyverse)
-
-# directory
-setwd("01_aulas")
-dir(pattern = ".Rmd")
+library(here)
 
 # convert rmarkdown
-purrr::map(dir(pattern = ".Rmd")[3], pagedown::chrome_print, timeout = 2000)
+purrr::map(here("01_aulas", dir(path = here("01_aulas"), pattern = ".Rmd"))[9], pagedown::chrome_print, timeout = 5000)
 
 # end ---------------------------------------------------------------------

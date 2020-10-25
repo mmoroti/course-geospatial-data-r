@@ -1298,7 +1298,7 @@ map_use_tmap
 # 8.9 Mapas interativos
 
 ## Mapas anteriores
-```{r echo=FALSE,message=FALSE,out.width='50%'}
+```{r echo=FALSE, message=FALSE, out.width='50%'}
 # change plot tmap
 tmap_mode("view")
 map_elev_tmap

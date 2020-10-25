@@ -4,6 +4,18 @@
 #' date: 2020-10-23
 #' ---
 
+# packages ----------------------------------------------------------------
+library(tidyverse)
+library(sf)
+library(raster)
+library(geobr)
+library(rnaturalearth)
+library(ggspatial)
+library(tmap)
+library(viridis)
+library(wesanderson)
+library(cptcity)
+
 # topics ------------------------------------------------------------------
 # 8.1 Elementos de um mapa
 # 8.2 Pacotes para produção de mapas
@@ -16,19 +28,7 @@
 # 8.9 Mapas interativos
 # 8.10 Exportar mapas
 
-# packages ----------------------------------------------------------------
-library(raster)
-library(sf)
-library(tidyverse)
-library(geobr)
-library(rnaturalearth)
-library(ggspatial)
-library(tmap)
-library(viridis)
-library(wesanderson)
-library(cptcity)
-
-# 8.1 elementos de um mapa
+# 8.1 elementos de um mapa ------------------------------------------------
 # elementos 
 # - titutlo
 # - mapa principal
