@@ -815,26 +815,12 @@ background-position: 50% 90%
 # raster values
 getValues(ra_rc) %>% head
 ```
-
----
-
-# 7.5 Descrição de objetos raster
-
-## Informações
-
-### Valores
+--
 ```{r}
 # raster values
 values(ra_rc) %>% head
 ```
-
----
-
-# 7.5 Descrição de objetos raster
-
-## Informações
-
-### Valores
+--
 ```{r}
 # raster values
 ra_rc[] %>% head
@@ -873,7 +859,7 @@ values(st[[1:3]]) %>% head
 ## Informações
 
 ### Valores
-```{r out.width='35'}
+```{r out.width='30%'}
 # stack values - pairs
 st[[1:3]] %>% 
   raster::values() %>% 
