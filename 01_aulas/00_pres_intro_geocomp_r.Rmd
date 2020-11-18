@@ -240,7 +240,7 @@ background-position: 85% 75%
 ### 4 Introdução ao tidyverse (terça)
 1. tidyverse
 1. magrittr (pipe - %>%)
-1. readr
+1. readr 
 1. readxl e writexl
 1. tibble
 1. tidyr

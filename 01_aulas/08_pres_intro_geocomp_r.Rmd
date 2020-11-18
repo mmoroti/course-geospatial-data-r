@@ -321,14 +321,14 @@ class: inverse, center, middle
 # 8.5 Mapas vetoriais
 
 ## Limite de Rio Claro/SP
-```{r eval=FALSE,warning=FALSE,message=FALSE}
+```{r eval=FALSE, warning=FALSE, message=FALSE}
 # rio claro
 rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019)
 rc_2019
 plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
-```{r echo=FALSE,message=FALSE,results='hide',out.width='50%'}
+```{r echo=FALSE, message=FALSE, results='hide', out.width='50%'}
 # rio claro
 rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019)
 plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
@@ -346,7 +346,7 @@ rc_2019_utm
 plot(rc_2019_utm$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
-```{r echo=FALSE,message=FALSE,results='hide',out.width='50%'}
+```{r echo=FALSE, message=FALSE, results='hide', out.width='50%'}
 # rio claro
 rc_2019_utm <- geobr::read_municipality(code_muni = 3543907, year = 2019) %>% sf::st_transform(crs = 31983)
 plot(rc_2019_utm$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
@@ -1004,7 +1004,7 @@ elev
 plot(elev, col = viridis::viridis(10))
 ```
 
-```{r echo=FALSE,message=FALSE,results='hide',out.width='50%'}
+```{r echo=FALSE, message=FALSE, results='hide', out.width='50%'}
 # import elevation
 elev <- raster::raster(here::here("03_dados", "raster", "srtm_27_17_rc.tif")) %>% 
   raster::mask(rc_2019)
@@ -1287,7 +1287,7 @@ tmap_animation(br_years, filename = here::here("03_dados", "mapas", "geo_br_year
 # 8.9 Mapas interativos
 
 ## Mapas anteriores
-```{r echo=FALSE,message=FALSE,out.width='50%'}
+```{r echo=FALSE, eval=FALSE, message=FALSE, out.width='50%'}
 # change plot tmap
 tmap_mode("view")
 map_use_tmap
@@ -1298,7 +1298,7 @@ map_use_tmap
 # 8.9 Mapas interativos
 
 ## Mapas anteriores
-```{r echo=FALSE, message=FALSE, out.width='50%'}
+```{r echo=FALSE, eval=FALSE, message=FALSE, out.width='50%'}
 # change plot tmap
 tmap_mode("view")
 map_elev_tmap
