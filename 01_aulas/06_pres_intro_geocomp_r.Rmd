@@ -674,7 +674,7 @@ class: inverse, center, middle
 
 class: inverse, center, middle
 
-# Um agradecimento ao Rafael (Urucum), que gentilmente cedeu os dados `r icon::fa_grin_beam_sweat()`
+# Um agradecimento ao Rafael (Urucum), que gentilmente cedeu os dados `r icon::fontawesome(name = "grin-beam-sweat", style = "solid")`
 
 ---
 
@@ -2145,19 +2145,21 @@ class: inverse, middle, center
 ---
 
 class: clear, middle
+background-image: url(img/gif_frog.gif)
+background-size: 250px
+background-position: 90% 90%
 
 ## Maurício Vancine
 
-<br>
+<br><br>
 
 Contatos:
 
-`r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
-<br>
-`r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)
-<br>
-`r icon::fa_github(colour = "#0000ee")` [mauriciovancine](https://mauriciovancine.netlify.com/)
-<br>
-`r icon::fa_link(colour = "#0000ee")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+`r icon::icon_style(icon::fontawesome(name = "envelope", style = "solid"), fill = "#0000ee")` [mauricio.vancine@gmail.com]()  
+`r icon::icon_style(icon::fontawesome("twitter"), fill = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
+`r icon::icon_style(icon::fontawesome(name = "github"), fill = "#0000ee")` [mauriciovancine](https://github.com/mauriciovancine)
+`r icon::icon_style(icon::fontawesome(name = "link", style = "solid"), fill = "#0000ee")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
+
+<br><br>
 
 Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)

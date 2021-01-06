@@ -14,7 +14,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE, encoding = "UTF-8")
+options(htmltools.dir.version = FALSE, 
+        encoding = "UTF-8",
+        knitr.table.format = "html")
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
@@ -328,7 +330,7 @@ background-position: 50% 90%
 
 # 4.2 magrittr (pipe - %>%)
 
-### Atalho: `crtl + shift + M`
+### Atalho: `Crtl + Shift + M`
 ```{r}
 # sem pipe
 sqrt(sum(1:100))
@@ -338,7 +340,7 @@ sqrt(sum(1:100))
 
 # 4.2 magrittr (pipe - %>%)
 
-### Atalho: `crtl + shift + M`
+### Atalho: `Crtl + Shift + M`
 ```{r}
 # sem pipe
 sqrt(sum(1:100))
@@ -361,7 +363,7 @@ background-size: 800px
 
 # 4.2 magrittr (pipe - %>%)
 
-### Atalho: `crtl + shift + M`
+### Atalho: `Crtl + Shift + M`
 ```{r}
 # fixar amostragem
 set.seed(42)
@@ -1774,7 +1776,7 @@ background-position: 50% 50%
 ### Selecionar as colunas que preciso da tabela **si**
 ```{r}
 si_coord <- si %>% 
-  select(id, longitude, latitude)
+  dplyr::select(id, longitude, latitude)
 si_coord 
 ```
 
@@ -1790,7 +1792,7 @@ si_coord
 ```{r}
 # join dos dados
 sp_join <- sp %>% 
-  left_join(si_coord, by = "id")
+  dplyr::left_join(si_coord, by = "id")
 sp_join
 ```
 
@@ -2806,23 +2808,21 @@ class: inverse, center, middle
 ---
 
 class: clear, middle
-
-<br><br><br>
+background-image: url(img/gif_frog.gif)
+background-size: 250px
+background-position: 90% 90%
 
 ## Maurício Vancine
 
-<br>
+<br><br>
 
 Contatos:
 
-`r icon::fa_envelope(colour = "#0000ee")` [mauricio.vancine@gmail.com]()
-<br>
-`r icon::fa_twitter(colour = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)
-<br>
-`r icon::fa_github(colour = "#0000ee")` [mauriciovancine](https://mauriciovancine.netlify.com/)
-<br>
-`r icon::fa_link(colour = "#0000ee")` [mauriciovancine.netlify.com](https://mauriciovancine.netlify.com/)
+`r icon::icon_style(icon::fontawesome(name = "envelope", style = "solid"), fill = "#0000ee")` [mauricio.vancine@gmail.com]()  
+`r icon::icon_style(icon::fontawesome("twitter"), fill = "#0000ee")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
+`r icon::icon_style(icon::fontawesome(name = "github"), fill = "#0000ee")` [mauriciovancine](https://github.com/mauriciovancine)
+`r icon::icon_style(icon::fontawesome(name = "link", style = "solid"), fill = "#0000ee")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
 
-<br><br><br>
+<br><br>
 
 Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)

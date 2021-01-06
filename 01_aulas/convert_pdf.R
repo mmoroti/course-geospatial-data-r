@@ -11,6 +11,9 @@ library(tidyverse)
 library(here)
 
 # convert rmarkdown
-purrr::map(here("01_aulas", dir(path = here("01_aulas"), pattern = ".Rmd"))[9], pagedown::chrome_print, timeout = 5000)
+for(i in 1:9){
+  print(i)
+  pagedown::chrome_print(here("01_aulas", dir(path = here("01_aulas"), pattern = ".Rmd"))[i], timeout = 1e6)
+}
 
 # end ---------------------------------------------------------------------
