@@ -743,9 +743,9 @@ background-position: 50% 20%,10% 105%,80% 90%
 
 ---
 
-background-image: url(img/geo_sig_softwares.png)
-background-size: 600px
-background-position: 45% 70%
+background-image: url(img/qgis_logo.png),url(img/arcgis_logo.png),url(img/grassgis_logo.png),url(img/r_logo.svg)
+background-size: 300px,250px,250px,250px
+background-position: 20% 25%,75% 25%,20% 85%,75% 85%
 
 # 5.5 Sistema de Informação Geográfica
 
@@ -758,9 +758,9 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/geo_data.jpg)
-background-size: 550px
-background-position: 45% 80%
+background-image: url(img/geo_data3.png), url(img/geo_data.jpg)
+background-size: 250px,500px
+background-position: 10% 70%,85% 70%
 
 # 5.6 Dados geoespaciais
 
@@ -906,25 +906,19 @@ background-position: 45% 90%
 
 ## Vetoriais
 
-&lt;br&gt;
-
-- **IBGE**: limites territoriais e censitários do Brasil &lt;br&gt;
-https://www.ibge.gov.br/geociencias/downloads-geociencias.html
-
-- **FBDS**: uso da terra, app e hidrografia - Mata Atlântica e Cerrado &lt;br&gt;
-http://geo.fbds.org.br/
-
-- **GeoBank**: dados geológicos do Brasil &lt;br&gt;
-http://geosgb.cprm.gov.br/
-
-- **Ecoregions**: dados de biorregiões e biomas do mundo  
-https://ecoregions2017.appspot.com/
-
-- **GADM**: limites de áreas administrativas do mundo &lt;br&gt;
-https://gadm.org/
-
-- **Natural Earth:** diversos limites para o mundo &lt;br&gt;
-https://www.naturalearthdata.com/
+- **[IBGE](https://www.ibge.gov.br/geociencias/downloads-geociencias.html)**: limites territoriais e censitários do Brasil
+- **[FBDS](http://geo.fbds.org.br)**: uso da terra, app e hidrografia - Mata Atlântica e Cerrado
+- **[GeoBank](http://geosgb.cprm.gov.br/)**: dados geológicos do Brasil
+- **[Pastagem.org](http://maps.lapig.iesa.ufg.br)**: dados de pastagens e gado para o Brasil
+- **[CanaSat](http://www.dsr.inpe.br/laf/canasat/)**: dados de cana-de-açúcar para o Brasil
+- **[CSR Maps](http://maps.csr.ufmg.br)**: diversos dados vetoriais para o Brasil
+- **[Ecoregions](https://ecoregions2017.appspot.com/)**: dados de biorregiões e biomas do mundo  
+- **[GADM](https://gadm.org/)**: limites de áreas administrativas do mundo
+- **[Natural Earth](https://www.naturalearthdata.com/):** diversos limites para o mundo
+- **[Protected Planet](https://www.protectedplanet.net/en):** áreas protegidas para o mundo
+- **[UN Biodiversity Lab](https://www.unbiodiversitylab.org/)**: Diversas bases de dados para o mundo                        	|
+- **[HydroSHEDS](https://www.hydrosheds.org/)**: informações hidrológicas do mundo
+- **[Global Roads Inventory Project (GRIP)](https://www.globio.info/download-grip-dataset)**: dados de estradas do mundo todo 
 
 ---
 
@@ -932,25 +926,40 @@ https://www.naturalearthdata.com/
 
 ## Matriciais
 
-&lt;br&gt;
+- **[MapBiomas](https://mapbiomas.org)**: uso e cobertura da terra para o Brasil, diversos anos
+- **[Bahlu](ftp://madeira.dea.ufv.br/bdados/bhalu/)**: Distribuições históricas de terras agrícolas e pastagens para todo o Brasil de 1940 a 2012
+- **[USGS](https://www.usgs.gov)**: dados de diversos satélites livres para o mundo
+- **[SRTM](http://srtm.csi.cgiar.org/)**: dados de elevação para o mundo
+- **[Global Forest Watch](https://www.globalforestwatch.org/)**: dados de uso e cobertura para todo o planeta
+- **[Geoservice Maps](https://geoservice.dlr.de/web/maps)**: dados de elevação e florestas para o mundo
+- **[GlobCover](http://due.esrin.esa.int/page_globcover.php)**: dados de uso e cobertura da terra para todo o planeta
+- **[Global Human Footprint](https://wcshumanfootprint.org/)**: dados de pegada ecológica para o mundo
+- **[Land-Use Harmonization (LUH2)](https://luh.umd.edu/)**: dados atuais e previsões de uso da terra
+- **[SoilGrids](https://soilgrids.org/)**: dados de solo para o mundo                         
+- **[WorldClim](https://www.worldclim.org/)**: dados climáticos para o mundo
+- **[CHELSA](https://chelsa-climate.org/)**: dados climáticos para o mundo
+- **[EarthEnv](https://www.earthenv.org/)**: dados de cobertura da terra, nuvens, relevo e hidrografia
+- **[MARSPEC](http://www.marspec.org)**: dados de condições do oceano para o mundo
+- **[Bio-ORACLE](https://www.bio-oracle.org/)**: dados de condições do oceano para o mundo    
 
-- **MapBiomas**: uso e cobertura da terra para o Brasil, diversos anos &lt;br&gt;
-https://mapbiomas.org
+---
 
-- **USGS**: dados de diversos satélites livres para o mundo &lt;br&gt;
-https://www.usgs.gov
+# 5.14 Repositórios de dados geoespaciais
 
-- **SRTM**: dados de elevação para o mundo &lt;br&gt;
-http://srtm.csi.cgiar.org/
+## Pacotes
 
-- **WorldClim**: dados climáticos para o mundo &lt;br&gt;
-https://www.worldclim.org/
-
-- **EarthEnv**: dados de cobertura da terra, nuvens, relevo e hidrografia &lt;br&gt;
-https://www.earthenv.org/
-
-- **Global Forest Watch**: dados de uso e cobertura para todo o planeta &lt;br&gt;
-https://www.globalforestwatch.org/
+- **[geobr](https://cran.r-project.org/web/packages/geobr/index.html)**: carrega Shapefiles de Conjuntos de Dados Espaciais Oficiais do Brasil
+- **[rnaturalearth](https://cran.r-project.org/web/packages/rnaturalearth/index.html)**: dados do mapa mundial da Natural Earth
+- **[rworldmap](https://cran.r-project.org/web/packages/rworldmap/index.html)**: mapeando Dados Globais
+- **[spData](https://cran.r-project.org/web/packages/spData/index.html)**: conjuntos de dados para análise espacial
+- **[OpenStreetMap](https://cran.r-project.org/web/packages/OpenStreetMap/index.html)**: acesso para abrir imagens raster de mapas de ruas
+- **[osmdata](https://cran.r-project.org/web/packages/osmdata/index.html)**: baixe e importe dados do OpenStreetMap
+- **[geonames](https://cran.r-project.org/web/packages/geonames/index.html)**: interface para o serviço da Web de consulta espacial "Geonames"
+- **[rgbif](https://cran.r-project.org/web/packages/rgbif/index.html)**: interface para o Global 'Biodiversity' Information Facility API
+- **[maptools](https://cran.r-project.org/web/packages/maptools/index.html)**: ferramentas para lidar com objetos espaciais
+- **[marmap](https://cran.r-project.org/web/packages/marmap/index.html)**: importar, traçar e analisar dados batimétricos e topográficos
+- **[envirem](https://cran.r-project.org/web/packages/envirem/index.html)**: geração de Variáveis ENVIREM
+- **[sdmpredictors](https://cran.r-project.org/web/packages/sdmpredictors/index.html)**: conjuntos de dados preditor de modelagem de distribuição de espécies
 
 ---
 
