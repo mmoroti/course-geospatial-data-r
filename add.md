@@ -17,3 +17,9 @@ https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-pl
 
 
 https://ourcodingclub.github.io/tutorials/dataviz-beautification-synthesis/
+
+
+
+## Maps
+
+https://neocarto.github.io/mapextrud/vignettes/how-to-build-extruded-maps.html?fbclid=IwAR3KUrCuD9fy44khxbLjmQ_gmFdaFX4qGeXO5exURGNC6bcT74Iu_JxeNkU

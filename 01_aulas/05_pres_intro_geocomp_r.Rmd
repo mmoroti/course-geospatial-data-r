@@ -913,6 +913,9 @@ http://geo.fbds.org.br/
 - **GeoBank**: dados geológicos do Brasil <br>
 http://geosgb.cprm.gov.br/
 
+- **Ecoregions**: dados de biorregiões e biomas do mundo  
+https://ecoregions2017.appspot.com/
+
 - **GADM**: limites de áreas administrativas do mundo <br>
 https://gadm.org/
 
@@ -1035,7 +1038,7 @@ background-position: 50% 65%
 
 ## Livros
 
-### **Geospatial Health Data**
+### **Geospatial Health Data: Modeling and Visualization with R-INLA and Shiny (2019)**
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
@@ -1051,16 +1054,16 @@ background-position: 50% 65%
 
 ## Livros
 
-### **Data Visualization with R (2019)**
+### **Data Visualization with R (2020)**
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
-[*] https://keen-swartz-3146c4.netlify.com/
+[*] https://rkabacoff.github.io/datavis/
 
 ---
 
 background-image: url(img/cover_fundamentals_of_data_visualization.png)
-background-size: 230px
+background-size: 300px
 background-position: 50% 65%
 
 # 5.15 Material
@@ -1071,7 +1074,7 @@ background-position: 50% 65%
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
-[*] https://keen-swartz-3146c4.netlify.com/
+[*] https://clauswilke.com/dataviz/
 
 ---
 
@@ -1091,8 +1094,8 @@ background-position: 50% 65%
 
 ---
 
-background-image: url(img/cover_intro_gis.png)
-background-size: 280px
+background-image: url(img/cover_sig_r_course.png)
+background-size: 250px
 background-position: 50% 75%
 
 # 5.15 Material
@@ -1106,8 +1109,8 @@ background-position: 50% 75%
 [*] https://cdn2.hubspot.net/hubfs/2287011/Atlan%20GIS%20Course/All%20lessons.pdf
 ---
 
-background-image: url(img/person_robert_hijmans.jpg)
-background-size: 230px
+background-image: url(img/cover_hijmans.png)
+background-size: 600px
 background-position: 50% 70%
 
 # 5.15 Material
