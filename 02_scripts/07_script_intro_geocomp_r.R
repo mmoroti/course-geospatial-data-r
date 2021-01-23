@@ -587,7 +587,7 @@ plot(rc_use$geom, add = TRUE)
 library(fasterize)
 
 # rasterize with fasterize
-rc_use_fast <- fasterize::fasterize(sf = rc_use, raster = ra_rc, field = "CLASSE_USO")
+rc_use_fast <- fasterize::fasterize(sf = rc_use, raster = ra_rc_agg_mean, field = "CLASSE_USO")
 rc_use_fast
 
 # plot
@@ -605,26 +605,34 @@ plot(ra_rc_agg_mean_points, pch = 20, main = FALSE, add = TRUE)
 plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 
 # vectorization lines
-ra_rc_agg_mean_lines = raster::rasterToContour(ra_rc_agg_mean, 100) %>% 
+ra_rc_agg_mean_lines = raster::rasterToContour(x = ra_rc_agg_mean, 
+                                               levels = seq(500, 900, by = 50)) %>% 
   sf::st_as_sf()
 ra_rc_agg_mean_lines
 
 # plot
 raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
-plot(ra_rc_agg_mean_lines$geometry, col = "white", pch = 20, lwd = 2, main = FALSE, add = TRUE)
+contour(ra_rc_agg_mean, levels =  seq(500, 900, by = 50),
+        col = "white", pch = 20, lwd = 1.5, labcex = 2, main = FALSE, add = TRUE)
 plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
 
-# vectorization points
+# vectorization polygons
 rc_use_fast_polygon <- raster::rasterToPolygons(rc_use_fast) %>% 
-  sf::st_as_sf() %>% 
-  dplyr::group_by(layer) %>% 
-  summarise()
+  sf::st_as_sf()
 rc_use_fast_polygon
 
 # plot
 raster::plot(rc_use_fast, col = viridis::viridis(10))
-plot(rc_use_fast_polygon, col = viridis::viridis(5), 
-     pch = 20, lwd = 2, main = FALSE, add = TRUE)
+plot(rc_use_fast_polygon$geometry, main = FALSE, add = TRUE)
+
+# vectorization polygons dissolve
+rc_use_fast_polygon_diss <- raster::rasterToPolygons(rc_use_fast, dissolve = TRUE) %>% 
+  sf::st_as_sf()
+rc_use_fast_polygon_diss
+
+# plot
+raster::plot(rc_use_fast, col = viridis::viridis(10))
+plot(rc_use_fast_polygon_diss$geometry, main = FALSE, add = TRUE)
 
 # export raster
 raster::writeRaster(x = ra_rc, 

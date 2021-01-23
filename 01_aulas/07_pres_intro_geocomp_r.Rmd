@@ -626,7 +626,7 @@ raster::plot(st[[1:2]], col = viridis::viridis(10))
 ---
 
 class: inverse, center, middle
-# Objeto raster
+# Descrição de objetos raster
 
 ---
 
@@ -2319,7 +2319,8 @@ background-position: 50% 70%
 ## Vetorização - Raster para linhas
 ```{r}
 # vectorization points
-ra_rc_agg_mean_lines = raster::rasterToContour(ra_rc_agg_mean) %>% 
+ra_rc_agg_mean_lines = raster::rasterToContour(x = ra_rc_agg_mean, 
+                                               levels = seq(500, 900, by = 50)) %>% 
   sf::st_as_sf()
 ra_rc_agg_mean_lines
 ```
@@ -2332,8 +2333,8 @@ ra_rc_agg_mean_lines
 ```{r}
 # plot
 raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
-plot(ra_rc_agg_mean_lines$geometry, col = "white", pch = 20, lwd = 2, main = FALSE, add = TRUE)
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+contour(ra_rc_agg_mean, levels =  seq(500, 900, by = 50),
+        col = "white", pch = 20, lwd = 1.5, labcex = 2, main = FALSE, add = TRUE)
 ```
 
 ---
@@ -2354,9 +2355,7 @@ background-position: 50% 70%
 ```{r}
 # vectorization polygons
 rc_use_fast_polygon <- raster::rasterToPolygons(rc_use_fast) %>% 
-  sf::st_as_sf() %>% 
-  dplyr::group_by(layer) %>% 
-  summarise()
+  sf::st_as_sf()
 rc_use_fast_polygon
 ```
 
@@ -2368,7 +2367,30 @@ rc_use_fast_polygon
 ```{r}
 # plot
 raster::plot(rc_use_fast, col = viridis::viridis(10))
-plot(rc_use_fast_polygon, col = viridis::viridis(5), pch = 20, lwd = 2, main = FALSE, add = TRUE)
+plot(rc_use_fast_polygon$geometry, lwd = 1.5, main = FALSE, add = TRUE)
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos dissolvidos
+```{r}
+# vectorization polygons
+rc_use_fast_polygon_diss <- raster::rasterToPolygons(rc_use_fast, dissolve = TRUE) %>% 
+  sf::st_as_sf()
+rc_use_fast_polygon_diss
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos dissolvidos
+```{r}
+# plot
+raster::plot(rc_use_fast, col = viridis::viridis(10))
+plot(rc_use_fast_polygon_diss$geometry, lwd = 1.5, main = FALSE, add = TRUE)
 ```
 
 ---
@@ -2379,8 +2401,8 @@ class: inverse, center, middle
 ---
 
 background-image: url(img/geo_raster_single_raster.png)
-background-size: 350px
-background-position: 50% 80%
+background-size: 300px
+background-position: 50% 90%
 
 # 7.12 Exportar dados matriciais
 
@@ -2397,8 +2419,8 @@ raster::writeRaster(x = ra_rc,
 ---
 
 background-image: url(img/geo_raster_multi_raster.png)
-background-size: 350px
-background-position: 50% 80%
+background-size: 250px
+background-position: 50% 90%
 
 # 7.12 Exportar dados matriciais
 

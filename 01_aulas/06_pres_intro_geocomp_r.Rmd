@@ -564,7 +564,7 @@ dir.create(here::here("03_dados", "vetor"))
 # increase time to download
 options(timeout = 600)
 
-# download lines
+# download points
 for(i in c(".dbf", ".prj", ".shp", ".shx")){
   download.file(url = paste0("http://geo.fbds.org.br/SP/RIO_CLARO/HIDROGRAFIA/SP_3543907_NASCENTES", i),
                 destfile = here::here("03_dados", "vetor", paste0("SP_3543907_NASCENTES", i)), mode = "wb")
