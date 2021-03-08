@@ -1,6 +1,6 @@
 ---
 title: "Plano de ensino"
-author: "Maurício Vancine e Milton Cezar Ribeiro"
+author: "Maurício Vancine"
 date: "19/10/2020"
 output: pdf_document
 ---
@@ -12,30 +12,36 @@ knitr::opts_chunk$set(echo = TRUE)
 # Introdução à análise geoespacial com R
 
 ### Docentes responsáveis
-Prof. Dr. Milton Cezar Ribeiro
 
-Me. Maurício Humberto Vancine
+Prof. Dr. Milton Cezar Ribeiro  
+Prof. Me. Maurício Humberto Vancine
 
 ### Carga horária
+
 60 h (4 créditos)
 
 ### Participantes
+
 10 alunos (+ 5 especiais)
 
 ### Datas e horários
+
 Teórico-prático: 19/10 – 23/10 [09:00 h - 12:00 h | 14:00 h - 17:00 h] (30 horas)
 
 Exercícios-atividades assistidas remotamente: 26/10 – 30/10 (30 horas)
 
 ### Repositório de dados da disciplina
+
 https://github.com/mauriciovancine/disciplina-analise-geoespacial-r
 
 ### Resumo
-A disciplina oferecerá os principais conceitos teórico-práticos introdutórios de análises geoespaciais aplicado à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do software RStudio, (3) estrutura e manipulação de dados na linguagem R, (4) funcionamento do tidyverse, (5) estrutura e fonte de dados geoespaciais, (6) manipulação dados geoespaciais (vetor), (7) manipulação dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teóricas-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura e manipulação de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas ao geoprocessamento utilizando a linguagem R.
+
+A disciplina oferecerá os principais conceitos teórico-práticos do uso de dados geoespaciais com o R aplicados à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do RStudio, (3) estrutura e manejo de dados na linguagem R, (4) funcionamento do *tidyverse*, (5) estrutura e fonte de dados geoespaciais, (6) manejo dados geoespaciais (vetor), (7) manejo dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teóricas-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura, manipulação e visualização de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
 
 ### Conteúdo
 
-### 1 Controle de versão, Git e GitHub (segunda)
+### 1 Controle de versão, Git e GitHub
+
 1. Conferir os notebooks e PCs
 1. Controle de versão
 1. Git
@@ -50,7 +56,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Pull request
 1. Interface Gráfica RStudio
 
-### 2 Funcionamento da linguagem R (segunda)
+### 2 Funcionamento da linguagem R
+
 1. Linguagem R
 1. Linguagem R vs IDE RStudio
 1. Aplicações da linguagem R
@@ -67,7 +74,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Citações
 1. Principais erros
 
-### 3 Estrutura e manipulação de dados na linguagem R (segunda)
+### 3 Estrutura e manipulação de dados na linguagem R
+
 1. Atributos dos objetos
 1. Modos dos objetos (numeric, character e logical)
 1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
@@ -79,7 +87,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Conferir e manejar dados importados
 1. Exportar dados
 
-### 4 Introdução ao tidyverse (terça)
+### 4 Introdução ao tidyverse
+
 1. tidyverse
 1. magrittr (pipe - %>%)
 1. readr
@@ -92,7 +101,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. lubridate
 1. purrr
 
-### 5 Estrutura e fonte de dados geoespaciais (quarta)
+### 5 Estrutura e fonte de dados geoespaciais
+
 1. Geoprocessamento (cartografia, GPS, sensoriamento remoto e SIG)
 1. Cartografia (escala, sistemas de coordenadas e Datum)
 1. GPS (Global Positioning System)
@@ -109,7 +119,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
 1. Material para análise de dados geoespacias
 
-### 6 Estrutura e manipulação de dados vetoriais (quarta-quinta)
+### 6 Estrutura e manipulação de dados vetoriais
+
 1. Pacotes (sp e sf)
 1. Geometrias sf (point, linestring, polygon, multipoint, multilinestring, multipolygon, geometrycollection)
 1. Classes sf (sfg, sfc, sf)
@@ -122,10 +133,11 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Operações geométricas
 1. Exportar dados vetoriais
 
-### 7 Estrutura e manipulação de dados matriciais (raster) (quinta-sexta)
-1. Pacotes (raster, terra, e stars)
+### 7 Estrutura e manipulação de dados matriciais (raster)
+
+1. Pacotes (raster, terra e stars)
 1. Dados raster
-1. Classes raster (RasterLayer, RasterStack, RasterBrick)
+1. Classes raster (RasterLayer, RasterStack e RasterBrick)
 1. Importar dados matriciais
 1. Descrição de objetos raster
 1. Converter CRS
@@ -136,7 +148,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos introdutório
 1. Conversões raster-vetor
 1. Exportar dados matriciais
 
-### 8 Produção de mapas (sexta)
+### 8 Produção de mapas
+
 1. Elementos de um mapa
 1. Pacotes para produção de mapas
 1. Pacote ggplot2
