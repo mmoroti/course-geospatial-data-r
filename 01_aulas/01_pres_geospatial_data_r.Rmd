@@ -2,7 +2,7 @@
 title: "Introdução ao uso de dados geoespaciais no R <br><br><br>"
 subtitle: "1 Controle de versão, Git e GitHub <br><br><br>"
 author: "Maurício H. Vancine <br> Milton C. Ribeiro"
-date: "19/10/2020"
+date: ""
 output:
   xaringan::moon_reader:
     css: [metropolis, metropolis-fonts]
@@ -26,25 +26,28 @@ background-size: 500px
 ---
 
 background-image: url(img/git_github.png)
-background-size: 550px
-background-position: 100% 110%
+background-size: 600px
+background-position: 95% 80%
 
 # 1 Controle de versão, Git e GitHub
 
 ## Conteúdo
-1. Conferir os notebooks e PCs
+
+1. Conferir os notebooks e computadors
 1. Controle de versão
 1. Git
 1. GitHub
 1. Funcionamento do controle de versão
 1. Fork
-1. Iniciando: init ou clone
-1. Configurando: config
-1. Básico: add, status, commit e log
-1. Ramificações: branch, switch e merge
-1. Remoto: push e pull
+1. Iniciando: git init ou git clone
+1. Configurando: git config
+1. Versionamento: git add, git commit, git status e git log
+1. Ramificações: git branch, git switch e git merge
+1. Remoto: git push, git pull e git remote
 1. Pull request
-1. Interface Gráfica RStudio
+1. Detalhes do respositório do GitHub
+1. Pacote usethis
+1. Interface gráfica do RStudio
 
 ---
 
@@ -80,7 +83,7 @@ background-position: 50% 60%
 
 # 1.1 Verificar os notebooks
 
-## RStudio (>1.3.x)
+## RStudio (>1.4.x)
 
 ### https://www.rstudio.com/
 
@@ -92,7 +95,7 @@ background-position: 50% 60%
 
 # 1.1 Verificar os notebooks
 
-## git (>2.28)
+## git (>2.30)
 
 ### https://git-scm.com/
 
@@ -145,24 +148,24 @@ background-position: 50% 70%
 ---
 
 background-image: url(img/github_logo.png)
-background-size: 400px
+background-size: 350px
 background-position: 50% 75%
 
 # 1.4 GitHub
 
 ## Repositório remoto
 
-### **Plataforma de hospedagem** de código-fonte com controle de versão usando o Git
+### **Plataforma de hospedagem** de códigos com controle de versão usando o git
 
 ---
 
 background-image: url(img/git_github_diff.png)
-background-size: 800px
+background-size: 700px
 background-position: 50% 80%
 
 # ATENÇÃO!
 
-### **Git**: software que faz o controle de versão
+### **git**: software que faz o controle de versão
 
 ### **GitHub**: repositório remoto que hospeda os arquivos versionados
 
@@ -174,19 +177,29 @@ background-position: 50% 90%
 
 # ATENÇÃO!
 
-### **Git**: software que faz o controle de versão
+### **git**: software que faz o controle de versão
 
 ### **GitHub**: repositório remoto que hospeda os arquivos versionados
 
 ---
 
+background-image: url(img/github_logo.png)
+background-size: 300px
+background-position: 50% 95%
+
 # 1.4 GitHub
 
 ## Vamos **criar uma conta** no **GitHub** (caso não possuam)
-<br><br><br><br><br>
+
+<br><br>
+
 ##.center[https://github.com]
 
 ---
+
+background-image: url(img/gif_gandalf.gif)
+background-size: 400px
+background-position: 90% 75%
 
 # 1.4 GitHub
 
@@ -206,9 +219,34 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/git_github_workflow.png)
+background-size: 700px
+background-position: 50% 80%
+
+# 1.5 Funcionamento do controle de versão
+
+## Há duas formas de trabalhar com o git e GitHub no versionamento
+
+1. Iniciando pelo repositório remoto (GitHub)
+1. Iniciando pelo projeto em nosso computador (git)
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+[https://docs.cronapp.io/display/CRON2/Versionamento+usando+Git]
+
+---
+
 background-image: url(img/git_fork_clone_flow.png)
 background-size: 450px
 background-position: 50% 50%
+
+# 1.5 Funcionamento do controle de versão
+
+---
+
+background-image: url(img/git_fork_clone_flow.png), url(img/github_logo.png), url(img/git_folder_project.png), url(img/git_logo.png)
+background-size: 450px, 300px, 150px, 250px
+background-position: 50% 50%, 10% 20%, 15% 90%, 90% 72%
 
 # 1.5 Funcionamento do controle de versão
 
@@ -220,19 +258,19 @@ background-size: 400px
 
 ---
 
-background-image: url(img/git_fork.png)
-background-size: 500px
-background-position: 50% 60%
+background-image: url(img/git_fork.png), url(img/github_logo.png)
+background-size: 500px, 300px
+background-position: 50% 60%, 5% 60%
 
 # 1.6 Fork
 
-## **Fork**: **copia** um repositório remoto para o **seu GitHub**
+## **Fork**: **copia** um repositório remoto (de outro GitHub) para o **seu GitHub**
 
 ---
 
 background-image: url(img/github_fork_site.png)
 background-size: 800px
-background-position: 50% 80%
+background-position: 50% 85%
 
 # 1.6 Fork
 
@@ -240,13 +278,13 @@ background-position: 50% 80%
 
 <br>
 
-.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
+.center[https://github.com/mauriciovancine/course-geospatial-data-r]
 
 ---
 
 background-image: url(img/gif_fork.gif)
 background-size: 600px
-background-position: 50% 90%
+background-position: 50% 80%
 
 # 1.6 Fork
 
@@ -254,101 +292,18 @@ background-position: 50% 90%
 
 <br>
 
-.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
-
----
-
-background-image: url(img/git_init.png)
-background-size: 400px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## **init**: **inicia o versionamento** de um repositório
-
----
-
-background-image: url(img/git_clone.png)
-background-size: 500px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## **clone**: **copia** um repositório remoto para o **seu PC**
-
----
-
-background-image: url(img/git_clone.png)
-background-size: 500px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Vamos clonar o **repositório remoto (GitHub)** para o **repositório local (PC)**
-
----
-
-background-image: url(img/general_directory.png)
-background-size: 350px
-background-position: 50% 90%
-
-# 1.7 Iniciando: init ou clone
-
-## **Criem uma pasta** chamada `github` no PC de vocês
-
-```{r eval=FALSE}
-".                               # raiz"
-"    ├── home/                   # home"
-"        ├── data/               # dados" 
-"            ├── github/         # todos os repositorios"
-```
+.center[https://github.com/mauriciovancine/course-geospatial-data-r]
 
 ---
 
 class: inverse, center, middle
 
-# E como faremos isso?
-
----
-
-background-image: url(img/github_clone_zip.png)
-background-size: 800px
-background-position: 50% 60%
-
-# 1.7 Iniciando: init ou clone
-
-## 1. **Download diretamente** do repositório remoto no formato **.zip**
-
----
-
-background-image: url(img/github_clone_git.png)
-background-size: 800px
-background-position: 50% 60%
-
-# 1.7 Iniciando: init ou clone
-
-## 2. Usar o **terminal** para clonar pelo **HTTPS do repositório**
-
----
-
-background-image: url(img/git_rstudio.jpg)
-background-size: 500px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## 3. Usar o **RStudio** para clonar pelo **HTTPS do repositório**
-
----
-
-class: inverse, center, middle
-
-# Vamos abrir o RStudio
+# Agora o repositório da disciplina, que estava no meu GitHUb, foi copiado ("garfado") para o GitHub de vocês
 
 ---
 
 background-image: url(img/rstudio.png)
-background-size: 800px
+background-size: 850px
 background-position: 50% 70%
 
 # RStudio
@@ -365,26 +320,26 @@ background-position: 50% 100%
 
 ## Indicar o caminho do git para o RStudio
 
-- `Tools > Globla Options > Git/SVN`
+- `Tools > Global Options > Git/SVN`
 
 ---
 
 background-image: url(img/rstudio_git_config02.png)
-background-size: 450px
-background-position: 70% 85%
+background-size: 500px
+background-position: 73% 82%
 
 # Git e RStudio
 
-## Marcar **Enable version...** e **Git executable**:
+## Marcar **Enable version control interface...** e em **Git executable**:
 
 - Windows: `C:/Program Files/Git/bin/git.exe`
 - Ubuntu: `/usr/bin/git`
 
 ---
 
-background-image: url(img/rstudio_git_config03.jpg)
-background-size: 500px
-background-position: 80% 85%
+background-image: url(img/rstudio_git_config03.jpg), url(img/general_key.png), url(img/github_logo.png)
+background-size: 500px, 150px, 250px
+background-position: 80% 80%, 10% 85%, 20% 85%
 
 # Git e RStudio
 
@@ -426,76 +381,7 @@ background-position: 50% 90%
 
 class: inverse, center, middle
 
-# Tudo certo até aqui?
-
----
-
-background-image: url(img/rstudio_git_create01.png)
-background-size: 800px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Criar um **Projeto R** com controle de versão
-
-`File > New Project > Version Control`
-
----
-
-background-image: url(img/rstudio_git_create02.png)
-background-size: 800px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Escolher **clonar repositório** do GitHub
-
-`Git`
-
----
-
-background-image: url(img/rstudio_git_create03.png)
-background-size: 750px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Preencher:
-
-Repository URL: https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
-
-Create project as subdirectory of: `/home/mude/data/github`
-
----
-
-background-image: url(img/general_terminal.webp)
-background-size: 300px
-background-position: 50% 90%
-
-# 1.7 Iniciando: init ou clone
-
-## Terminal
-
-### Na aba **Terminal** do RStudio, digite:
-
-<br>
-
-```{bash eval=FALSE}
-# terminal
-git clone https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
-```
-
----
-
-class: inverse, center, middle
-
-# Vamos aguardar o download
-
----
-
-class: inverse, center, middle
-
-# Agora vamos configurar o git
+# Antes de avançarmos, vamos configurar o git
 
 ---
 
@@ -507,8 +393,6 @@ background-position: 50% 80%
 
 ## Precisamos **definir as configurações** do git
 
-<br>
-
 ```{bash eval=FALSE}
 # terminal
 git config --list
@@ -519,21 +403,167 @@ git config --list
 
 ---
 
-background-image: url(img/git_add_commit.png)
+class: inverse, center, middle
+
+# Tudo certo até aqui?
+
+---
+
+class: inverse, center, middle
+
+# Agora vamos fazer o "download", ou seja, clonar para o computador de vocês
+
+---
+
+background-image: url(img/git_clone.png), url(img/github_logo.png), url(img/git_folder_project.png), url(img/git_logo.png)
+background-size: 500px, 230px, 150px, 250px
+background-position: 50% 80%, 13% 40%, 15% 85%, 90% 65%
+
+# 1.7 Iniciando: git clone
+
+## **git clone**: faz o download de um repositório remoto (GitHub) para o **seu computador** (repositório local)
+
+---
+
+background-image: url(img/general_subdirectory.jpeg)
+background-size: 350px
+background-position: 50% 90%
+
+# 1.7 Iniciando: git clone
+
+## Primeiro, **criem uma pasta** chamada `github` no computador de vocês
+
+```{r eval=FALSE}
+".                               # raiz"
+"    ├── home/                   # home"
+"        ├── data/               # dados" 
+"            ├── github/         # todos os repositorios"
+```
+
+---
+
+class: inverse, center, middle
+
+# E como podemo fazer o clone?
+
+---
+
+background-image: url(img/github_clone_zip.png)
 background-size: 800px
-background-position: 50% 50%
+background-position: 50% 60%
+
+# 1.7 Iniciando: git clone
+
+## 1. **Download diretamente** do repositório remoto no formato **.zip**
+
+---
+
+background-image: url(img/github_clone_git.png)
+background-size: 800px
+background-position: 50% 80%
+
+# 1.7 Iniciando: git clone
+
+## 2. Usando o **terminal** para clonar pelo **SSH**
+
+```{bash eval=FALSE}
+git clone git@github.com:mauriciovancine/course-geospatial-data-r.git
+```
+
+---
+
+background-image: url(img/git_rstudio.jpg)
+background-size: 500px
+background-position: 50% 80%
+
+# 1.7 Iniciando: git clone
+
+## 3. Usando o **RStudio** para clonar pelo **SSH**
+
+---
+
+class: inverse, center, middle
+
+# Vamos abrir o RStudio
+
+---
+
+background-image: url(img/rstudio_git_create01.png), url(img/rstudio_project_logo.png)
+background-size: 900px, 100px
+background-position: 50% 85%, 95% 10%
+
+# 1.7 Iniciando: git clone
+
+## Criar um **Projeto R** com controle de versão
+
+`File > New Project > Version Control`
+
+---
+
+background-image: url(img/rstudio_git_create02.png)
+background-size: 900px
+background-position: 50% 85%
+
+# 1.7 Iniciando: git clone
+
+## Escolher **clonar repositório** do GitHub
+
+`Git`
+
+---
+
+background-image: url(img/rstudio_git_create03.png)
+background-size: 850px
+background-position: 50% 90%
+
+# 1.7 Iniciando: git clone
+
+## Preencher:
+
+Repository URL: `git@github.com:mauriciovancine/course-geospatial-data-r.git`
+
+Create project as subdirectory of: `/home/mude/data/github`
+
+---
+
+background-image: url(img/general_terminal.webp)
+background-size: 300px
+background-position: 50% 90%
+
+# 1.7 Iniciando: git clone
+
+## Terminal
+
+### Na aba **Terminal** do RStudio, digite:
+
+```{bash eval=FALSE}
+# terminal
+git clone git@github.com:mauriciovancine/course-geospatial-data-r.git
+```
+
+---
+
+class: inverse, center, middle
+
+# Vamos aguardar o download...
+
+---
+
+background-image: url(img/git_add_commit.png), url(img/github_logo.png), url(img/git_folder_project.png), url(img/git_logo.png), url(img/github_logo.png)
+background-size: 800px, 200px, 150px, 170px, 200px
+background-position: 50% 50%, 3% 22%, 4% 80%, 98% 75%, 99% 22%
 
 # Fluxo de trabalho com o git e GitHub
 
 ---
 
-background-image: url(img/git_workflow.png)
-background-size: 800px
-background-position: 50% 50%
+background-image: url(img/git_workflow.png), url(img/git_folder_project.png), url(img/git_logo.png), url(img/git_logo.png), url(img/git_logo.png), url(img/github_logo.png)
+background-size: 800px, 120px, 150px, 150px, 150px, 150px
+background-position: 50% 50%, 5% 55%, 30% 95%, 50% 95%, 70% 95%, 95% 58%
 
 # Fluxo de trabalho com o git e GitHub
 
-## **Comandos** para usar o git
+## **Comandos git** para o fluxo de trabalho de manejo do repositório local e remoto
 
 ---
 
@@ -543,47 +573,75 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/git_states.png)
+background-image: url(img/git_files.png)
 background-size: 700px
-background-position: 50% 90%
+background-position: 75% 85%
 
 # Git Status
 
-## Estados do repositório local do git:
+## Estados de um arquivo no diretóriod
 
---
-1. **Untracked**: não registrou o arquivo criado ou deletado
+### 1. Criado (inclui copiar de outro diretório)
 
---
-1. **Unmodified**: marcou os arquivos como não-modificados após o commit
+### 2. Modificado
 
---
-1. **Modified**: marcou os arquivos modificados depois da edição
-
---
-1. **Staged**: marcou o arquivo adicionado ou modificado para ir para o commit
-
---
-* **Commit**: os arquivos são armazenados no banco de dados local (.git)
+### 3. Deletado
 
 ---
 
-background-image: url(img/git_add_commit_flow.png)
-background-size: 600px
-background-position: 50% 80%
+background-image: url(img/git_add_commit_flow.png), url(img/git_files_states.png)
+background-size: 400px, 700px
+background-position: 5% 75%, 90% 78%
 
-# Git Sections
+# Git Status
 
-## Seções de um repositório git:
-
---
-1. **Working directory**: arquivos não-trackeados
+## Estados de um arquivo para o git
 
 --
-1. **Staging area**: arquivos trackeados (adicionados ou modificados)
+
+1. **Modificado (*modified*)**: qualquer arquivo adicioinado, modificado ou removido, mas aida não informado que fará parte da versão consolidada 
 
 --
-1. **Repository**:  arquivos comitados (.git)
+
+2. **Preparado (*staged*)**: arquivo moficado e preparado para ser consolidado na versão final
+
+--
+
+3. **Consolidado (*committed*)**: criação da versão consolidada de todos os arquivos que estavam no *staged* (não considera os que estão no *modified*) (.git)
+
+<br><br><br><br><br><br><br><br>
+
+[https://medium.com/@devmasterteam/git-ebook-8808f7301054]
+
+---
+
+background-image: url(img/git_states.png), url(img/git_files_states.png), url(img/git_add_commit_flow.png)
+background-size: 500px, 600px, 400px
+background-position: 10% 90%, 95% 90%, 95% 10%
+
+# Git Status
+
+## Estados do repositório local do git
+
+--
+
+1. **Untracked**: não registrou o arquivo criado ou deletado
+
+--
+
+1. **Unmodified**: marcou os arquivos como não-modificados após o commit
+
+--
+
+1. **Modified**: marcou os arquivos modificados depois da edição
+
+--
+
+1. **Staged**: marcou o arquivo adicionado ou modificado para ir para o commit
+
+--
+
+* **Commit**: os arquivos são armazenados no banco de dados local (.git)
 
 ---
 
@@ -611,7 +669,7 @@ background-position: 50% 80%
 
 ```{bash eval=FALSE}
 # terminal
-touch teste.txt
+echo git > git.txt
 ```
 
 ---
@@ -630,7 +688,7 @@ git status
 ```{bash}
 ## Untracked files:
 ##   (use "git add <file>..." to include in what will be committed)
-##     teste.txt
+##     git.txt
 ## 
 ## no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -650,7 +708,7 @@ background-position: 50% 90%
 git add -Av
 ```
 ```{bash eval=FALSE}
-## add 'teste.txt'
+## add 'git.txt'
 ```
 
 ---
@@ -669,7 +727,7 @@ git status
 ```{bash}
 ## Changes to be committed:
 ##   (use "git restore --staged <file>..." to unstage)
-##         new file:   teste.txt
+##         new file:   git.txt
 ```
 
 ---
@@ -680,10 +738,10 @@ background-position: 50% 80%
 
 # Vamos editar o arquivo no diretório
 
-## Usando a aba **Files** do RStudio abra e edite o arquivo **teste.txt**, inserindo:
+## Usando a aba **Files** do RStudio abra e edite o arquivo **git.txt**, inserindo:
 
 ```{bash eval=FALSE}
-Acabo de inserir um edição ao meu arquivo teste.txt
+Acabo de inserir um edição ao meu arquivo git.txt
 ```
 
 ---
@@ -703,7 +761,7 @@ git status
 ## Changes not staged for commit:
 ##   (use "git add <file>..." to update what will be committed)
 ##   (use "git restore <file>..." to discard changes in working directory)
-##         modified:   teste.txt
+##         modified:   git.txt
 ```
 
 ---
@@ -721,7 +779,7 @@ background-position: 50% 90%
 git add -Av
 ```
 ```{bash eval=FALSE}
-## add 'teste.txt'
+## add 'git.txt'
 ```
 
 ---
@@ -740,7 +798,7 @@ git status
 ```{bash}
 ## Changes to be committed:
 ##   (use "git restore --staged <file>..." to unstage)
-##         new file:   teste.txt
+##         new file:   git.txt
 ```
 
 ---
@@ -754,12 +812,12 @@ background-position: 50% 93%
 ## **commit**: **armazena as mudanças** com uma **descrição**, nova **versão do repositório** (repository)
 
 ```{bash eval=FALSE}
-git commit -m "2020-10-19 add teste.txt"
+git commit -m "2020-10-19 add git.txt"
 ```
 ```{bash}
-## [master 06211a1] 2020-10-19 add teste.txt
+## [master 06211a1] 2020-10-19 add git.txt
 ##  1 file changed, 1 insertion(+)
-##  create mode 100644 teste.txt
+##  create mode 100644 git.txt
 ```
 
 ---
@@ -811,7 +869,7 @@ git log
 ## Author: mauriciovancine <mauricio.vancine@gmail.com>
 ## Date:   Sun Oct 18 19:06:34 2020 -0300
 ## 
-##     2020-10-19 add teste.txt
+##     2020-10-19 add git.txt
 ```
 
 ---
@@ -824,7 +882,7 @@ git log
 git log --oneline
 ```
 ```{bash}
-## 3ae6ece (HEAD -> master) 2020-10-19 add teste.txt
+## 3ae6ece (HEAD -> master) 2020-10-19 add git.txt
 ## 18f482f (origin/master, origin/HEAD) 2020-10-18
 ## dd8fe74 2020-10-18
 ## bbb5496 2020-10-17
@@ -1285,9 +1343,9 @@ class: inverse, center, middle
 ---
 
 class: clear, middle
-background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif)
-background-size: 250px,500px
-background-position: 35% 60%,90% 70%
+background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif), url(img/package_xaringan.png)
+background-size: 250px, 500px, 130px
+background-position: 35% 50%, 90% 70%, 5% 86%
 
 ## Maurício Vancine
 
@@ -1295,11 +1353,11 @@ background-position: 35% 60%,90% 70%
 
 Contatos:
 
-`r icon::icon_style(icon::fontawesome(name = "envelope", style = "solid"), fill = "#2369bd")` [mauricio.vancine@gmail.com]()  
-`r icon::icon_style(icon::fontawesome("twitter"), fill = "#2369bd")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
-`r icon::icon_style(icon::fontawesome(name = "github"), fill = "#2369bd")` [mauriciovancine](https://github.com/mauriciovancine)
-`r icon::icon_style(icon::fontawesome(name = "link", style = "solid"), fill = "#2369bd")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
+`r icon::icon_style(icon::fontawesome(name = "envelope", style = "solid"), fill = "#23373b")` [mauricio.vancine@gmail.com]()  
+`r icon::icon_style(icon::fontawesome("twitter"), fill = "#23373b")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
+`r icon::icon_style(icon::fontawesome(name = "github"), fill = "#23373b")` [mauriciovancine](https://github.com/mauriciovancine)
+`r icon::icon_style(icon::fontawesome(name = "link", style = "solid"), fill = "#23373b")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
 
-<br><br>
+<br><br><br><br><br>
 
 Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)

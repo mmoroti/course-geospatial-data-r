@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Docentes responsáveis
 
-Prof. Dr. Milton Cezar Ribeiro  
+Prof. Dr. Milton Cezar Ribeiro <br>
 Prof. Me. Maurício Humberto Vancine
 
 ### Carga horária
@@ -26,17 +26,17 @@ Prof. Me. Maurício Humberto Vancine
 
 ### Datas e horários
 
-Teórico-prático: 19/10 – 23/10 [09:00 h - 12:00 h | 14:00 h - 17:00 h] (30 horas)
+Teórico-prático: 
 
-Exercícios-atividades assistidas remotamente: 26/10 – 30/10 (30 horas)
+Exercícios-atividades assistidas remotamente: 
 
 ### Repositório de dados da disciplina
 
-https://github.com/mauriciovancine/disciplina-analise-geoespacial-r
+https://github.com/mauriciovancine/course-geospatial-data-r
 
 ### Resumo
 
-A disciplina oferecerá os principais conceitos teórico-práticos do uso de dados geoespaciais com o R aplicados à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do RStudio, (3) estrutura e manejo de dados na linguagem R, (4) funcionamento do *tidyverse*, (5) estrutura e fonte de dados geoespaciais, (6) manejo dados geoespaciais (vetor), (7) manejo dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teóricas-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura, manipulação e visualização de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
+A disciplina oferecerá os principais conceitos teórico-práticos do uso de dados geoespaciais com o R aplicados à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do RStudio, (3) estrutura e manejo de dados na linguagem R, (4) funcionamento do *tidyverse*, (5) estrutura e fonte de dados geoespaciais, (6) manejo dados geoespaciais (vetor), (7) manejo dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teórico-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura, manipulação e visualização de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
 
 ### Conteúdo
 
@@ -48,52 +48,54 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. GitHub
 1. Funcionamento do controle de versão
 1. Fork
-1. Iniciando: init ou clone
-1. Configurando: config
-1. Básico: add, status, commit e log
-1. Ramificações: branch, switch e merge
-1. Remoto: push e pull
+1. Iniciando: git init ou git clone
+1. Configurando: git config
+1. Básico: git add, git status, git commit e git log
+1. Ramificações: git branch, git switch e git merge
+1. Remoto: git push e git pull
 1. Pull request
-1. Interface Gráfica RStudio
+1. Detalhes do respositório do GitHub
+1. Pacote usethis
+1. Interface gráfica do RStudio
 
 ### 2 Funcionamento da linguagem R
 
 1. Linguagem R
-1. Linguagem R vs IDE RStudio
+1. Linguagem R e RStudio
 1. Aplicações da linguagem R
 1. Principal material de estudo
-1. IDE RStudio e Projeto R
-1. Editor/Roteiro (script)
-1. Comentários (#)
-1. Atribuição (<-)
-1. Objetos e operadores
+1. RStudio e Projeto R
+1. Console
+1. Scripts
+1. Operadores
+1. Objetos
 1. Funções
 1. Pacotes
-1. Ambiente (environment/workspace)
-1. Ajuda (help)
+1. Ajuda
+1. Ambiente
 1. Citações
 1. Principais erros
 
 ### 3 Estrutura e manipulação de dados na linguagem R
 
 1. Atributos dos objetos
-1. Modos dos objetos (numeric, character e logical)
-1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
-1. manipulação de dados unidimensionais
-1. manipulação de dados bidimensionais
+1. Modos dos objetos
+1. Estrutura dos objetos
+1. Manipulação de dados unidimensionais
+1. Manipulação de dados multidimensionais
 1. Valores faltantes e especiais
 1. Diretório de trabalho
 1. Importar dados
-1. Conferir e manejar dados importados
+1. Conferência de dados importados
 1. Exportar dados
 
 ### 4 Introdução ao tidyverse
 
 1. tidyverse
-1. magrittr (pipe - %>%)
-1. readr
-1. readxl e writexl
+1. here
+1. readr, readxl e writexl
 1. tibble
+1. magrittr (pipe - %>%)
 1. tidyr
 1. dplyr
 1. stringr
@@ -101,29 +103,42 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. lubridate
 1. purrr
 
-### 5 Estrutura e fonte de dados geoespaciais
+### 5 Visualização de dados
 
-1. Geoprocessamento (cartografia, GPS, sensoriamento remoto e SIG)
-1. Cartografia (escala, sistemas de coordenadas e Datum)
-1. GPS (Global Positioning System)
-1. Sensoriamento Remoto (bandas, satélites, resoluções e aplicações)
-1. Sistema de Informação Geográfica (SIG)
-1. Dados geoespaciais (vetor e raster)
-1. Dados vetoriais (ponto, linha e polígono)
+1. Principais pacotes para gráficos 
+1. Principais livros e sites 
+1. Colunas como eixos dos gráficos
+1. Principais tipos de gráficos 
+1. Histograma 
+1. Gráfico de setores
+1. Gráfico de barras
+1. Gráfico de caixas
+1. Gráfico de dispersão
+1. Gráfico pareado
+
+### 6 Estrutura e fonte de dados geoespaciais
+
+1. Geoprocessamento
+1. Cartografia
+1. GPS
+1. Sensoriamento Remoto
+1. Sistema de Informação Geográfica
+1. Dados geoespaciais
+1. Dados vetoriais
 1. Tabela de atributos
-1. Formato de arquivos vetoriais (shapefile - .dbf, .prj, .shx, .shp)
-1. Dados matriciais (gride ou raster)
-1. Formatos de arquivos matriciais (.tif)
-1. Banco de dados geoespaciais (geopackage - .gpkg)
-1. Conversão de dados geosespaciais
-1. Repositórios de dados geoespaciais (IBGE, FBDS, MapBiomas, GeoBank, GADM, Natural Earth, USGS, SRTM, WorldClim, EarthEnv)
-1. Material para análise de dados geoespacias
+1. Formato de arquivos vetoriais
+1. Dados matriciais (raster)
+1. Formatos de arquivos matriciais (raster)
+1. Banco de dados geoespaciais
+1. Conversão de dados geoespaciais
+1. Repositórios de dados geoespaciais
+1. Material para manipulação e análise de dados geoespacias
 
-### 6 Estrutura e manipulação de dados vetoriais
+### 7 Estrutura e manipulação de dados vetoriais
 
-1. Pacotes (sp e sf)
-1. Geometrias sf (point, linestring, polygon, multipoint, multilinestring, multipolygon, geometrycollection)
-1. Classes sf (sfg, sfc, sf)
+1. Pacotes
+1. Geometrias sf
+1. Classes sf
 1. Importar dados vetoriais
 1. Descrição de objetos sf
 1. Converter dados para sf
@@ -133,27 +148,28 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. Operações geométricas
 1. Exportar dados vetoriais
 
-### 7 Estrutura e manipulação de dados matriciais (raster)
+### 8 Estrutura e manipulação de dados matriciais (raster)
 
-1. Pacotes (raster, terra e stars)
+1. Pacotes
 1. Dados raster
-1. Classes raster (RasterLayer, RasterStack e RasterBrick)
+1. Classes raster
 1. Importar dados matriciais
 1. Descrição de objetos raster
 1. Converter CRS
 1. Manipulação de dados raster
-1. Operação espaciais
-1. Operação geométricas
+1. Operações espaciais
+1. Operações geométricas
 1. Interações raster-vetor
 1. Conversões raster-vetor
 1. Exportar dados matriciais
 
-### 8 Produção de mapas
+### 9 Visualização de dados geoespaciais
 
 1. Elementos de um mapa
 1. Pacotes para produção de mapas
 1. Pacote ggplot2
 1. Pacote tmap
+1. Pacote mapsf
 1. Mapas vetoriais
 1. Mapas matriciais
 1. Mapas estáticos

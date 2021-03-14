@@ -15,7 +15,6 @@ class: center, middle, inverse, title-slide
 # Introdução ao uso de dados geoespaciais no R <br><br><br>
 ## 1 Controle de versão, Git e GitHub <br><br><br>
 ### Maurício H. Vancine <br> Milton C. Ribeiro
-### 19/10/2020
 
 ---
 
@@ -29,25 +28,28 @@ background-size: 500px
 ---
 
 background-image: url(img/git_github.png)
-background-size: 550px
-background-position: 100% 110%
+background-size: 600px
+background-position: 95% 80%
 
 # 1 Controle de versão, Git e GitHub
 
 ## Conteúdo
-1. Conferir os notebooks e PCs
+
+1. Conferir os notebooks e computadors
 1. Controle de versão
 1. Git
 1. GitHub
 1. Funcionamento do controle de versão
 1. Fork
-1. Iniciando: init ou clone
-1. Configurando: config
-1. Básico: add, status, commit e log
-1. Ramificações: branch, switch e merge
-1. Remoto: push e pull
+1. Iniciando: git init ou git clone
+1. Configurando: git config
+1. Versionamento: git add, git commit, git status e git log
+1. Ramificações: git branch, git switch e git merge
+1. Remoto: git push, git pull e git remote
 1. Pull request
-1. Interface Gráfica RStudio
+1. Detalhes do respositório do GitHub
+1. Pacote usethis
+1. Interface gráfica do RStudio
 
 ---
 
@@ -83,7 +85,7 @@ background-position: 50% 60%
 
 # 1.1 Verificar os notebooks
 
-## RStudio (&gt;1.3.x)
+## RStudio (&gt;1.4.x)
 
 ### https://www.rstudio.com/
 
@@ -95,7 +97,7 @@ background-position: 50% 60%
 
 # 1.1 Verificar os notebooks
 
-## git (&gt;2.28)
+## git (&gt;2.30)
 
 ### https://git-scm.com/
 
@@ -148,24 +150,24 @@ background-position: 50% 70%
 ---
 
 background-image: url(img/github_logo.png)
-background-size: 400px
+background-size: 350px
 background-position: 50% 75%
 
 # 1.4 GitHub
 
 ## Repositório remoto
 
-### **Plataforma de hospedagem** de código-fonte com controle de versão usando o Git
+### **Plataforma de hospedagem** de códigos com controle de versão usando o git
 
 ---
 
 background-image: url(img/git_github_diff.png)
-background-size: 800px
+background-size: 700px
 background-position: 50% 80%
 
 # ATENÇÃO!
 
-### **Git**: software que faz o controle de versão
+### **git**: software que faz o controle de versão
 
 ### **GitHub**: repositório remoto que hospeda os arquivos versionados
 
@@ -177,19 +179,29 @@ background-position: 50% 90%
 
 # ATENÇÃO!
 
-### **Git**: software que faz o controle de versão
+### **git**: software que faz o controle de versão
 
 ### **GitHub**: repositório remoto que hospeda os arquivos versionados
 
 ---
 
+background-image: url(img/github_logo.png)
+background-size: 300px
+background-position: 50% 95%
+
 # 1.4 GitHub
 
 ## Vamos **criar uma conta** no **GitHub** (caso não possuam)
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;br&gt;&lt;br&gt;
+
 ##.center[https://github.com]
 
 ---
+
+background-image: url(img/gif_gandalf.gif)
+background-size: 400px
+background-position: 90% 75%
 
 # 1.4 GitHub
 
@@ -209,9 +221,34 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/git_github_workflow.png)
+background-size: 700px
+background-position: 50% 80%
+
+# 1.5 Funcionamento do controle de versão
+
+## Há duas formas de trabalhar com o git e GitHub no versionamento
+
+1. Iniciando pelo repositório remoto (GitHub)
+1. Iniciando pelo projeto em nosso computador (git)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[https://docs.cronapp.io/display/CRON2/Versionamento+usando+Git]
+
+---
+
 background-image: url(img/git_fork_clone_flow.png)
 background-size: 450px
 background-position: 50% 50%
+
+# 1.5 Funcionamento do controle de versão
+
+---
+
+background-image: url(img/git_fork_clone_flow.png), url(img/github_logo.png), url(img/git_folder_project.png), url(img/git_logo.png)
+background-size: 450px, 300px, 150px, 250px
+background-position: 50% 50%, 10% 20%, 15% 90%, 90% 72%
 
 # 1.5 Funcionamento do controle de versão
 
@@ -223,19 +260,19 @@ background-size: 400px
 
 ---
 
-background-image: url(img/git_fork.png)
-background-size: 500px
-background-position: 50% 60%
+background-image: url(img/git_fork.png), url(img/github_logo.png)
+background-size: 500px, 300px
+background-position: 50% 60%, 5% 60%
 
 # 1.6 Fork
 
-## **Fork**: **copia** um repositório remoto para o **seu GitHub**
+## **Fork**: **copia** um repositório remoto (de outro GitHub) para o **seu GitHub**
 
 ---
 
 background-image: url(img/github_fork_site.png)
 background-size: 800px
-background-position: 50% 80%
+background-position: 50% 85%
 
 # 1.6 Fork
 
@@ -243,13 +280,13 @@ background-position: 50% 80%
 
 &lt;br&gt;
 
-.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
+.center[https://github.com/mauriciovancine/course-geospatial-data-r]
 
 ---
 
 background-image: url(img/gif_fork.gif)
 background-size: 600px
-background-position: 50% 90%
+background-position: 50% 80%
 
 # 1.6 Fork
 
@@ -257,102 +294,18 @@ background-position: 50% 90%
 
 &lt;br&gt;
 
-.center[https://github.com/mauriciovancine/disciplina-analise-geoespacial-r]
-
----
-
-background-image: url(img/git_init.png)
-background-size: 400px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## **init**: **inicia o versionamento** de um repositório
-
----
-
-background-image: url(img/git_clone.png)
-background-size: 500px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## **clone**: **copia** um repositório remoto para o **seu PC**
-
----
-
-background-image: url(img/git_clone.png)
-background-size: 500px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Vamos clonar o **repositório remoto (GitHub)** para o **repositório local (PC)**
-
----
-
-background-image: url(img/general_directory.png)
-background-size: 350px
-background-position: 50% 90%
-
-# 1.7 Iniciando: init ou clone
-
-## **Criem uma pasta** chamada `github` no PC de vocês
-
-
-```r
-".                               # raiz"
-"    ├── home/                   # home"
-"        ├── data/               # dados" 
-"            ├── github/         # todos os repositorios"
-```
+.center[https://github.com/mauriciovancine/course-geospatial-data-r]
 
 ---
 
 class: inverse, center, middle
 
-# E como faremos isso?
-
----
-
-background-image: url(img/github_clone_zip.png)
-background-size: 800px
-background-position: 50% 60%
-
-# 1.7 Iniciando: init ou clone
-
-## 1. **Download diretamente** do repositório remoto no formato **.zip**
-
----
-
-background-image: url(img/github_clone_git.png)
-background-size: 800px
-background-position: 50% 60%
-
-# 1.7 Iniciando: init ou clone
-
-## 2. Usar o **terminal** para clonar pelo **HTTPS do repositório**
-
----
-
-background-image: url(img/git_rstudio.jpg)
-background-size: 500px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## 3. Usar o **RStudio** para clonar pelo **HTTPS do repositório**
-
----
-
-class: inverse, center, middle
-
-# Vamos abrir o RStudio
+# Agora o repositório da disciplina, que estava no meu GitHUb, foi copiado ("garfado") para o GitHub de vocês
 
 ---
 
 background-image: url(img/rstudio.png)
-background-size: 800px
+background-size: 850px
 background-position: 50% 70%
 
 # RStudio
@@ -369,26 +322,26 @@ background-position: 50% 100%
 
 ## Indicar o caminho do git para o RStudio
 
-- `Tools &gt; Globla Options &gt; Git/SVN`
+- `Tools &gt; Global Options &gt; Git/SVN`
 
 ---
 
 background-image: url(img/rstudio_git_config02.png)
-background-size: 450px
-background-position: 70% 85%
+background-size: 500px
+background-position: 73% 82%
 
 # Git e RStudio
 
-## Marcar **Enable version...** e **Git executable**:
+## Marcar **Enable version control interface...** e em **Git executable**:
 
 - Windows: `C:/Program Files/Git/bin/git.exe`
 - Ubuntu: `/usr/bin/git`
 
 ---
 
-background-image: url(img/rstudio_git_config03.jpg)
-background-size: 500px
-background-position: 80% 85%
+background-image: url(img/rstudio_git_config03.jpg), url(img/general_key.png), url(img/github_logo.png)
+background-size: 500px, 150px, 250px
+background-position: 80% 80%, 10% 85%, 20% 85%
 
 # Git e RStudio
 
@@ -430,77 +383,7 @@ background-position: 50% 90%
 
 class: inverse, center, middle
 
-# Tudo certo até aqui?
-
----
-
-background-image: url(img/rstudio_git_create01.png)
-background-size: 800px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Criar um **Projeto R** com controle de versão
-
-`File &gt; New Project &gt; Version Control`
-
----
-
-background-image: url(img/rstudio_git_create02.png)
-background-size: 800px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Escolher **clonar repositório** do GitHub
-
-`Git`
-
----
-
-background-image: url(img/rstudio_git_create03.png)
-background-size: 750px
-background-position: 50% 80%
-
-# 1.7 Iniciando: init ou clone
-
-## Preencher:
-
-Repository URL: https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
-
-Create project as subdirectory of: `/home/mude/data/github`
-
----
-
-background-image: url(img/general_terminal.webp)
-background-size: 300px
-background-position: 50% 90%
-
-# 1.7 Iniciando: init ou clone
-
-## Terminal
-
-### Na aba **Terminal** do RStudio, digite:
-
-&lt;br&gt;
-
-
-```bash
-# terminal
-git clone https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
-```
-
----
-
-class: inverse, center, middle
-
-# Vamos aguardar o download
-
----
-
-class: inverse, center, middle
-
-# Agora vamos configurar o git
+# Antes de avançarmos, vamos configurar o git
 
 ---
 
@@ -511,8 +394,6 @@ background-position: 50% 80%
 # 1.8 Configurando: config
 
 ## Precisamos **definir as configurações** do git
-
-&lt;br&gt;
 
 
 ```bash
@@ -525,21 +406,170 @@ git config --list
 
 ---
 
-background-image: url(img/git_add_commit.png)
+class: inverse, center, middle
+
+# Tudo certo até aqui?
+
+---
+
+class: inverse, center, middle
+
+# Agora vamos fazer o "download", ou seja, clonar para o computador de vocês
+
+---
+
+background-image: url(img/git_clone.png), url(img/github_logo.png), url(img/git_folder_project.png), url(img/git_logo.png)
+background-size: 500px, 230px, 150px, 250px
+background-position: 50% 80%, 13% 40%, 15% 85%, 90% 65%
+
+# 1.7 Iniciando: git clone
+
+## **git clone**: faz o download de um repositório remoto (GitHub) para o **seu computador** (repositório local)
+
+---
+
+background-image: url(img/general_subdirectory.jpeg)
+background-size: 350px
+background-position: 50% 90%
+
+# 1.7 Iniciando: git clone
+
+## Primeiro, **criem uma pasta** chamada `github` no computador de vocês
+
+
+```r
+".                               # raiz"
+"    ├── home/                   # home"
+"        ├── data/               # dados" 
+"            ├── github/         # todos os repositorios"
+```
+
+---
+
+class: inverse, center, middle
+
+# E como podemo fazer o clone?
+
+---
+
+background-image: url(img/github_clone_zip.png)
 background-size: 800px
-background-position: 50% 50%
+background-position: 50% 60%
+
+# 1.7 Iniciando: git clone
+
+## 1. **Download diretamente** do repositório remoto no formato **.zip**
+
+---
+
+background-image: url(img/github_clone_git.png)
+background-size: 800px
+background-position: 50% 80%
+
+# 1.7 Iniciando: git clone
+
+## 2. Usando o **terminal** para clonar pelo **SSH**
+
+
+```bash
+git clone git@github.com:mauriciovancine/course-geospatial-data-r.git
+```
+
+---
+
+background-image: url(img/git_rstudio.jpg)
+background-size: 500px
+background-position: 50% 80%
+
+# 1.7 Iniciando: git clone
+
+## 3. Usando o **RStudio** para clonar pelo **SSH**
+
+---
+
+class: inverse, center, middle
+
+# Vamos abrir o RStudio
+
+---
+
+background-image: url(img/rstudio_git_create01.png), url(img/rstudio_project_logo.png)
+background-size: 900px, 100px
+background-position: 50% 85%, 95% 10%
+
+# 1.7 Iniciando: git clone
+
+## Criar um **Projeto R** com controle de versão
+
+`File &gt; New Project &gt; Version Control`
+
+---
+
+background-image: url(img/rstudio_git_create02.png)
+background-size: 900px
+background-position: 50% 85%
+
+# 1.7 Iniciando: git clone
+
+## Escolher **clonar repositório** do GitHub
+
+`Git`
+
+---
+
+background-image: url(img/rstudio_git_create03.png)
+background-size: 850px
+background-position: 50% 90%
+
+# 1.7 Iniciando: git clone
+
+## Preencher:
+
+Repository URL: `git@github.com:mauriciovancine/course-geospatial-data-r.git`
+
+Create project as subdirectory of: `/home/mude/data/github`
+
+---
+
+background-image: url(img/general_terminal.webp)
+background-size: 300px
+background-position: 50% 90%
+
+# 1.7 Iniciando: git clone
+
+## Terminal
+
+### Na aba **Terminal** do RStudio, digite:
+
+
+```bash
+# terminal
+git clone git@github.com:mauriciovancine/course-geospatial-data-r.git
+```
+
+---
+
+class: inverse, center, middle
+
+# Vamos aguardar o download...
+
+---
+
+background-image: url(img/git_add_commit.png), url(img/github_logo.png), url(img/git_folder_project.png), url(img/git_logo.png), url(img/github_logo.png)
+background-size: 800px, 200px, 150px, 170px, 200px
+background-position: 50% 50%, 3% 22%, 4% 80%, 98% 75%, 99% 22%
 
 # Fluxo de trabalho com o git e GitHub
 
 ---
 
-background-image: url(img/git_workflow.png)
-background-size: 800px
-background-position: 50% 50%
+background-image: url(img/git_workflow.png), url(img/git_folder_project.png), url(img/git_logo.png), url(img/git_logo.png), url(img/git_logo.png), url(img/github_logo.png)
+background-size: 800px, 120px, 150px, 150px, 150px, 150px
+background-position: 50% 50%, 5% 55%, 30% 95%, 50% 95%, 70% 95%, 95% 58%
 
 # Fluxo de trabalho com o git e GitHub
 
-## **Comandos** para usar o git
+## **Comandos git** para o fluxo de trabalho de manejo do repositório local e remoto
 
 ---
 
@@ -549,47 +579,75 @@ class: inverse, center, middle
 
 ---
 
-background-image: url(img/git_states.png)
+background-image: url(img/git_files.png)
 background-size: 700px
-background-position: 50% 90%
+background-position: 75% 85%
 
 # Git Status
 
-## Estados do repositório local do git:
+## Estados de um arquivo no diretóriod
 
---
-1. **Untracked**: não registrou o arquivo criado ou deletado
+### 1. Criado (inclui copiar de outro diretório)
 
---
-1. **Unmodified**: marcou os arquivos como não-modificados após o commit
+### 2. Modificado
 
---
-1. **Modified**: marcou os arquivos modificados depois da edição
-
---
-1. **Staged**: marcou o arquivo adicionado ou modificado para ir para o commit
-
---
-* **Commit**: os arquivos são armazenados no banco de dados local (.git)
+### 3. Deletado
 
 ---
 
-background-image: url(img/git_add_commit_flow.png)
-background-size: 600px
-background-position: 50% 80%
+background-image: url(img/git_add_commit_flow.png), url(img/git_files_states.png)
+background-size: 400px, 700px
+background-position: 5% 75%, 90% 78%
 
-# Git Sections
+# Git Status
 
-## Seções de um repositório git:
-
---
-1. **Working directory**: arquivos não-trackeados
+## Estados de um arquivo para o git
 
 --
-1. **Staging area**: arquivos trackeados (adicionados ou modificados)
+
+1. **Modificado (*modified*)**: qualquer arquivo adicioinado, modificado ou removido, mas aida não informado que fará parte da versão consolidada 
 
 --
-1. **Repository**:  arquivos comitados (.git)
+
+2. **Preparado (*staged*)**: arquivo moficado e preparado para ser consolidado na versão final
+
+--
+
+3. **Consolidado (*committed*)**: criação da versão consolidada de todos os arquivos que estavam no *staged* (não considera os que estão no *modified*) (.git)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[https://medium.com/@devmasterteam/git-ebook-8808f7301054]
+
+---
+
+background-image: url(img/git_states.png), url(img/git_files_states.png), url(img/git_add_commit_flow.png)
+background-size: 500px, 600px, 400px
+background-position: 10% 90%, 95% 90%, 95% 10%
+
+# Git Status
+
+## Estados do repositório local do git
+
+--
+
+1. **Untracked**: não registrou o arquivo criado ou deletado
+
+--
+
+1. **Unmodified**: marcou os arquivos como não-modificados após o commit
+
+--
+
+1. **Modified**: marcou os arquivos modificados depois da edição
+
+--
+
+1. **Staged**: marcou o arquivo adicionado ou modificado para ir para o commit
+
+--
+
+* **Commit**: os arquivos são armazenados no banco de dados local (.git)
 
 ---
 
@@ -619,7 +677,7 @@ background-position: 50% 80%
 
 ```bash
 # terminal
-touch teste.txt
+echo git &gt; git.txt
 ```
 
 ---
@@ -640,7 +698,7 @@ git status
 ```bash
 ## Untracked files:
 ##   (use "git add &lt;file&gt;..." to include in what will be committed)
-##     teste.txt
+##     git.txt
 ## 
 ## no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -662,7 +720,7 @@ git add -Av
 ```
 
 ```bash
-## add 'teste.txt'
+## add 'git.txt'
 ```
 
 ---
@@ -683,7 +741,7 @@ git status
 ```bash
 ## Changes to be committed:
 ##   (use "git restore --staged &lt;file&gt;..." to unstage)
-##         new file:   teste.txt
+##         new file:   git.txt
 ```
 
 ---
@@ -694,11 +752,11 @@ background-position: 50% 80%
 
 # Vamos editar o arquivo no diretório
 
-## Usando a aba **Files** do RStudio abra e edite o arquivo **teste.txt**, inserindo:
+## Usando a aba **Files** do RStudio abra e edite o arquivo **git.txt**, inserindo:
 
 
 ```bash
-Acabo de inserir um edição ao meu arquivo teste.txt
+Acabo de inserir um edição ao meu arquivo git.txt
 ```
 
 ---
@@ -720,7 +778,7 @@ git status
 ## Changes not staged for commit:
 ##   (use "git add &lt;file&gt;..." to update what will be committed)
 ##   (use "git restore &lt;file&gt;..." to discard changes in working directory)
-##         modified:   teste.txt
+##         modified:   git.txt
 ```
 
 ---
@@ -740,7 +798,7 @@ git add -Av
 ```
 
 ```bash
-## add 'teste.txt'
+## add 'git.txt'
 ```
 
 ---
@@ -761,7 +819,7 @@ git status
 ```bash
 ## Changes to be committed:
 ##   (use "git restore --staged &lt;file&gt;..." to unstage)
-##         new file:   teste.txt
+##         new file:   git.txt
 ```
 
 ---
@@ -776,13 +834,13 @@ background-position: 50% 93%
 
 
 ```bash
-git commit -m "2020-10-19 add teste.txt"
+git commit -m "2020-10-19 add git.txt"
 ```
 
 ```bash
-## [master 06211a1] 2020-10-19 add teste.txt
+## [master 06211a1] 2020-10-19 add git.txt
 ##  1 file changed, 1 insertion(+)
-##  create mode 100644 teste.txt
+##  create mode 100644 git.txt
 ```
 
 ---
@@ -838,7 +896,7 @@ git log
 ## Author: mauriciovancine &lt;mauricio.vancine@gmail.com&gt;
 ## Date:   Sun Oct 18 19:06:34 2020 -0300
 ## 
-##     2020-10-19 add teste.txt
+##     2020-10-19 add git.txt
 ```
 
 ---
@@ -853,7 +911,7 @@ git log --oneline
 ```
 
 ```bash
-## 3ae6ece (HEAD -&gt; master) 2020-10-19 add teste.txt
+## 3ae6ece (HEAD -&gt; master) 2020-10-19 add git.txt
 ## 18f482f (origin/master, origin/HEAD) 2020-10-18
 ## dd8fe74 2020-10-18
 ## bbb5496 2020-10-17
@@ -1329,9 +1387,9 @@ class: inverse, center, middle
 ---
 
 class: clear, middle
-background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif)
-background-size: 250px,500px
-background-position: 35% 60%,90% 70%
+background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif), url(img/package_xaringan.png)
+background-size: 250px, 500px, 130px
+background-position: 35% 50%, 90% 70%, 5% 86%
 
 ## Maurício Vancine
 
@@ -1339,12 +1397,12 @@ background-position: 35% 60%,90% 70%
 
 Contatos:
 
-&lt;svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#2369bd;"&gt;  [ comment ]  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauricio.vancine@gmail.com]()  
-&lt;svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#2369bd;"&gt;  [ comment ]  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [@mauriciovancine](https://twitter.com/mauriciovancine)  
-&lt;svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#2369bd;"&gt;  [ comment ]  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine](https://github.com/mauriciovancine)
-&lt;svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#2369bd;"&gt;  [ comment ]  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine.github.io](https://mauriciovancine.github.io)
+&lt;svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;"&gt;  [ comment ]  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauricio.vancine@gmail.com]()  
+&lt;svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;"&gt;  [ comment ]  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [@mauriciovancine](https://twitter.com/mauriciovancine)  
+&lt;svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;"&gt;  [ comment ]  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine](https://github.com/mauriciovancine)
+&lt;svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;"&gt;  [ comment ]  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine.github.io](https://mauriciovancine.github.io)
 
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)
     </textarea>
