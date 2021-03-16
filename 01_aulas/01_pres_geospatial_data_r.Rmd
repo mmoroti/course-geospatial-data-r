@@ -2132,16 +2132,15 @@ background-position: 50% 90%
 git push -u origin master
 ```
 ```{bash eval=FALSE}
-Enumerating objects: 3, done.
-Counting objects: 100% (3/3), done.
+Enumerating objects: 41, done.
+Counting objects: 100% (41/41), done.
 Delta compression using up to 12 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (2/2), 230 bytes | 230.00 KiB/s, done.
-Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To https://github.com/mauriciovancine/disciplina-analise-geoespacial-r.git
-938e7b2..6ba8f7f  master -> master
-Branch 'master' set up to track remote branch 'master' from 'origin'.
+Compressing objects: 100% (35/35), done.
+Writing objects: 100% (35/35), 4.99 MiB | 155.00 KiB/s, done.
+Total 35 (delta 6), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
+To github.com:mauriciovancine/course-geospatial-data-r.git
+   accc9db..8f70e96  master -> master
 ```
 
 ---
@@ -2177,18 +2176,32 @@ background-position: 50% 60%
 ---
 
 background-image: url(img/git_pull_request.png)
-background-size: 800px
+background-size: 1000px
 background-position: 50% 60%
 
-# 1.12 Pull request
+# 1.15 Pull request
 
-## **Pull request**: solicita que o **repositório de destino** (remoto) aceite ('puxe') suas **alterações**
+## **Pull Request**: solicita que o **repositório de destino** (remoto) aceite (pull - 'puxe') as **alterações** realizadas
+
+---
+
+background-image: url(img/github_repository_details.png)
+background-size: 800px
+background-position: 50% 90%
+
+# 1.16 Detalhes do respositório do GitHub
+
+## Vamos detalhar alguns pontos dos repositórios no GitHub
+
+<br>
+
+.center[https://github.com/mauriciovancine/course-geospatial-data-r]
 
 ---
 
 class: inverse, center, middle
 
-# Interface Gráfica RStudio 
+# Interface Gráfica do RStudio 
 
 ---
 
@@ -2202,7 +2215,7 @@ background-image: url(img/rstudio_git_pane01.png)
 background-size: 700px
 background-position: 50% 80%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git Panel
 
@@ -2216,7 +2229,7 @@ background-image: url(img/rstudio_git_pane02.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git Panel - Detalhes
 
@@ -2226,7 +2239,7 @@ background-image: url(img/rstudio_git_pane03.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git Panel - Branches
 
@@ -2236,7 +2249,7 @@ background-image: url(img/rstudio_git_pane04.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git Panel - Diff - Changes: Revisar mudanças
 
@@ -2246,7 +2259,7 @@ background-image: url(img/rstudio_git_pane05.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git Panel - Diff - History: Histórico de mudanças
 
@@ -2256,7 +2269,7 @@ background-image: url(img/rstudio_git_pane06.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git pane - Staged
 
@@ -2266,7 +2279,7 @@ background-image: url(img/rstudio_git_status.png),url(img/rstudio_git_pane06.png
 background-size: 250px,800px
 background-position: 92% 20%,50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git pane - Staged e File status
 
@@ -2276,7 +2289,7 @@ background-image: url(img/rstudio_git_pane07.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git pane - Commit
 
@@ -2286,17 +2299,17 @@ background-image: url(img/rstudio_git_pane08.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git pane - Commit
 
 ---
 
 background-image: url(img/rstudio_git_pane09.png)
-background-size: 800px
+background-size: 1000px
 background-position: 50% 60%
 
-# 1.13 Interface Gráfica RStudio
+# 1.17 Interface Gráfica do RStudio
 
 ## Git pane - Push e Pull
 
@@ -2304,13 +2317,13 @@ background-position: 50% 60%
 
 background-image: url(img/cheatsheet_git.jpg)
 background-size: 350px
-background-position: 50% 50%
+background-position: 50% 55%
 
 # Mais informações
 
 ## Git Cheat Sheets
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 [*] https://github.github.com/training-kit/downloads/pt_BR/github-git-cheat-sheet.pdf
 
@@ -2324,7 +2337,7 @@ background-position: 50% 85%
 
 ## Pacote [usethis](https://usethis.r-lib.org/)
 
-### Comandos direto no R para criar e versionar um repositório
+### Comandos direto no R para criar e versionar repositórios
 
 ```{r eval=FALSE}
 install.packages("usethis")
@@ -2339,13 +2352,42 @@ devtools::install_github("r-lib/usethis")
 
 ### [Pro Git](https://git-scm.com/book/en/v2) - Scott Chacon e Ben Straub
 
+### [Beginning Git and GitHub](https://www.amazon.com.br/Beginning-Git-GitHub-Comprehensive-Management/dp/1484253124) - Mariot Tsitoara
+
 ### [Happy Git and GitHub for the useR](https://happygitwithr.com/) - Jenny Bryan
 
 ### [Primeiros passos utilizando o Git e GitHub no RStudio](https://beatrizmilz.github.io/RLadies-Git-RStudio-2019) - Beatriz Milz
 
+### [Git e GitHub no RStudio](https://beatrizmilz.com/git_rstudio.html) - Beatriz Milz
+
 ### [Oh Shit, Git!?!](https://ohshitgit.com/pt_BR) - Katie Sylor-Miller
 
 ### [Dangit, Git!?!](https://dangitgit.com/pt_BR) - Katie Sylor-Miller
+
+---
+
+# Mais informações
+
+## Curso de Git - Bóson Treinamentos
+
+<p align="center">
+<iframe width="80%" height="480" align="center" src="https://www.youtube.com/embed/YnVnFanIAzU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</p>
+
+---
+
+background-image: url(img/git_course.png)
+background-size: 900px
+background-position: 50% 55%
+
+# Mais informações
+
+## Git e Github para iniciantes - Udemy - Willian Justen de Vasconcellos
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+[https://www.udemy.com/course/git-e-github-para-iniciantes/]
 
 ---
 
