@@ -162,18 +162,20 @@ background-position: 90% 90%
 
 ### 1 Controle de versão, Git e GitHub
 
-1. Conferir os notebooks e PCs
+1. Conferir os computadores
 1. Controle de versão
-1. Git
-1. GitHub
+1. git e GitHub
 1. Funcionamento do controle de versão
-1. Fork
-1. Iniciando: git init ou git clone
-1. Configurando: git config
-1. Básico: git add, git status, git commit e git log
+1. GitHub: Fork
+1. Configuração: git config
+1. Iniciando localmente: git init
+1. Iniciando remotamente: git clone
+1. Versionamento: git add, git commit e git status
+1. Histórico e versões: git log e git show
+1. Desfazer: git reset e git revert
 1. Ramificações: git branch, git switch e git merge
-1. Remoto: git push e git pull
-1. Pull request
+1. Remoto: git push, git pull e git remote
+1. GitHub: Pull request
 1. Detalhes do respositório do GitHub
 1. Pacote usethis
 1. Interface gráfica do RStudio

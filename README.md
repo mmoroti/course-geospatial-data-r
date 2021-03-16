@@ -29,7 +29,7 @@ Teórico-prático: <br>
 Exercícios-atividades assistidas remotamente:
 
 **Plano de ensino** <br> 
-[pdf](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/00_plano_ensino/plano_ensino_analise_geoespacial_r.pdf)
+[pdf](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/00_plano_ensino/plano_ensino_analise_geoespacial_r.pdf)
 
 **Contato** <br>
 Para mais informações ou dúvidas, envie e-mail para Maurício Vancine (mauricio.vancine@gmail.com)
@@ -81,7 +81,7 @@ sudo apt install -y git
 ```
 
 **Instalar os pacotes no R** <br>
-Com o R e o RStudio instalados, baixe esse [script](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/02_scripts/00_script_geospatial_data_r.R) (scripts são roteiros que possuem comandos, como um rascunho). <br>
+Com o R e o RStudio instalados, baixe esse [script](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/00_script_geospatial_data_r.R) (scripts são roteiros que possuem comandos, como um rascunho). <br>
 Abra o script (**00_script_geospatial_data_r.R**) no software RStudio e rode cada linha de comando para instalar os pacotes, necessário estar conectado à internet. <br>
 Para rodar as linhas, basta colocar o cursor na linha de código a ser executada e pressionar: `Ctrl + Enter`.
 
@@ -89,25 +89,25 @@ Para rodar as linhas, basta colocar o cursor na linha de código a ser executada
 
 ## Slides
 
-[0. Apresentações](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/00_pres_geospatial_data_r.html) <br>
-[1. Controle de versão, Git e GitHub](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/01_pres_geospatial_data_r.html) <br>
-[2. Funcionamento da linguagem R](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/02_pres_geospatial_data_r.html) <br>
-[3. Estrutura e manipulação de dados](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/03_pres_geospatial_data_r.html) <br>
-[4. Introdução ao tidyverse](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/04_pres_geospatial_data_r.html) <br>
-[5. Estrutura e fonte de dados geoespaciais](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/05_pres_geospatial_data_r.html) <br>
-[6. Estrutura e manipulação de dados vetoriais](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/06_pres_geospatial_data_r.html) <br>
-[7. Estrutura e manipulação de dados matriciais](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/07_pres_geospatial_data_r.html) <br>
-[8. Visualização de dados geoespaciais](https://github.com/mauriciovancine/course-geospatial-data-r/01_aulas/08_pres_geospatial_data_r.html)
+[0. Apresentações](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/00_pres_geospatial_data_r.html) <br>
+[1. Controle de versão, Git e GitHub](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/01_pres_geospatial_data_r.html) <br>
+[2. Funcionamento da linguagem R](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/02_pres_geospatial_data_r.html) <br>
+[3. Estrutura e manipulação de dados](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/03_pres_geospatial_data_r.html) <br>
+[4. Introdução ao tidyverse](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/04_pres_geospatial_data_r.html) <br>
+[5. Estrutura e fonte de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/05_pres_geospatial_data_r.html) <br>
+[6. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/06_pres_geospatial_data_r.html) <br>
+[7. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/07_pres_geospatial_data_r.html) <br>
+[8. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/08_pres_geospatial_data_r.html)
 
 ---
 
 ## Scripts
 
-[1. Instalar pacotes](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/02_scripts/03_script_geospatial_data_r.R) <br>
-[3. Estrutura e manipulação de dados](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/02_scripts/03_script_geospatial_data_r.R) <br>
-[4. Introdução ao tidyverse](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/02_scripts/04_script_geospatial_data_r.R) <br>
-[6. Estrutura e manipulação de dados vetoriais](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/02_scripts/06_script_geospatial_data_r.R) <br>
-[7. Estrutura e manipulação de dados matriciais](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/02_scripts/07_script_geospatial_data_r.R) <br>
-[8. Visualização de dados geoespaciais](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/02_scripts/08_script_geospatial_data_r.R) <br>
+[1. Instalar pacotes](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/03_script_geospatial_data_r.R) <br>
+[3. Estrutura e manipulação de dados](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/03_script_geospatial_data_r.R) <br>
+[4. Introdução ao tidyverse](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/04_script_geospatial_data_r.R) <br>
+[6. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/06_script_geospatial_data_r.R) <br>
+[7. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/07_script_geospatial_data_r.R) <br>
+[8. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/08_script_geospatial_data_r.R) <br>
 
 ---
