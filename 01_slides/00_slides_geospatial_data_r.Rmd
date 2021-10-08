@@ -180,7 +180,7 @@ background-position: 95% 95%
 3 git e GitHub  
 4 Funcionamento do controle de versão  
 5 GitHub: Fork  
-6 Configuração: git config  
+6 Configuração: RStudio, git, GituHub
 7 Iniciando localmente: git init  
 8 Iniciando remotamente: git clone  
 9 Versionamento: git add, git commit e git status  

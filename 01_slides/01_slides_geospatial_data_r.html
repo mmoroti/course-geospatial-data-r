@@ -15,7 +15,7 @@
 class: center, middle, inverse, title-slide
 
 # Introdução ao uso de dados geoespaciais no R <br><br><br>
-## Controle de versão, git e GitHub
+## 1 Controle de versão, git e GitHub
 ### Maurício H. Vancine <br> Milton C. Ribeiro
 ### UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)
 ### 25/10/2021
@@ -47,7 +47,7 @@ background-position: 95% 95%
 3 git e GitHub  
 4 Funcionamento do controle de versão  
 5 GitHub: Fork  
-6 Configuração: git config  
+6 Configuração: RStudio, git, GituHub
 7 Iniciando localmente: git init  
 8 Iniciando remotamente: git clone  
 9 Versionamento: git add, git commit e git status  
@@ -76,7 +76,7 @@ background-position: 50% 50%
 ---
 
 background-image: url(img/r_logo.svg)
-background-size: 500px
+background-size: 400px
 background-position: 50% 60%
 
 # 1.1 Conferir os computadores
@@ -89,7 +89,7 @@ background-position: 50% 60%
 ---
 
 background-image: url(img/rstudio_logo.svg)
-background-size: 700px
+background-size: 600px
 background-position: 50% 60%
 
 # 1.1 Conferir os computadores
@@ -102,7 +102,7 @@ background-position: 50% 60%
 ---
 
 background-image: url(img/git_logo.png)
-background-size: 600px
+background-size: 500px
 background-position: 50% 60%
 
 # 1.1 Conferir os computadores
@@ -198,7 +198,7 @@ background-position: 30% 75%, 98% 96%
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-[https://www.kernel.org/]
+[The Linux Kernel Archives](https://www.kernel.org/)
 
 ---
 
@@ -370,7 +370,7 @@ class: inverse, center, middle
 
 class: inverse, center, middle
 
-# Antes de continuar, vamos configurar o RStudio e o git
+# Antes de continuar, vamos configurar o RStudio, git e GitHub
 
 ---
 
@@ -384,7 +384,7 @@ background-image: url(img/rstudio.png)
 background-size: 850px
 background-position: 50% 70%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## IDE RStudio
 
@@ -394,21 +394,21 @@ background-image: url(img/rstudio_git_config01.png)
 background-size: 750px
 background-position: 50% 100%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## Indicar o caminho do git para o RStudio
 
-- `Tools &gt; Global Options &gt; Git/SVN`
+&gt; Tools &gt; Global Options &gt; Git/SVN
 
 ---
 
 background-image: url(img/git_logo.png), url(img/rstudio_git_config02.png)
 background-size: 400px, 500px
-background-position: 10% 82%, 80% 82%
+background-position: 10% 82%, 83% 82%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
-## Marcar **Enable version control interface...** e em **Git executable**:
+## Marcar **Enable version control interface...** e em **Git executable**
 
 - Windows: `C:/Program Files/Git/bin/git.exe`
 - GNU/Linux: `/usr/bin/git`
@@ -420,7 +420,7 @@ background-image: url(img/rstudio_git_config03.jpg), url(img/general_key.png), u
 background-size: 500px, 150px, 500px
 background-position: 85% 80%, 10% 85%, 10% 80%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## Criar uma chave SSH
 
@@ -436,7 +436,7 @@ background-image: url(img/general_key.png), url(img/github_brave.jpg)
 background-size: 150px, 500px
 background-position: 37% 87.5%, 50% 85%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## Criar uma chave SSH
 
@@ -456,7 +456,7 @@ background-image: url(img/general_key.png), url(img/github_brave.jpg)
 background-size: 150px, 500px
 background-position: 37% 87.5%, 50% 85%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## Criar uma chave SSH
 
@@ -472,7 +472,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ```
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [Criar ssh](https://docs.github.com/pt/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
 
@@ -480,7 +480,7 @@ ssh-add ~/.ssh/id_ed25519
 
 class: inverse, center, middle
 
-# Agora vamos lá no GitHub
+# Agora vamos no GitHub
 
 ---
 
@@ -488,11 +488,11 @@ background-image: url(img/github_ssh_key.png),url(img/general_key.png), url(img/
 background-size: 900px, 70px, 200px
 background-position: 70% 75%, 89.2% 16.6%, 100% 10%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## No GitHub
 
-- `Perfil &gt; Settings &gt; SSH and GPG keys &gt; New SSH key`
+&gt; Perfil &gt; Settings &gt; SSH and GPG keys &gt; New SSH key
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
@@ -504,7 +504,7 @@ background-image: url(img/github_ssh_key_add.png),url(img/general_key.png), url(
 background-size: 900px, 70px, 200px
 background-position: 70% 75%, 89.2% 16.6%, 100% 10%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## No GitHub
 
@@ -527,7 +527,7 @@ background-image: url(img/git_config.png)
 background-size: 830px
 background-position: 50% 80%
 
-# 6. Configuração: git config
+# 1.6 Configuração: RStudio, git, GituHub
 
 ## **git config**: definir as configurações de usuário do git
 
@@ -554,7 +554,7 @@ class: inverse, center, middle
 
 # Agora podemos iniciar o versionamento: 
 &lt;br&gt;&lt;br&gt;
-# 1. podemos começar pelo repositório local
+# 1. Podemos começar pelo repositório local
 
 ---
 

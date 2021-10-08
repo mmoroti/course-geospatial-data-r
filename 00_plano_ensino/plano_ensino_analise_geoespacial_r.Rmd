@@ -48,7 +48,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. git e GitHub
 1. Funcionamento do controle de versão
 1. GitHub: Fork
-1. Configuração: git config
+1. Configuração: RStudio, git, GituHub
 1. Iniciando localmente: git init
 1. Iniciando remotamente: git clone
 1. Versionamento: git add, git commit e git status
