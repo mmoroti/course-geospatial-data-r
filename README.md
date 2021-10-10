@@ -18,7 +18,7 @@ Prof. Maurício Humberto Vancine
 10 + 5 especiais
 
 **Resumo** <br>
-A disciplina oferecerá os principais conceitos teórico-práticos do uso de dados geoespaciais com o R aplicados à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, Git e GitHub, (2) introdução e funcionamento da linguagem R e do RStudio, (3) estrutura e manejo de dados na linguagem R, (4) funcionamento do tidyverse, (5) estrutura e fonte de dados geoespaciais, (6) manejo dados geoespaciais (vetor), (7) manejo dados geoespaciais (raster) e, (8) produção de mapas. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teóricas-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de exercícios práticos, que serão aplicados remotamente como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que os alunos adquiram conceitos gerais da estrutura, manipulação e visualização de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
+A disciplina oferecerá os principais conceitos teórico-práticos do uso de dados geoespaciais com o R aplicados à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, git e GitHub, (2) funcionamento da linguagem R, (3) estrutura e manipulação de dados, (4) introdução ao tidyverse, (5) visualização de dados, (6) estrutura e fonte de dados geoespaciais, (7) estrutura e manipulação de dados vetoriais, (8) estrutura e manipulação de dados matriciais e (9) visualização de dados geoespaciais. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teórico-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de formulação e execução de um projeto com dados reais como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que as alunas e alunos adquiram conceitos gerais da estrutura, manipulação e visualização de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
 
 ---
 
@@ -44,11 +44,11 @@ Será necessário que todos usem seus notebooks
 **Softwares**<br>
 R, RStudio e git <br>
 
-1. Instalar a versão mais recente do [R (4.0.x)](https://www.r-project.org) e [RStudio (1.4.x)](https://www.rstudio.com)
+1. Instalar a versão mais recente do [R (4.1.1)](https://www.r-project.org) e [RStudio (2021.09.0-351)](https://www.rstudio.com)
 - [Vídeo de instalação do R e do RStudio](https://youtu.be/l1bWvZMNMCM)
 - [Curso da linguagem R](https://www.youtube.com/playlist?list=PLucm8g_ezqNq0RMHvzZ8M32xhopFhmsr6)
 
-2. Instalar o [git (2.30)](https://git-scm.com/downloads)
+2. Instalar o [git (2.33)](https://git-scm.com/downloads)
 - [Vídeo de instalação do git](https://youtu.be/QSfHNEiBd2k)
 
 #### Linux (Ubuntu e Linux Mint)
@@ -68,10 +68,10 @@ sudo apt update
 sudo apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 
 # rstudio
-wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1106-amd64.deb
-sudo dpkg -i rstudio-1.4.1106-amd64.deb
-sudo apt install -fy
-rm rstudio-1.4.1106-amd64.deb
+wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2021.09.0%2B351-amd64.deb &&
+sudo dpkg -i rstudio-2021.09.0+351-amd64.deb &&
+sudo apt install -fy && 
+rm rstudio-2021.09.0+351-amd64.deb
 
 # git
 sudo add-apt-repository ppa:git-core/ppa 
