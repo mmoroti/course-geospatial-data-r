@@ -1,36 +1,35 @@
----
-title: "Introdução ao uso de dados geoespaciais no R <br><br><br>"
-subtitle: "4 Introdução ao tidyverse"
-author: " Maurício H. Vancine <br> Milton C. Ribeiro"
-institute: "UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)"
-date: "25/10/2021"
-output:
-  xaringan::moon_reader:
-    css: [default, metropolis, metropolis-fonts, custom.css]
-    lib_dir: libs
-    nature:
-      highlightStyle: rainbow
-      highlightLines: false
-      highlightSpans: false
-      countIncrementalSlides: false
-      slideNumberFormat: "%current%/%total%"
-      ratio: "16:9"
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução ao uso de dados geoespaciais no R    </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maurício H. Vancine   Milton C. Ribeiro" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução ao uso de dados geoespaciais no R <br><br><br>
+## 4 Introdução ao tidyverse
+### Maurício H. Vancine <br> Milton C. Ribeiro
+### UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)
+### 25/10/2021
+
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE, 
-        encoding = "UTF-8",
-        knitr.table.format = "html")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE, eval = FALSE)
-if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
-if(!require(tidyverse)) install.packages("tidyverse")
-```
+
+
 
 class: clear
 background-image: url(img/general_data_science_r4ds.png)
 background-size: 800px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [@allison_horst](https://twitter.com/allison_horst)
 
 ---
@@ -48,7 +47,7 @@ background-position: 85% 75%
 1. here
 1. readr, readxl e writexl
 1. tibble
-1. magrittr (pipe - %>%)
+1. magrittr (pipe - %&gt;%)
 1. tidyr
 1. dplyr
 1. stringr
@@ -56,7 +55,7 @@ background-position: 85% 75%
 1. lubridate
 1. purrr
 
-<br>
+&lt;br&gt;
 [tidyverse](https://www.tidyverse.org/)
 
 ---
@@ -65,7 +64,7 @@ background-position: 85% 75%
 
 ## Script
 
-<br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 ## .center[`04_script_intro_geocomp_r.R`]
 
@@ -75,19 +74,19 @@ background-position: 85% 75%
 
 ### O tidyverse é um **conjunto de pacotes** designados para **Data Science**
 
-<br>
+&lt;br&gt;
 
 --
 
 ### Todos os pacotes compartilham uma **filosofia** de design, gramática e estruturas de dados
 
-<br>
+&lt;br&gt;
 
 --
 
 ### É um **"dialeto"** novo para a linguagem R
 
-<br>
+&lt;br&gt;
 
 --
 
@@ -113,8 +112,8 @@ background-position: 50% 60%
 
 ## Fluxo de trabalho
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-[Wickham & Grolemund (2017)](https://r4ds.had.co.nz/)
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Wickham &amp; Grolemund (2017)](https://r4ds.had.co.nz/)
 
 ---
 
@@ -146,7 +145,7 @@ background-position: 50% 60%
 
 ### O idealizador foi o **Hadley Wickham** e atualmente **muitas pessoas** têm contribuído para sua expansão
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [Hadley Wickham](http://hadley.nz/)
 
 ---
@@ -159,9 +158,9 @@ background-position: 50% 90%
 
 ## Artigos
 
-> - Wickham, Hadley. ["Tidy data."](https://www.jstatsoft.org/article/view/v059i10) Journal of Statistical Software 59.10 (2014): 1-23.
+&gt; - Wickham, Hadley. ["Tidy data."](https://www.jstatsoft.org/article/view/v059i10) Journal of Statistical Software 59.10 (2014): 1-23.
 
-> - Wickham, Hadley, et al. ["Welcome to the Tidyverse."](https://joss.theoj.org/papers/10.21105/joss.01686) Journal of Open Source Software 4.43 (2019): 1686.
+&gt; - Wickham, Hadley, et al. ["Welcome to the Tidyverse."](https://joss.theoj.org/papers/10.21105/joss.01686) Journal of Open Source Software 4.43 (2019): 1686.
 
 ---
 
@@ -173,8 +172,8 @@ background-position: 50% 55%
 
 ## R for Data Science (2017)
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-[Wickham & Grolemund (2017)](https://r4ds.had.co.nz/)
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Wickham &amp; Grolemund (2017)](https://r4ds.had.co.nz/)
 
 ---
 
@@ -186,7 +185,7 @@ background-position: 50% 50%
 
 ## Sites
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [tidyverse](https://www.tidyverse.org/)
 
 ---
@@ -199,7 +198,7 @@ background-position: 50% 50%
 
 ## Sites
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [R para data science](https://rpubs.com/modelthinkingbr/dados)
 
 ---
@@ -216,14 +215,16 @@ background-size: 400px
 
 ### Para utilizar os pacotes do **tidyverse** é preciso instalar e carregar o pacote `tidyverse`
 
-```{r eval=FALSE}
+
+```r
 # instalar o pacote
 install.packages("tidyverse")
 ```
 
 --
 
-```{r message=TRUE}
+
+```r
 # carregar o pacote
 library(tidyverse)
 ```
@@ -234,8 +235,9 @@ library(tidyverse)
 
 ## Listar todos os pacotes do tidyverse
 
-```{r}
-# listar todos os pacotes no tidyverse 
+
+```r
+# list all packages in the tidyverse 
 tidyverse::tidyverse_packages(include_self = TRUE)
 ```
 
@@ -251,7 +253,7 @@ background-position: 80% 80%
 
 ### Todas as funções dos pacotes **tidyverse** usão fonte minúscula e usam `_` para separar os nomes internos das funções (snake_case)
 
-<br>
+&lt;br&gt;
 
 `read_csv()`
 
@@ -275,7 +277,7 @@ background-position: 80% 80%
 
 ### É interessante **indicar de quais pacotes as funções** são utilizadas (`pacote::função`), para **evitar erros** com funções de outros pacotes
 
-<br>
+&lt;br&gt;
 
 `readr::read_csv()`
 
@@ -293,7 +295,7 @@ class: clear
 background-image: url(img/here.png)
 background-size: 700px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [@allison_horst](https://twitter.com/allison_horst)
 
@@ -319,15 +321,16 @@ background-position: 50% 90%
 
 ## Pacote
 
-```{r eval=FALSE}
-# instalar
+
+```r
+# install
 install.packages("here")
 
-# carregar
+# load
 library(here)
 ```
 
-<br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [@allison_horst](https://twitter.com/allison_horst)
 
 ---
@@ -340,15 +343,16 @@ background-position: 50% 90%
 
 ## Diversos critérios para encontrar o diretório raiz
 
-```{r eval=FALSE}
-# conferir
+
+```r
+# confer
 here::here()
 
-# criar um arquivo .here
+# create a .here file
 here::set_here()
 ```
 
-<br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
@@ -368,7 +372,7 @@ background-position: 50% 70%
 
 ## Data Import Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [Data Import Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
 
 ---
@@ -401,7 +405,7 @@ background-position: 50% 80%
 
 ### Eu mesmo et al. (2018)
 
-<br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [Vancine et al. (2018)](https://doi.org/10.1002/ecy.2392)
 
 ---
@@ -412,9 +416,10 @@ background-position: 50% 80%
 
 ### **Formato .csv**
 
-```{r}
-# importar sites com here
-si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
+
+```r
+# import sites com here
+si &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
                       locale = readr::locale(encoding = "latin1"))
 si
 ```
@@ -427,18 +432,15 @@ si
 
 ## **Formato .csv**
 
-```{r eval=FALSE}
-# importar sites sem here
-si <- readr::read_csv("./03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv",
-                      locale = readr::locale(encoding = "latin1"))
-si
-```
 
-```{r echo=FALSE}
-si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
+```r
+# import sites sem o here
+si &lt;- readr::read_csv("./03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv",
                       locale = readr::locale(encoding = "latin1"))
 si
 ```
+--
+
 
 ---
 
@@ -448,9 +450,10 @@ si
 
 ## **Formato .txt**
 
-```{r}
-# importar sites
-si <- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
+
+```r
+# import sites
+si &lt;- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
 si
 ```
 
@@ -468,16 +471,18 @@ background-size: 400px
 
 ### Pacotes para importar e exportar planilhas no formato Excel®
 
-```{r eval=FALSE}
-# importar .xlsx
+
+```r
+# import .xlsx
 install.packages("readxl")
 library("readxl")
 ```
 
 --
 
-```{r eval=FALSE}
-# exportar .xlsx
+
+```r
+# export .xlsx
 install.packages("writexl")
 library("writexl")
 ```
@@ -508,9 +513,10 @@ library("writexl")
 
 ### O argumento `sheet` define a aba a ser importada (número ou nome)
 
-```{r}
-# importar sites
-si <- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
+
+```r
+# import sites
+si &lt;- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
                         sheet = 1, encoding = "latin1")
 si
 ```
@@ -527,32 +533,24 @@ background-position: 50% 100%
 
 ### Matriz de localidades
 
-```{r include=FALSE}
-# importar sites
-si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
-                      locale = readr::locale(encoding = "latin1"))
-si
-```
 
-```{r eval=FALSE}
-# importar sites
-si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
+
+
+```r
+# import sites
+si &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
                       locale = readr::locale(encoding = "latin1"))
 si
 ```
 
 ### Matriz de espécies
 
-```{r include=FALSE}
-# import species
-sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"),
-                      locale = readr::locale(encoding = "latin1"))
-sp
-```
 
-```{r eval=FALSE}
-# importar species
-sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"),
+
+
+```r
+# import species
+sp &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"),
                       locale = readr::locale(encoding = "latin1"))
 sp
 ```
@@ -583,8 +581,8 @@ background-size: 400px
 
 ## Descrição dos modos das colunas através da função `glimpse()` - "espiar os dados"
 
-```{r}
-# descrição dos dados de sites
+
+```r
 tibble::glimpse(si)
 ```
 
@@ -594,8 +592,8 @@ tibble::glimpse(si)
 
 ## Descrição dos modos das colunas através da função `glimpse()` - "espiar os dados"
 
-```{r}
-# descricao dos dados de especies
+
+```r
 tibble::glimpse(sp)
 ```
 
@@ -605,15 +603,17 @@ tibble::glimpse(sp)
 
 ## tibble vs data.frame
 
-### 1. Nunca converte um tipo **character como factor** (corrigido nas versões >R 4.0.x)
+### 1. Nunca converte um tipo **character como factor** (corrigido nas versões &gt;R 4.0.x)
 
-```{r}
-df <- data.frame(ch = c("a", "b"), nu = 1:2)
+
+```r
+df &lt;- data.frame(ch = c("a", "b"), nu = 1:2)
 str(df)
 ```
 --
-```{r message=FALSE}
-tb <- tibble::tibble(ch = c("a", "b"), nu = 1:2)
+
+```r
+tb &lt;- tibble::tibble(ch = c("a", "b"), nu = 1:2)
 tibble::glimpse(tb)
 ```
 
@@ -624,19 +624,22 @@ tibble::glimpse(tb)
 ## tibble vs data.frame
 
 ### 2. A indexação com colchetes retorna um **tibble**
-```{r}
-df_ch <- df[, 1]
+
+```r
+df_ch &lt;- df[, 1]
 class(df_ch)
 ```
 --
-```{r}
-tb_ch <- tb[, 1]
+
+```r
+tb_ch &lt;- tb[, 1]
 class(tb_ch)
 ```
 --
-```{r}
+
+```r
 # indexacao pelo nome devolve um vetor
-tb_ch <- tb$ch
+tb_ch &lt;- tb$ch
 class(tb_ch)
 ```
 
@@ -647,11 +650,13 @@ class(tb_ch)
 ## tibble vs data.frame
 
 ### 3. Não faz correspondência parcial, retorna **NULL** se a coluna não existe com o nome especificado
-```{r}
+
+```r
 df$c 
 ```
 --
-```{r, error = TRUE}
+
+```r
 tb$c
 ```
 
@@ -667,21 +672,21 @@ background-image: url(img/person_rene_magritte.jpg), url(img/tidyverse_magritte_
 background-size: 350px, 550px
 background-position: 7% 60%, 85% 75%
 
-# 6. magrittr (pipe - %>%)
+# 6. magrittr (pipe - %&gt;%)
 
 ## René Magritte (1898-1967)
 
 ---
 
-# 6. magrittr (pipe - %>%)
+# 6. magrittr (pipe - %&gt;%)
 
-### O operador pipe (*%>%*) permite o “encadeamento” de várias funções e **não é preciso de objetos** para armazenar resultados intermediários
+### O operador pipe (*%&gt;%*) permite o “encadeamento” de várias funções e **não é preciso de objetos** para armazenar resultados intermediários
 
 ### Essa função torna os códigos em R **mais simples**, pois realizamos **múltiplas operações** em uma **única linha**
 
 ### Ele captura o **resultado de uma declaração** e o **torna a entrada da próxima declaração**. Podemos pensar como *“EM SEGUIDA FAÇA”*
 
-### O operador pipe é **%>%**
+### O operador pipe é **%&gt;%**
 
 ---
 
@@ -689,11 +694,12 @@ background-image: url(img/general_fog01.jpg)
 background-size: 500px
 background-position: 50% 80%
 
-# 6. magrittr (pipe - %>%)
+# 6. magrittr (pipe - %&gt;%)
 
 ### Atalho: `Crtl + Shift + M`
 
-```{r}
+
+```r
 # sem pipe
 sqrt(sum(1:100))
 ```
@@ -704,57 +710,62 @@ background-image: url(img/general_fog02.jpg)
 background-size: 350px
 background-position: 50% 90%
 
-# 6. magrittr (pipe - %>%)
+# 6. magrittr (pipe - %&gt;%)
 
 ### Atalho: `Crtl + Shift + M`
 
-```{r}
+
+```r
 # sem pipe
 sqrt(sum(1:100))
 ```
 
 ---
 
-# 6. magrittr (pipe - %>%)
+# 6. magrittr (pipe - %&gt;%)
 
 ### Atalho: `Crtl + Shift + M`
 
-```{r}
+
+```r
 # sem pipe
 sqrt(sum(1:100))
 ```
 
-```{r}
+
+```r
 # com pipe
-1:100 %>% 
-  sum() %>% 
+1:100 %&gt;% 
+  sum() %&gt;% 
   sqrt()
 ```
 
 ---
 
-# 6. magrittr (pipe - %>%)
+# 6. magrittr (pipe - %&gt;%)
 
 ### Atalho: `Crtl + Shift + M`
 
-```{r}
+
+```r
 # fixar amostragem
 set.seed(42)
 
 # sem pipe
-ve <- sum(sqrt(sort(log10(rpois(100, 10)))))
+ve &lt;- sum(sqrt(sort(log10(rpois(100, 10)))))
 ve
 ```
 --
-```{r}
+
+```r
 # fixar amostragem
 set.seed(42)
 
 # com pipe
-ve <- rpois(100, 10) %>% 
-  log10() %>%
-  sort() %>% 
-  sqrt() %>% 
+ve &lt;- rpois(100, 10) %&gt;% 
+  log10() %&gt;%
+  sort() %&gt;% 
+  sqrt() %&gt;% 
   sum()
 ve  
 ```
@@ -773,23 +784,23 @@ background-size: 900px
 
 ---
 
-# 6. magrittr (pipe - %>%)
+# 6. magrittr (pipe - %&gt;%)
 
 ## Outros pipes
 
 ### maggritr
 
-- `%T>%`: retorna o lado esquerdo em vez do lado direito
+- `%T&gt;%`: retorna o lado esquerdo em vez do lado direito
 - `%$%`: “explode” as variáveis em um quadro de dados
-- `%<>%`: permite atribuição usando pipes
+- `%&lt;&gt;%`: permite atribuição usando pipes
 
 ### Nativo do R: 
 
 A partir da versão do R 4.1+ (18/05/2021), o operador pipe se tornou nativo do R
 
-> Tools > Global Options > Code > [x] Use native pipe operator, |> (requires R 4.1+)
+&gt; Tools &gt; Global Options &gt; Code &gt; [x] Use native pipe operator, |&gt; (requires R 4.1+)
 
-- `|>`: pipe nativo do R
+- `|&gt;`: pipe nativo do R
 
 ---
 
@@ -801,29 +812,28 @@ class: inverse, center, middle
 
 # Exercício 09
 
-## Reescreva cada uma das operações utilizando pipes `%>%`:
-<br>
+## Reescreva cada uma das operações utilizando pipes `%&gt;%`:
+&lt;br&gt;
 `log10(cumsum(1:100))`
-<br>
+&lt;br&gt;
 `sum(sqrt(abs(rnorm(100))))`
-<br>
+&lt;br&gt;
 `sum(sort(sample(1:10, 10000, rep = TRUE)))`
 
-```{r echo=FALSE}
-countdown(minutes = 5, seconds = 00, color_background = "gray30")
-```
+
 
 ---
 
 # Exercício 09
 ## Solução
-```{r eval=FALSE}
+
+```r
 # solucao
 # 1.
 log10(cumsum(1:100))
 
-1:100 %>%
-  cumsum %>% 
+1:100 %&gt;%
+  cumsum %&gt;% 
   log10
 ```
 
@@ -832,13 +842,14 @@ log10(cumsum(1:100))
 # Exercício 09
 ## Solução
 
-```{r eval=FALSE}
+
+```r
 # 2.
 sum(sort(abs(rnorm(100))))
 
-rnorm(100) %>% 
-  abs %>% 
-  sort %>% 
+rnorm(100) %&gt;% 
+  abs %&gt;% 
+  sort %&gt;% 
   sum
 ```
 
@@ -847,13 +858,14 @@ rnorm(100) %>%
 # Exercício 09
 ## Solução
 
-```{r eval=FALSE}
+
+```r
 # 3.
 sum(sort(sample(1:10, 10000, rep = TRUE)))
 
-1:10 %>% 
-  sample(10000, rep = TRUE) %>% 
-  sort %>% 
+1:10 %&gt;% 
+  sample(10000, rep = TRUE) %&gt;% 
+  sort %&gt;% 
   sum
 ```
 
@@ -877,7 +889,7 @@ background-position: 50% 80%
 
 #### Dois conjuntos de dados **penguins** (versão simplificada) e **penguins_raw** (dados brutos)
 
-<br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [palmerpenguins ](https://allisonhorst.github.io/palmerpenguins/)
 
 ---
@@ -890,7 +902,8 @@ background-position: 20% 90%, 80% 90%
 
 ## Dados de medidas de pinguins chamados `palmerpenguins`
 
-```{r eval=FALSE}
+
+```r
 # instalar 
 # install.packages("palmerpenguins")
 
@@ -912,7 +925,8 @@ background-position: 20% 90%, 80% 90%
 
 ## Dados de medidas de pinguins chamados `palmerpenguins`
 
-```{r eval=FALSE}
+
+```r
 # visualizar os dados
 penguins
 penguins_raw
@@ -938,7 +952,7 @@ background-position: 50% 70%
 
 ## Data Import Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [Data Import Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
 
 ---
@@ -966,8 +980,8 @@ background-position: 50% 50%
 
 ## Conjunto de dados 'tidy'
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-[Wickham & Grolemund (2017)](https://r4ds.had.co.nz/)
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Wickham &amp; Grolemund (2017)](https://r4ds.had.co.nz/)
 
 ---
 
@@ -987,7 +1001,7 @@ background-position: 75% 85%
 1. **pivot_wider()**: long para wide
 1. **pivot_longer()**: wide para long
 
-<br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [@allison_horst](https://twitter.com/allison_horst)
 
 ---
@@ -1008,9 +1022,10 @@ background-position: 50% 50%
 
 ### Unir as colunas “Region” e “Island” na nova coluna “region_island”
 
-```{r}
+
+```r
 # unir colunas
-penguins_raw_unir <- tidyr::unite(data = penguins_raw, 
+penguins_raw_unir &lt;- tidyr::unite(data = penguins_raw, 
                                   col = "region_island",
                                   Region:Island, 
                                   sep = ", ",
@@ -1036,9 +1051,9 @@ background-position: 50% 50%
 
 ### Separar a coluna “Stage” nas colunas “stage” e “egg_stage”
 
-```{r}
-# separar colunas
-penguins_raw_separar <- tidyr::separate(data = penguins_raw, 
+
+```r
+penguins_raw_separar &lt;- tidyr::separate(data = penguins_raw, 
                                         col = Stage,
                                         into = c("stage", "egg_stage"), 
                                         sep = ", ",
@@ -1054,9 +1069,9 @@ head(penguins_raw_separar[, c("Stage", "stage", "egg_stage")])
 
 ### Separar a coluna "Stage" nas colunas "stage" e "egg_stage" em novas linhas
 
-```{r}
-# separar colunas em linhas
-penguins_raw_separar_linhas <- tidyr::separate_rows(data = penguins_raw,
+
+```r
+penguins_raw_separar_linhas &lt;- tidyr::separate_rows(data = penguins_raw,
                                                     Stage,
                                                     sep = ", ")
 head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species", 
@@ -1071,9 +1086,9 @@ head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species",
 
 ### Remove as linhas com NA de todas as colunas
 
-```{r}
-# remover linhas com na
-penguins_raw_todas_na <- tidyr::drop_na(data = penguins_raw)
+
+```r
+penguins_raw_todas_na &lt;- tidyr::drop_na(data = penguins_raw)
 head(penguins_raw_todas_na)
 ```
 
@@ -1085,9 +1100,9 @@ head(penguins_raw_todas_na)
 
 ### Remove as linhas com NA da coluna "Comments"
 
-```{r}
-# remover linhas com na de uma coluna
-penguins_raw_colunas_na <- tidyr::drop_na(data = penguins_raw,
+
+```r
+penguins_raw_colunas_na &lt;- tidyr::drop_na(data = penguins_raw,
                                           any_of("Comments"))
 head(penguins_raw_colunas_na[, "Comments"])
 ```
@@ -1100,9 +1115,9 @@ head(penguins_raw_colunas_na[, "Comments"])
 
 ### Substituir os NAs da coluna "Unknown" por 0 
 
-```{r}
-# substituir nas por 0 em uma coluna
-penguins_raw_subs_na <- tidyr::replace_na(data = penguins_raw,
+
+```r
+penguins_raw_subs_na &lt;- tidyr::replace_na(data = penguins_raw,
                                           list(Comments = "Unknown"))
 head(penguins_raw_subs_na[, "Comments"])
 ```
@@ -1139,9 +1154,9 @@ background-position: 50% 50%
 2. **values_from**: variável numérica que irá preencher os dados
 3. **values_fill**: valor para preencher os NAs
 
-```{r}
-# long para wide
-penguins_raw_pivot_wider <- tidyr::pivot_wider(data = penguins_raw[, c(2, 3, 13)], 
+
+```r
+penguins_raw_pivot_wider &lt;- tidyr::pivot_wider(data = penguins_raw[, c(2, 3, 13)], 
                                                names_from = Species, 
                                                values_from = `Body Mass (g)`)
 head(penguins_raw_pivot_wider)
@@ -1166,9 +1181,9 @@ background-position: 50% 50%
 1. **names_to**: nome da coluna que receberá os nomes
 2. **values_to**: nome da coluna que receberá os valores
 
-```{r}
-# wide para long
-penguins_raw_pivot_longer <- tidyr::pivot_longer(data = penguins_raw[, c(2, 3, 10:13)], 
+
+```r
+penguins_raw_pivot_longer &lt;- tidyr::pivot_longer(data = penguins_raw[, c(2, 3, 10:13)], 
                                                  cols = `Culmen Length (mm)`:`Body Mass (g)`,
                                                  names_to = "medidas", 
                                                  values_to = "valores")
@@ -1187,9 +1202,7 @@ class: inverse, center, middle
 
 ### Separe os nomes comuns dos nomes científicos dos pinguins do dados `penguins_raw`
 
-```{r echo=FALSE}
-countdown(minutes = 3, seconds = 00, color_background = "gray30")
-```
+
 
 ---
 
@@ -1197,8 +1210,9 @@ countdown(minutes = 3, seconds = 00, color_background = "gray30")
 
 ## Solução
 
-```{r}
-penguins_raw_sep <- penguins_raw %>% 
+
+```r
+penguins_raw_sep &lt;- penguins_raw %&gt;% 
   tidyr::separate(col = "Species", 
                   into = c("common_names", "scientific_names"), 
                   sep = "[(]",
@@ -1212,17 +1226,16 @@ head(penguins_raw_sep)
 
 ### Calcule a massa média dos indivíduos das espécies de penguins por ilha. Dicas: `tidyr::replace_na()` e `tidyr::pivot_wider()`
 
-```{r echo=FALSE}
-countdown(minutes = 10, seconds = 00, color_background = "gray30")
-```
+
 
 ---
 
 # Exercício 11
 ## Solução
-```{r}
-penguins_raw_pivot_wider <- penguins_raw[, c("Island", "Species", "Body Mass (g)")] %>% 
-  tidyr::replace_na(list(`Body Mass (g)` = 0)) %>% 
+
+```r
+penguins_raw_pivot_wider &lt;- penguins_raw[, c("Island", "Species", "Body Mass (g)")] %&gt;% 
+  tidyr::replace_na(list(`Body Mass (g)` = 0)) %&gt;% 
   tidyr::pivot_wider(names_from = c(Species), 
                      values_from = `Body Mass (g)`,
                      values_fn = mean)
@@ -1247,7 +1260,7 @@ class: clear
 background-image: url(img/dplyr_wrangling.png)
 background-size: 800px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [@allison_horst](https://twitter.com/allison_horst)
 
@@ -1261,7 +1274,7 @@ background-position: 50% 60%
 
 ## Data Transformation Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [Data Transformation Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
 ---
@@ -1284,7 +1297,7 @@ background-position: 50% 80%
 
 ### Sua gramática simples contém **funções verbais** para manipulação de dados
 
-<br>
+&lt;br&gt;
 
 -   Verbos: `mutate()`, `select()`, `filter()`, `arrange()`, `summarise()`, `slice()`, `rename()`, etc.
 -   Replicação: `across()`, `if_any()`, `if_all()`, `where()`, `starts_with()`, `ends_with()`, `contains()`, etc.
@@ -1331,15 +1344,15 @@ background-position: 50% 80%
 
 --
 
-<br>
+&lt;br&gt;
 
 ### As funções verbais **não modificam** o tibble original
 
-```{r eval=FALSE}
-# sintaxe
-tb_dplyr <- tb %>% 
-  funcao_verbal1(argumento1, argumento2, ...) %>% 
-  funcao_verbal2(argumento1, argumento2, ...) %>% 
+
+```r
+tb_dplyr &lt;- tb %&gt;% 
+  funcao_verbal1(argumento1, argumento2, ...) %&gt;% 
+  funcao_verbal2(argumento1, argumento2, ...) %&gt;% 
   funcao_verbal3(argumento1, argumento2, ...)
 ```
 
@@ -1351,9 +1364,10 @@ tb_dplyr <- tb %>%
 
 ### Reordena as colunas por nome ou posição
 
-```{r}
-# reordenar colunas - nome
-penguins_relocate_col <- penguins %>% 
+
+```r
+# reordena colunas - nome
+penguins_relocate_col &lt;- penguins %&gt;% 
  dplyr::relocate(sex, year, .after = island)
 head(penguins_relocate_col)
 ```
@@ -1366,9 +1380,10 @@ head(penguins_relocate_col)
 
 ### Reordena as colunas por nome ou posição
 
-```{r}
-# reordenar colunas - posicao
-penguins_relocate_ncol <- penguins %>% 
+
+```r
+# reordena colunas - posicao
+penguins_relocate_ncol &lt;- penguins %&gt;% 
   dplyr::relocate(sex, year, .after = 2)
 head(penguins_relocate_ncol)
 ```
@@ -1381,9 +1396,10 @@ head(penguins_relocate_ncol)
 
 ### Renomeia as colunas
 
-```{r}
-# renomear colunas
-penguins_rename <- penguins %>% 
+
+```r
+# renomeia colunas
+penguins_rename &lt;- penguins %&gt;% 
   dplyr::rename(bill_length = bill_length_mm,
                 bill_depth = bill_depth_mm,
                 flipper_length = flipper_length_mm,
@@ -1399,12 +1415,23 @@ head(penguins_rename)
 
 ### Renomeia as várias colunas
 
-```{r}
-# renomear todas as colunas
-penguins_rename_with <- penguins %>% 
+
+```r
+# mudar o nome de todas as colunas
+penguins_rename_with &lt;- penguins %&gt;% 
   dplyr::rename_with(toupper)
 head(penguins_rename_with)
 ```
+
+---
+
+background-image: url(img/dplyr_select.png)
+background-size: 800px
+background-position: 50% 50%
+
+# 8. dplyr
+
+## **3. `select()`**
 
 ---
 
@@ -1414,9 +1441,10 @@ head(penguins_rename_with)
 
 ### Seleciona colunas pela posição ou pelo nome
 
-```{r}
-# selecionar colunas por posicao
-penguins_select_position <- penguins %>% 
+
+```r
+# seleciona colunas por posicao
+penguins_select_position &lt;- penguins %&gt;% 
   dplyr::select(3:6)
 head(penguins_select_position)
 ```
@@ -1429,9 +1457,10 @@ head(penguins_select_position)
 
 ### Seleciona colunas pela posição ou pelo nome
 
-```{r}
+
+```r
 # selecionar colunas por nomes
-penguins_select_names <- penguins %>% 
+penguins_select_names &lt;- penguins %&gt;% 
   dplyr::select(bill_length_mm:body_mass_g)
 head(penguins_select_names)
 ```
@@ -1444,9 +1473,10 @@ head(penguins_select_names)
 
 ### Remove as colunas pela posição ou pelo nome
 
-```{r}
-# remover colunas pelo nome
-penguins_select_names_remove <- penguins %>% 
+
+```r
+# remove colunas pelo nome
+penguins_select_names_remove &lt;- penguins %&gt;% 
   dplyr::select(-bill_length_mm:body_mass_g)
 head(penguins_select_names_remove)
 ```
@@ -1458,12 +1488,25 @@ head(penguins_select_names_remove)
 
 ### Seleciona colunas por um padrão
 
-```{r}
+
+```r
 # selecionar colunas por padrao - starts_with(), ends_with() e contains()
-penguins_select_contains <- penguins %>% 
+penguins_select_contains &lt;- penguins %&gt;% 
   dplyr::select(contains("_mm"))
 head(penguins_select_contains)
 ```
+
+---
+
+background-image: url(img/dplyr_pull.png)
+background-size: 800px
+background-position: 50% 50%
+
+# 8. dplyr
+
+## **4. `pull()`**
+
+### Seleciona uma coluna como vetor
 
 ---
 
@@ -1473,12 +1516,23 @@ head(penguins_select_contains)
 
 ### Seleciona uma coluna como vetor
 
-```{r}
+
+```r
 # coluna para vetor
-penguins_select_pull <- penguins %>% 
+penguins_select_pull &lt;- penguins %&gt;% 
   dplyr::pull(bill_length_mm)
 head(penguins_select_pull, 15)
 ```
+
+---
+
+background-image: url(img/dplyr_mutate.png)
+background-size: 800px
+background-position: 50% 50%
+
+# 8. dplyr
+
+## **5. `mutate()`**
 
 ---
 
@@ -1488,9 +1542,10 @@ head(penguins_select_pull, 15)
 
 ### Adiciona colunas novas ou vindas de operações
 
-```{r}
-# adicionar colunas
-penguins_mutate <- penguins %>% 
+
+```r
+# adiciona colunas
+penguins_mutate &lt;- penguins %&gt;% 
   dplyr::mutate(body_mass_kg = body_mass_g/1e3, .before = sex)
 head(penguins_mutate)
 ```
@@ -1503,12 +1558,24 @@ head(penguins_mutate)
 
 ### Adiciona colunas novas ou vindas de operações
 
-```{r}
-## modificar varias colunas
-penguins_mutate_across <- penguins %>% 
+
+```r
+## modifica varias colunas
+penguins_mutate_across &lt;- penguins %&gt;% 
   dplyr::mutate(across(where(is.factor), as.character))
 head(penguins_mutate_across)
 ```
+
+
+---
+
+background-image: url(img/dplyr_arrange.png)
+background-size: 800px
+background-position: 50% 50%
+
+# 8. dplyr
+
+## **6. `arrange()`**
 
 ---
 
@@ -1516,11 +1583,12 @@ head(penguins_mutate_across)
 
 ## **6. `arrange()`**
 
-### Reordena de forma crescente pelos valores de uma coluna
+### Reordena de forma crescente ou decrescente pelos valores de uma coluna
 
-```{r}
-# reordenar os valores por ordem crescente
-penguins_arrange <- penguins %>% 
+
+```r
+# reordena linhas - crescente
+penguins_arrange &lt;- penguins %&gt;% 
   dplyr::arrange(body_mass_g)
 head(penguins_arrange)
 ```
@@ -1531,11 +1599,12 @@ head(penguins_arrange)
 
 ## **6. `arrange()`**
 
-### Reordena de forma decrescente pelos valores de uma coluna
+### Reordena de forma crescente ou decrescente pelos valores de uma coluna
 
-```{r}
-# reordenar os valores por ordem decrescente
-penguins_arrange_desc <- penguins %>% 
+
+```r
+# reordena linhas - decrescente
+penguins_arrange_desc &lt;- penguins %&gt;% 
   dplyr::arrange(desc(body_mass_g))
 head(penguins_arrange_desc)
 ```
@@ -1548,9 +1617,10 @@ head(penguins_arrange_desc)
 
 ### Reordena de forma crescente ou decrescente pelos valores de uma coluna
 
-```{r}
-# reordenar os valores por ordem decrescente
-penguins_arrange_desc_m <- penguins %>% 
+
+```r
+# reordena linhas - decrescente
+penguins_arrange_desc_m &lt;- penguins %&gt;% 
   dplyr::arrange(-body_mass_g)
 head(penguins_arrange_desc_m)
 ```
@@ -1561,29 +1631,25 @@ head(penguins_arrange_desc_m)
 
 ## **6. `arrange()`**
 
-### Reordena de forma crescente ou decrescente pelos valores de várias colunas
+### Reordena de forma crescente ou decrescente pelos valores de uma coluna
 
-```{r}
-# reordenar os valores por ordem crescente de varias colunas
-penguins_arrange_across <- penguins %>% 
+
+```r
+## reordena linhas - multiplas colunas
+penguins_arrange_across &lt;- penguins %&gt;% 
   dplyr::arrange(across(where(is.numeric)))
 head(penguins_arrange_across)
 ```
 
 ---
 
+background-image: url(img/dplyr_filter.png)
+background-size: 800px
+background-position: 50% 50%
+
 # 8. dplyr
 
 ## **7. `filter()`**
-
-### Filtro de linhas por valores de uma coluna
-
-```{r eval=FALSE}
-# filtrar linhas por valores de uma coluna
-penguins_filter <- penguins %>% 
-  dplyr::filter(species == "Adelie")
-head(penguins_filter)
-```
 
 ---
 
@@ -1591,180 +1657,142 @@ head(penguins_filter)
 
 ## **7. `filter()`**
 
-### Filtro de linhas por valores de uma coluna
+### operadores: &gt;, &gt;=, &lt;, &lt;=, ==, !=, is.na, !is.na, %in%
+### Filtrar para locais com mais de 5 espécies
 
-```{r eval=FALSE}
-# filtrar linhas por valores de duas colunas
-penguins_filter_two <- penguins %>% 
-  dplyr::filter(species == "Adelie" & sex == "female")
-head(penguins_filter_two)
+```r
+si_filter &lt;- si %&gt;% 
+  dplyr::filter(species_number &gt; 5)
+si_filter
+```
+
+--
+
+### Filtrar para locais centre 1 e 5 espécies
+
+```r
+si_filter &lt;- si %&gt;% 
+  dplyr::filter(between(species_number, 1, 5))
+si_filter
 ```
 
 ---
 
 # 8. dplyr
 
-## **7. `filter()`**
+## **6 filter** 
+### Filtrar para locais com NA no métodos passivos
 
-### Filtro de linhas por valores de uma coluna e vários valores
+```r
+si_filter &lt;- si %&gt;% 
+  dplyr::filter(is.na(passive_methods))
+si_filter
+```
+--
+### Filtrar para locais sem NA no métodos passivos
 
-```{r eval=FALSE}
-# filtrar linhas por mais de um valor e mais de uma coluna
-penguins_filter_in <- penguins %>% 
-  dplyr::filter(species %in% c("Adelie", "Gentoo"),
-                sex == "female")
-head(penguins_filter_in)
+```r
+si_filter &lt;- si %&gt;% 
+  dplyr::filter(!is.na(passive_methods))
+si_filter
 ```
 
 ---
 
 # 8. dplyr
 
-## **7. `filter()`**
+## **6 filter** 
+### Filtrar para locais sem NA no métodos ativos **E** passivos
 
-### Filtro por valores não-NA
-
-```{r eval=FALSE}
-# filtrar linhas por nas
-penguins_filter_na <- penguins %>% 
-  dplyr::filter(!is.na(sex) == TRUE)
-head(penguins_filter_na)
+```r
+si_filter &lt;- si %&gt;% 
+  dplyr::filter(!is.na(active_methods) &amp; !is.na(passive_methods))
+si_filter
 ```
 
 ---
 
 # 8. dplyr
 
-## **7. `filter()`**
+## **6 filter** 
+### Filtrar para locais amostrados com mais de 5 espécies **E** em São Paulo
 
-### Filtro por intervalos
+```r
+si_filter &lt;- si %&gt;% 
+  dplyr::filter(species_number &gt; 5 &amp; state_abbreviation == "BR-SP") 
+si_filter
+```
+--
+### Filtrar para locais amostrados com mais de 5 espécies **OU** em São Paulo
 
-```{r eval=FALSE}
-# filtrar linhas por valores em um intervalo
-penguins_filter_between <- penguins %>% 
-  dplyr::filter(between(body_mass_g, 3000, 4000))
-head(penguins_filter_between)
+```r
+si_filter &lt;- si %&gt;% 
+  dplyr::filter(species_number &gt; 5 | state_abbreviation == "BR-SP")
+si_filter
 ```
 
 ---
 
 # 8. dplyr
 
-## **7. `filter()`**
+## **7 distinct**
+### Remove linhas duplicadas considerando a coluna número de espécies
 
-### Filtro linhas por várias colunas simultaneamente
-
-```{r eval=FALSE}
-# filtrar linhas por valores de varias colunas
-penguins_filter_if <- penguins %>% 
-  dplyr::filter(if_all(where(is.integer), ~ . > 200))
-head(penguins_filter_if)
+```r
+si_distinct &lt;- si %&gt;% 
+  dplyr::distinct(species_number)
+si_distinct
 ```
 
 ---
 
 # 8. dplyr
 
-## **8. `slice()`** 
+## **7 distinct**
+### Remove linhas duplicadas considerando a coluna número de espécies e mantém as demais
 
-### Seleção das linhas por intervalos, indicando quais linhas desejamos
-
-```{r}
-# selecionar linhas por intervalos
-penguins_slice <- penguins %>% 
-  dplyr::slice(n = c(1, 3, 300:n()))
-head(penguins_slice)
+```r
+si_distinct &lt;- si %&gt;% 
+  dplyr::distinct(species_number, .keep_all = TRUE)
+si_distinct
 ```
 
 ---
 
 # 8. dplyr
 
-## **8. `slice()`** 
+## **8 slice** 
+### Selecionar linhas 1 a 10
 
-### Seleção das linhas iniciais
-
-```{r}
-# selecionar linhas iniciais
-penguins_slice_head <- penguins %>% 
-  dplyr::slice_head(n = 5)
-head(penguins_slice_head)
+```r
+si_slice &lt;- si %&gt;% 
+  dplyr::slice(1:10)
+si_slice
 ```
 
 ---
 
 # 8. dplyr
 
-## **8. `slice()`** 
+## **9 n_sample** 
 
-### Seleção de linhas por valores de uma coluna
+### Amostrar 100 linhas aleatoriamente
 
-```{r}
-# selecionar linhas por valores de uma coluna
-penguins_slice_max <- penguins %>% 
-  dplyr::slice_max(body_mass_g, n = 5)
-head(penguins_slice_max)
+```r
+si_sample_n &lt;- si %&gt;% 
+  dplyr::sample_n(100)
+si_sample_n
 ```
 
 ---
 
-# 8. dplyr
-
-## **8. `slice()`** 
-
-### Seleção de linhas aleatoriamente
-
-```{r}
-# selecionar linhas aleatoriamente
-penguins_slice_sample <- penguins %>% 
-  dplyr::slice_sample(n = 30)
-head(penguins_slice_sample)
-```
-
----
+background-image: url(img/dplyr_summarize.png)
+background-size: 800px
+background-position: 50% 50%
 
 # 8. dplyr
 
-## **9. `distinct()`**
-
-###  Retira linhas com valores duplicados com base nos valores de colunas
-
-```{r}
-# retirar linhas com valores duplicados
-penguins_distinct <- penguins %>% 
-  dplyr::distinct(body_mass_g)
-head(penguins_distinct)
-```
-
----
-
-# 8. dplyr
-
-## **9. `distinct()`**
-
-###  Retira linhas com valores duplicados com base nos valores de colunas mantendo as colunas
-
-```{r}
-# retirar linhas com valores duplicados e manter colunas
-penguins_distinct_keep_all <- penguins %>% 
-  dplyr::distinct(body_mass_g, .keep_all = TRUE)
-head(penguins_distinct_keep_all)
-```
-
----
-
-# 8. dplyr
-
-## **9. `distinct()`**
-
-###  Retira linhas com valores duplicados para várias colunas
-
-```{r}
-# retirar linhas com valores duplicados para varias colunas
-penguins_distinct_keep_all_across <- penguins %>% 
-  dplyr::distinct(across(where(is.integer)), .keep_all = TRUE)
-head(penguins_distinct_keep_all_across)
-```
+## **10 summarise**
 
 ---
 
@@ -1774,8 +1802,9 @@ head(penguins_distinct_keep_all_across)
 
 ### Média e desvio padrão do número de espécies total
 
-```{r}
-si_summarise <- si %>% 
+
+```r
+si_summarise &lt;- si %&gt;% 
   dplyr::summarise(mean_sp = mean(species_number), 
                    sd_sp = sd(species_number))
 si_summarise
@@ -1787,9 +1816,10 @@ si_summarise
 
 ## **10 summarise**
 ### Média e desvio padrão do número de espécies por país
-```{r}
-si_summarise_group <- si %>% 
-  dplyr::group_by(country) %>% 
+
+```r
+si_summarise_group &lt;- si %&gt;% 
+  dplyr::group_by(country) %&gt;% 
   dplyr::summarise(mean_sp = mean(species_number), 
                    sd_sp = sd(species_number))
 si_summarise_group
@@ -1805,7 +1835,7 @@ background-position: 50% 60%
 
 ## **11 *_join**
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://rpubs.com/williamsurles/293454
 
@@ -1888,8 +1918,9 @@ background-position: 50% 50%
 ## Adicionar longitute e latitude na tabela de espécies
 
 ### Selecionar as colunas que preciso da tabela **si**
-```{r}
-si_coord <- si %>% 
+
+```r
+si_coord &lt;- si %&gt;% 
   dplyr::select(id, longitude, latitude)
 si_coord 
 ```
@@ -1903,9 +1934,10 @@ si_coord
 ## Adicionar longitute e latitude na tabela de espécies
 
 ### Join com as tabelas pela coluna "id"
-```{r}
+
+```r
 # join dos dados
-sp_join <- sp %>% 
+sp_join &lt;- sp %&gt;% 
   dplyr::left_join(si_coord, by = "id")
 sp_join
 ```
@@ -1919,7 +1951,8 @@ sp_join
 ## Adicionar longitute e latitude na tabela de espécies
 
 ### Nome das colunas
-```{r}
+
+```r
 colnames(sp_join)
 ```
 
@@ -1932,8 +1965,9 @@ colnames(sp_join)
 ## Adicionar longitute e latitude na tabela de espécies
 
 ### Nome das colunas
-```{r}
-sp_join %>% 
+
+```r
+sp_join %&gt;% 
   dplyr::select(species, longitude, latitude)
 ```
 
@@ -1951,10 +1985,11 @@ class: inverse, center, middle
 
 ### Realiza operações dependente de confições
 
-```{r}
-sp_wide_rename <- sp_wide %>% 
+
+```r
+sp_wide_rename &lt;- sp_wide %&gt;% 
   dplyr::rename_at(vars(contains(" ")), 
-                   list(~stringr::str_replace_all(., " ", "_"))) %>% 
+                   list(~stringr::str_replace_all(., " ", "_"))) %&gt;% 
   dplyr::rename_all(list(~stringr::str_to_lower(.)))
 sp_wide_rename
 ```
@@ -1969,8 +2004,9 @@ class: inverse, center, middle
 
 # 8. dplyr
 ## Permite manipular os dados de forma simples
-```{r}
-da <- si %>% 
+
+```r
+da &lt;- si %&gt;% 
   dplyr::select(id, state_abbreviation, species_number)
 da
 ```
@@ -1979,10 +2015,11 @@ da
 
 # 8. dplyr
 ## Permite manipular os dados de forma simples
-```{r}
-da <- si %>% 
-  dplyr::select(id, state_abbreviation, species_number) %>% 
-  dplyr::filter(species_number > 5)
+
+```r
+da &lt;- si %&gt;% 
+  dplyr::select(id, state_abbreviation, species_number) %&gt;% 
+  dplyr::filter(species_number &gt; 5)
 da
 ```
 
@@ -1990,11 +2027,12 @@ da
 
 # 8. dplyr
 ## Permite manipular os dados de forma simples
-```{r}
-da <- si %>% 
-  dplyr::select(id, state_abbreviation, species_number) %>% 
-  dplyr::filter(species_number > 5) %>% 
-  dplyr::group_by(state_abbreviation) %>% 
+
+```r
+da &lt;- si %&gt;% 
+  dplyr::select(id, state_abbreviation, species_number) %&gt;% 
+  dplyr::filter(species_number &gt; 5) %&gt;% 
+  dplyr::group_by(state_abbreviation) %&gt;% 
   dplyr::summarise(nsp_state_abb = n())
 da
 ```
@@ -2003,12 +2041,13 @@ da
 
 # 8. dplyr
 ## Permite manipular os dados de forma simples
-```{r}
-da <- si %>% 
-  dplyr::select(id, state_abbreviation, species_number) %>% 
-  dplyr::filter(species_number > 5) %>% 
-  dplyr::group_by(state_abbreviation) %>% 
-  dplyr::summarise(nsp_state_abb = n()) %>% 
+
+```r
+da &lt;- si %&gt;% 
+  dplyr::select(id, state_abbreviation, species_number) %&gt;% 
+  dplyr::filter(species_number &gt; 5) %&gt;% 
+  dplyr::group_by(state_abbreviation) %&gt;% 
+  dplyr::summarise(nsp_state_abb = n()) %&gt;% 
   dplyr::arrange(nsp_state_abb)
 da
 ```
@@ -2025,17 +2064,16 @@ class: inverse, center, middle
 
 ### Adicione essas novas colunas `alt_log, tem_log e pre_log`, que são a operação `log10` das colunas `altitude,	temperature e	precipitation` e atribua ao mesmo objeto `si` utilizando o formato tidyverse
 
-```{r echo=FALSE}
-countdown(minutes = 1, seconds = 30, color_background = "gray30")
-```
+
 
 ---
 
 # Exercício 12
 ## Solução
-```{r}
+
+```r
 # solucao
-si <- si %>% 
+si &lt;- si %&gt;% 
   dplyr::mutate(alt_log = log10(altitude),
                 tem_log = log10(temperature),
                 pre_log = log10(precipitation))
@@ -2048,17 +2086,16 @@ si[, 25:28]
 
 ### Ordene os dados em forma decrescente pela coluna `altitude`, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-```{r echo=FALSE}
-countdown(minutes = 1, seconds = 30, color_background = "gray30")
-```
+
 
 ---
 
 # Exercício 13
 ## Solução
-```{r}
+
+```r
 # solucao
-si_ar <- si %>% 
+si_ar &lt;- si %&gt;% 
   dplyr::arrange(-altitude)
 si_ar
 ```
@@ -2069,20 +2106,19 @@ si_ar
 
 ###  Filtre as linhas com `altitude` maior que 1000 mm, `temperature` menor que 15 ºC e `precipitation` maior que 1000 mm, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-```{r echo=FALSE}
-countdown(minutes = 1, seconds = 30, color_background = "gray30")
-```
+
 
 ---
 
 # Exercício 14
 ## Solução
-```{r}
+
+```r
 # solucao
-si_fi <- si %>% 
-  dplyr::filter(altitude > 1000,
-                temperature < 15,
-                precipitation > 1000)
+si_fi &lt;- si %&gt;% 
+  dplyr::filter(altitude &gt; 1000,
+                temperature &lt; 15,
+                precipitation &gt; 1000)
 si_fi
 ```
 
@@ -2092,18 +2128,17 @@ si_fi
 
 ### Amostre 200 linhas aleatoriamente com número de espécies maior que 15 espécies, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
 
-```{r echo=FALSE}
-countdown(minutes = 1, seconds = 30, color_background = "gray30")
-```
+
 
 ---
 
 # Exercício 15
 ## Solução
-```{r}
+
+```r
 # solucao
-si_sa <- si %>% 
-  dplyr::filter(species_number > 15) %>% 
+si_sa &lt;- si %&gt;% 
+  dplyr::filter(species_number &gt; 15) %&gt;% 
   dplyr::sample_n(200)
 si_sa
 ```
@@ -2124,7 +2159,7 @@ background-position: 50% 50%
 
 ## Work with Strings Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/rstudio/cheatsheets/raw/master/strings.pdf
 
@@ -2135,14 +2170,16 @@ background-position: 50% 50%
 ## Pacote para a manipulação de strings
 
 ### Comprimento
-```{r}
+
+```r
 stringr::str_length("abc")
 ```
 
 --
 
 ### Extração por posição
-```{r}
+
+```r
 stringr::str_sub("abc", 3)
 ```
 
@@ -2151,21 +2188,24 @@ stringr::str_sub("abc", 3)
 # 4.8 stringr
 
 ### Inserir espaço em branco - esquerda
-```{r}
+
+```r
 stringr::str_pad("abc", width = 4, side = "left")
 ```
 
 --
 
 ### Inserir espaço em branco - direira
-```{r}
+
+```r
 stringr::str_pad("abc", width = 4, side = "right")
 ```
 
 --
 
 ### Remover espaço em branco do começo, final ou ambos
-```{r}
+
+```r
 stringr::str_trim(" abc ")
 ```
 
@@ -2174,15 +2214,18 @@ stringr::str_trim(" abc ")
 # 4.8 stringr
 
 ### Minúsculas e maiúsculas
-```{r}
+
+```r
 stringr::str_to_upper("abc")
 ```
 --
-```{r}
+
+```r
 stringr::str_to_title("abc")
 ```
 --
-```{r}
+
+```r
 stringr::str_to_title("aBc")
 ```
 
@@ -2191,16 +2234,19 @@ stringr::str_to_title("aBc")
 # 4.8 stringr
 
 ### Ordenação
-```{r}
-le <- sample(letters, 26, rep = TRUE)
+
+```r
+le &lt;- sample(letters, 26, rep = TRUE)
 le
 ```
 --
-```{r}
+
+```r
 stringr::str_sort(le)
 ```
 --
-```{r}
+
+```r
 stringr::str_sort(le, dec = TRUE)
 ```
 
@@ -2209,17 +2255,20 @@ stringr::str_sort(le, dec = TRUE)
 # 4.8 stringr
 
 ### Extrair por padrão
-```{r}
+
+```r
 stringr::str_extract("abc", "b")
 ```
 
 ### Substituir
-```{r}
+
+```r
 stringr::str_replace("abc", "a", "y")
 ```
 
 ### Separação
-```{r}
+
+```r
 stringr::str_split("a-b-c", "-")
 ```
 
@@ -2239,7 +2288,7 @@ background-position: 50% 50%
 
 ## Factors with forcats Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/rstudio/cheatsheets/raw/master/factors.pdf
 
@@ -2248,12 +2297,13 @@ background-position: 50% 50%
 # 4.9 forcats
 
 ### **as_factor()**: cria fatores
-```{r}
+
+```r
 # fixar amostragem
 set.seed(42)
 
 # cria um fator
-fa <- sample(c("alto", "medio", "baixo"), 30, rep = TRUE) %>% 
+fa &lt;- sample(c("alto", "medio", "baixo"), 30, rep = TRUE) %&gt;% 
   forcats::as_factor()
 fa
 ```
@@ -2263,9 +2313,10 @@ fa
 # 4.9 forcats
 
 ### **fct_recode()**: muda o nome dos níveis
-```{r}
+
+```r
 # muda o nome dos niveis
-fa_recode <- fa %>% 
+fa_recode &lt;- fa %&gt;% 
   forcats::fct_recode(a = "alto", m = "medio", b = "baixo")
 fa_recode
 ```
@@ -2275,9 +2326,10 @@ fa_recode
 # 4.9 forcats
 
 ### **fct_rev()**: inverte os níveis
-```{r}
+
+```r
 # inverte os niveis
-fa_rev <- fa_recode %>% 
+fa_rev &lt;- fa_recode %&gt;% 
   forcats::fct_rev()
 fa_rev
 ```
@@ -2287,9 +2339,10 @@ fa_rev
 # 4.9 forcats
 
 ### **fct_relevel()**: especifica a classificação de um ou mais níveis
-```{r}
+
+```r
 # especifica a classificacao de um nivel
-fa_relevel <- fa_recode %>% 
+fa_relevel &lt;- fa_recode %&gt;% 
   forcats::fct_relevel(c("a", "m", "b"))
 fa_relevel
 ```
@@ -2299,9 +2352,10 @@ fa_relevel
 # 4.9 forcats
 
 ### **fct_inorder()**: ordem em que aparece
-```{r}
+
+```r
 # ordem em que aparece
-fa_inorder <- fa_recode %>% 
+fa_inorder &lt;- fa_recode %&gt;% 
   forcats::fct_inorder()
 fa_inorder
 ```
@@ -2311,9 +2365,10 @@ fa_inorder
 # 4.9 forcats
 
 ### **fct_infreq()**: ordem (decrescente) de frequência
-```{r}
+
+```r
 # ordem (decrescente) de frequencia
-fa_infreq <- fa_recode %>% 
+fa_infreq &lt;- fa_recode %&gt;% 
   forcats::fct_infreq()
 fa_infreq
 ```
@@ -2323,9 +2378,10 @@ fa_infreq
 # 4.9 forcats
 
 ### **fct_lump()**: agregação de níveis raros em um nível
-```{r}
+
+```r
 # agregacao de niveis raros em um nivel
-fa_lump <- fa_recode %>% 
+fa_lump &lt;- fa_recode %&gt;% 
   forcats::fct_lump()
 fa_lump
 ```
@@ -2342,7 +2398,7 @@ class: clear
 background-image: url(img/lubridate_allison.png)
 background-size: 600px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 Fonte: [@allison_horst](https://twitter.com/allison_horst)
 
@@ -2356,7 +2412,7 @@ background-position: 50% 50%
 
 ## Dates and Times Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf
 
@@ -2367,13 +2423,15 @@ background-position: 50% 50%
 ## Pacote à parte do tidyverse
 
 ### Instalar
-```{r eval=FALSE}
+
+```r
 # install
 install.packages("lubridate")
 ```
 
 ### Carregar
-```{r}
+
+```r
 # load
 library(lubridate)
 ```
@@ -2385,9 +2443,10 @@ library(lubridate)
 ### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
 
 ### **date**: classe para datas
-```{r}
+
+```r
 # string
-data_string <- "2020-04-24"
+data_string &lt;- "2020-04-24"
 data_string
 class(data_string)
 ```
@@ -2399,9 +2458,10 @@ class(data_string)
 ### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
 
 ### **date**: classe para datas
-```{r}
+
+```r
 # criar um objeto com a classe data
-data_date <- lubridate::date(data_string)
+data_date &lt;- lubridate::date(data_string)
 data_date
 class(data_date)
 ```
@@ -2413,9 +2473,10 @@ class(data_date)
 ### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
 
 ### **date**: classe para datas
-```{r}
+
+```r
 # criar um objeto com a classe data
-data_date <- lubridate::as_date(data_string)
+data_date &lt;- lubridate::as_date(data_string)
 data_date
 class(data_date)
 ```
@@ -2427,9 +2488,10 @@ class(data_date)
 ### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
 
 ### **date**: classe para datas
-```{r}
+
+```r
 # string
-data_string <- "20-10-2020"
+data_string &lt;- "20-10-2020"
 data_string
 class(data_string)
 ```
@@ -2441,9 +2503,10 @@ class(data_string)
 ### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
 
 ### **date**: classe para datas
-```{r}
+
+```r
 # criar um objeto com a classe data
-data_date <- lubridate::dmy(data_string)
+data_date &lt;- lubridate::dmy(data_string)
 data_date
 class(data_date)
 ```
@@ -2454,7 +2517,8 @@ class(data_date)
 
 ### Além de outros diversos formatos
 
-```{r}
+
+```r
 # formatos
 lubridate::dmy(20102020)
 lubridate::dmy("20102020")
@@ -2468,7 +2532,8 @@ lubridate::dmy("20.10.2020")
 
 ### Especificar horários
 
-```{r}
+
+```r
 # especificar horarios
 lubridate::dmy_h(2010202020)
 lubridate::dmy_hm(201020202035)
@@ -2492,7 +2557,7 @@ background-position: 80% 80%
 - month() - extrai o mês
 - year() - extrai o ano
 
-<br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] http://material.curso-r.com/lubridate/
 
@@ -2501,13 +2566,15 @@ background-position: 80% 80%
 # 4.10 lubridate
 
 ### Extração
-```{r}
+
+```r
 # criar
-data <- lubridate::dmy_hms(20102020203535)
+data &lt;- lubridate::dmy_hms(20102020203535)
 data
 ```
 --
-```{r}
+
+```r
 # extrair
 lubridate::second(data)
 lubridate::day(data)
@@ -2519,13 +2586,15 @@ lubridate::month(data)
 # 4.10 lubridate
 
 ### Extração
-```{r}
+
+```r
 # criar
-data <- lubridate::dmy_hms(20102020203535)
+data &lt;- lubridate::dmy_hms(20102020203535)
 data
 ```
 
-```{r}
+
+```r
 # extrair
 lubridate::wday(data)
 lubridate::wday(data, label = TRUE)
@@ -2536,15 +2605,17 @@ lubridate::wday(data, label = TRUE)
 # 4.10 lubridate
 
 ### Inclusão
-```{r}
+
+```r
 # criar
-data <- lubridate::dmy(20102020)
+data &lt;- lubridate::dmy(20102020)
 data
 ```
 
-```{r}
+
+```r
 # inlcuir
-lubridate::hour(data) <- 13
+lubridate::hour(data) &lt;- 13
 data
 ```
 
@@ -2553,17 +2624,19 @@ data
 # 4.10 lubridate
 
 ### Extrair a data no instante da execução
-<br>
-```{r}
+&lt;br&gt;
+
+```r
 # extrair a data no instante da execucao
 lubridate::today() 
 ```
 
 --
 
-<br>
+&lt;br&gt;
 
-```{r}
+
+```r
 # extrair a data e horario no instante da execucao
 lubridate::now()
 ```
@@ -2575,13 +2648,15 @@ quando eu preparava essa aula...
 # 4.10 lubridate
 
 ### Fusos horários
-```{r}
+
+```r
 # agora
-agora <- lubridate::ymd_hms(lubridate::now(), tz = "America/Sao_Paulo")
+agora &lt;- lubridate::ymd_hms(lubridate::now(), tz = "America/Sao_Paulo")
 agora
 ```
 --
-```{r}
+
+```r
 # verificar os tz
 OlsonNames()
 ```
@@ -2591,14 +2666,16 @@ OlsonNames()
 # 4.10 lubridate
 
 ### Fusos horários
-```{r}
+
+```r
 # que horas sao em...
 lubridate::with_tz(agora, tzone = "GMT")
 lubridate::with_tz(agora, tzone = "Europe/Stockholm")  
 ```
 --
-<br><br>
-```{r}
+&lt;br&gt;&lt;br&gt;
+
+```r
 # altera o fuso sem mudar a hora
 lubridate::force_tz(agora, tzone = "GMT")
 ```
@@ -2611,13 +2688,14 @@ lubridate::force_tz(agora, tzone = "GMT")
 
 ### Intervalos
 Intervalos podem ser salvos em objetos com classe interval
-```{r}
+
+```r
 # datas
-inicio_r <- lubridate::dmy("30-11-2011")
-hoje_r <- lubridate::today()
+inicio_r &lt;- lubridate::dmy("30-11-2011")
+hoje_r &lt;- lubridate::today()
 
 # intervalo
-r_interval <- lubridate::interval(inicio_r, hoje_r)
+r_interval &lt;- lubridate::interval(inicio_r, hoje_r)
 r_interval
 class(r_interval)
 ```
@@ -2631,13 +2709,15 @@ class(r_interval)
 ### Intervalos
 Intersecção de intervalor com a função `int_overlaps()`
 
-```{r}
+
+```r
 # outra forma de definir um intervalo: o operador %--%
-r_interval <- lubridate::dmy("30-11-2011") %--% lubridate::today() 
-namoro_interval <- lubridate::dmy("25-06-2008") %--% lubridate::today()   
+r_interval &lt;- lubridate::dmy("30-11-2011") %--% lubridate::today() 
+namoro_interval &lt;- lubridate::dmy("25-06-2008") %--% lubridate::today()   
 ```
 --
-```{r}
+
+```r
 # verificar sobreposicao
 lubridate::int_overlaps(r_interval, namoro_interval)
 ```
@@ -2649,7 +2729,8 @@ lubridate::int_overlaps(r_interval, namoro_interval)
 ## Operações com datas
 
 ### Aritmética com datas
-```{r}
+
+```r
 # somando datas
 inicio_r + lubridate::ddays(1)
 inicio_r + lubridate::dyears(1)
@@ -2662,9 +2743,10 @@ inicio_r + lubridate::dyears(1)
 ## Operações com datas
 
 ### Aritmética com datas
-```{r}
+
+```r
 # criando datas recorrentes
-reunioes <- lubridate::today() + lubridate::weeks(0:10)
+reunioes &lt;- lubridate::today() + lubridate::weeks(0:10)
 reunioes
 ```
 
@@ -2675,13 +2757,15 @@ reunioes
 ## Operações com datas
 
 ### Aritmética com datas
-```{r}
+
+```r
 # duracao de um intervalo 
-r_interval <- inicio_r %--% lubridate::today()
+r_interval &lt;- inicio_r %--% lubridate::today()
 r_interval
 ```
 --
-```{r}
+
+```r
 # transformacoes
 r_interval / lubridate::dyears(1)
 r_interval / lubridate::ddays(1)
@@ -2694,12 +2778,14 @@ r_interval / lubridate::ddays(1)
 ## Operações com datas
 
 ### Aritmética com datas
-```{r}
+
+```r
 # total do periodo estudando r
 lubridate::as.period(r_interval)
 ```
 --
-```{r}
+
+```r
 # tempo de namoro
 lubridate::as.period(namoro_interval)
 ```
@@ -2720,7 +2806,7 @@ background-position: 50% 50%
 
 ## Data Import Cheatsheet
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf
 
@@ -2732,13 +2818,13 @@ background-position: 50% 50%
 
 --
 
-<br>
+&lt;br&gt;
 
 ### Uma função **chama outra função** para ser **aplicada repetidamente** percorrendo **elementos de um objeto** (vetor, lista ou data frame)
 
 --
 
-<br>
+&lt;br&gt;
 
 ## Exemplos:
 - Análise de experimento em vários locais 
@@ -2757,7 +2843,7 @@ background-position: 85% 90%
 
 ## A principal função é a `map*()` e sua "família"
 
-<br>
+&lt;br&gt;
 
 ## map(.x, .f)
 ### .x: uma vetor, lista ou data frame
@@ -2768,11 +2854,13 @@ background-position: 85% 90%
 # 4.11 purrr
 
 ## Aplicando uma função em série
-```{r}
-x <- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
+
+```r
+x &lt;- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
 ```
 
-```{r}
+
+```r
 purrr::map(x, sum)
 ```
 
@@ -2782,7 +2870,7 @@ purrr::map(x, sum)
 
 ## Tipos de retorno
 
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
 |  map |  returns |
 |:--|:--|
@@ -2798,19 +2886,21 @@ purrr::map(x, sum)
 
 # 4.11 purrr
 
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
 ## Retorna double vector (numeric)
-```{r}
+
+```r
 purrr::map_dbl(x, sum)
 ```
 
-<br>
+&lt;br&gt;
 
 --
 
 ## Retorna strings
-```{r}
+
+```r
 purrr::map_chr(x, paste, collapse = " ")
 ```
 
@@ -2819,9 +2909,10 @@ purrr::map_chr(x, paste, collapse = " ")
 # 4.11 purrr
 
 ## Duas listas em paralelo
-```{r}
-x <- list(3, 5, 0, 1)
-y <- list(3, 5, 0, 1)
+
+```r
+x &lt;- list(3, 5, 0, 1)
+y &lt;- list(3, 5, 0, 1)
 
 purrr::map2_dbl(x, y, prod)
 ```
@@ -2829,10 +2920,11 @@ purrr::map2_dbl(x, y, prod)
 --
 
 ## Várias listas aninhadas
-```{r}
-x <- list(3, 5, 0, 1)
-y <- list(3, 5, 0, 1)
-z <- list(3, 5, 0, 1)
+
+```r
+x &lt;- list(3, 5, 0, 1)
+y &lt;- list(3, 5, 0, 1)
+z &lt;- list(3, 5, 0, 1)
 
 purrr::pmap_dbl(list(x, y, z), prod)
 ```
@@ -2842,9 +2934,10 @@ purrr::pmap_dbl(list(x, y, z), prod)
 # 4.11 purrr
 
 ### Calcular a média para várias colunas
-```{r}
-mean_var <- si %>% 
-  dplyr::select(species_number, altitude) %>% 
+
+```r
+mean_var &lt;- si %&gt;% 
+  dplyr::select(species_number, altitude) %&gt;% 
   purrr::map_dbl(mean)
 mean_var
 ```
@@ -2852,9 +2945,10 @@ mean_var
 --
 
 ### Calcular o desvio padrão para várias colunas
-```{r}
-sd_var <- si %>% 
-  dplyr::select(species_number, altitude) %>% 
+
+```r
+sd_var &lt;- si %&gt;% 
+  dplyr::select(species_number, altitude) %&gt;% 
   purrr::map_dbl(sd)
 sd_var
 ```
@@ -2891,7 +2985,7 @@ background-position: 50% 65%
 
 ### Faz o mapeamento em paralelo mais integrado possível
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 [*] https://www.tidyverse.org/blog/2020/10/furrr-0-2-0/
 
@@ -2909,7 +3003,7 @@ background-position: 50% 40%
 
 # Leitura
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 *[http://www.ufrrj.br/lga/tiagomarino/artigos/oqueegeoprocessamento.pdf]
 
@@ -2928,15 +3022,124 @@ background-position: 35% 50%, 90% 55%, 5% 86%
 
 ## Maurício Vancine
 
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
 Contatos:
 
-`r icons::icon_style(icons::fontawesome(name = "envelope", style = "solid"), fill = "#23373b")` [mauricio.vancine@gmail.com]()  
-`r icons::icon_style(icons::fontawesome("twitter"), fill = "#23373b")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
-`r icons::icon_style(icons::fontawesome(name = "github"), fill = "#23373b")` [mauriciovancine](https://github.com/mauriciovancine)
-`r icons::icon_style(icons::fontawesome(name = "link", style = "solid"), fill = "#23373b")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauricio.vancine@gmail.com]()  
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [@mauriciovancine](https://twitter.com/mauriciovancine)  
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine](https://github.com/mauriciovancine)
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine.github.io](https://mauriciovancine.github.io)
 
-<br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
 Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis). Animação dos sapos por [@probzz](https://twitter.com/probzz/status/1367613720294170627).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "rainbow",
+"highlightLines": false,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

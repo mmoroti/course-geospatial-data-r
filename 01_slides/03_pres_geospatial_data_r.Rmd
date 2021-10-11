@@ -1,23 +1,28 @@
 ---
 title: "Introdução ao uso de dados geoespaciais no R <br><br><br>"
-subtitle: "3 Estrutura e manipulação de dados <br><br><br>"
-author: "Maurício H. Vancine <br> Milton C. Ribeiro"
-date: "20/10/2020"
+subtitle: "3 Estrutura e manipulação de dados"
+author: " Maurício H. Vancine <br> Milton C. Ribeiro"
+institute: "UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)"
+date: "25/10/2021"
 output:
   xaringan::moon_reader:
-    css: [metropolis, metropolis-fonts]
+    css: [default, metropolis, metropolis-fonts, custom.css]
     lib_dir: libs
     nature:
-      ratio: '16:9'
       highlightStyle: rainbow
-      highlightLines: true
+      highlightLines: false
+      highlightSpans: true
       countIncrementalSlides: false
+      slideNumberFormat: "%current%/%total%"
+      ratio: "16:9"
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
 knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
+if(!require(vegan)) install.packages("vegan")
+data(dune)
 ```
 
 class: clear
@@ -33,15 +38,14 @@ background-position: 85% 90%
 # 3 Estrutura e manipulação de dados
 
 ## Conteúdo
-1. Atributo dos objetos
-1. Modo dos objetos (numeric, character e logical)
-1. Estrutura dos objetos (vector, factor, matrix, data frame e list)
+
+1. Atributos dos objetos
 1. Manipulação de dados unidimensionais
-1. Manipulação de dados bidimensionais
+1. Manipulação de dados multidimensionais
 1. Valores faltantes e especiais
 1. Diretório de trabalho
 1. Importar dados
-1. Conferir e manejar dados importados
+1. Conferência de dados importados
 1. Exportar dados
 
 ---
@@ -56,7 +60,7 @@ background-position: 85% 90%
 
 ---
 
-# 3.1 Atributos dos objetos
+# 1. Atributos dos objetos
 
 ## Atribuição
 
@@ -76,7 +80,7 @@ obj_10
 
 ---
 
-# 3.1 Atributos dos objetos
+# 1. Atributos dos objetos
 
 ## Atributos dos objetos no R
 
@@ -88,21 +92,27 @@ obj_10
 
 ### 1. **Nome**: palavra que o R reconhece os dados atribuídos
 
---
-
 ### 2. **Conteúdo**: dados em si
-
---
 
 ### 3. **Atributos**: modos (*natureza*) e estruturas (*organização*)
 
 ---
 
+# 1. Atributos dos objetos
+
+## Atributos dos objetos no R
+
+```{r}
+attributes(dune)
+```
+
+---
+
 background-image: url(img/code_modes.png)
-background-size: 70%
+background-size: 60%
 background-position: 50% 90%
 
-# 3.2 Modo dos objetos
+# 1. Atributos dos objetos
 
 ## Modos (*natureza*): numeric, character e logical
 
@@ -110,33 +120,60 @@ background-position: 50% 90%
 
 ---
 
-# 3.2 Modo dos objetos
+# 1. Atributos dos objetos
 
-## **1. Numeric**: números inteiros ou decimais
+## **1. Numeric (double)**: números decimais
 
 ```{r}
-# numeric
-obj_num <- 1
-obj_num
+# numeric double
+obj_num_dou <- 1
+obj_num_dou
 ```
---
+
 ```{r}
 # mode
-mode(obj_num)
+mode(obj_num_dou)
+```
+
+```{r}
+# type
+typeof(obj_num_dou)
 ```
 
 ---
 
-# 3.2 Modo dos objetos
+# 1. Atributos dos objetos
 
-## **2. Character**: texto ou caracteres
+## **2. Numeric (integer)**: números inteiros
+
+```{r}
+# numeric integer
+obj_num_int <- 1L
+obj_num_int
+```
+
+```{r}
+# mode
+mode(obj_num_int)
+```
+
+```{r}
+# type
+typeof(obj_num_int)
+```
+
+---
+
+# 1. Atributos dos objetos
+
+## **3. Character**: texto ou caracteres
 
 ```{r}
 # character
 obj_cha <- "a" # atencao para as aspas
 obj_cha
 ```
---
+
 ```{r}
 # mode
 mode(obj_cha)
@@ -144,16 +181,16 @@ mode(obj_cha)
 
 ---
 
-# 3.2 Modo dos objetos
+# 1. Atributos dos objetos
 
-## **3. Logical**: indica a ocorrência ou não de um evento (TRUE ou FALSE - booleano)
+## **4. Logical**: ocorrência ou não de um evento (TRUE ou FALSE)
 
 ```{r}
 # logical
 obj_log <- TRUE # maiusculas e sem aspas
 obj_log
 ```
---
+
 ```{r}
 # mode
 mode(obj_log)
@@ -161,7 +198,24 @@ mode(obj_log)
 
 ---
 
-# 3.2 Modo dos objetos
+# 1. Atributos dos objetos
+
+## **5. Complexo**: números complexos
+
+```{r}
+# complex
+obj_com <- 1+1i # parte imaginaria
+obj_com
+```
+
+```{r}
+# mode
+mode(obj_com)
+```
+
+---
+
+# 1. Atributos dos objetos
 
 ## Resumindo:
 
@@ -169,37 +223,64 @@ mode(obj_log)
 
 --
 
-<br><br>
+<br>
 
-## Modos (*natureza*) são **três**: 
+## Modos (*natureza*) são **cinco**: 
 
-### numeric (**número**): *1*
-### character (**texto**): *"a"*, *"2500"*, *"amostra_01"*
-### logical (**lógico**): *TRUE* ou *FALSE*
+### 1. Numeric double (**número decimal**): *1*
+### 2. Numeric integer (**número inteiro**): *1L*
+### 3. Character (**texto**): *"a"*, *"2500"*, *"amostra_01"*
+### 4. Logical (**lógico**): *TRUE* ou *FALSE*
+### 5. Complexo (**complex**): *1+1i*
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
+
+## Verificar o modo dos objetos ou fazer a conversão entre os modos
+
+```{r eval=FALSE}
+## verificar o modo dos objetos
+is.numeric()
+is.integer()
+is.character()
+is.logical()
+is.complex()
+
+## conversoes entre modos
+as.numeric()
+as.integer()
+as.character()
+as.logical()
+as.complex()
+```
+
+```{r}
+# exemplo
+as.character(obj_num_dou)
+```
+
+---
+
+background-image: url(img/code_data_structures01.png)
+background-size: 500px
+background-position: 50% 85%
+
+# 1. Atributos dos objetos
 
 ## Estruturas (*organização*): vector, factor, matrix, array, data frame e list
 
---
-
 ### Organização (**modos** e **dimensionalidade**) dos elementos dos objetos
-
---
-
-background-image: url(img/code_data_structures01.png)
-background-size: 450px
-background-position: 50% 90%
 
 ---
 
 background-image: url(img/code_data_structures02.png)
-background-size: 650px
-background-position: 50% 50%
+background-size: 600px
+background-position: 50% 70%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
+
+## Estruturas (*organização*): vector, factor, matrix, array, data frame e list
 
 ---
 
@@ -207,11 +288,13 @@ background-image: url(img/code_data_structures03.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
+
+## Estruturas (*organização*): vector, factor, matrix, array, data frame e list
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **1. Vector**: homogêneo (*um modo*) e unidimensional (*uma dimensão*)
 
@@ -232,7 +315,7 @@ background-image: url(img/general_vector_math.jpg)
 background-size: 500px
 background-position: 50% 70%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Não me refiro exatamente ao vetor da matemática
 
@@ -242,7 +325,7 @@ background-image: url(img/code_vector_types01.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Sequência de elementos
 
@@ -252,26 +335,27 @@ background-image: url(img/code_vector_summary_tree.png)
 background-size: 550px
 background-position: 50% 70%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Tipos
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ### Há diversas formas de se criar um **vetor**:
 
 --
 
 ### 1. Concatenar elementos
+
 ```{r}
 # concatenar elementos numericos
 temp <- c(15, 18, 20, 22, 18)
 temp
 ```
 <br>
---
+
 ```{r}
 # concatenar elementos de texto
 amos <- c("amostra_01", "amostra_02", "amostra_03", "amostra_04")
@@ -280,18 +364,19 @@ amos
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ### Há diversas formas de se criar um **vetor**:
 
 ### 2. Sequência
+
 ```{r}
 # sequencia unitaria (x1:x2)
 se <- 1:10
 se
 ```
 <br>
---
+
 ```{r}
 # sequencia com diferentes espacamentos 
 se_e <- seq(from = 0, to = 100, by = 10) 
@@ -300,11 +385,12 @@ se_e
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ### Há diversas formas de se criar um **vetor**:
 
 ### 3. Repetição
+
 ```{r}
 # repeticao
 # rep(x, times) # repete x tantas vezes
@@ -312,7 +398,7 @@ rep_times <- rep(x = c(1, 2), times = 5)
 rep_times
 ```
 <br>
---
+
 ```{r}
 # rep(x, each) # retete x tantas vezes de cada
 rep_each <- rep(x = c("a", "b"), each = 5)
@@ -321,7 +407,7 @@ rep_each
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ### Há diversas formas de se criar um **vetor**:
 
@@ -333,7 +419,7 @@ am1 <- paste("amostra", 1:5)
 am1
 ```
 <br>
---
+
 ```{r}
 # palavra e sequencia numerica - separacao por "_0"
 am2 <- paste("amostra", 1:5, sep = "_0")
@@ -342,7 +428,7 @@ am2
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ### Há diversas formas de se criar um **vetor**:
 
@@ -353,8 +439,6 @@ am2
 sa_sem_rep <- sample(1:100, 10)
 sa_sem_rep
 ```
-
---
 
 ```{r}
 # amostragem aleatória - com reposição
@@ -373,7 +457,7 @@ class: inverse, middle, center
 
 ## Vector
 ### Escolham números para jogar na mega-sena
-### Lembrando: são 6 valores de 1 a 60 e atribuam a um objeto
+### Lembrando: são 6 valores de 1 a 60 e atribuam a um objeto "agora_vai"
 
 ```{r echo=FALSE}
 countdown(minutes = 4, seconds = 00, color_background = "gray30")
@@ -387,8 +471,8 @@ countdown(minutes = 4, seconds = 00, color_background = "gray30")
 
 ```{r}
 # solucao
-mega_num <- sample(1:60, 6, replace = FALSE)
-mega_num
+agora_vai <- sample(1:60, 6, replace = FALSE)
+agora_vai
 ```
 
 ---
@@ -399,11 +483,9 @@ class: inverse, center, middle
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Vetor com elementos de **modos diferentes**:
-
---
 
 <br>
 
@@ -411,7 +493,7 @@ class: inverse, center, middle
 ve <- c(1, "a", 3)
 ve
 ```
---
+
 <br>
 ```{r}
 ve <- c(1, "a", TRUE)
@@ -420,33 +502,29 @@ ve
 
 ---
 
-# Coerção
+background-image: url(img/code_modes.png)
+background-size: 50%
+background-position: 50% 100%
+
+# 1. Atributos dos objetos
+
+## Coerção
 
 ### Mudança do **modo** dos elementos para um **mesmo modo**
 
 ### Essa mudança segue essa ordem:
 
-<br>
-
-#### .center[`DOMINANTE` **character** >> **numeric** >> **logical** `RECESSIVO`]
-
---
-
-background-image: url(img/code_modes.png)
-background-size: 60%
-background-position: 50% 100%
+> ### .center[`DOMINANTE` **character** >> **numeric** >> **logical** `RECESSIVO`]
 
 ---
 
-# Conversão
+# 1. Atributos dos objetos
 
-## Podemos **forçar** um vetor a ter um **modo específico**
+## Conversão
 
---
+### Podemos **forçar** um vetor a ter um **modo específico**
 
 ### Ideia semelhante: mudar o **tipo da célula** numa planilha eletrônica
-
---
 
 ### Conversão
 ```{r eval=FALSE}
@@ -454,12 +532,14 @@ background-position: 50% 100%
 as.character()
 as.integer()
 as.numeric()
+as.double()
+as.integer()
 as.logical()
 ```
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **2. Factor**: homogêneo (*um modo* - sempre *numeric*), unidimensional (*uma dimensão*) e possui ainda **levels** (níveis)
 
@@ -480,78 +560,81 @@ background-image: url(img/code_factor.png)
 background-size: 70%
 background-position: 50% 75%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **2. Factor**: homogêneo (*um modo* - sempre *numeric*), unidimensional (*uma dimensão*) e possui ainda **levels** (níveis)
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
-## **2. Factor nominal**: variáveis nominais
+## **2. Factor (nominal)**: variáveis nominais
 
 ```{r}
-fa_no <- factor(x = c("fechada", "fechada", "aberta", "aberta", "aberta"),
-                levels = c("aberta", "fechada"))
+fa_no <- factor(x = sample(x = c("floresta", "pastagem", "cerrado"), 
+                           size = 20, replace = TRUE),
+                levels = c("floresta", "pastagem", "cerrado"))
 fa_no
 ```
---
+
 ```{r}
 levels(fa_no)
 ```
+
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
-## **2. Factor ordinal**: variáveis ordinais
+## **2. Factor (ordinal)**: variáveis ordinais
 ```{r}
-fa_or <- factor(x = c("alta", "media", "baixa", "baixa", "media"),
+fa_or <- factor(x = sample(x = c("baixa", "media", "alta"), 
+                           size = 20, replace = TRUE),
                 levels = c("baixa", "media", "alta"), ordered = TRUE)
 fa_or
 ```
---
+
 ```{r}
 levels(fa_or)
 ```
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **2. Factor**: conversão
 
---
-
 ### Criar um vetor **character**
+
 ```{r}
 ve_ch <- c("alta", "media", "baixa", "baixa", "media")
 ve_ch
 ```
---
+
 ```{r}
 mode(ve_ch)
 ```
---
+
 ```{r}
 class(ve_ch)
 ```
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **2. Factor**: conversão
 
 ### Forçar a ser **factor nominal**
+
 ```{r}
 fa_no <- as.factor(ve_ch)
 fa_no
 ```
---
+
 ```{r}
 levels(fa_no)
 ```
---
+
 ```{r}
 class(fa_no)
 ```
@@ -579,6 +662,7 @@ countdown(minutes = 4, seconds = 00, color_background = "gray30")
 # Exercício 06
 
 ## Resposta
+
 ```{r eval=FALSE}
 # solucao 1
 ch <- rep(c("cont", "trat"), each = 50)
@@ -602,13 +686,13 @@ background-image: url(img/code_data_structures03.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **3. Matrix**
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **3. Matrix**: homogêneo (*um modo*) e bidimensional (*duas dimensão*)
 
@@ -623,14 +707,14 @@ background-position: 50% 50%
 ---
 
 background-image: url(img/code_matrix.png)
-background-size: 630px
-background-position: 130% 200%
+background-size: 450px
+background-position: 50% 85%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **3. Matrix**: homogêneo (*um modo*) e bidimensional (*duas dimensão*)
 
-### Ex.: espécies amostradas 5 locais
+### Ex.: cinco espécies amostradas em cinco locais
 
 ---
 
@@ -644,7 +728,7 @@ background-image: url(img/general_eletronic_sheet.png)
 background-size: 700px
 background-position: 50% 60%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **3. Matrix**: planilhas eletrônicas
 
@@ -652,24 +736,24 @@ background-position: 50% 60%
 
 class: clear, inverse
 background-image: url(img/gif_mind_blowing01.gif)
-background-size: 700px
+background-size: 900px
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **duas formas** de se construir uma **matrix** no R:
 
-### 1 Dispondo elementos
+### 1. Dispondo elementos
 
-`matrix`: dispõem um vetor em um certo número de linhas e colunas
+`matrix()`: dispõem um vetor em um certo número de linhas e colunas
 
 ```{r}
 # matriz - funcao matrix
 # vetor
 ve <- 1:12
 ```
---
+
 ```{r}
 # matrix - preenchimento por linhas - horizontal
 ma_row <- matrix(data = ve, nrow = 4, ncol = 3, byrow = TRUE)
@@ -678,13 +762,13 @@ ma_row
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **duas formas** de se construir uma **matrix** no R:
 
-### 1 Dispondo elementos
+### 1. Dispondo elementos
 
-`matrix`: dispõem um vetor em um certo número de linhas e colunas
+`matrix()`: dispõem um vetor em um certo número de linhas e colunas
 
 ```{r}
 # matriz - funcao matrix
@@ -700,21 +784,22 @@ ma_col
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **duas formas** de se construir uma **matrix** no R:
 
-###  2 Combinando vetores
-`rbind`: combina vetores por linha, i.e., vetor embaixo do outro
+### 2. Combinando vetores
 
-`cbind`: combina vetores por coluna, i.e., vetor ao lado do outro
+`rbind()`: combina vetores por linha, i.e., vetor embaixo do outro
+
+`cbind()`: combina vetores por coluna, i.e., vetor ao lado do outro
 
 ```{r}
 # criar dois vetores
 vec_1 <- c(1, 2, 3)
 vec_2 <- c(4, 5, 6)
 ```
---
+
 ```{r}
 # combinar por linhas - vertical - um embaixo do outro
 ma_rbind <- rbind(vec_1, vec_2)
@@ -723,14 +808,15 @@ ma_rbind
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **duas formas** de se construir uma **matrix** no R:
 
-###  2 Combinando vetores
-`rbind`: combina vetores por linha, i.e., vetor embaixo do outro
+### 2. Combinando vetores
 
-`cbind`: combina vetores por coluna, i.e., vetor ao lado do outro
+`rbind()`: combina vetores por linha, i.e., vetor embaixo do outro
+
+`cbind()`: combina vetores por coluna, i.e., vetor ao lado do outro
 
 ```{r}
 # criar dois vetores
@@ -761,7 +847,6 @@ class: inverse, middle, center
 countdown(minutes = 4, seconds = 00, color_background = "gray30")
 ```
 
-
 ---
 
 # Exercício 07
@@ -780,25 +865,21 @@ background-image: url(img/code_data_structures03.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **4. Array**
 
 ---
 
-# 3.3 Estrutura dos objetos
+background-image: url(img/code_array.png)
+background-size: 500px
+background-position: 50% 90%
+
+# 1. Atributos dos objetos
 
 ## **4. Array**: homogêneo (*um modo*) e multidimensional (*mais que duas dimensões*)
 
---
-
 ### O **array** representa combinação de **tabelas**, com **linhas**, **colunas** e **dimensões**
-
---
-
-background-image: url(img/code_array.png)
-background-size: 480px
-background-position: 90% 100%
 
 ---
 
@@ -808,13 +889,13 @@ background-size: 700px
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **uma forma** de se construir um **array** no R:
 
-### 1 Dispondo elementos
+### 1. Dispondo elementos em dimensões
 
-`array`: dispõem um vetor em um certo número de linhas, colunas e dimensões....
+`array()`: dispõem um vetor em um certo número de linhas, colunas e dimensões....
 
 ```{r}
 # vetor
@@ -824,11 +905,11 @@ ve
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **uma forma** de se construir um **array** no R:
 
-### 1 Dispondo elementos
+### 1. Dispondo elementos em dimensões
 
 `array`: dispõem um vetor em um certo número de linhas, colunas e dimensões....
 ```{r}
@@ -840,9 +921,9 @@ ar
 
 background-image: url(img/code_data_array.png)
 background-size: 700px
-background-position: 50% 120%
+background-position: 50% 130%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Até o momento vimos **estruturas homogêneas**
 
@@ -852,7 +933,7 @@ background-image: url(img/code_data_same.png)
 background-size: 700px
 background-position: 50% 120%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Agora veremos as **estruturas heterogêneos**
 
@@ -862,21 +943,17 @@ background-image: url(img/code_data_structures03.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **5. Data frame**
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **5. Data frame**: heterogêneo (*mais de um modo*) e bidimensional (*duas dimensões*)
 
---
-
 ### O **data frame** representa dados no formato de **tabela**, com **linhas** e **colunas**
-
---
 
 ### As **linhas** representam **unidades amostrais** (locais, transectos, parcelas) e as **colunas** representam **descrições** (informações em texto), **variáveis quantitativas** (discretas ou contínuas) e/ou **variáveis qualitativas** (nominais ou ordinais)
 
@@ -892,7 +969,7 @@ background-image: url(img/general_eletronic_sheet.png)
 background-size: 700px
 background-position: 50% 60%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **5. Data frame**: planilhas eletrônicas
 
@@ -910,13 +987,13 @@ background-size: 700px
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **uma forma** de se construir um **data frame** no R:
 
-### 1 Combinando vetores horizontalmente
+### 1. Combinando vetores horizontalmente
 
-`data.frame`: combina vetores horizontalmente, um ao lado do outro. Semelhante à função `cbind`
+`data.frame()`: combina vetores horizontalmente, um ao lado do outro. Semelhante à função `cbind()`
 
 ```{r}
 # criar três vetores
@@ -924,7 +1001,7 @@ vec_ch <- c("sp1", "sp2", "sp3")
 vec_nu <- c(4, 5, 6)
 vec_fa <- factor(c("campo", "floresta", "floresta"))
 ```
---
+
 ```{r}
 # data.frame - combinar por colunas - horizontal - um ao lado do outro
 df <- data.frame(vec_ch, vec_nu, vec_fa)
@@ -933,11 +1010,11 @@ df
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Há **uma forma** de se construir um **data frame** no R:
 
-### 1 Combinando vetores horizontalmente
+### 1. Combinando vetores horizontalmente
 
 ### Também podemos informar o nome das colunas
 
@@ -952,22 +1029,23 @@ df
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **data frame** vs **cbind**
 
 ### Criação dos vetores
+
 ```{r}
-## vetores
+# vetores
 pa <- paste("parcela", 1:4, sep = "_")
 pa
 ```
---
+
 ```{r}
 pe <- sample(0:1, 4, rep = TRUE)
 pe
 ```
---
+
 ```{r}
 tr <- factor(rep(c("trat", "cont"), each = 2))
 tr
@@ -975,7 +1053,7 @@ tr
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Qual a diferença?
 
@@ -984,14 +1062,14 @@ tr
 df <- data.frame(pa, pe, tr)
 df
 ```
---
+
 ```{r}
 str(df)
 ```
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## Qual a diferença?
 
@@ -1024,7 +1102,7 @@ class: inverse, middle, center
 `ab: 50 valores aleatórios entre 0 a 5`
 
 ```{r echo=FALSE}
-countdown(minutes = 4, seconds = 00, color_background = "gray30")
+countdown(minutes = 5, seconds = 00, color_background = "gray30")
 ```
 
 ---
@@ -1054,25 +1132,19 @@ background-image: url(img/code_data_structures03.png)
 background-size: 800px
 background-position: 50% 50%
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **6. List**
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
 ## **6. List**: heterogêneo (*mais de um modo*) e unidimensional (*uma dimensão*)
 
---
-
 ### Tipo **especial de vetor** que aceita **objetos** como **elementos**
 
---
-
 ### Estrutura de dados utilizado para **agrupar objetos**
-
---
 
 ### É a **saída** de muitas funções que fazem **análises estatísticas**
 
@@ -1084,9 +1156,13 @@ background-position: 50% 95%
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
-## **6. List**: heterogêneo (*mais de um modo*) e unidimensional (*uma dimensão*)
+## Há **uma forma** de se construir um **listas** no R:
+
+### 1. Combinando objetos horizontalmente
+
+`list()`: combina objetos horizontalmente, semelhante à função `c()`
 
 ```{r}
 li <- list(rep(1, 20), # vector
@@ -1097,11 +1173,13 @@ li
 
 ---
 
-# 3.3 Estrutura dos objetos
+# 1. Atributos dos objetos
 
-## **6. List**: heterogêneo (*mais de um modo*) e unidimensional (*uma dimensão*)
+## Há **uma forma** de se construir um **listas** no R:
 
-### Também podemos **nomear** os elementos
+### 1. Combinando objetos horizontalmente
+
+> Também podemos **nomear** os elementos
 
 ```{r}
 li <- list(vector = rep(1, 20), # vector
@@ -1130,30 +1208,30 @@ background-size: 700px
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
 ### **1. Indexação []**: acessa elementos de vetores e fatores
+
 ```{r}
-## indexacao []
-# vetor
-se <- seq(0, 2, .05)
-se
+# indexacao []
 
 # fixar a amostragem
 set.seed(42)
-ve <- sample(se, 10)
+
+# amostrar 10 elementos de uma sequencia
+ve <- sample(x = seq(0, 2, .05), size = 10)
 ve
 ```
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **1. Indexação []**
+### **1. Indexação []**: acessa elementos de vetores e fatores
 
 ### Selecionar elementos
 ```{r}
@@ -1174,11 +1252,11 @@ ve_sel
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **1. Indexação []**
+### **1. Indexação []**: acessa elementos de vetores e fatores
 
 ### Retirar elementos
 ```{r}
@@ -1199,17 +1277,18 @@ ve_sub
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **2 Seleção condicional**: selecionar elementos por condições 
+### **2. Seleção condicional**: selecionar elementos por condições 
+
 ```{r}
 # dois vetores
 foo <- 42
 bar <- 23
 ```
---
+
 ```{r eval=FALSE}
 # operadores relacionais - saidas booleanas (TRUE ou FALSE)
 foo == bar # igualdade
@@ -1222,24 +1301,21 @@ foo <= bar # menor ou igual
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **2 Seleção condicional**
+### **2. Seleção condicional**: selecionar elementos por condições 
+
 ```{r}
 # quais valores sao maiores que 1?
 ve > 1
 ```
 
---
-
 ```{r}
 # valores acima de 1
 ve[ve > 1] 
 ```
-
---
 
 ```{r}
 # atribuir valores maiores que 1
@@ -1249,17 +1325,16 @@ ve_maior1
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **3 Funções de manipulação**: *max*, *min*, *range*, *length*, *sort* e *round*
+### **3. Funções de manipulação**: `max()`, `min()`, `range()`, `length()`, `sort()` e `round()`
+
 ```{r}
 # maximo
 max(ve)
 ```
-
---
 
 ```{r}
 # minimo
@@ -1268,17 +1343,16 @@ min(ve)
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **3 Funções de manipulação**: *max*, *min*, *range*, *length*, *sort* e *round*
+### **3. Funções de manipulação**: `max()`, `min()`, `range()`, `length()`, `sort()` e `round()`
+
 ```{r}
 # amplitude
 range(ve)
 ```
-
---
 
 ```{r}
 # comprimento
@@ -1287,17 +1361,16 @@ length(ve)
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **3 Funções de manipulação**: *max*, *min*, *range*, *length*, *sort* e *round*
+### **3. Funções de manipulação**: `max()`, `min()`, `range()`, `length()`, `sort()` e `round()`
+
 ```{r}
 # ordenar crescente
 sort(ve)
 ```
-
---
 
 ```{r}
 # ordenar decrescente
@@ -1306,24 +1379,21 @@ sort(ve, dec = TRUE)
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **3 Funções de manipulação**: *max*, *min*, *range*, *length*, *sort* e *round*
+### **3. Funções de manipulação**: `max()`, `min()`, `range()`, `length()`, `sort()` e `round()`
+
 ```{r}
 # arredondamento
 ve
 ```
 
---
-
 ```{r}
 # arredondamento
 round(ve, digits = 1)
 ```
-
---
 
 ```{r}
 # arredondamento
@@ -1332,24 +1402,21 @@ round(ve, digits = 0)
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **3 Funções de manipulação**: *any()*, *all()* e *which()*
+### **3. Funções de manipulação**: `any()`, `all()` e `which()`
+
 ```{r}
 # algum?
 any(ve > 1)
 ```
 
---
-
 ```{r}
 # todos?
 all(ve > 1)
 ```
-
---
 
 ```{r}
 # qual(is)?
@@ -1358,17 +1425,16 @@ which(ve > 1)
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
-## Vetor e fator
+## Vetor e Fator
 
-### **3 Funções de manipulação**: *subset* e *ifelse*
+### **3. Funções de manipulação**: `subset()` e `ifelse()`
+
 ```{r}
 # subconjunto
 subset(ve, ve > 1)
 ```
-
---
 
 ```{r}
 # condicao para uma operacao
@@ -1377,11 +1443,12 @@ ifelse(ve > 1, 1, 0)
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
 ## Listas
 
 ### **1. Indexação []**: acessa elementos de listas
+
 ```{r}
 ## indexacao []
 # lista
@@ -1391,7 +1458,7 @@ li
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
 ## Listas
 
@@ -1402,7 +1469,7 @@ li
 # acessar o primeiro elemento
 li[1]
 ```
---
+
 ```{r}
 # acessar o primeiro e o terceiro elementos e atribuir
 li2 <- li[c(1, 3)]
@@ -1411,18 +1478,19 @@ li2
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
 ## Listas
 
 ### **1. Indexação []**: acessa elementos de listas
 
 ### Retirar elementos
+
 ```{r}
 # retirar o primeiro elemento
 li[-1]
 ```
---
+
 ```{r}
 # retirar o segundo elemento e atribuir
 li_13 <- li[-2]
@@ -1431,18 +1499,39 @@ li_13
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
 ## Listas
 
-### **2. Indexação $**: acessa elementos pelo nome
+### **2. Indexação [[]]**: acessa valores dos elementos de listas
+
+### Retirar elementos
+```{r}
+# valor do primeiro elemento
+li[[1]]
+```
+
+```{r}
+# valor do segundo elemento e atribuir
+li2_val <- li[[2]]
+li2_val
+```
+
+---
+
+# 2. Manipulação de dados (1D)
+
+## Listas
+
+### **3. Indexação $**: acessa elementos pelo nome
 
 ### Selecionar elementos
+
 ```{r}
 # acessar o primeiro elemento
 li$elem1
 ```
---
+
 ```{r}
 # acessar o primeiro e o terceiro elementos e atribuir
 li1 <- li$elem1
@@ -1451,19 +1540,34 @@ li1
 
 ---
 
-# 3.4 Manipulação de dados (1D)
+# 2. Manipulação de dados (1D)
 
 ## Listas
 
-### **3. Funções**: *length* e *names*
+### **4. Funções**: `length()` e `names()`
+
 ```{r}
 # comprimento
 length(li)
 ```
---
+
 ```{r}
 # names
 names(li)
+```
+
+---
+
+# 2. Manipulação de dados (1D)
+
+## Listas
+
+### **4. Funções**: `length()` e `names()`
+
+```{r}
+## Renomear
+names(li) <- paste0("elemento0", 1:3)
+li
 ```
 
 ---
@@ -1472,17 +1576,18 @@ background-image: url(img/code_df_manipulation02.png)
 background-size: 700px
 background-position: 50% 70%
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
-## Matrizes e Data Frames
+## Matrizes, Arrays e Data Frames
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
-## Matrizes e Data Frames
+## Matrizes, Arrays e Data Frames
 
-### **1 Indexação []**
+### **1. Indexação []**: acessa elementos de matrizes, arrays e data frames
+
 ```{r}
 # matriz
 ma <- matrix(1:12, 4, 3)
@@ -1495,46 +1600,48 @@ background-image: url(img/code_df_manipulation01.png)
 background-size: 400px
 background-position: 50% 50%
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
-## Matrizes e Data Frames
+## Matrizes, Arrays e Data Frames
 
-### **1 Indexação []**
+### **1. Indexação []**: acessa elementos de matrizes, arrays e data frames
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
-## Matrizes e Data Frames
+## Matrizes, Arrays e Data Frames
 
-### **1 Indexação []**
+### **1. Indexação []**: acessa elementos de matrizes, arrays e data frames
+
 ```{r}
 ma[3, ] # linha 3
 ```
---
+
 ```{r}
 ma[, 2] # coluna 2
 ```
---
+
 ```{r}
 ma[1, 2] # elemento da linha 1 e coluna 2
 ```
---
+
 ```{r}
 ma[1, 1:2] # elementos da linha 1 e coluna 1 e 2
 ```
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
-## Matrizes e Data Frames
+## Matrizes, Arrays e Data Frames
 
-### **1 Indexação []**
+### **1. Indexação []**: acessa elementos de matrizes, arrays e data frames
+
 ```{r}
 ma[1, c(1, 3)] # elementos da linha 1 e coluna 1 e 3
 ```
---
+
 ```{r}
 ma_sel <- ma[1, c(1, 3)]
 ma_sel
@@ -1546,26 +1653,27 @@ background-image: url(img/code_df_manipulation02.png)
 background-size: 700px
 background-position: 50% 75%
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
-## Matrizes e Data Frames
+## Matrizes, Arrays e Data Frames
 
-### **1 Indexação []**: resumindo
+### **1. Indexação []**: acessa elementos de matrizes, arrays e data frames
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **1 Indexação $**
+### **2. Indexação $**: acessa elementos de data frames
+
 ```{r}
 # criar tres vetores
 sp <- paste("sp", 1:10, sep = "")
 abu <- 1:10
 flo <- factor(rep(c("campo", "floresta"), each = 5))
 ```
---
+
 ```{r}
 # data frame
 df <- data.frame(sp, abu, flo)
@@ -1574,31 +1682,33 @@ df
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **1 Indexação $**
+### **2. Indexação $**: acessa elementos de data frames
+
 ```{r}
 # $ funciona apenas para data frame 
 df$sp 
 ```
---
+
 ```{r}
 df$abu
 ```
---
+
 ```{r}
 df$flo
 ```
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **1 Indexação $**
+### **2. Indexação $**: acessa elementos de data frames
+
 ```{r}
 length(df$abu)
 max(df$abu)
@@ -1608,20 +1718,21 @@ range(df$abu)
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **1 Indexação $ e mudanças de colunas**
+### **3. Indexação $ e mudanças de colunas**
+
 ```{r}
 mode(df$abu)
 ```
---
+
 ```{r}
 # converter colunas
 df$abu <- as.character(df$abu)
 ```
---
+
 ```{r}
 df$abu
 mode(df$abu)
@@ -1629,15 +1740,16 @@ mode(df$abu)
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **1 Indexação $ e mudanças de colunas**
+### **3. Indexação $ e mudanças de colunas**
+
 ```{r}
 df$abu <- as.numeric(df$abu)
 ```
---
+
 ```{r}
 df$abu
 mode(df$abu)
@@ -1645,16 +1757,17 @@ mode(df$abu)
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **1 Indexação $ e adicionar uma coluna**
+### **4. Indexação $ e mudanças de colunas**
+
 ```{r}
 set.seed(42)
 df$abu2 <- sample(0:1, nrow(df), rep = TRUE)
 ```
---
+
 ```{r}
 df$abu2
 ```
@@ -1665,13 +1778,14 @@ df
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **2 Seleção condicional**
+### **5. Seleção condicional**: filtro de linhas
 
 ### Selecionar linhas = filtro do planilha eletrônica
+
 ```{r}
 # selecionar linhas de uma matriz ou data frame 
 df[df$abu > 4, ]
@@ -1679,13 +1793,14 @@ df[df$abu > 4, ]
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **2 Seleção condicional**
+### **5. Seleção condicional**: filtro de linhas
 
 ### Selecionar linhas = filtro do planilha eletrônica
+
 ```{r}
 # selecionar linhas de uma matriz ou data frame 
 df[df$abu2 == 0, ]
@@ -1693,13 +1808,14 @@ df[df$abu2 == 0, ]
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
 ## Data Frames
 
-### **2 Seleção condicional**
+### **5. Seleção condicional**: filtro de linhas
 
 ### Selecionar linhas = filtro do planilha eletrônica
+
 ```{r}
 # selecionar linhas de uma matriz ou data frame 
 df[df$flo == "floresta", ]
@@ -1707,47 +1823,47 @@ df[df$flo == "floresta", ]
 
 ---
 
-# 3.5 Manipulação de dados (2D)
+# 3. Manipulação de dados (2D ou nD)
 
-## Matrizes e Data Frames
+## Matrizes, Arrays e Data Frames
 
-### **3 Funções de conferência e manipulação**
+### **6. Funções de conferência e manipulação**
 
-**head()**: mostra as primeiras 6 linhas <br>
-**tail()**: mostra as últimas 6 linhas <br>
-**nrow()**: mostra o número de linhas <br>
-**ncol()**: mostra o número de colunas <br>
-**dim()**: mostra o número de linhas e de colunas <br>
-**rownames()**: mostra os nomes das linhas (locais) <br>
-**colnames()**: mostra os nomes das colunas (variáveis) <br>
-**str()**: mostra as classes de cada coluna (estrutura) <br>
-**summary()**: mostra um resumo dos valores de cada coluna <br>
-**rowSums()**: calcula a soma das linhas (horizontal) <br>
-**colSums()**: calcula a soma das colunas (vertical) <br>
-**rowMeans()**: calcula a média das linhas (horizontal) <br>
-**colMeans()**: calcula a média das colunas (vertical)
+`head()`: mostra as primeiras 6 linhas <br>
+`tail()`: mostra as últimas 6 linhas <br>
+`nrow()`: mostra o número de linhas <br>
+`ncol()`: mostra o número de colunas <br>
+`dim()`: mostra o número de linhas e de colunas <br>
+`rownames()`: mostra os nomes das linhas (locais) <br>
+`colnames()`: mostra os nomes das colunas (variáveis) <br>
+`str()`: mostra as classes de cada coluna (estrutura) <br>
+`summary()`: mostra um resumo dos valores de cada coluna <br>
+`rowSums()`: calcula a soma das linhas (horizontal) <br>
+`colSums()`: calcula a soma das colunas (vertical) <br>
+`rowMeans()`: calcula a média das linhas (horizontal) <br>
+`colMeans()`: calcula a média das colunas (vertical)
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
 ## São **valores reservados** que representam *dados faltantes*, *indefinições matemáticas*, *infinitos* e *objetos nulos*
 
 <br><br>
 
-### **1 NA (Not Available)**
+### **1. NA (Not Available)**
 
-### **2 NaN (Not a Number)**
+### **2. NaN (Not a Number)**
 
-### **3 Inf (Infinito)**
+### **3. Inf (Infinito)**
 
-### **4 NULL**
+### **4. NULL**
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **1 NA (Not Available)**
+## **1. NA (Not Available)**
 
 ### Significa dado faltante/indisponível
 
@@ -1761,9 +1877,9 @@ foo_na
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **1 NA (Not Available)**
+## **1. NA (Not Available)**
 
 ### Criar um data frame com NA
 ```{r}
@@ -1774,9 +1890,9 @@ df
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **1 NA (Not Available)**
+## **1. NA (Not Available)**
 
 ### Função para verificar a **presença/ausência** de NA's
 ```{r}
@@ -1792,9 +1908,9 @@ any(is.na(df))
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **1 NA (Not Available)**
+## **1. NA (Not Available)**
 
 ### Vamos retirar as linhas que possuem NA's
 ```{r}
@@ -1809,9 +1925,9 @@ nrow(df_sem_na)
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **1 NA (Not Available)**
+## **1. NA (Not Available)**
 
 ### Vamos substituir os NA's por 0
 ```{r}
@@ -1822,9 +1938,9 @@ df
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **2 NaN (Not a Number)**
+## **2. NaN (Not a Number)**
 
 ### Representa indefinições matemáticas como 0/0 e log(-1)
 
@@ -1837,9 +1953,9 @@ log(-1)
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **2 NaN (Not a Number)**
+## **2. NaN (Not a Number)**
 
 ### Um **NaN** é um **NA**, mas o **NA** não é um **NaN**
 
@@ -1861,9 +1977,9 @@ is.nan(ve)
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **3 Inf (Infinito)**
+## **3. Inf (Infinito)**
 
 ### É um número muito grande ou um limite matemático, e.g., 10^310 e 1/0
 ```{r}
@@ -1876,9 +1992,9 @@ is.nan(ve)
 
 ---
 
-# 3.6 Valores faltantes e especiais
+# 4. Valores faltantes e especiais
 
-## **4 NULL**
+## **4. NULL**
 
 ### Representa um objeto nulo
 
@@ -1892,7 +2008,7 @@ nulo
 
 ---
 
-# 3.7 Diretório de trabalho
+# 5. Diretório de trabalho
 
 ## Endereço da pasta onde o R irá **importar e exportar** os dados
 
@@ -1905,7 +2021,7 @@ nulo
 # pasta onde o r ira importar e exportar os arquivos
 
 # definir o diretorio de trabalho
-setwd("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/tabelas")
+setwd("/home/mude/data/github/course-geospatial-data-r/03_dados/tabelas")
 ```
 --
 ```{r eval=FALSE}
@@ -1928,7 +2044,7 @@ class: inverse, center, middle
 
 class: clear, inverse
 background-image: url(img/general_real_data.jpg)
-background-size: 500px
+background-size: 700px
 
 ---
 
@@ -1936,19 +2052,22 @@ background-image: url(img/general_data_eu_mesmo.png)
 background-size: 700px
 background-position: 50% 85%
 
-# 3.8 Importar dados
+# 6. Importar dados
 
 ## ATLANTIC AMPHIBIANS: a dataset of amphibian communities from the Atlantic Forests of South America
 
 ### Eu mesmo et al. (2018)
 
+<br><br><br><br><br><br><br><br><br><br><br>
+[Vancine et al. (2018)](https://doi.org/10.1002/ecy.2392)
+
 ---
 
-background-image: url(img/general_bloco_notas.png),url(img/general_planilha.png)
-background-size: 200px,200px
-background-position: 40% 40%,80% 90%
+background-image: url(img/general_bloco_notas.png), url(img/general_planilha.png)
+background-size: 200px, 200px
+background-position: 40% 40%, 80% 90%
 
-# 3.8 Importar dados
+# 6. Importar dados
 
 ## Os arquivos de tabelas geralmente estão num desses **três** formatos:
 
@@ -1960,36 +2079,39 @@ background-position: 40% 40%,80% 90%
 
 ---
 
-# 3.8 Importar dados
+# 6. Importar dados
 
 ## Ler uma planilha eletrônica (.csv)
+
 ```{r eval=FALSE}
 # ler uma planilha eletronica (.csv)
-read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
+read.csv("ATLANTIC_AMPHIBIANS_sites.csv", encoding = "latin1")
 ```
+
 ```{r echo=FALSE}
-read.csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
+read.csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"), encoding = "latin1")
 ```
 
 ---
 
-# 3.8 Importar dados
+# 6. Importar dados
 
 ## Ler e atribuir uma planilha eletrônica (.csv) a um objeto
+
 ```{r echo=FALSE}
-da <- read.csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
+da <- read.csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"), encoding = "latin1")
 ```
 
 ```{r eval=FALSE}
 # ler e atribuir uma planilha eletronica (.csv) a um objeto
-da <- read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
+da <- read.csv("ATLANTIC_AMPHIBIANS_sites.csv", encoding = "latin1")
 ```
---
+
 ```{r eval=FALSE}
 # ver os dados
 da
 ```
---
+
 ```{r}
 # conferir a classe
 class(da)
@@ -2003,11 +2125,9 @@ class: inverse, center, middle
 
 ---
 
-# 3.8 Importar dados
+# 6. Importar dados
 
 ## Ler e atribuir uma planilha simples (.txt) a um objeto
-
---
 
 ```{r eval=FALSE}
 # ler e atribuir uma planilha simples (.txt) a um objeto
@@ -2021,7 +2141,7 @@ da
 
 ---
 
-# 3.8 Importar dados
+# 6. Importar dados
 
 ## Ler e atribuir uma planilha eletrônica (.xlsx) a um objeto
 
@@ -2037,7 +2157,7 @@ library(openxlsx)
 ### Importar os dados
 ```{r eval=FALSE}
 # ler e atribuir uma planilha eletrônica (.xlsx) a um objeto
-da <- openxlsx::read.xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx", sheet = 1)
+da <- openxlsx::read.xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx", sheet = 1, encoding = "latin1")
 da
 ```
 
@@ -2045,35 +2165,35 @@ da
 da
 ```
 
-
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
 ### **Funções de conferência**
 
-**head()**: mostra as primeiras 6 linhas<br>
-**tail()**: mostra as últimas 6 linhas<br>
-**nrow()**: mostra o número de linhas<br>
-**ncol()**: mostra o número de colunas<br>
-**dim()**: mostra o número de linhas e de colunas<br>
-**rownames()**: mostra os nomes das linhas (locais)<br>
-**colnames()**: mostra os nomes das colunas (variáveis)<br>
-**str()**: mostra as classes de cada coluna (estrutura)<br>
-**summary()**: mostra um resumo dos valores de cada coluna
+`head()`: mostra as primeiras 6 linhas<br>
+`tail()`: mostra as últimas 6 linhas<br>
+`nrow()`: mostra o número de linhas<br>
+`ncol()`: mostra o número de colunas<br>
+`dim()`: mostra o número de linhas e de colunas<br>
+`rownames()`: mostra os nomes das linhas (locais)<br>
+`colnames()`: mostra os nomes das colunas (variáveis)<br>
+`str()`: mostra as classes de cada coluna (estrutura)<br>
+`summary()`: mostra um resumo dos valores de cada coluna
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **head()**: mostra as primeiras 6 linhas
+### `head()`: mostra as primeiras 6 linhas
+
 ```{r include=FALSE}
 # ler e atribuir uma planilha eletronica (.csv) a um objeto
-da <- read.csv("/home/mude/data/github/disciplina-geoprocessamento/03_dados/00_tabelas/ATLANTIC_AMPHIBIANS_sites.csv")
+da <- read.csv("/home/mude/data/github/course-geospatial-data-r/03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv", encoding = "latin1")
 ```
 
 ```{r}
@@ -2082,102 +2202,111 @@ head(da)
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **head()**: mostra as primeiras 10 linhas
+### `head()`: mostra as primeiras 10 linhas
+
 ```{r}
 head(da, 10)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **tail()**: mostra as últimas 6 linhas
+### `tail()`: mostra as últimas 6 linhas
+
 ```{r}
 tail(da)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **nrow()**: mostra o número de linhas
+### `nrow()`: mostra o número de linhas
+
 ```{r}
 nrow(da)
 ```
 
 --
 
-### **ncol()**: mostra o número de colunas
+### `ncol()`: mostra o número de colunas
+
 ```{r}
 ncol(da)
 ```
 
 --
 
-### **dim()**: mostra o número de linhas e de colunas
+### `dim()`: mostra o número de linhas e de colunas
 ```{r}
 dim(da)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **rownames()**: mostra os nomes das linhas (locais)
+### `rownames()`: mostra os nomes das linhas (locais)
+
 ```{r}
 rownames(da)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **colnames()**: mostra os nomes das colunas (variáveis)
+### `colnames()`: mostra os nomes das colunas (variáveis)
+
 ```{r}
 colnames(da)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **str()**: mostra as classes de cada coluna (estrutura)
+### `str()`: mostra as classes de cada coluna (estrutura)
+
 ```{r}
 str(da)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
-### **summary()**: mostra um resumo dos valores de cada coluna
+### `summary()`: mostra um resumo dos valores de cada coluna
+
 ```{r}
 summary(da)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para conferir os dados
 
 ### Verificar a presença de NAs
+
 ```{r}
 # algum?
 any(is.na(da))
@@ -2190,30 +2319,32 @@ which(is.na(da))
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para manipular os dados
 
 ### Retirar os NAs
+
 ```{r}
 da_na <- na.omit(da)
 ```
---
+
 ```{r}
 nrow(da)
 ```
---
+
 ```{r}
 nrow(da_na)
 ```
 
 ---
 
-# 3.9 Conferir e manejar dados
+# 7. Conferência de dados importados
 
 ## Conjunto de funções para manipular os dados
 
-## Subset das linhas
+### Subset das linhas
+
 ```{r}
 # subset das linhas com amostragens em sao paulo
 da_sp <- da[da$state == "São Paulo", ]
@@ -2222,27 +2353,22 @@ da_sp
 
 ---
 
-# 3.10 Exportar dados
+# 8. Exportar dados
 
 ## Exportar uma tabela de dados na pasta do diretório
 
---
-
 ### Planilha eletrônica (.csv)
+
 ```{r eval=FALSE}
 write.csv(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.csv", 
           row.names = FALSE, quote = FALSE)
 ```
-
---
 
 ### Planilha de texto (.txt)
 ```{r eval=FALSE}
 write.table(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.txt", 
             row.names = FALSE, quote = FALSE)
 ```
-
---
 
 ### Planilha eletrônica (.xlsx)
 ```{r, eval = FALSE, warning = FALSE}
@@ -2259,9 +2385,9 @@ class: inverse, center, middle
 ---
 
 class: clear, middle
-background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif)
-background-size: 250px,500px
-background-position: 35% 60%,90% 70%
+background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif), url(img/package_xaringan.png)
+background-size: 250px, 500px, 130px
+background-position: 35% 50%, 90% 55%, 5% 86%
 
 ## Maurício Vancine
 
@@ -2269,11 +2395,11 @@ background-position: 35% 60%,90% 70%
 
 Contatos:
 
-`r icon::icon_style(icon::fontawesome(name = "envelope", style = "solid"), fill = "#2369bd")` [mauricio.vancine@gmail.com]()  
-`r icon::icon_style(icon::fontawesome("twitter"), fill = "#2369bd")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
-`r icon::icon_style(icon::fontawesome(name = "github"), fill = "#2369bd")` [mauriciovancine](https://github.com/mauriciovancine)
-`r icon::icon_style(icon::fontawesome(name = "link", style = "solid"), fill = "#2369bd")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
+`r icons::icon_style(icons::fontawesome(name = "envelope", style = "solid"), fill = "#23373b")` [mauricio.vancine@gmail.com]()  
+`r icons::icon_style(icons::fontawesome("twitter"), fill = "#23373b")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
+`r icons::icon_style(icons::fontawesome(name = "github"), fill = "#23373b")` [mauriciovancine](https://github.com/mauriciovancine)
+`r icons::icon_style(icons::fontawesome(name = "link", style = "solid"), fill = "#23373b")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
 
-<br><br>
+<br><br><br><br><br>
 
-Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)
+Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis). Animação dos sapos por [@probzz](https://twitter.com/probzz/status/1367613720294170627).

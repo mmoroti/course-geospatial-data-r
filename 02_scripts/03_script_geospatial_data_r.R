@@ -5,18 +5,17 @@
 #' ---
 
 # topics ------------------------------------------------------------------
-# 3.1 atributos dos objetos
-# 3.2 modos dos objetos (numeric, character e logical)
-# 3.3 estrutura dos objetos (vector, factor, matrix, data frame e list)
-# 3.4 manipulacao de dados unidimensionais
-# 3.5 manipulacao de dados bidimensionais
-# 3.6 valores faltantes e especiais
-# 3.7 diretorio de trabalho
-# 3.8 importar dados
-# 3.9 conferir e manejar dados importados
-# 3.10 exportar dados
 
-# 3.1 atributos dos objetos -----------------------------------------------
+# 1. Atributos dos objetos
+# 2. Manipulação de dados unidimensionais
+# 3. Manipulação de dados multidimensionais
+# 4. Valores faltantes e especiais
+# 5. Diretório de trabalho
+# 6. Importar dados
+# 7. Conferência de dados importados
+# 8. Exportar dados
+
+# 1. atributos dos objetos -----------------------------------------------
 # atribuicao
 # palavra <- dados
 
@@ -24,14 +23,33 @@
 obj_10 <- 10 
 obj_10
 
-# 3.2 modos dos objetos ----------------------------------------------------
-# numeric: numeros inteiros ou decimais
-# numeric
-obj_num <- 1
-obj_num
+## atributos
+library(vegan)
+data(dune)
+attributes(dune)
+
+# modos dos objetos
+# numeric: numeros decimais ou inteiros
+# double
+obj_num_dou <- 1
+obj_num_dou
 
 # mode
-mode(obj_num)
+mode(obj_num_dou)
+
+# type
+typeof(obj_num_dou)
+
+# numeric: numeros decimais ou inteiros
+# integer
+obj_num_int <- 1L
+obj_num_int
+
+# mode
+mode(obj_num_int)
+
+# type
+typeof(obj_num_int)
 
 # character: texto
 # character
@@ -49,7 +67,31 @@ obj_log
 # mode
 mode(obj_log)
 
-# 3.3 estrutura dos objetos ----------------------------------------------
+# complex: numeros complexos
+obj_com <- 1+1i # parte imaginaria
+obj_com
+
+# mode
+mode(obj_com)
+
+## verificar o modo dos objetos
+is.numeric()
+is.integer()
+is.character()
+is.logical()
+is.complex()
+
+## conversoes entre modos
+as.numeric()
+as.integer()
+as.character()
+as.logical()
+as.complex()
+
+# exemplo
+as.character(obj_num_dou)
+
+# estrutura dos objetos 
 # 1. vector: homogeneo (um modo) e unidimensional (uma dimensao)
 
 # concatenar elementos
@@ -94,6 +136,11 @@ sa_com_rep
 
 # exercicio 05 ------------------------------------------------------------
 
+
+
+
+# -------------------------------------------------------------------------
+
 # coercao: vetor com elementos de modos diferentes
 ve <- c(1, "a", 3)
 ve
@@ -112,14 +159,16 @@ ve
 
 # 2. factor: homogeneo (um modo - sempre numeric), unidimensional (uma dimensao) e possui ainda levels (niveis)
 # 2. factor nominal: variaveis nominais
-fa_no <- factor(x = c("fechada", "fechada", "aberta", "aberta", "aberta"),
-                levels = c("aberta", "fechada"))
+fa_no <- factor(x = sample(x = c("floresta", "pastagem", "cerrado"), 
+                           size = 20, replace = TRUE),
+                levels = c("floresta", "pastagem", "cerrado"))
 fa_no
 
 levels(fa_no)
 
 # 2. factor ordinal: variaveis ordinais
-fa_or <- factor(x = c("alta", "media", "baixa", "baixa", "media"),
+fa_or <- factor(x = sample(x = c("baixa", "media", "alta"), 
+                           size = 20, replace = TRUE),
                 levels = c("baixa", "media", "alta"), ordered = TRUE)
 fa_or
 
@@ -142,6 +191,10 @@ class(fa_no)
 
 # exercicio 06 ------------------------------------------------------------
 
+
+
+
+# -------------------------------------------------------------------------
 
 # 3. matrix: homogeneo (um modo) e bidimensional (duas dimensao)
 # 1 dispondo elementos
@@ -176,6 +229,10 @@ ma_cbind
 # exercicio 07 ------------------------------------------------------------
 
 
+
+
+# -------------------------------------------------------------------------
+
 # 4. array: homogeneo (um modo) e multidimensional (mais que duas dimensoes)
 # 1 Dispondo elementos
 # `array`: dispõem um vetor em um certo numero de linhas, colunas e dimensões
@@ -186,6 +243,8 @@ ve
 
 ar <- array(data = ve, dim = c(2, 2, 2))
 ar
+
+
 
 # 5. data frame: heterogeneo (mais de um modo) e bidimensional (duas dimensões)
 # 1 Combinando vetores horizontalmente
@@ -232,6 +291,10 @@ str(df_c)
 # exercicio 08 ------------------------------------------------------------
 
 
+
+# -------------------------------------------------------------------------
+
+
 # 6. list: heterogeneo (mais de um modo) e unidimensional (uma dimensao)
 li <- list(rep(1, 20), # vector
            factor(1, 1), # factor
@@ -245,16 +308,16 @@ li <- list(vector = rep(1, 20), # vector
 li
 
 
-# 3.4 manipulacao de dados unidimensionais -------------------------------------
+# 2. manipulacao de dados unidimensionais -------------------------------------
+
 # vetor e fator
-# 1 indexacao []
-# vetor
-se <- seq(0, 2, .05)
-se
+# indexacao []
 
 # fixar a amostragem
 set.seed(42)
-ve <- sample(se, 10)
+
+# amostrar 10 elementos de uma sequencia
+ve <- sample(x = seq(0, 2, .05), size = 10)
 ve
 
 # seleciona o quinto elemento
@@ -277,7 +340,7 @@ ve[-(2:9)]
 ve_sub <- ve[-c(5, 10)]
 ve_sub
 
-# 2 selecao condicional: selecionar elementos por condicões 
+# selecao condicional: selecionar elementos por condicões 
 # dois vetores
 foo <- 42
 bar <- 23
@@ -358,6 +421,13 @@ li[-1]
 li_13 <- li[-2]
 li_13
 
+# valor do primeiro elemento
+li[[1]]
+
+# valor do segundo elemento e atribuir
+li2_val <- li[[2]]
+li2_val
+
 # acessar o primeiro elemento
 li$elem1
 
@@ -371,7 +441,11 @@ length(li)
 # names
 names(li)
 
-# 3.5 manipulacao de dados bidimensionais --------------------------------------
+## Renomear
+names(li) <- paste0("elemento0", 1:3)
+li
+
+# 3. manipulacao de dados bidimensionais --------------------------------------
 # matriz - indexacao []
 ma <- matrix(1:12, 4, 3)
 ma 
@@ -381,6 +455,7 @@ ma[, 2] # coluna 2
 ma[1, 2] # elemento da linha 1 e coluna 2
 ma[1, 1:2] # elementos da linha 1 e coluna 1 e 2
 ma[1, c(1, 3)] # elementos da linha 1 e coluna 1 e 3
+
 ma_sel <- ma[1, c(1, 3)]
 ma_sel
 
@@ -446,7 +521,7 @@ df[df$flo == "floresta", ]
 # rowMeans(): calcula a média das linhas (horizontal)
 # colMeans(): calcula a média das colunas (vertical)
 
-# 3.6 valores faltantes e especiais --------------------------------------
+# 4 valores faltantes e especiais --------------------------------------
 # 1 na - not available
 foo_na <- NA
 foo_na
@@ -497,9 +572,9 @@ is.nan(ve)
 nulo <- NULL
 nulo
 
-# 3.7 diretorio de trabalho -----------------------------------------------
+# 5. diretorio de trabalho -----------------------------------------------
 # definir o diretorio de trabalho
-setwd("/home/mude/data/github/disciplina-analise-geoespacial/03_dados/tabelas")
+setwd("/home/mude/data/github/course-geospatial-data-r/03_dados/tabelas")
 
 # verificar o diretorio
 getwd()
@@ -507,16 +582,17 @@ getwd()
 # verificar os arquivos
 dir()
 
-# 3.8 importar dados ------------------------------------------------------
+# 6. importar dados ------------------------------------------------------
 # ler uma planilha eletronica (.csv)
-read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
+read.csv("ATLANTIC_AMPHIBIANS_sites.csv", encoding = "latin1")
 
 # ler e atribuir uma planilha eletronica (.csv) a um objeto
-da <- read.csv("ATLANTIC_AMPHIBIANS_sites.csv")
+da <- read.csv("ATLANTIC_AMPHIBIANS_sites.csv", encoding = "latin1")
 
 # ver os dados
 da
 
+# mudar nome das linhas
 row.names(da) <- da$id
 da
 
@@ -532,10 +608,10 @@ da
 library(openxlsx)
 
 # ler e atribuir uma planilha eletronica (.xlsx) a um objeto
-da <- openxlsx::read.xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx", sheet = 1)
+da <- openxlsx::read.xlsx("ATLANTIC_AMPHIBIANS_sites.xlsx", sheet = 1, encoding = "latin1")
 da
 
-# 3.9 Conferir e manejar dados importados ---------------------------------
+# 7. Conferir e manejar dados importados ---------------------------------
 
 # conjunto de funcoes para conferir os dados
 # head(): mostra as primeiras 6 linhas
@@ -595,7 +671,7 @@ nrow(da_na)
 da_sp <- da[da$state == "São Paulo", ]
 da_sp
 
-# 3.10 Exportar dados -----------------------------------------------------
+# 8. Exportar dados -----------------------------------------------------
 # planilha eletronica (.csv)
 write.csv(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.csv", 
           row.names = FALSE)

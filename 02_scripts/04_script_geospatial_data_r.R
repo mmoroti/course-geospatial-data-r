@@ -1,7 +1,7 @@
 #' ---
 #' title: aula 04 introducao ao tidyverse
 #' author: mauricio vancine
-#' date: 2020-10-20
+#' date: 2021-10-11
 #' ---
 
 # packages ----------------------------------------------------------------
@@ -12,19 +12,21 @@ library(writexl)
 library(lubridate)
 
 # topics ------------------------------------------------------------------
-# 4.1 tidyverse
-# 4.2 magrittr (pipe - %>%)
-# 4.3 readr
-# 4.4 readxl e writexl
-# 4.5 tibble
-# 4.6 tidyr
-# 4.7 dplyr
-# 4.8 stringr
-# 4.9 forcats
-# 4.10 lubridate
-# 4.11 purrr
 
-# 4.1 tidyverse -----------------------------------------------------------
+# 1. contextualizacao
+# 2. tidyverse
+# 3. here
+# 4. readr, readxl e writexl
+# 5. tibble
+# 6. magrittr (pipe - %>%)
+# 7. tidyr
+# 8. dplyr
+# 9. stringr
+# 10. forcats
+# 11. lubridate
+# 12. purrr
+
+# 2. tidyverse -----------------------------------------------------------
 # instalar o pacote
 # install.packages("tidyverse")
 
@@ -34,7 +36,92 @@ library(tidyverse)
 # list all packages in the tidyverse 
 tidyverse::tidyverse_packages(include_self = TRUE)
 
-# 4.2 magrittr (pipe - %>%) -----------------------------------------------
+# 3. here -----------------------------------------------------------------
+# install
+# install.packages("here")
+
+# load
+library(here)
+
+# confer
+here::here()
+
+# create a .here file
+# here::set_here()
+
+# 4. readr, readxl e writexl ----------------------------------------------
+# formato .csv
+# import sites
+si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
+                      locale = readr::locale(encoding = "latin1"))
+si
+
+# import sites
+si <- readr::read_csv("./03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv",
+                      locale = readr::locale(encoding = "latin1"))
+si
+
+# formato .txt
+# import sites
+si <- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
+si
+
+# import .xlsx
+# install.packages("readxl")
+library("readxl")
+
+# export .xlsx
+# install.packages("writexl")
+library("writexl")
+
+# import sites
+si <- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
+                        sheet = 1, encoding = "latin1")
+si
+
+# import sites
+si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
+                      locale = readr::locale(encoding = "latin1"))
+si
+
+# import species
+sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"),
+                      locale = readr::locale(encoding = "latin1"))
+sp
+
+# 5. tibble --------------------------------------------------------------
+
+# view the sites data
+glimpse(si)
+
+# view the species data
+glimpse(sp)
+
+# tibble vs data.frame
+
+# 1. nunca converte um tipo character como factor - 
+df <- data.frame(ch = c("a", "b"), nu = 1:2)
+str(df)
+
+tb <- tibble(ch = c("a", "b"), nu = 1:2)
+glimpse(tb)
+
+# 2. a indexacao com colchetes sempre retorna um tibble
+df_ch <- df[, 1]
+class(df_ch)
+
+tb_ch <- tb[, 1]
+class(tb_ch)
+
+# indexacao pelo nome devolve um vetor
+tb_ch <- tb$ch
+class(tb_ch)
+
+# 3. nao faz correspondencia parcial, retorna NULL se a coluna nao existe com o nome especificado
+df$c 
+tb$c
+
+# 6. magrittr (pipe - %>%) -----------------------------------------------
 # sem pipe
 sqrt(sum(1:100))
 
@@ -64,86 +151,30 @@ ve
 # exercicio 09 ------------------------------------------------------------
 
 
-# 4.3 readr ---------------------------------------------------------------
-# install
-# install.packages("here")
+# -------------------------------------------------------------------------
 
-# load
-library(here)
 
-# confer
-here::here()
+# palmerpenquins ----------------------------------------------------------
 
-# create a .here file
-# here::set_here()
+# instalar 
+# install.packages("palmerpenguins")
 
-# formato .csv
-# import sites
-si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
-si
+# carregar
+library(palmerpenguins)
 
-# import sites
-si <- readr::read_csv("./03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv")
-si
+# ajuda dos dados
+?penguins
+?penguins_raw
 
-# formato .txt
-# import sites
-si <- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
-si
+# visualizar os dados
+penguins
+penguins_raw
 
-# 4.4 readxl e writexl ----------------------------------------------------
-# import .xlsx
-# install.packages("readxl")
-library("readxl")
+# glimpse
+tibble::glimpse(penguins)
+tibble::glimpse(penguins_raw)
 
-# export .xlsx
-# install.packages("writexl")
-library("writexl")
-
-# import sites
-si <- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
-                        sheet = 1)
-si
-
-# import sites
-si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
-si
-
-# import species
-sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"))
-sp
-
-# 4.5 tibble --------------------------------------------------------------
-# view the sites data
-glimpse(si)
-
-# view the species data
-glimpse(sp)
-
-# tibble vs data.frame
-# 1. nunca converte um tipo character como factor - 
-df <- data.frame(ch = c("a", "b"), nu = 1:2)
-str(df)
-
-tb <- tibble(ch = c("a", "b"), nu = 1:2)
-glimpse(tb)
-
-# 2. a indexacao com colchetes sempre retorna um tibble
-df_ch <- df[, 1]
-class(df_ch)
-
-tb_ch <- tb[, 1]
-class(tb_ch)
-
-# indexacao pelo nome devolve um vetor
-tb_ch <- tb$ch
-class(tb_ch)
-
-# 3. nao faz correspondencia parcial, retorna NULL se a coluna nao existe com o nome especificado
-df$c 
-tb$c
-
-# 4.6 tidyr ---------------------------------------------------------------
+# 7. tidyr ---------------------------------------------------------------
 # funcoes
 # 1 unite(): junta dados de multiplas colunas em uma
 # 2 separate(): separa caracteres em mulplica colunas
