@@ -209,14 +209,15 @@ class: inverse, center, middle
 
 background-image: url(img/person_hadley_wickham.jpg)
 background-size: 500px
-background-position: 50% 60%
+background-position: 50% 80%
 
-# Hadley Wickham
+# 1. Linguagem R
+
+## Hadley Wickham
 
 ### Cientista Chefe no RStudio e Professor Adjunto de Estatística na Universidade de Auckland, Stanford e Rice
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+<br><br><br><br><br><br><br><br><br><br><br>
 [Hadley Wickham](http://hadley.nz/)
 
 ---
@@ -229,13 +230,15 @@ class: inverse, center, middle
 
 background-image: url(img/person_yihui_xie.jpg), url(img/person_yihui_xie_avatar.png)
 background-size: 500px, 150px
-background-position: 50% 60%, 95% 10%
+background-position: 50% 70%, 95% 10%
 
-# Yihui Xie
+# 1. Linguagem R
+
+## Yihui Xie
 
 ## Engenheiro de software no RStudio
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 [Yihui Xie](https://yihui.name/)
 
 ---
@@ -291,7 +294,7 @@ background-position: 50% 70%
 
 background-image: url(img/rstudio.png), url(img/rstudio_logo.svg)
 background-size: 500px, 300px
-background-position: 90% 88%, 90% 35%
+background-position: 90% 80%, 90% 25%
 
 # 2. RStudio
 
@@ -311,6 +314,10 @@ background-position: 90% 88%, 90% 35%
 **4. Viewer**: painel de visualização  
 
 ---
+
+background-image: url(img/rstudio.png), url(img/rstudio_logo.svg)
+background-size: 500px, 300px
+background-position: 90% 30%, 90% 85%
 
 # 2. RStudio
 
@@ -553,7 +560,7 @@ background-position: 70% 80%
 ### Informações sobre os códigos
 
 ```{r}
-## comentarios
+# comentarios
 # o r nao le o codigo depois do # (hash)
 
 42 # essas palavras nao sao executadas, apenas o 42
@@ -575,9 +582,9 @@ background-position: 70% 80%
 
 ```{r}
 #' ---
-#' title: Introdução à modelagem de distribuição de espécies usando a linguagem R
-#' author: seu nome
-#' date: 25-09-2021
+#' titulo: Introdução à modelagem de distribuição de espécies usando a linguagem R
+#' autor: seu nome
+#' data: 25-09-2021
 #' ---
 ```
 
@@ -711,7 +718,7 @@ background-position: 80% 90%
 --
 
 ```{r}
-## atribuicao - simbolo (<-)
+# atribuicao - simbolo (<-)
 obj10 <- 10 
 ```
 
@@ -736,7 +743,7 @@ background-position: 50% 90%
 ## Chame o objeto **novamente**!!!
 
 ```{r}
-## atribuicao - simbolo (<-)
+# atribuicao - simbolo (<-)
 obj10 <- 10 
 obj10
 ```
@@ -746,7 +753,7 @@ obj10
 ## Outro exemplo
 
 ```{r}
-## atribuicao - simbolo (<-)
+# atribuicao - simbolo (<-)
 obj2 <- 2
 obj2
 ```
@@ -1048,14 +1055,14 @@ rep(x = 1:5, each = 10)
 ## Atribuição de resultados a objetos
 
 ```{r}
-## atribuicao dos resultados
+# atribuicao dos resultados
 # repeticao - todos
 rep_times <- rep(x = 1:5, times = 10)
 rep_times
 ```
 --
 ```{r}
-## atribuicao dos resultados
+# atribuicao dos resultados
 # repeticao - todos
 rep_each <- rep(x = 1:5, each = 10)
 rep_each
@@ -1071,6 +1078,7 @@ rep_each
 
 **Criar** dois objetos
 ```{r}
+# resposta
 # criar dois objetos
 foo <- 2
 bar <- 3
@@ -1137,6 +1145,7 @@ countdown(minutes = 4, seconds = 00, color_background = "gray30")
 ## Resposta
 
 ```{r}
+# exercicio 03
 # criar dois objetos
 foo <- 100
 bar <- 300
@@ -1463,6 +1472,7 @@ countdown(minutes = 2, color_background = "gray30")
 ## Resposta
 
 ```{r eval=FALSE}
+# exercicio 04
 install.packages("tidyverse")
 ```
 
@@ -1473,7 +1483,7 @@ install.packages("tidyverse")
 ## Descreve as informações de uma função
 
 ```{r eval=FALSE}
-## ajuda
+# ajuda
 # descreve as informacoes de uma funcao
 help("mean") # arquivo .html
 ?mean
@@ -1511,6 +1521,7 @@ background-position: 90% 70%
 ## Detalhes de um pacote
 
 ```{r eval=FALSE}
+# detalhes de um pacote
 library(help = "vegan")
 ```
 
@@ -1544,6 +1555,7 @@ class: inverse, center, middle
 ### Tamanho dos objetos
 
 ```{r}
+# tamanho de um objeto
 object.size("bar")
 ```
 
@@ -1780,10 +1792,10 @@ Parênteses
 ```{r error=TRUE}
 sum(1, 2
     +
-      ```
+```
     
-    Aspas
-    ```{r error=TRUE}
+Aspas
+```{r error=TRUE}
     "string
 +
 ```
@@ -1876,7 +1888,7 @@ background-position: 50% 40%
 
 ## Cases
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 [@allison_horst](https://twitter.com/allison_horst)
 
 ---
@@ -1887,6 +1899,8 @@ background-position: 50% 40%
 ```{r error=TRUE}
 # listar os arquivos do diretorio definido
 dir()[1:4]
+
+# listar os arquivos do diretorio definido
 list.files()[1:4]
 
 # listar os arquivos do diretorio definido por um padrão

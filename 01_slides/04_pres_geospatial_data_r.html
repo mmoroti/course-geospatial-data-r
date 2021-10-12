@@ -237,7 +237,7 @@ library(tidyverse)
 
 
 ```r
-# list all packages in the tidyverse 
+# listar todos os pacotes no tidyverse 
 tidyverse::tidyverse_packages(include_self = TRUE)
 ```
 
@@ -323,10 +323,10 @@ background-position: 50% 90%
 
 
 ```r
-# install
+# instalar
 install.packages("here")
 
-# load
+# carregar
 library(here)
 ```
 
@@ -345,10 +345,10 @@ background-position: 50% 90%
 
 
 ```r
-# confer
+# conferir
 here::here()
 
-# create a .here file
+# criar um arquivo .here
 here::set_here()
 ```
 
@@ -418,7 +418,7 @@ background-position: 50% 80%
 
 
 ```r
-# import sites com here
+# importar sites com here
 si &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
                       locale = readr::locale(encoding = "latin1"))
 si
@@ -434,12 +434,12 @@ si
 
 
 ```r
-# import sites sem o here
+# importar sites sem here
 si &lt;- readr::read_csv("./03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv",
                       locale = readr::locale(encoding = "latin1"))
 si
 ```
---
+
 
 
 ---
@@ -452,7 +452,7 @@ si
 
 
 ```r
-# import sites
+# importar sites
 si &lt;- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
 si
 ```
@@ -473,7 +473,7 @@ background-size: 400px
 
 
 ```r
-# import .xlsx
+# importar .xlsx
 install.packages("readxl")
 library("readxl")
 ```
@@ -482,7 +482,7 @@ library("readxl")
 
 
 ```r
-# export .xlsx
+# exportar .xlsx
 install.packages("writexl")
 library("writexl")
 ```
@@ -515,7 +515,7 @@ library("writexl")
 
 
 ```r
-# import sites
+# importar sites
 si &lt;- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
                         sheet = 1, encoding = "latin1")
 si
@@ -537,7 +537,7 @@ background-position: 50% 100%
 
 
 ```r
-# import sites
+# importar sites
 si &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
                       locale = readr::locale(encoding = "latin1"))
 si
@@ -549,7 +549,7 @@ si
 
 
 ```r
-# import species
+# importar species
 sp &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"),
                       locale = readr::locale(encoding = "latin1"))
 sp
@@ -583,6 +583,7 @@ background-size: 400px
 
 
 ```r
+# descrição dos dados de sites
 tibble::glimpse(si)
 ```
 
@@ -594,6 +595,7 @@ tibble::glimpse(si)
 
 
 ```r
+# descricao dos dados de especies
 tibble::glimpse(sp)
 ```
 
@@ -1053,6 +1055,7 @@ background-position: 50% 50%
 
 
 ```r
+# separar colunas
 penguins_raw_separar &lt;- tidyr::separate(data = penguins_raw, 
                                         col = Stage,
                                         into = c("stage", "egg_stage"), 
@@ -1071,6 +1074,7 @@ head(penguins_raw_separar[, c("Stage", "stage", "egg_stage")])
 
 
 ```r
+# separar colunas em linhas
 penguins_raw_separar_linhas &lt;- tidyr::separate_rows(data = penguins_raw,
                                                     Stage,
                                                     sep = ", ")
@@ -1088,6 +1092,7 @@ head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species",
 
 
 ```r
+# remover linhas com na
 penguins_raw_todas_na &lt;- tidyr::drop_na(data = penguins_raw)
 head(penguins_raw_todas_na)
 ```
@@ -1102,6 +1107,7 @@ head(penguins_raw_todas_na)
 
 
 ```r
+# remover linhas com na de uma coluna
 penguins_raw_colunas_na &lt;- tidyr::drop_na(data = penguins_raw,
                                           any_of("Comments"))
 head(penguins_raw_colunas_na[, "Comments"])
@@ -1117,6 +1123,7 @@ head(penguins_raw_colunas_na[, "Comments"])
 
 
 ```r
+# substituir nas por 0 em uma coluna
 penguins_raw_subs_na &lt;- tidyr::replace_na(data = penguins_raw,
                                           list(Comments = "Unknown"))
 head(penguins_raw_subs_na[, "Comments"])
@@ -1156,6 +1163,7 @@ background-position: 50% 50%
 
 
 ```r
+# long para wide
 penguins_raw_pivot_wider &lt;- tidyr::pivot_wider(data = penguins_raw[, c(2, 3, 13)], 
                                                names_from = Species, 
                                                values_from = `Body Mass (g)`)
@@ -1183,6 +1191,7 @@ background-position: 50% 50%
 
 
 ```r
+# wide para long
 penguins_raw_pivot_longer &lt;- tidyr::pivot_longer(data = penguins_raw[, c(2, 3, 10:13)], 
                                                  cols = `Culmen Length (mm)`:`Body Mass (g)`,
                                                  names_to = "medidas", 
@@ -1350,6 +1359,7 @@ background-position: 50% 80%
 
 
 ```r
+# sintaxe
 tb_dplyr &lt;- tb %&gt;% 
   funcao_verbal1(argumento1, argumento2, ...) %&gt;% 
   funcao_verbal2(argumento1, argumento2, ...) %&gt;% 
@@ -1366,7 +1376,7 @@ tb_dplyr &lt;- tb %&gt;%
 
 
 ```r
-# reordena colunas - nome
+# reordenar colunas - nome
 penguins_relocate_col &lt;- penguins %&gt;% 
  dplyr::relocate(sex, year, .after = island)
 head(penguins_relocate_col)
@@ -1382,7 +1392,7 @@ head(penguins_relocate_col)
 
 
 ```r
-# reordena colunas - posicao
+# reordenar colunas - posicao
 penguins_relocate_ncol &lt;- penguins %&gt;% 
   dplyr::relocate(sex, year, .after = 2)
 head(penguins_relocate_ncol)
@@ -1398,7 +1408,7 @@ head(penguins_relocate_ncol)
 
 
 ```r
-# renomeia colunas
+# renomear colunas
 penguins_rename &lt;- penguins %&gt;% 
   dplyr::rename(bill_length = bill_length_mm,
                 bill_depth = bill_depth_mm,
@@ -1417,21 +1427,11 @@ head(penguins_rename)
 
 
 ```r
-# mudar o nome de todas as colunas
+# renomear todas as colunas
 penguins_rename_with &lt;- penguins %&gt;% 
   dplyr::rename_with(toupper)
 head(penguins_rename_with)
 ```
-
----
-
-background-image: url(img/dplyr_select.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 8. dplyr
-
-## **3. `select()`**
 
 ---
 
@@ -1443,7 +1443,7 @@ background-position: 50% 50%
 
 
 ```r
-# seleciona colunas por posicao
+# selecionar colunas por posicao
 penguins_select_position &lt;- penguins %&gt;% 
   dplyr::select(3:6)
 head(penguins_select_position)
@@ -1475,7 +1475,7 @@ head(penguins_select_names)
 
 
 ```r
-# remove colunas pelo nome
+# remover colunas pelo nome
 penguins_select_names_remove &lt;- penguins %&gt;% 
   dplyr::select(-bill_length_mm:body_mass_g)
 head(penguins_select_names_remove)
@@ -1498,18 +1498,6 @@ head(penguins_select_contains)
 
 ---
 
-background-image: url(img/dplyr_pull.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 8. dplyr
-
-## **4. `pull()`**
-
-### Seleciona uma coluna como vetor
-
----
-
 # 8. dplyr
 
 ## **4. `pull()`**
@@ -1526,16 +1514,6 @@ head(penguins_select_pull, 15)
 
 ---
 
-background-image: url(img/dplyr_mutate.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 8. dplyr
-
-## **5. `mutate()`**
-
----
-
 # 8. dplyr
 
 ## **5. `mutate()`**
@@ -1544,7 +1522,7 @@ background-position: 50% 50%
 
 
 ```r
-# adiciona colunas
+# adicionar colunas
 penguins_mutate &lt;- penguins %&gt;% 
   dplyr::mutate(body_mass_kg = body_mass_g/1e3, .before = sex)
 head(penguins_mutate)
@@ -1560,34 +1538,23 @@ head(penguins_mutate)
 
 
 ```r
-## modifica varias colunas
+## modificar varias colunas
 penguins_mutate_across &lt;- penguins %&gt;% 
   dplyr::mutate(across(where(is.factor), as.character))
 head(penguins_mutate_across)
 ```
 
-
----
-
-background-image: url(img/dplyr_arrange.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 8. dplyr
-
-## **6. `arrange()`**
-
 ---
 
 # 8. dplyr
 
 ## **6. `arrange()`**
 
-### Reordena de forma crescente ou decrescente pelos valores de uma coluna
+### Reordena de forma crescente pelos valores de uma coluna
 
 
 ```r
-# reordena linhas - crescente
+# reordenar os valores por ordem crescente
 penguins_arrange &lt;- penguins %&gt;% 
   dplyr::arrange(body_mass_g)
 head(penguins_arrange)
@@ -1599,11 +1566,11 @@ head(penguins_arrange)
 
 ## **6. `arrange()`**
 
-### Reordena de forma crescente ou decrescente pelos valores de uma coluna
+### Reordena de forma decrescente pelos valores de uma coluna
 
 
 ```r
-# reordena linhas - decrescente
+# reordenar os valores por ordem decrescente
 penguins_arrange_desc &lt;- penguins %&gt;% 
   dplyr::arrange(desc(body_mass_g))
 head(penguins_arrange_desc)
@@ -1619,7 +1586,7 @@ head(penguins_arrange_desc)
 
 
 ```r
-# reordena linhas - decrescente
+# reordenar os valores por ordem decrescente
 penguins_arrange_desc_m &lt;- penguins %&gt;% 
   dplyr::arrange(-body_mass_g)
 head(penguins_arrange_desc_m)
@@ -1631,11 +1598,11 @@ head(penguins_arrange_desc_m)
 
 ## **6. `arrange()`**
 
-### Reordena de forma crescente ou decrescente pelos valores de uma coluna
+### Reordena de forma crescente ou decrescente pelos valores de várias colunas
 
 
 ```r
-## reordena linhas - multiplas colunas
+# reordenar os valores por ordem crescente de varias colunas
 penguins_arrange_across &lt;- penguins %&gt;% 
   dplyr::arrange(across(where(is.numeric)))
 head(penguins_arrange_across)
@@ -1643,201 +1610,373 @@ head(penguins_arrange_across)
 
 ---
 
-background-image: url(img/dplyr_filter.png)
-background-size: 800px
-background-position: 50% 50%
+# 8. dplyr
+
+## **7. `filter()`**
+
+### Filtro de linhas por valores de uma coluna
+
+
+```r
+# filtrar linhas por valores de uma coluna
+penguins_filter &lt;- penguins %&gt;% 
+  dplyr::filter(species == "Adelie")
+head(penguins_filter)
+```
+
+---
 
 # 8. dplyr
 
 ## **7. `filter()`**
 
+### Filtro de linhas por valores de uma coluna
+
+
+```r
+# filtrar linhas por valores de duas colunas
+penguins_filter_two &lt;- penguins %&gt;% 
+  dplyr::filter(species == "Adelie" &amp; sex == "female")
+head(penguins_filter_two)
+```
+
 ---
 
 # 8. dplyr
 
 ## **7. `filter()`**
 
-### operadores: &gt;, &gt;=, &lt;, &lt;=, ==, !=, is.na, !is.na, %in%
-### Filtrar para locais com mais de 5 espécies
+### Filtro de linhas por valores de uma coluna e vários valores
+
 
 ```r
-si_filter &lt;- si %&gt;% 
-  dplyr::filter(species_number &gt; 5)
-si_filter
-```
-
---
-
-### Filtrar para locais centre 1 e 5 espécies
-
-```r
-si_filter &lt;- si %&gt;% 
-  dplyr::filter(between(species_number, 1, 5))
-si_filter
+# filtrar linhas por mais de um valor e mais de uma coluna
+penguins_filter_in &lt;- penguins %&gt;% 
+  dplyr::filter(species %in% c("Adelie", "Gentoo"),
+                sex == "female")
+head(penguins_filter_in)
 ```
 
 ---
 
 # 8. dplyr
 
-## **6 filter** 
-### Filtrar para locais com NA no métodos passivos
+## **7. `filter()`**
+
+### Filtro por valores não-NA
+
 
 ```r
-si_filter &lt;- si %&gt;% 
-  dplyr::filter(is.na(passive_methods))
-si_filter
-```
---
-### Filtrar para locais sem NA no métodos passivos
-
-```r
-si_filter &lt;- si %&gt;% 
-  dplyr::filter(!is.na(passive_methods))
-si_filter
+# filtrar linhas por nas
+penguins_filter_na &lt;- penguins %&gt;% 
+  dplyr::filter(!is.na(sex) == TRUE)
+head(penguins_filter_na)
 ```
 
 ---
 
 # 8. dplyr
 
-## **6 filter** 
-### Filtrar para locais sem NA no métodos ativos **E** passivos
+## **7. `filter()`**
+
+### Filtro por intervalos
+
 
 ```r
-si_filter &lt;- si %&gt;% 
-  dplyr::filter(!is.na(active_methods) &amp; !is.na(passive_methods))
-si_filter
+# filtrar linhas por valores em um intervalo
+penguins_filter_between &lt;- penguins %&gt;% 
+  dplyr::filter(between(body_mass_g, 3000, 4000))
+head(penguins_filter_between)
 ```
 
 ---
 
 # 8. dplyr
 
-## **6 filter** 
-### Filtrar para locais amostrados com mais de 5 espécies **E** em São Paulo
+## **7. `filter()`**
+
+### Filtro linhas por várias colunas simultaneamente
+
 
 ```r
-si_filter &lt;- si %&gt;% 
-  dplyr::filter(species_number &gt; 5 &amp; state_abbreviation == "BR-SP") 
-si_filter
-```
---
-### Filtrar para locais amostrados com mais de 5 espécies **OU** em São Paulo
-
-```r
-si_filter &lt;- si %&gt;% 
-  dplyr::filter(species_number &gt; 5 | state_abbreviation == "BR-SP")
-si_filter
+# filtrar linhas por valores de varias colunas
+penguins_filter_if &lt;- penguins %&gt;% 
+  dplyr::filter(if_all(where(is.integer), ~ . &gt; 200))
+head(penguins_filter_if)
 ```
 
 ---
 
 # 8. dplyr
 
-## **7 distinct**
-### Remove linhas duplicadas considerando a coluna número de espécies
+## **8. `slice()`** 
+
+### Seleção das linhas por intervalos, indicando quais linhas desejamos
+
 
 ```r
-si_distinct &lt;- si %&gt;% 
-  dplyr::distinct(species_number)
-si_distinct
+# selecionar linhas por intervalos
+penguins_slice &lt;- penguins %&gt;% 
+  dplyr::slice(n = c(1, 3, 300:n()))
+head(penguins_slice)
 ```
 
 ---
 
 # 8. dplyr
 
-## **7 distinct**
-### Remove linhas duplicadas considerando a coluna número de espécies e mantém as demais
+## **8. `slice()`** 
+
+### Seleção das linhas iniciais
+
 
 ```r
-si_distinct &lt;- si %&gt;% 
-  dplyr::distinct(species_number, .keep_all = TRUE)
-si_distinct
+# selecionar linhas iniciais
+penguins_slice_head &lt;- penguins %&gt;% 
+  dplyr::slice_head(n = 5)
+head(penguins_slice_head)
 ```
 
 ---
 
 # 8. dplyr
 
-## **8 slice** 
-### Selecionar linhas 1 a 10
+## **8. `slice()`** 
+
+### Seleção de linhas por valores de uma coluna
+
 
 ```r
-si_slice &lt;- si %&gt;% 
-  dplyr::slice(1:10)
-si_slice
+# selecionar linhas por valores de uma coluna
+penguins_slice_max &lt;- penguins %&gt;% 
+  dplyr::slice_max(body_mass_g, n = 5)
+head(penguins_slice_max)
 ```
 
 ---
 
 # 8. dplyr
 
-## **9 n_sample** 
+## **8. `slice()`** 
 
-### Amostrar 100 linhas aleatoriamente
-
-```r
-si_sample_n &lt;- si %&gt;% 
-  dplyr::sample_n(100)
-si_sample_n
-```
-
----
-
-background-image: url(img/dplyr_summarize.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 8. dplyr
-
-## **10 summarise**
-
----
-
-# 8. dplyr
-
-## **10 summarise**
-
-### Média e desvio padrão do número de espécies total
+### Seleção de linhas aleatoriamente
 
 
 ```r
-si_summarise &lt;- si %&gt;% 
-  dplyr::summarise(mean_sp = mean(species_number), 
-                   sd_sp = sd(species_number))
-si_summarise
+# selecionar linhas aleatoriamente
+penguins_slice_sample &lt;- penguins %&gt;% 
+  dplyr::slice_sample(n = 30)
+head(penguins_slice_sample)
 ```
 
 ---
 
 # 8. dplyr
 
-## **10 summarise**
-### Média e desvio padrão do número de espécies por país
+## **9. `distinct()`**
+
+###  Retira linhas com valores duplicados com base nos valores de colunas
+
 
 ```r
-si_summarise_group &lt;- si %&gt;% 
-  dplyr::group_by(country) %&gt;% 
-  dplyr::summarise(mean_sp = mean(species_number), 
-                   sd_sp = sd(species_number))
-si_summarise_group
+# retirar linhas com valores duplicados
+penguins_distinct &lt;- penguins %&gt;% 
+  dplyr::distinct(body_mass_g)
+head(penguins_distinct)
+```
+
+---
+
+# 8. dplyr
+
+## **9. `distinct()`**
+
+###  Retira linhas com valores duplicados com base nos valores de colunas mantendo as colunas
+
+
+```r
+# retirar linhas com valores duplicados e manter colunas
+penguins_distinct_keep_all &lt;- penguins %&gt;% 
+  dplyr::distinct(body_mass_g, .keep_all = TRUE)
+head(penguins_distinct_keep_all)
+```
+
+---
+
+# 8. dplyr
+
+## **9. `distinct()`**
+
+###  Retira linhas com valores duplicados para várias colunas
+
+
+```r
+# retirar linhas com valores duplicados para varias colunas
+penguins_distinct_keep_all_across &lt;- penguins %&gt;% 
+  dplyr::distinct(across(where(is.integer)), .keep_all = TRUE)
+head(penguins_distinct_keep_all_across)
+```
+
+---
+
+# 8. dplyr
+
+## **10. `count()`**
+
+### Conta valores de uma ou mais colunas, geralmente para variáveis categóricas
+
+
+```r
+# contagens de valores para uma coluna
+penguins_count &lt;- penguins %&gt;% 
+  dplyr::count(species)
+penguins_count
+```
+
+---
+
+# 8. dplyr
+
+## **10. `count()`**
+
+### Conta valores de uma ou mais colunas, geralmente para variáveis categóricas
+
+
+```r
+# contagens de valores para mais de uma coluna
+penguins_count_two &lt;- penguins %&gt;% 
+  dplyr::count(species, island)
+penguins_count_two
+```
+
+---
+
+# 8. dplyr
+
+## **11. `groun_by()`**
+
+### Transforma um tibble em um tibble agrupado, onde as operações são realizadas "por grupo"
+
+
+```r
+# agrupamento
+penguins_group_by &lt;- penguins %&gt;% 
+  dplyr::group_by(species)
+head(penguins_group_by)
+```
+
+---
+
+# 8. dplyr
+
+## **11. `groun_by()`**
+
+### Transforma um tibble em um tibble agrupado, onde as operações são realizadas "por grupo"
+
+
+```r
+# agrupamento de várias colunas
+penguins_group_by_across &lt;- penguins %&gt;% 
+  dplyr::group_by(across(where(is.factor)))
+head(penguins_group_by_across)
+```
+
+---
+
+# 8. dplyr
+
+## **12. `summarise()`**
+
+### Agregação ou resumo dos dados através de funções
+
+
+```r
+# resumo
+penguins_summarise &lt;- penguins %&gt;% 
+  dplyr::group_by(species) %&gt;% 
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+            body_mass_g_sd = sd(body_mass_g, na.rm = TRUE))
+penguins_summarise
+```
+
+---
+
+# 8. dplyr
+
+## **12. `summarise()`**
+
+### Agregação ou resumo dos dados através de funções
+
+
+```r
+# resumo para várias colunas
+penguins_summarise_across &lt;- penguins %&gt;% 
+  dplyr::group_by(species) %&gt;% 
+  dplyr::summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+penguins_summarise_across
+```
+
+---
+
+# 8. dplyr
+
+## **13. `bind_rows()` e `bind_cols()`**
+
+### Combina dados por linhas e por colunas
+
+
+```r
+# selecionar as linhas para dois tibbles
+penguins_01 &lt;- dplyr::slice(penguins, 1:5)
+penguins_02 &lt;- dplyr::slice(penguins, 51:55)
+
+# combinar as linhas
+penguins_bind_rows &lt;- dplyr::bind_rows(penguins_01, penguins_02, .id = "id")
+head(penguins_bind_rows)
+```
+
+---
+
+# 8. dplyr
+
+## **13. `bind_rows()` e `bind_cols()`**
+
+### Combina dados por linhas e por colunas
+
+
+```r
+# selecionar as linhas para dois tibbles
+penguins_01 &lt;- dplyr::slice(penguins, 1:5)
+penguins_02 &lt;- dplyr::slice(penguins, 51:55)
+
+## combinar as colunas
+penguins_bind_cols &lt;- dplyr::bind_cols(penguins_01, penguins_02, .name_repair = "unique")
+head(penguins_bind_cols)
 ```
 
 ---
 
 background-image: url(img/dplyr_join.png)
-background-size: 350px
-background-position: 50% 60%
+background-size: 300px
+background-position: 85% 80%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### Combinação de pares de dados tabulares por uma ou mais colunas chaves
 
-[*] https://rpubs.com/williamsurles/293454
+#### Junção de mutação
+- `left_join(x, y)`: mantém as observações em x
+- `right_join(x, y)`: mantém as observações em y
+- `inner_join(x, y)`: mantém apenas as observações em x e em y
+- `full_join(x, y)`: mantém todas as observações em x e em y
+
+#### Junção de filtragem
+- `semi_join(x, y)`: mantém as observações em x que têm uma &lt;br&gt; correspondência em y
+- `anti_join(x, y)`: elimina as observações em x que têm uma  &lt;br&gt; correspondência em y
+
+[Joining Data in R with dplyr](https://rpubs.com/williamsurles/293454)
 
 ---
 
@@ -1847,163 +1986,100 @@ background-position: 20% 10%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
-background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif)
-background-size: 300px,300px
-background-position: 20% 10%,80% 10%
+background-image: url(img/gif_dplyr_left_join.gif), url(img/gif_dplyr_right_join.gif)
+background-size: 300px, 300px
+background-position: 20% 10%, 80% 10%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
-background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif),url(img/gif_dplyr_inner_join.gif)
-background-size: 300px,300px,300px
-background-position: 20% 10%,80% 10%,20% 100%
+background-image: url(img/gif_dplyr_left_join.gif), url(img/gif_dplyr_right_join.gif), url(img/gif_dplyr_inner_join.gif)
+background-size: 300px, 300px, 300px
+background-position: 20% 10%, 80% 10%, 20% 100%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
-background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif),url(img/gif_dplyr_inner_join.gif),url(img/gif_dplyr_full_join.gif)
-background-size: 300px,300px,300px,300px
-background-position: 20% 10%,80% 10%,20% 100%,80% 105%
+background-image: url(img/gif_dplyr_left_join.gif), url(img/gif_dplyr_right_join.gif), url(img/gif_dplyr_inner_join.gif), url(img/gif_dplyr_full_join.gif)
+background-size: 300px, 300px, 300px, 300px
+background-position: 20% 10%, 80% 10%, 20% 100%, 80% 105%
 
 # 8. dplyr
 
-## **11 *_join**
-
----
-
-background-image: url(img/dplyr_leftjoin.png), url(img/dplyr_rightjoin.png), url(img/dplyr_innerjoin.png), url(img/dplyr_fulljoin.png)
-background-size: 600px, 600px, 600px, 600px
-background-position: 50% 20%, 50% 45%, 50% 70%, 50% 95%
-
-# 8. dplyr
-
-## **11 *_join**
-
----
-
-background-image: url(img/dplyr_semijoin.png), url(img/dplyr_antijoin.png)
-background-size: 700px, 700px
-background-position: 50% 40%, 50% 80%
-
-# 8. dplyr
-
-## **11 *_join**
-
----
-
-background-image: url(img/dplyr_leftjoin.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 8. dplyr
-
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
-## Adicionar longitute e latitude na tabela de espécies
+## Adicionar longitute e latitude para as ilhas amostradas
 
-### Selecionar as colunas que preciso da tabela **si**
 
 ```r
-si_coord &lt;- si %&gt;% 
-  dplyr::select(id, longitude, latitude)
-si_coord 
+## coordenadas
+penguin_islands &lt;- tibble(
+  island = c("Torgersen", "Biscoe", "Dream", "Alpha"),
+  longitude = c(-64.083333, -63.775636, -64.233333, -63),
+  latitude = c(-64.766667, -64.818569, -64.733333, -64.316667))
+penguin_islands
 ```
 
 ---
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
-## Adicionar longitute e latitude na tabela de espécies
+## Adicionar longitute e latitude para as ilhas amostradas
 
-### Join com as tabelas pela coluna "id"
 
 ```r
-# join dos dados
-sp_join &lt;- sp %&gt;% 
-  dplyr::left_join(si_coord, by = "id")
-sp_join
+# juncao - left
+penguins_left_join &lt;- dplyr::left_join(penguins, penguin_islands, by = "island")
+head(penguins_left_join)
 ```
 
 ---
 
-# 8. dplyr
-
-## **11 *_join**
-
-## Adicionar longitute e latitude na tabela de espécies
-
-### Nome das colunas
-
-```r
-colnames(sp_join)
-```
-
----
+background-image: url(img/dplyr_conjuntos.png)
+background-size: 400px
+background-position: 90% 70%    
 
 # 8. dplyr
 
-## **11 *_join**
+## **15. Operações de conjuntos e comparação de dados**
 
-## Adicionar longitute e latitude na tabela de espécies
+### Operações para  comparar dos dados
 
-### Nome das colunas
-
-```r
-sp_join %&gt;% 
-  dplyr::select(species, longitude, latitude)
-```
+- `union(x, y)`: retorna todas as linhas que aparecem em x, &lt;br&gt; y ou mais dos conjuntos de dados
+- `interesect(x, y)`: retorna apenas as linhas que aparecem &lt;br&gt;  em x e em y
+- `setdiff(x, y)`: retorna as linhas que aparecem x, mas não em y
+- `setequal(x, y)`: retorna se x e y são iguais e quais suas diferenças
 
 ---
 
 class: inverse, center, middle
 
-# E não termina nunca...
+# IMPORTANTE: ideia de **encadeamento das funções**
 
 ---
 
 # 8. dplyr
 
-## Sufixos: _at(), _if(), _all()
-
-### Realiza operações dependente de confições
-
-
-```r
-sp_wide_rename &lt;- sp_wide %&gt;% 
-  dplyr::rename_at(vars(contains(" ")), 
-                   list(~stringr::str_replace_all(., " ", "_"))) %&gt;% 
-  dplyr::rename_all(list(~stringr::str_to_lower(.)))
-sp_wide_rename
-```
-
----
-
-class: inverse, center, middle
-
-# Mas o mais importante é a ideia de **encadeamento das funções**
-
----
-
-# 8. dplyr
 ## Permite manipular os dados de forma simples
+
 
 ```r
 da &lt;- si %&gt;% 

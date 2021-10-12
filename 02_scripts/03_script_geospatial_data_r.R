@@ -98,6 +98,7 @@ as.character(obj_num_dou)
 temp <- c(15, 18, 20, 22, 18)
 temp
 
+# concatenar elementos de texto
 amos <- c("amostra_01", "amostra_02", "amostra_03", "amostra_04")
 amos
 
@@ -109,7 +110,6 @@ se
 se_e <- seq(from = 0, to = 100, by = 10) 
 se_e
 
-# repeticao
 # rep(x, times) # repete x tantas vezes
 rep_times <- rep(x = c(1, 2), times = 5)
 rep_times
@@ -155,10 +155,12 @@ ve
 # as.character()
 # as.integer()
 # as.numeric()
+# as.double()
+# as.integer()
 # as.logical()
 
 # 2. factor: homogeneo (um modo - sempre numeric), unidimensional (uma dimensao) e possui ainda levels (niveis)
-# 2. factor nominal: variaveis nominais
+# factor nominal: variaveis nominais
 fa_no <- factor(x = sample(x = c("floresta", "pastagem", "cerrado"), 
                            size = 20, replace = TRUE),
                 levels = c("floresta", "pastagem", "cerrado"))
@@ -166,7 +168,7 @@ fa_no
 
 levels(fa_no)
 
-# 2. factor ordinal: variaveis ordinais
+# factor ordinal: variaveis ordinais
 fa_or <- factor(x = sample(x = c("baixa", "media", "alta"), 
                            size = 20, replace = TRUE),
                 levels = c("baixa", "media", "alta"), ordered = TRUE)
@@ -174,7 +176,7 @@ fa_or
 
 levels(fa_or)
 
-# 2. factor: conversao
+# factor: conversao
 # vector
 ve_ch <- c("alta", "media", "baixa", "baixa", "media")
 ve_ch
@@ -241,6 +243,7 @@ ma_cbind
 ve <- 1:8
 ve
 
+# array
 ar <- array(data = ve, dim = c(2, 2, 2))
 ar
 
@@ -294,14 +297,14 @@ str(df_c)
 
 # -------------------------------------------------------------------------
 
-
 # 6. list: heterogeneo (mais de um modo) e unidimensional (uma dimensao)
+# lista
 li <- list(rep(1, 20), # vector
            factor(1, 1), # factor
            cbind(c(1, 2), c(1, 2))) # matrix
 li
 
-# com nomes
+# lista com nomes
 li <- list(vector = rep(1, 20), # vector
            factor = factor(1, 1), # factor
            matrix = cbind(c(1, 2), c(1, 2))) # matrix
@@ -441,7 +444,7 @@ length(li)
 # names
 names(li)
 
-## Renomear
+# renomear
 names(li) <- paste0("elemento0", 1:3)
 li
 
@@ -450,12 +453,22 @@ li
 ma <- matrix(1:12, 4, 3)
 ma 
 
-ma[3, ] # linha 3
-ma[, 2] # coluna 2
-ma[1, 2] # elemento da linha 1 e coluna 2
-ma[1, 1:2] # elementos da linha 1 e coluna 1 e 2
-ma[1, c(1, 3)] # elementos da linha 1 e coluna 1 e 3
+# linha 3
+ma[3, ] 
 
+# coluna 2
+ma[, 2] 
+
+# elemento da linha 1 e coluna 2
+ma[1, 2] 
+
+# elementos da linha 1 e coluna 1 e 2
+ma[1, 1:2] 
+
+# elementos da linha 1 e coluna 1 e 3
+ma[1, c(1, 3)] 
+
+# elementos da linha 1 e coluna 1 e 3 e atribuir
 ma_sel <- ma[1, c(1, 3)]
 ma_sel
 
@@ -474,6 +487,7 @@ df$sp
 df$abu
 df$flo
 
+# funcoes para uma coluna indexada por $
 length(df$abu)
 max(df$abu)
 min(df$abu)
@@ -506,7 +520,7 @@ df[df$abu2 == 0, ]
 # selecionar linhas de uma matriz ou data frame 
 df[df$flo == "floresta", ]
 
-# 3 funcoes de visualizacao e manipulacao
+# funcoes de visualizacao e manipulacao
 # head(): mostra as primeiras 6 linhas
 # tail(): mostra as últimas 6 linhas
 # nrow(): mostra o número de linhas
@@ -540,6 +554,7 @@ any(is.na(df))
 df_sem_na <- na.omit(df)
 df_sem_na
 
+# numero de linhas
 nrow(df)
 nrow(df_sem_na)
 
@@ -579,7 +594,7 @@ setwd("/home/mude/data/github/course-geospatial-data-r/03_dados/tabelas")
 # verificar o diretorio
 getwd()
 
-# verificar os arquivos
+# listar os arquivos
 dir()
 
 # 6. importar dados ------------------------------------------------------
@@ -664,6 +679,7 @@ which(is.na(da))
 # retirar os NAs
 da_na <- na.omit(da)
 
+# numero de linhas
 nrow(da)
 nrow(da_na)
 
@@ -672,16 +688,17 @@ da_sp <- da[da$state == "São Paulo", ]
 da_sp
 
 # 8. Exportar dados -----------------------------------------------------
-# planilha eletronica (.csv)
+
+# exportar planilha eletronica (.csv)
 write.csv(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.csv", 
           row.names = FALSE)
 
 
-# planilha de texto (.txt)
+# exportar planilha de texto (.txt)
 write.table(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.txt", 
             row.names = FALSE, quote = FALSE, sep = ";")
 
-# planilha eletronica (.xlsx)
+# exportar planilha eletronica (.xlsx)
 openxlsx::write.xlsx(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.xlsx", 
                      row.names = FALSE, quote = FALSE)
 

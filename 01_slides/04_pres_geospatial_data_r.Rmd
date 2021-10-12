@@ -1770,44 +1770,154 @@ head(penguins_distinct_keep_all_across)
 
 # 8. dplyr
 
-## **10 summarise**
+## **10. `count()`**
 
-### Média e desvio padrão do número de espécies total
+### Conta valores de uma ou mais colunas, geralmente para variáveis categóricas
 
 ```{r}
-si_summarise <- si %>% 
-  dplyr::summarise(mean_sp = mean(species_number), 
-                   sd_sp = sd(species_number))
-si_summarise
+# contagens de valores para uma coluna
+penguins_count <- penguins %>% 
+  dplyr::count(species)
+penguins_count
 ```
 
 ---
 
 # 8. dplyr
 
-## **10 summarise**
-### Média e desvio padrão do número de espécies por país
+## **10. `count()`**
+
+### Conta valores de uma ou mais colunas, geralmente para variáveis categóricas
+
 ```{r}
-si_summarise_group <- si %>% 
-  dplyr::group_by(country) %>% 
-  dplyr::summarise(mean_sp = mean(species_number), 
-                   sd_sp = sd(species_number))
-si_summarise_group
+# contagens de valores para mais de uma coluna
+penguins_count_two <- penguins %>% 
+  dplyr::count(species, island)
+penguins_count_two
+```
+
+---
+
+# 8. dplyr
+
+## **11. `groun_by()`**
+
+### Transforma um tibble em um tibble agrupado, onde as operações são realizadas "por grupo"
+
+```{r}
+# agrupamento
+penguins_group_by <- penguins %>% 
+  dplyr::group_by(species)
+head(penguins_group_by)
+```
+
+---
+
+# 8. dplyr
+
+## **11. `groun_by()`**
+
+### Transforma um tibble em um tibble agrupado, onde as operações são realizadas "por grupo"
+
+```{r}
+# agrupamento de várias colunas
+penguins_group_by_across <- penguins %>% 
+  dplyr::group_by(across(where(is.factor)))
+head(penguins_group_by_across)
+```
+
+---
+
+# 8. dplyr
+
+## **12. `summarise()`**
+
+### Agregação ou resumo dos dados através de funções
+
+```{r}
+# resumo
+penguins_summarise <- penguins %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+            body_mass_g_sd = sd(body_mass_g, na.rm = TRUE))
+penguins_summarise
+```
+
+---
+
+# 8. dplyr
+
+## **12. `summarise()`**
+
+### Agregação ou resumo dos dados através de funções
+
+```{r}
+# resumo para várias colunas
+penguins_summarise_across <- penguins %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+penguins_summarise_across
+```
+
+---
+
+# 8. dplyr
+
+## **13. `bind_rows()` e `bind_cols()`**
+
+### Combina dados por linhas e por colunas
+
+```{r}
+# selecionar as linhas para dois tibbles
+penguins_01 <- dplyr::slice(penguins, 1:5)
+penguins_02 <- dplyr::slice(penguins, 51:55)
+
+# combinar as linhas
+penguins_bind_rows <- dplyr::bind_rows(penguins_01, penguins_02, .id = "id")
+head(penguins_bind_rows)
+```
+
+---
+
+# 8. dplyr
+
+## **13. `bind_rows()` e `bind_cols()`**
+
+### Combina dados por linhas e por colunas
+
+```{r}
+# selecionar as linhas para dois tibbles
+penguins_01 <- dplyr::slice(penguins, 1:5)
+penguins_02 <- dplyr::slice(penguins, 51:55)
+
+## combinar as colunas
+penguins_bind_cols <- dplyr::bind_cols(penguins_01, penguins_02, .name_repair = "unique")
+head(penguins_bind_cols)
 ```
 
 ---
 
 background-image: url(img/dplyr_join.png)
-background-size: 350px
-background-position: 50% 60%
+background-size: 300px
+background-position: 85% 80%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+### Combinação de pares de dados tabulares por uma ou mais colunas chaves
 
-[*] https://rpubs.com/williamsurles/293454
+#### Junção de mutação
+- `left_join(x, y)`: mantém as observações em x
+- `right_join(x, y)`: mantém as observações em y
+- `inner_join(x, y)`: mantém apenas as observações em x e em y
+- `full_join(x, y)`: mantém todas as observações em x e em y
+
+#### Junção de filtragem
+- `semi_join(x, y)`: mantém as observações em x que têm uma <br> correspondência em y
+- `anti_join(x, y)`: elimina as observações em x que têm uma  <br> correspondência em y
+
+[Joining Data in R with dplyr](https://rpubs.com/williamsurles/293454)
 
 ---
 
@@ -1817,158 +1927,98 @@ background-position: 20% 10%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
-background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif)
-background-size: 300px,300px
-background-position: 20% 10%,80% 10%
+background-image: url(img/gif_dplyr_left_join.gif), url(img/gif_dplyr_right_join.gif)
+background-size: 300px, 300px
+background-position: 20% 10%, 80% 10%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
-background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif),url(img/gif_dplyr_inner_join.gif)
-background-size: 300px,300px,300px
-background-position: 20% 10%,80% 10%,20% 100%
+background-image: url(img/gif_dplyr_left_join.gif), url(img/gif_dplyr_right_join.gif), url(img/gif_dplyr_inner_join.gif)
+background-size: 300px, 300px, 300px
+background-position: 20% 10%, 80% 10%, 20% 100%
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
-background-image: url(img/gif_dplyr_left_join.gif),url(img/gif_dplyr_right_join.gif),url(img/gif_dplyr_inner_join.gif),url(img/gif_dplyr_full_join.gif)
-background-size: 300px,300px,300px,300px
-background-position: 20% 10%,80% 10%,20% 100%,80% 105%
+background-image: url(img/gif_dplyr_left_join.gif), url(img/gif_dplyr_right_join.gif), url(img/gif_dplyr_inner_join.gif), url(img/gif_dplyr_full_join.gif)
+background-size: 300px, 300px, 300px, 300px
+background-position: 20% 10%, 80% 10%, 20% 100%, 80% 105%
 
 # 8. dplyr
 
-## **11 *_join**
-
----
-
-background-image: url(img/dplyr_leftjoin.png), url(img/dplyr_rightjoin.png), url(img/dplyr_innerjoin.png), url(img/dplyr_fulljoin.png)
-background-size: 600px, 600px, 600px, 600px
-background-position: 50% 20%, 50% 45%, 50% 70%, 50% 95%
-
-# 8. dplyr
-
-## **11 *_join**
-
----
-
-background-image: url(img/dplyr_semijoin.png), url(img/dplyr_antijoin.png)
-background-size: 700px, 700px
-background-position: 50% 40%, 50% 80%
-
-# 8. dplyr
-
-## **11 *_join**
-
----
-
-background-image: url(img/dplyr_leftjoin.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 8. dplyr
-
-## **11 *_join**
+## **14. `*_join()`**
 
 ---
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
-## Adicionar longitute e latitude na tabela de espécies
+## Adicionar longitute e latitude para as ilhas amostradas
 
-### Selecionar as colunas que preciso da tabela **si**
 ```{r}
-si_coord <- si %>% 
-  dplyr::select(id, longitude, latitude)
-si_coord 
+## coordenadas
+penguin_islands <- tibble(
+  island = c("Torgersen", "Biscoe", "Dream", "Alpha"),
+  longitude = c(-64.083333, -63.775636, -64.233333, -63),
+  latitude = c(-64.766667, -64.818569, -64.733333, -64.316667))
+penguin_islands
 ```
 
 ---
 
 # 8. dplyr
 
-## **11 *_join**
+## **14. `*_join()`**
 
-## Adicionar longitute e latitude na tabela de espécies
+## Adicionar longitute e latitude para as ilhas amostradas
 
-### Join com as tabelas pela coluna "id"
 ```{r}
-# join dos dados
-sp_join <- sp %>% 
-  dplyr::left_join(si_coord, by = "id")
-sp_join
+# juncao - left
+penguins_left_join <- dplyr::left_join(penguins, penguin_islands, by = "island")
+head(penguins_left_join)
 ```
 
 ---
 
-# 8. dplyr
-
-## **11 *_join**
-
-## Adicionar longitute e latitude na tabela de espécies
-
-### Nome das colunas
-```{r}
-colnames(sp_join)
-```
-
----
+background-image: url(img/dplyr_conjuntos.png)
+background-size: 400px
+background-position: 90% 70%    
 
 # 8. dplyr
 
-## **11 *_join**
+## **15. Operações de conjuntos e comparação de dados**
 
-## Adicionar longitute e latitude na tabela de espécies
+### Operações para  comparar dos dados
 
-### Nome das colunas
-```{r}
-sp_join %>% 
-  dplyr::select(species, longitude, latitude)
-```
+- `union(x, y)`: retorna todas as linhas que aparecem em x, <br> y ou mais dos conjuntos de dados
+- `interesect(x, y)`: retorna apenas as linhas que aparecem <br>  em x e em y
+- `setdiff(x, y)`: retorna as linhas que aparecem x, mas não em y
+- `setequal(x, y)`: retorna se x e y são iguais e quais suas diferenças
 
 ---
 
 class: inverse, center, middle
 
-# E não termina nunca...
+# IMPORTANTE: ideia de **encadeamento das funções**
 
 ---
 
 # 8. dplyr
 
-## Sufixos: _at(), _if(), _all()
-
-### Realiza operações dependente de confições
-
-```{r}
-sp_wide_rename <- sp_wide %>% 
-  dplyr::rename_at(vars(contains(" ")), 
-                   list(~stringr::str_replace_all(., " ", "_"))) %>% 
-  dplyr::rename_all(list(~stringr::str_to_lower(.)))
-sp_wide_rename
-```
-
----
-
-class: inverse, center, middle
-
-# Mas o mais importante é a ideia de **encadeamento das funções**
-
----
-
-# 8. dplyr
 ## Permite manipular os dados de forma simples
+
 ```{r}
 da <- si %>% 
   dplyr::select(id, state_abbreviation, species_number)

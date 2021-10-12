@@ -213,14 +213,15 @@ class: inverse, center, middle
 
 background-image: url(img/person_hadley_wickham.jpg)
 background-size: 500px
-background-position: 50% 60%
+background-position: 50% 80%
 
-# Hadley Wickham
+# 1. Linguagem R
+
+## Hadley Wickham
 
 ### Cientista Chefe no RStudio e Professor Adjunto de Estatística na Universidade de Auckland, Stanford e Rice
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [Hadley Wickham](http://hadley.nz/)
 
 ---
@@ -233,13 +234,15 @@ class: inverse, center, middle
 
 background-image: url(img/person_yihui_xie.jpg), url(img/person_yihui_xie_avatar.png)
 background-size: 500px, 150px
-background-position: 50% 60%, 95% 10%
+background-position: 50% 70%, 95% 10%
 
-# Yihui Xie
+# 1. Linguagem R
+
+## Yihui Xie
 
 ## Engenheiro de software no RStudio
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [Yihui Xie](https://yihui.name/)
 
 ---
@@ -295,7 +298,7 @@ background-position: 50% 70%
 
 background-image: url(img/rstudio.png), url(img/rstudio_logo.svg)
 background-size: 500px, 300px
-background-position: 90% 88%, 90% 35%
+background-position: 90% 80%, 90% 25%
 
 # 2. RStudio
 
@@ -315,6 +318,10 @@ background-position: 90% 88%, 90% 35%
 **4. Viewer**: painel de visualização  
 
 ---
+
+background-image: url(img/rstudio.png), url(img/rstudio_logo.svg)
+background-size: 500px, 300px
+background-position: 90% 30%, 90% 85%
 
 # 2. RStudio
 
@@ -595,7 +602,7 @@ background-position: 70% 80%
 
 
 ```r
-## comentarios
+# comentarios
 # o r nao le o codigo depois do # (hash)
 
 42 # essas palavras nao sao executadas, apenas o 42
@@ -622,9 +629,9 @@ background-position: 70% 80%
 
 ```r
 #' ---
-#' title: Introdução à modelagem de distribuição de espécies usando a linguagem R
-#' author: seu nome
-#' date: 25-09-2021
+#' titulo: Introdução à modelagem de distribuição de espécies usando a linguagem R
+#' autor: seu nome
+#' data: 25-09-2021
 #' ---
 ```
 
@@ -710,7 +717,7 @@ background-image: url(img/exercicio01.jpg)
 background-size: 500px
 background-position: 50% 50%
 
-<div class="countdown" id="timer_6163ad0d" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6164f9ac" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -774,7 +781,7 @@ background-position: 80% 90%
 
 
 ```r
-## atribuicao - simbolo (&lt;-)
+# atribuicao - simbolo (&lt;-)
 obj10 &lt;- 10 
 ```
 
@@ -800,7 +807,7 @@ background-position: 50% 90%
 
 
 ```r
-## atribuicao - simbolo (&lt;-)
+# atribuicao - simbolo (&lt;-)
 obj10 &lt;- 10 
 obj10
 ```
@@ -815,7 +822,7 @@ obj10
 
 
 ```r
-## atribuicao - simbolo (&lt;-)
+# atribuicao - simbolo (&lt;-)
 obj2 &lt;- 2
 obj2
 ```
@@ -1030,7 +1037,7 @@ class: clear, clean, inverse, middle, center
 
 ## Verifique se 3x2³ é maior que 2x3²
 
-<div class="countdown" id="timer_6163ae4f" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6164f9f5" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1243,7 +1250,7 @@ rep(x = 1:5, each = 10)
 
 
 ```r
-## atribuicao dos resultados
+# atribuicao dos resultados
 # repeticao - todos
 rep_times &lt;- rep(x = 1:5, times = 10)
 rep_times
@@ -1255,7 +1262,7 @@ rep_times
 --
 
 ```r
-## atribuicao dos resultados
+# atribuicao dos resultados
 # repeticao - todos
 rep_each &lt;- rep(x = 1:5, each = 10)
 rep_each
@@ -1276,6 +1283,7 @@ rep_each
 **Criar** dois objetos
 
 ```r
+# resposta
 # criar dois objetos
 foo &lt;- 2
 bar &lt;- 3
@@ -1341,7 +1349,7 @@ class: clear, clean, inverse, middle, center
 
 ### Façam o logaritmo natural (função **log**) do objeto *mult* e atribuam ao objeto *ln*
 
-<div class="countdown" id="timer_6163b07e" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6164f9c7" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1353,6 +1361,7 @@ class: clear, clean, inverse, middle, center
 
 
 ```r
+# exercicio 03
 # criar dois objetos
 foo &lt;- 100
 bar &lt;- 300
@@ -1458,10 +1467,11 @@ search()
 ```
 
 ```
-##  [1] ".GlobalEnv"        "package:vegan"     "package:lattice"   "package:permute"   "package:countdown" "package:forcats"   "package:dplyr"    
-##  [8] "package:purrr"     "package:readr"     "package:tidyr"     "package:tibble"    "package:ggplot2"   "package:tidyverse" "package:lubridate"
-## [15] "package:stringr"   "package:rvest"     "tools:rstudio"     "package:stats"     "package:graphics"  "package:grDevices" "package:utils"    
-## [22] "package:datasets"  "package:methods"   "Autoloads"         "org:r-lib"         "package:base"
+##  [1] ".GlobalEnv"             "package:vegan"          "package:forcats"        "package:stringr"        "package:dplyr"          "package:purrr"         
+##  [7] "package:readr"          "package:tidyr"          "package:tibble"         "package:ggplot2"        "package:tidyverse"      "package:palmerpenguins"
+## [13] "package:openxlsx"       "package:lattice"        "package:permute"        "package:countdown"      "tools:rstudio"          "package:stats"         
+## [19] "package:graphics"       "package:grDevices"      "package:utils"          "package:datasets"       "package:methods"        "Autoloads"             
+## [25] "org:r-lib"              "package:base"
 ```
 
 ---
@@ -1684,7 +1694,7 @@ nrow(available.packages())
 ```
 
 ```
-## [1] 18272
+## [1] 18283
 ```
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
@@ -1702,7 +1712,7 @@ class: inverse, middle, center
 
 ## Instalem o pacote **tidyverse** do CRAN
 
-<div class="countdown" id="timer_6163ae27" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6164fae6" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1714,6 +1724,7 @@ class: inverse, middle, center
 
 
 ```r
+# exercicio 04
 install.packages("tidyverse")
 ```
 
@@ -1725,7 +1736,7 @@ install.packages("tidyverse")
 
 
 ```r
-## ajuda
+# ajuda
 # descreve as informacoes de uma funcao
 help("mean") # arquivo .html
 ?mean
@@ -1764,6 +1775,7 @@ background-position: 90% 70%
 
 
 ```r
+# detalhes de um pacote
 library(help = "vegan")
 ```
 
@@ -1798,6 +1810,7 @@ class: inverse, center, middle
 
 
 ```r
+# tamanho de um objeto
 object.size("bar")
 ```
 
@@ -1814,8 +1827,13 @@ ls()
 ```
 
 ```
-##  [1] "adi"       "bar"       "div"       "dune"      "foo"       "ln"        "lo"        "mu"        "mul"       "mult"      "obj"       "obj_10"    "obj_2"    
-## [14] "obj_sum"   "obj10"     "obj2"      "rep_each"  "rep_times" "sq"        "su"        "sub"       "va1"       "va2"
+##  [1] "abu"         "adi"         "agora_vai"   "am1"         "am2"         "amos"        "ar"          "bar"         "da"          "da_na"       "da_sp"      
+## [12] "df"          "df_c"        "df_sem_na"   "div"         "dune"        "fa_no"       "fa_or"       "flo"         "foo"         "foo_na"      "li"         
+## [23] "li_13"       "li1"         "li2"         "li2_val"     "ln"          "lo"          "ma"          "ma_cbind"    "ma_col"      "ma_rbind"    "ma_row"     
+## [34] "ma_sel"      "mu"          "mul"         "mult"        "nulo"        "obj"         "obj_10"      "obj_2"       "obj_cha"     "obj_com"     "obj_log"    
+## [45] "obj_num_dou" "obj_num_int" "obj_sum"     "obj10"       "obj2"        "pa"          "pe"          "rep_each"    "rep_times"   "sa_com_rep"  "sa_sem_rep" 
+## [56] "se"          "se_e"        "sp"          "sq"          "su"          "sub"         "temp"        "tr"          "va1"         "va2"         "ve"         
+## [67] "ve_ch"       "ve_maior1"   "ve_sel"      "ve_sub"      "vec_1"       "vec_2"       "vec_ch"      "vec_fa"      "vec_nu"
 ```
 
 
@@ -1825,8 +1843,13 @@ objects()
 ```
 
 ```
-##  [1] "adi"       "bar"       "div"       "dune"      "foo"       "ln"        "lo"        "mu"        "mul"       "mult"      "obj"       "obj_10"    "obj_2"    
-## [14] "obj_sum"   "obj10"     "obj2"      "rep_each"  "rep_times" "sq"        "su"        "sub"       "va1"       "va2"
+##  [1] "abu"         "adi"         "agora_vai"   "am1"         "am2"         "amos"        "ar"          "bar"         "da"          "da_na"       "da_sp"      
+## [12] "df"          "df_c"        "df_sem_na"   "div"         "dune"        "fa_no"       "fa_or"       "flo"         "foo"         "foo_na"      "li"         
+## [23] "li_13"       "li1"         "li2"         "li2_val"     "ln"          "lo"          "ma"          "ma_cbind"    "ma_col"      "ma_rbind"    "ma_row"     
+## [34] "ma_sel"      "mu"          "mul"         "mult"        "nulo"        "obj"         "obj_10"      "obj_2"       "obj_cha"     "obj_com"     "obj_log"    
+## [45] "obj_num_dou" "obj_num_int" "obj_sum"     "obj10"       "obj2"        "pa"          "pe"          "rep_each"    "rep_times"   "sa_com_rep"  "sa_sem_rep" 
+## [56] "se"          "se_e"        "sp"          "sq"          "su"          "sub"         "temp"        "tr"          "va1"         "va2"         "ve"         
+## [67] "ve_ch"       "ve_maior1"   "ve_sel"      "ve_sub"      "vec_1"       "vec_2"       "vec_ch"      "vec_fa"      "vec_nu"
 ```
 
 ---
@@ -1927,8 +1950,13 @@ ls()
 ```
 
 ```
-##  [1] "adi"       "bar"       "div"       "dune"      "foo"       "ln"        "lo"        "mu"        "mul"       "mult"      "obj"       "obj_10"    "obj_2"    
-## [14] "obj_sum"   "obj10"     "obj2"      "rep_each"  "rep_times" "sq"        "su"        "sub"       "va1"       "va2"
+##  [1] "abu"         "adi"         "agora_vai"   "am1"         "am2"         "amos"        "ar"          "bar"         "da"          "da_na"       "da_sp"      
+## [12] "df"          "df_c"        "df_sem_na"   "div"         "dune"        "fa_no"       "fa_or"       "flo"         "foo"         "foo_na"      "li"         
+## [23] "li_13"       "li1"         "li2"         "li2_val"     "ln"          "lo"          "ma"          "ma_cbind"    "ma_col"      "ma_rbind"    "ma_row"     
+## [34] "ma_sel"      "mu"          "mul"         "mult"        "nulo"        "obj"         "obj_10"      "obj_2"       "obj_cha"     "obj_com"     "obj_log"    
+## [45] "obj_num_dou" "obj_num_int" "obj_sum"     "obj10"       "obj2"        "pa"          "pe"          "rep_each"    "rep_times"   "sa_com_rep"  "sa_sem_rep" 
+## [56] "se"          "se_e"        "sp"          "sq"          "su"          "sub"         "temp"        "tr"          "va1"         "va2"         "ve"         
+## [67] "ve_ch"       "ve_maior1"   "ve_sel"      "ve_sub"      "vec_1"       "vec_2"       "vec_ch"      "vec_fa"      "vec_nu"
 ```
 --
 
@@ -1944,8 +1972,13 @@ ls()
 ```
 
 ```
-##  [1] "adi"       "div"       "dune"      "foo"       "ln"        "lo"        "mu"        "mul"       "mult"      "obj"       "obj_10"    "obj_2"     "obj_sum"  
-## [14] "obj10"     "obj2"      "rep_each"  "rep_times" "sq"        "su"        "sub"       "va1"       "va2"
+##  [1] "abu"         "adi"         "agora_vai"   "am1"         "am2"         "amos"        "ar"          "da"          "da_na"       "da_sp"       "df"         
+## [12] "df_c"        "df_sem_na"   "div"         "dune"        "fa_no"       "fa_or"       "flo"         "foo"         "foo_na"      "li"          "li_13"      
+## [23] "li1"         "li2"         "li2_val"     "ln"          "lo"          "ma"          "ma_cbind"    "ma_col"      "ma_rbind"    "ma_row"      "ma_sel"     
+## [34] "mu"          "mul"         "mult"        "nulo"        "obj"         "obj_10"      "obj_2"       "obj_cha"     "obj_com"     "obj_log"     "obj_num_dou"
+## [45] "obj_num_int" "obj_sum"     "obj10"       "obj2"        "pa"          "pe"          "rep_each"    "rep_times"   "sa_com_rep"  "sa_sem_rep"  "se"         
+## [56] "se_e"        "sp"          "sq"          "su"          "sub"         "temp"        "tr"          "va1"         "va2"         "ve"          "ve_ch"      
+## [67] "ve_maior1"   "ve_sel"      "ve_sub"      "vec_1"       "vec_2"       "vec_ch"      "vec_fa"      "vec_nu"
 ```
 
 ---
@@ -1961,8 +1994,13 @@ ls()
 ```
 
 ```
-##  [1] "adi"       "div"       "dune"      "foo"       "ln"        "lo"        "mu"        "mul"       "mult"      "obj"       "obj_10"    "obj_2"     "obj_sum"  
-## [14] "obj10"     "obj2"      "rep_each"  "rep_times" "sq"        "su"        "sub"       "va1"       "va2"
+##  [1] "abu"         "adi"         "agora_vai"   "am1"         "am2"         "amos"        "ar"          "da"          "da_na"       "da_sp"       "df"         
+## [12] "df_c"        "df_sem_na"   "div"         "dune"        "fa_no"       "fa_or"       "flo"         "foo"         "foo_na"      "li"          "li_13"      
+## [23] "li1"         "li2"         "li2_val"     "ln"          "lo"          "ma"          "ma_cbind"    "ma_col"      "ma_rbind"    "ma_row"      "ma_sel"     
+## [34] "mu"          "mul"         "mult"        "nulo"        "obj"         "obj_10"      "obj_2"       "obj_cha"     "obj_com"     "obj_log"     "obj_num_dou"
+## [45] "obj_num_int" "obj_sum"     "obj10"       "obj2"        "pa"          "pe"          "rep_each"    "rep_times"   "sa_com_rep"  "sa_sem_rep"  "se"         
+## [56] "se_e"        "sp"          "sq"          "su"          "sub"         "temp"        "tr"          "va1"         "va2"         "ve"          "ve_ch"      
+## [67] "ve_maior1"   "ve_sel"      "ve_sub"      "vec_1"       "vec_2"       "vec_ch"      "vec_fa"      "vec_nu"
 ```
 --
 
@@ -2117,26 +2155,28 @@ Parênteses
 ```r
 sum(1, 2
     +
-      ```
-    
-    Aspas
 ```
 
 ```
-## Error: attempt to use zero-length variable name
+## Error: &lt;text&gt;:3:0: unexpected end of input
+## 1: sum(1, 2
+## 2:     +
+##   ^
 ```
     
-    ```r
+Aspas
+
+```r
     "string
-    +
-    ```
-    
-    ```
-    ## Error: &lt;text&gt;:1:1: unexpected INCOMPLETE_STRING
-    ## 1: "string
-    ## 2: +
-    ##    ^
-    ```
++
+```
+
+```
+## Error: &lt;text&gt;:1:5: unexpected INCOMPLETE_STRING
+## 1:     "string
+## 2: +
+##        ^
+```
 
 ---
 
@@ -2303,7 +2343,7 @@ background-position: 50% 40%
 
 ## Cases
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [@allison_horst](https://twitter.com/allison_horst)
 
 ---
@@ -2322,6 +2362,7 @@ dir()[1:4]
 ```
 
 ```r
+# listar os arquivos do diretorio definido
 list.files()[1:4]
 ```
 
@@ -2335,9 +2376,9 @@ dir(pattern = ".Rmd")
 ```
 
 ```
-##  [1] "00_slides_geospatial_data_r.Rmd" "01_slides_geospatial_data_r.Rmd" "02_pres_geospatial_data_r.Rmd"   "02_pres_intro_geocomp_r.Rmd"    
-##  [5] "02_slides_geospatial_data_r.Rmd" "03_pres_geospatial_data_r.Rmd"   "04_pres_geospatial_data_r.Rmd"   "05_pres_geospatial_data_r.Rmd"  
-##  [9] "06_pres_geospatial_data_r.Rmd"   "07_pres_geospatial_data_r.Rmd"   "08_pres_geospatial_data_r.Rmd"   "09_pres_geospatial_data_r.Rmd"
+##  [1] "00_slides_geospatial_data_r.Rmd" "01_slides_geospatial_data_r.Rmd" "02_slides_geospatial_data_r.Rmd" "03_pres_geospatial_data_r.Rmd"  
+##  [5] "04_pres_geospatial_data_r.Rmd"   "05_pres_geospatial_data_r.Rmd"   "06_pres_geospatial_data_r.Rmd"   "07_pres_geospatial_data_r.Rmd"  
+##  [9] "08_pres_geospatial_data_r.Rmd"   "09_pres_geospatial_data_r.Rmd"
 ```
 
 ---

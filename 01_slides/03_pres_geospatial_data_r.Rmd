@@ -33,7 +33,7 @@ background-size: 700px
 
 background-image: url(img/r_data_structures01.png)
 background-size: 400px
-background-position: 85% 90%
+background-position: 85% 80%
 
 # 3 Estrutura e manipulação de dados
 
@@ -47,6 +47,9 @@ background-position: 85% 90%
 1. Importar dados
 1. Conferência de dados importados
 1. Exportar dados
+
+<br><br><br><br><br><br>
+[R Programming – Beginners Guide To R Programming Language](https://www.edureka.co/blog/r-programming-language)
 
 ---
 
@@ -73,7 +76,7 @@ background-position: 85% 90%
 <br><br>
 
 ```{r}
-## atribuicao - simbolo (<-)
+# atribuicao - simbolo (<-)
 obj_10 <- 10 
 obj_10
 ```
@@ -103,6 +106,7 @@ obj_10
 ## Atributos dos objetos no R
 
 ```{r}
+# atributos
 attributes(dune)
 ```
 
@@ -215,23 +219,26 @@ mode(obj_com)
 
 ---
 
+background-image: url(img/modos.png)
+background-size: 400px
+background-position: 80% 85%
+
 # 1. Atributos dos objetos
 
 ## Resumindo:
 
 ### A **natureza** dos **elementos** irá definir os **modos** dos objetos
 
---
+### Modos:
 
-<br>
+1. Numeric double (**número decimal**): *1*
+1. Numeric integer (**número inteiro**): *1L*
+1. Character (**texto**): *"a"*, *"2500"*, *"amostra_01"*
+1. Logical (**lógico**): *TRUE* ou *FALSE*
+1. Complexo (**complex**): *1+1i*
 
-## Modos (*natureza*) são **cinco**: 
-
-### 1. Numeric double (**número decimal**): *1*
-### 2. Numeric integer (**número inteiro**): *1L*
-### 3. Character (**texto**): *"a"*, *"2500"*, *"amostra_01"*
-### 4. Logical (**lógico**): *TRUE* ou *FALSE*
-### 5. Complexo (**complex**): *1+1i*
+<br><br><br><br><br>
+[R Programming – Beginners Guide To R Programming Language](https://www.edureka.co/blog/r-programming-language)
 
 ---
 
@@ -240,14 +247,14 @@ mode(obj_com)
 ## Verificar o modo dos objetos ou fazer a conversão entre os modos
 
 ```{r eval=FALSE}
-## verificar o modo dos objetos
+# verificar o modo dos objetos
 is.numeric()
 is.integer()
 is.character()
 is.logical()
 is.complex()
 
-## conversoes entre modos
+# conversoes entre modos
 as.numeric()
 as.integer()
 as.character()
@@ -345,8 +352,6 @@ background-position: 50% 70%
 
 ### Há diversas formas de se criar um **vetor**:
 
---
-
 ### 1. Concatenar elementos
 
 ```{r}
@@ -392,7 +397,6 @@ se_e
 ### 3. Repetição
 
 ```{r}
-# repeticao
 # rep(x, times) # repete x tantas vezes
 rep_times <- rep(x = c(1, 2), times = 5)
 rep_times
@@ -470,7 +474,7 @@ countdown(minutes = 4, seconds = 00, color_background = "gray30")
 ## Resposta
 
 ```{r}
-# solucao
+# exercicio 05
 agora_vai <- sample(1:60, 6, replace = FALSE)
 agora_vai
 ```
@@ -490,12 +494,14 @@ class: inverse, center, middle
 <br>
 
 ```{r}
+# vetor com modos diferentes
 ve <- c(1, "a", 3)
 ve
 ```
 
 <br>
 ```{r}
+# vetor com modos diferentes
 ve <- c(1, "a", TRUE)
 ve
 ```
@@ -527,8 +533,9 @@ background-position: 50% 100%
 ### Ideia semelhante: mudar o **tipo da célula** numa planilha eletrônica
 
 ### Conversão
+
 ```{r eval=FALSE}
-# funcoes
+# funcoes de conversao
 as.character()
 as.integer()
 as.numeric()
@@ -571,6 +578,7 @@ background-position: 50% 75%
 ## **2. Factor (nominal)**: variáveis nominais
 
 ```{r}
+# fator nominal
 fa_no <- factor(x = sample(x = c("floresta", "pastagem", "cerrado"), 
                            size = 20, replace = TRUE),
                 levels = c("floresta", "pastagem", "cerrado"))
@@ -586,7 +594,9 @@ levels(fa_no)
 # 1. Atributos dos objetos
 
 ## **2. Factor (ordinal)**: variáveis ordinais
+
 ```{r}
+# fator ordinal
 fa_or <- factor(x = sample(x = c("baixa", "media", "alta"), 
                            size = 20, replace = TRUE),
                 levels = c("baixa", "media", "alta"), ordered = TRUE)
@@ -606,15 +616,18 @@ levels(fa_or)
 ### Criar um vetor **character**
 
 ```{r}
+# conversao de fatores
 ve_ch <- c("alta", "media", "baixa", "baixa", "media")
 ve_ch
 ```
 
 ```{r}
+# modo
 mode(ve_ch)
 ```
 
 ```{r}
+# classe
 class(ve_ch)
 ```
 
@@ -627,15 +640,18 @@ class(ve_ch)
 ### Forçar a ser **factor nominal**
 
 ```{r}
+# conversao de fatores
 fa_no <- as.factor(ve_ch)
 fa_no
 ```
 
 ```{r}
+# niveis
 levels(fa_no)
 ```
 
 ```{r}
+# classe
 class(fa_no)
 ```
 
@@ -664,6 +680,7 @@ countdown(minutes = 4, seconds = 00, color_background = "gray30")
 ## Resposta
 
 ```{r eval=FALSE}
+# exercicio 06
 # solucao 1
 ch <- rep(c("cont", "trat"), each = 50)
 ch
@@ -854,7 +871,7 @@ countdown(minutes = 4, seconds = 00, color_background = "gray30")
 ## Resposta
 
 ```{r eval=FALSE}
-# solucao
+# exercicio 07
 ma <- matrix(sample(0:10, 10000, rep = TRUE), nrow = 100, byrow = FALSE)
 ma
 ```
@@ -913,6 +930,7 @@ ve
 
 `array`: dispõem um vetor em um certo número de linhas, colunas e dimensões....
 ```{r}
+# array
 ar <- array(data = ve, dim = c(2, 2, 2))
 ar
 ```
@@ -996,7 +1014,7 @@ background-size: 700px
 `data.frame()`: combina vetores horizontalmente, um ao lado do outro. Semelhante à função `cbind()`
 
 ```{r}
-# criar três vetores
+# criar tres vetores
 vec_ch <- c("sp1", "sp2", "sp3")
 vec_nu <- c(4, 5, 6)
 vec_fa <- factor(c("campo", "floresta", "floresta"))
@@ -1020,7 +1038,7 @@ df
 
 --
 ```{r}
-# data.frame
+# data frame
 df <- data.frame(especies = vec_ch, 
                  abundancia = vec_nu, 
                  vegetacao = vec_fa)
@@ -1064,6 +1082,7 @@ df
 ```
 
 ```{r}
+# estrutura
 str(df)
 ```
 
@@ -1078,8 +1097,9 @@ str(df)
 df_c <- cbind(pa, pe, tr)
 df_c
 ```
---
+
 ```{r}
+# estrutura
 str(df_c)
 ```
 
@@ -1112,7 +1132,7 @@ countdown(minutes = 5, seconds = 00, color_background = "gray30")
 ## Resposta
 
 ```{r eval=FALSE}
-# solucao
+# exercicio 08
 id <- 1:50
 id
 
@@ -1165,6 +1185,7 @@ background-position: 50% 95%
 `list()`: combina objetos horizontalmente, semelhante à função `c()`
 
 ```{r}
+# lista
 li <- list(rep(1, 20), # vector
            factor(1, 1), # factor
            cbind(c(1, 2), c(1, 2))) # matrix
@@ -1182,6 +1203,7 @@ li
 > Também podemos **nomear** os elementos
 
 ```{r}
+# lista com nomes
 li <- list(vector = rep(1, 20), # vector
            factor = factor(1, 1), # factor
            matrix = cbind(c(1, 2), c(1, 2))) # matrix
@@ -1238,12 +1260,12 @@ ve
 # seleciona o quinto elemento
 ve[5]
 ```
---
+
 ```{r}
 # seleciona os elementos de 1 a 5
 ve[1:5] 
 ```
---
+
 ```{r}
 # seleciona os elementos 1 e 10 e atribui
 ve_sel <- ve[c(1, 10)]
@@ -1263,12 +1285,12 @@ ve_sel
 # retira o decimo elemento
 ve[-10]
 ```
---
+
 ```{r}
 # retira os elementos 2 a 9
 ve[-(2:9)]
 ```
---
+
 ```{r}
 # retira os elementos 5 e 10 e atribui
 ve_sub <- ve[-c(5, 10)]
@@ -1565,7 +1587,7 @@ names(li)
 ### **4. Funções**: `length()` e `names()`
 
 ```{r}
-## Renomear
+# renomear
 names(li) <- paste0("elemento0", 1:3)
 li
 ```
@@ -1615,19 +1637,23 @@ background-position: 50% 50%
 ### **1. Indexação []**: acessa elementos de matrizes, arrays e data frames
 
 ```{r}
-ma[3, ] # linha 3
+# linha 3
+ma[3, ]
 ```
 
 ```{r}
-ma[, 2] # coluna 2
+# coluna 2
+ma[, 2] 
 ```
 
 ```{r}
-ma[1, 2] # elemento da linha 1 e coluna 2
+# elemento da linha 1 e coluna 2
+ma[1, 2] 
 ```
 
 ```{r}
-ma[1, 1:2] # elementos da linha 1 e coluna 1 e 2
+# elementos da linha 1 e coluna 1 e 2
+ma[1, 1:2] 
 ```
 
 ---
@@ -1639,10 +1665,12 @@ ma[1, 1:2] # elementos da linha 1 e coluna 1 e 2
 ### **1. Indexação []**: acessa elementos de matrizes, arrays e data frames
 
 ```{r}
-ma[1, c(1, 3)] # elementos da linha 1 e coluna 1 e 3
+# elementos da linha 1 e coluna 1 e 3
+ma[1, c(1, 3)] 
 ```
 
 ```{r}
+# elementos da linha 1 e coluna 1 e 3 e atribuir
 ma_sel <- ma[1, c(1, 3)]
 ma_sel
 ```
@@ -1686,7 +1714,7 @@ df
 
 ## Data Frames
 
-### **2. Indexação $**: acessa elementos de data frames
+### **2. Indexação $**: acessa colunas de data frames
 
 ```{r}
 # $ funciona apenas para data frame 
@@ -1707,9 +1735,10 @@ df$flo
 
 ## Data Frames
 
-### **2. Indexação $**: acessa elementos de data frames
+### **2. Indexação $**: acessa colunas de data frames
 
 ```{r}
+# funcoes para uma coluna indexada por $
 length(df$abu)
 max(df$abu)
 min(df$abu)
@@ -1722,18 +1751,20 @@ range(df$abu)
 
 ## Data Frames
 
-### **3. Indexação $ e mudanças de colunas**
+### **3. Indexação $ e mudanças de colunas**: acessa e modifica colunas em data frames
 
 ```{r}
+# modo
 mode(df$abu)
 ```
 
 ```{r}
-# converter colunas
+# converter colunas para caracter
 df$abu <- as.character(df$abu)
 ```
 
 ```{r}
+# modo
 df$abu
 mode(df$abu)
 ```
@@ -1744,13 +1775,15 @@ mode(df$abu)
 
 ## Data Frames
 
-### **3. Indexação $ e mudanças de colunas**
+### **3. Indexação $ e mudanças de colunas**: acessa e modifica colunas em data frames
 
 ```{r}
+# converter colunas para numerico
 df$abu <- as.numeric(df$abu)
 ```
 
 ```{r}
+# modo
 df$abu
 mode(df$abu)
 ```
@@ -1761,9 +1794,10 @@ mode(df$abu)
 
 ## Data Frames
 
-### **4. Indexação $ e mudanças de colunas**
+### **4. Indexação $ e adicionar colunas**: acessa e adiciona colunas em data frames
 
 ```{r}
+# adicionar coluna
 set.seed(42)
 df$abu2 <- sample(0:1, nrow(df), rep = TRUE)
 ```
@@ -1771,7 +1805,7 @@ df$abu2 <- sample(0:1, nrow(df), rep = TRUE)
 ```{r}
 df$abu2
 ```
---
+
 ```{r}
 df
 ```
@@ -1896,6 +1930,7 @@ df
 
 ### Função para verificar a **presença/ausência** de NA's
 ```{r}
+# possui nas?
 is.na(df)
 ```
 
@@ -1903,6 +1938,7 @@ is.na(df)
 
 ### Função para verificar a **presença de algum** NA's
 ```{r}
+# algum é na?
 any(is.na(df))
 ```
 
@@ -1914,11 +1950,13 @@ any(is.na(df))
 
 ### Vamos retirar as linhas que possuem NA's
 ```{r}
+# retirar linhas com na
 df_sem_na <- na.omit(df)
 df_sem_na
 ```
---
+
 ```{r}
+# numero de linhas com e sem na
 nrow(df)
 nrow(df_sem_na)
 ```
@@ -1948,6 +1986,7 @@ df
 # nan - not a number
 0/0
 
+# nan - not a number
 log(-1)
 ```
 
@@ -1964,12 +2003,12 @@ log(-1)
 ve <- c(1, 2, 3, NA, NaN)
 ve
 ```
---
+
 ```{r}
 # verificar a presenca de na
 is.na(ve)
 ```
---
+
 ```{r}
 # verificar a presenca de nan
 is.nan(ve)
@@ -1986,7 +2025,7 @@ is.nan(ve)
 # limite matematico
 1/0
 
-# numero grande
+# numero muito grande
 10^310
 ```
 
@@ -2023,14 +2062,14 @@ nulo
 # definir o diretorio de trabalho
 setwd("/home/mude/data/github/course-geospatial-data-r/03_dados/tabelas")
 ```
---
+
 ```{r eval=FALSE}
 # verificar o diretorio
 getwd()
 ```
---
+
 ```{r eval=FALSE}
-# verificar os arquivos
+# listar os arquivos
 dir()
 ```
 
@@ -2193,10 +2232,12 @@ da
 
 ```{r include=FALSE}
 # ler e atribuir uma planilha eletronica (.csv) a um objeto
-da <- read.csv("/home/mude/data/github/course-geospatial-data-r/03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv", encoding = "latin1")
+da <- read.csv("/home/mude/data/github/course-geospatial-data-r/03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv",
+               encoding = "latin1")
 ```
 
 ```{r}
+# primeiras linhas
 head(da)
 ```
 
@@ -2209,6 +2250,7 @@ head(da)
 ### `head()`: mostra as primeiras 10 linhas
 
 ```{r}
+# primeiras linhas
 head(da, 10)
 ```
 
@@ -2221,6 +2263,7 @@ head(da, 10)
 ### `tail()`: mostra as últimas 6 linhas
 
 ```{r}
+# ultimas linhas
 tail(da)
 ```
 
@@ -2233,6 +2276,7 @@ tail(da)
 ### `nrow()`: mostra o número de linhas
 
 ```{r}
+# numero de linhas
 nrow(da)
 ```
 
@@ -2241,6 +2285,7 @@ nrow(da)
 ### `ncol()`: mostra o número de colunas
 
 ```{r}
+# numero de colunas
 ncol(da)
 ```
 
@@ -2248,6 +2293,7 @@ ncol(da)
 
 ### `dim()`: mostra o número de linhas e de colunas
 ```{r}
+# numero de linhas e de colunas
 dim(da)
 ```
 
@@ -2260,6 +2306,7 @@ dim(da)
 ### `rownames()`: mostra os nomes das linhas (locais)
 
 ```{r}
+# nome das linhas
 rownames(da)
 ```
 
@@ -2272,6 +2319,7 @@ rownames(da)
 ### `colnames()`: mostra os nomes das colunas (variáveis)
 
 ```{r}
+# nome das colunas
 colnames(da)
 ```
 
@@ -2284,6 +2332,7 @@ colnames(da)
 ### `str()`: mostra as classes de cada coluna (estrutura)
 
 ```{r}
+# estrutura dos dados
 str(da)
 ```
 
@@ -2296,6 +2345,7 @@ str(da)
 ### `summary()`: mostra um resumo dos valores de cada coluna
 
 ```{r}
+# resumo dos dados
 summary(da)
 ```
 
@@ -2308,12 +2358,12 @@ summary(da)
 ### Verificar a presença de NAs
 
 ```{r}
-# algum?
+# algum nas?
 any(is.na(da))
 ```
 --
 ```{r}
-# quais?
+# quais sao nas?
 which(is.na(da))
 ```
 
@@ -2326,14 +2376,17 @@ which(is.na(da))
 ### Retirar os NAs
 
 ```{r}
+# omitir as linhas com nas e atribuir 
 da_na <- na.omit(da)
 ```
 
 ```{r}
+# numero de linhas do dado total
 nrow(da)
 ```
 
 ```{r}
+# numero de linhas do dado sem nas
 nrow(da_na)
 ```
 
@@ -2360,18 +2413,22 @@ da_sp
 ### Planilha eletrônica (.csv)
 
 ```{r eval=FALSE}
+# exportar csv
 write.csv(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.csv", 
           row.names = FALSE, quote = FALSE)
 ```
 
 ### Planilha de texto (.txt)
+
 ```{r eval=FALSE}
+# exportar txt
 write.table(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.txt", 
             row.names = FALSE, quote = FALSE)
 ```
 
 ### Planilha eletrônica (.xlsx)
 ```{r, eval = FALSE, warning = FALSE}
+# exportar xlsx
 openxlsx::write.xlsx(da_sp, "ATLANTIC_AMPHIBIAN_sites_sao_paulo.xlsx", 
                      row.names = FALSE, quote = FALSE)
 ```
