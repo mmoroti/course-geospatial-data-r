@@ -70,28 +70,27 @@ background-position: 85% 75%
 
 ---
 
+background-image: url(img/tidyverse-default.png)
+background-size: 500px
+background-position: 90% 80%
+
 # 1. Contextualização
 
-### O tidyverse é um **conjunto de pacotes** designados para **Data Science**
+## Descrição
 
-&lt;br&gt;
+### O tidyverse é um **conjunto de pacotes** designados para **Data Science**
 
 --
 
 ### Todos os pacotes compartilham uma **filosofia** de design, gramática e estruturas de dados
 
-&lt;br&gt;
-
 --
 
 ### É um **"dialeto"** novo para a linguagem R
 
-&lt;br&gt;
-
 --
 
 ### **tidy**: organizado, arrumado, ordenado
-
 ### **verse**: universo
 
 ---
@@ -207,6 +206,9 @@ class: clear
 background-image: url(img/package_tidyverse.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[tidyverse](https://tidyverse.tidyverse.org/)
+
 ---
 
 # 2. tidyverse
@@ -220,8 +222,6 @@ background-size: 400px
 # instalar o pacote
 install.packages("tidyverse")
 ```
-
---
 
 
 ```r
@@ -295,8 +295,8 @@ class: clear
 background-image: url(img/here.png)
 background-size: 700px
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[here](https://here.r-lib.org/)
 [@allison_horst](https://twitter.com/allison_horst)
 
 ---
@@ -308,7 +308,13 @@ background-size: 700px
 ### Constrói caminhos para os arquivos do seu projeto
 
 ### - **Mudar o diretório**: tende à ser chato demais (principalmente se é um código alheio)
+
+--
+
 ### - **Fragilidade**: conectado exatamente a um lugar e a um momento (baixa reprodutibilidade)
+
+--
+
 ### - **Subdiretórios**: facilita importar ou exportar para subpastas (Lei do Mínimo Esforço)
 
 ---
@@ -353,14 +359,16 @@ here::set_here()
 ```
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-Fonte: [@allison_horst](https://twitter.com/allison_horst)
+[@allison_horst](https://twitter.com/allison_horst)
 
 ---
 
 class: clear
 background-image: url(img/package_readr.png)
 background-size: 400px
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[readr](https://readr.tidyverse.org/)
 
 ---
 
@@ -379,17 +387,27 @@ background-position: 50% 70%
 
 # 4. readr, readxl e writexl
 
-## readr - Desccrição
+## readr - Descrição
 
 ### **Carrega e salva** grandes arquivos de forma **mais rápida**
 
+--
+
 ### As funções **read.csv()** e **read.csv2()** são substituídas pelas funções **read_csv()** e **read_csv2()**
+
+--
 
 ### Essas funções fornecem **medidores de progresso**
 
+--
+
 ### E também **classificam** automaticamente o **modo** dos dados de cada coluna
 
+--
+
 ### A classe do objeto atribuído é **tibble**
+
+--
 
 ### Para salvar arquivos no formato .csv: **write_csv()** e **write_csv2()**
 
@@ -430,7 +448,7 @@ si
 
 ## readr
 
-## **Formato .csv**
+### **Formato .csv**
 
 
 ```r
@@ -448,7 +466,7 @@ si
 
 ## readr
 
-## **Formato .txt**
+### **Formato .txt**
 
 
 ```r
@@ -463,11 +481,14 @@ class: clear
 background-image: url(img/package_readxl.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[readxl](https://readxl.tidyverse.org/)
+
 ---
 
 # 4. readr, readxl e writexl
 
-## readxl e writexl - Desccrição
+## readxl e writexl
 
 ### Pacotes para importar e exportar planilhas no formato Excel®
 
@@ -477,8 +498,6 @@ background-size: 400px
 install.packages("readxl")
 library("readxl")
 ```
-
---
 
 
 ```r
@@ -495,13 +514,23 @@ library("writexl")
 
 ### **Carrega e salva** grandes arquivos de forma **mais rápida** no formato **.xlsx**
 
+--
+
 ### Funções **read_xlsx()** e **read_xlsx2()**
+
+--
 
 ### Essas funções fornecem **medidores de progresso**
 
+--
+
 ### E também **classificam** automaticamente o **modo** dos dados de cada coluna
 
+--
+
 ### A classe do objeto atribuído é **tibble**
+
+--
 
 ### Para salvar arquivos no formato .xlsx: **write_xlsx()** e **write_xlsx2()**
 
@@ -531,7 +560,7 @@ background-position: 50% 100%
 
 ## **Formato .csv**
 
-### Matriz de localidades
+### Dados das localidades
 
 
 
@@ -543,7 +572,7 @@ si &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_
 si
 ```
 
-### Matriz de espécies
+### Dados das espécies
 
 
 
@@ -561,17 +590,28 @@ class: clear
 background-image: url(img/package_tibble.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[tibble](https://tibble.tidyverse.org/)
+
 ---
 
 # 5. tibble
 
 ### O tibble (classe *tbl_df*) é um **tipo especial de data frame**
 
+--
+
 ### É o **formato** aconselhado para que as funções do tidyverse **funcionem**
+
+--
 
 ### Converter **data frame** em **tibble** usa-se a função `as_tibble()`
 
+--
+
 ### Converter **tibble** em **data frame** usa-se a função `as_data_frame()`
+
+--
 
 ### Cada variável pode ser do modo *numbers(int, dbl)*, *character(chr)*, *logical(lgl)* ou *factor(fctr)*
 
@@ -668,6 +708,9 @@ class: clear
 background-image: url(img/package_magrittr.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[magrittr](https://magrittr.tidyverse.org/)
+
 ---
 
 background-image: url(img/person_rene_magritte.jpg), url(img/tidyverse_magritte_pipe.jpg)
@@ -682,11 +725,19 @@ background-position: 7% 60%, 85% 75%
 
 # 6. magrittr (pipe - %&gt;%)
 
+## Descrição
+
 ### O operador pipe (*%&gt;%*) permite o “encadeamento” de várias funções e **não é preciso de objetos** para armazenar resultados intermediários
+
+--
 
 ### Essa função torna os códigos em R **mais simples**, pois realizamos **múltiplas operações** em uma **única linha**
 
+--
+
 ### Ele captura o **resultado de uma declaração** e o **torna a entrada da próxima declaração**. Podemos pensar como *“EM SEGUIDA FAÇA”*
+
+--
 
 ### O operador pipe é **%&gt;%**
 
@@ -694,7 +745,7 @@ background-position: 7% 60%, 85% 75%
 
 background-image: url(img/general_fog01.jpg)
 background-size: 500px
-background-position: 50% 80%
+background-position: 50% 70%
 
 # 6. magrittr (pipe - %&gt;%)
 
@@ -710,7 +761,7 @@ sqrt(sum(1:100))
 
 background-image: url(img/general_fog02.jpg)
 background-size: 350px
-background-position: 50% 90%
+background-position: 50% 80%
 
 # 6. magrittr (pipe - %&gt;%)
 
@@ -877,6 +928,9 @@ class: clear
 background-image: url(img/package_palmerpenguins.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+
 ---
 
 background-image: url(img/lter_penguins.png)
@@ -889,7 +943,7 @@ background-position: 50% 80%
 
 #### Esses dados foram coletados e disponibilizados pela [Dra. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) e pela [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), membro da [Long Term Ecological Research Network](https://lternet.edu/)
 
-#### Dois conjuntos de dados **penguins** (versão simplificada) e **penguins_raw** (dados brutos)
+#### Dois conjuntos de dados: **penguins_raw** (dados brutos) e **penguins** (versão simplificada)
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [palmerpenguins ](https://allisonhorst.github.io/palmerpenguins/)
@@ -917,6 +971,9 @@ library(palmerpenguins)
 ?penguins_raw
 ```
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+
 ---
 
 background-image: url(img/culmen_depth.png), url(img/lter_penguins.png)
@@ -938,11 +995,17 @@ tibble::glimpse(penguins)
 tibble::glimpse(penguins_raw)
 ```
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[palmerpenguins ](https://allisonhorst.github.io/palmerpenguins/)
+
 ---
 
 class: clear
 background-image: url(img/package_tidyr.png)
 background-size: 400px
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[tidyr](https://tidyr.tidyverse.org/)
 
 ---
 
@@ -965,7 +1028,11 @@ background-position: 50% 70%
 
 ### O pacote tidyr tem **função de tornar** um conjunto de dados **tidy** (organizados), sendo esses fáceis de manipular, modelar e visualizar
 
+--
+
 ### Um conjunto de dados está **arrumado ou não**, dependendo de como linhas, colunas e células são combinadas com observações, variáveis e valores
+
+--
 
 ## Nos dados tidy:
 ### 1. Cada variável em uma coluna
@@ -1008,21 +1075,11 @@ background-position: 75% 85%
 
 ---
 
-background-image: url(img/tidyr_unite.png)
-background-size: 900px
-background-position: 50% 50%
-
 # 7. tidyr
 
 ## **1. `unite()`**
 
----
-
-# 7. tidyr
-
-## **1. `unite()`**
-
-### Unir as colunas “Region” e “Island” na nova coluna “region_island”
+### Unir as colunas "Region" e "Island" na nova coluna "region_island"
 
 
 ```r
@@ -1034,16 +1091,6 @@ penguins_raw_unir &lt;- tidyr::unite(data = penguins_raw,
                                   remove = FALSE)
 head(penguins_raw_unir[, c("Region", "Island", "region_island")])
 ```
-
----
-
-background-image: url(img/tidyr_separate.png)
-background-size: 900px
-background-position: 50% 50%
-
-# 7. tidyr
-
-## **2. `separate()`**
 
 ---
 
@@ -1143,14 +1190,6 @@ background-position: 10% 90%, 90% 40%
 
 ---
 
-background-image: url(img/tidyr_pivot_wider.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 7. tidyr
-
----
-
 # 7. tidyr
 
 ## **6. `pivot_wider()`** 
@@ -1169,14 +1208,6 @@ penguins_raw_pivot_wider &lt;- tidyr::pivot_wider(data = penguins_raw[, c(2, 3, 
                                                values_from = `Body Mass (g)`)
 head(penguins_raw_pivot_wider)
 ```
-
----
-
-background-image: url(img/tidyr_pivot_longer.png)
-background-size: 800px
-background-position: 50% 50%
-
-# 7. tidyr
 
 ---
 
@@ -1221,6 +1252,7 @@ class: inverse, center, middle
 
 
 ```r
+# exercicio 10
 penguins_raw_sep &lt;- penguins_raw %&gt;% 
   tidyr::separate(col = "Species", 
                   into = c("common_names", "scientific_names"), 
@@ -1240,9 +1272,12 @@ head(penguins_raw_sep)
 ---
 
 # Exercício 11
+
 ## Solução
 
+
 ```r
+# exercicio 11
 penguins_raw_pivot_wider &lt;- penguins_raw[, c("Island", "Species", "Body Mass (g)")] %&gt;% 
   tidyr::replace_na(list(`Body Mass (g)` = 0)) %&gt;% 
   tidyr::pivot_wider(names_from = c(Species), 
@@ -1263,6 +1298,9 @@ class: clear
 background-image: url(img/package_dplyr.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[dplyr](https://dplyr.tidyverse.org/)
+
 ---
 
 class: clear
@@ -1276,8 +1314,8 @@ background-size: 800px
 ---
 
 background-image: url(img/cheatsheet_dplyr.png)
-background-size: 500px
-background-position: 50% 60%
+background-size: 600px
+background-position: 50% 70%
 
 # 8. dplyr
 
@@ -1341,6 +1379,8 @@ background-position: 50% 80%
 
 # 8. dplyr
 
+## Sintaxe
+
 ### O **tibble** é sempre o **primeiro argumento** das funções verbais
 
 --
@@ -1352,8 +1392,6 @@ background-position: 50% 80%
 #### 3. nome da função verbal com os argumentos entre parênteses 
 
 --
-
-&lt;br&gt;
 
 ### As funções verbais **não modificam** o tibble original
 
@@ -1378,7 +1416,7 @@ tb_dplyr &lt;- tb %&gt;%
 ```r
 # reordenar colunas - nome
 penguins_relocate_col &lt;- penguins %&gt;% 
- dplyr::relocate(sex, year, .after = island)
+  dplyr::relocate(sex, year, .after = island)
 head(penguins_relocate_col)
 ```
 
@@ -1791,7 +1829,7 @@ head(penguins_distinct)
 
 ## **9. `distinct()`**
 
-###  Retira linhas com valores duplicados com base nos valores de colunas mantendo as colunas
+###  Retira linhas com valores duplicados com base nos valores de colunas, mas mantendo as colunas
 
 
 ```r
@@ -2082,9 +2120,10 @@ class: inverse, center, middle
 
 
 ```r
-da &lt;- si %&gt;% 
-  dplyr::select(id, state_abbreviation, species_number)
-da
+# selecionar colunas
+penguins_dplyr &lt;- penguins %&gt;% 
+  dplyr::select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
+penguins_dplyr
 ```
 
 ---
@@ -2093,10 +2132,11 @@ da
 ## Permite manipular os dados de forma simples
 
 ```r
-da &lt;- si %&gt;% 
-  dplyr::select(id, state_abbreviation, species_number) %&gt;% 
-  dplyr::filter(species_number &gt; 5)
-da
+# selecionar colunas e retirar linhas com nas
+penguins_dplyr &lt;- penguins %&gt;% 
+  dplyr::select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %&gt;% 
+  dplyr::filter(if_all(where(is.numeric), ~ !is.na(.)))
+penguins_dplyr
 ```
 
 ---
@@ -2105,27 +2145,13 @@ da
 ## Permite manipular os dados de forma simples
 
 ```r
-da &lt;- si %&gt;% 
-  dplyr::select(id, state_abbreviation, species_number) %&gt;% 
-  dplyr::filter(species_number &gt; 5) %&gt;% 
-  dplyr::group_by(state_abbreviation) %&gt;% 
-  dplyr::summarise(nsp_state_abb = n())
-da
-```
-
----
-
-# 8. dplyr
-## Permite manipular os dados de forma simples
-
-```r
-da &lt;- si %&gt;% 
-  dplyr::select(id, state_abbreviation, species_number) %&gt;% 
-  dplyr::filter(species_number &gt; 5) %&gt;% 
-  dplyr::group_by(state_abbreviation) %&gt;% 
-  dplyr::summarise(nsp_state_abb = n()) %&gt;% 
-  dplyr::arrange(nsp_state_abb)
-da
+# selecionar colunas, retirar linhas com nas e calcular a media das colunas para as especies
+penguins_dplyr &lt;- penguins %&gt;% 
+  dplyr::select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %&gt;% 
+  dplyr::filter(if_all(where(is.numeric), ~ !is.na(.))) %&gt;% 
+  dplyr::group_by(species) %&gt;% 
+  dplyr::summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+penguins_dplyr
 ```
 
 ---
@@ -2138,85 +2164,95 @@ class: inverse, center, middle
 
 # Exercício 12
 
-### Adicione essas novas colunas `alt_log, tem_log e pre_log`, que são a operação `log10` das colunas `altitude,	temperature e	precipitation` e atribua ao mesmo objeto `si` utilizando o formato tidyverse
+### Usando o conjunto de dados `penguins`, adicione essas novas colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10`, que são a operação `log10` das colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10` e atribua ao mesmo objeto `penguins_log` utilizando o formato tidyverse
 
 
 
 ---
 
 # Exercício 12
+
 ## Solução
 
+
 ```r
-# solucao
-si &lt;- si %&gt;% 
-  dplyr::mutate(alt_log = log10(altitude),
-                tem_log = log10(temperature),
-                pre_log = log10(precipitation))
-si[, 25:28]
+# exercicio 12
+penguins_log &lt;- penguins %&gt;% 
+  dplyr::mutate(bill_length_mm_log10 = log10(bill_length_mm), 
+                bill_depth_mm_log10 = log10(bill_depth_mm), 
+                flipper_length_mm_log10 = log10(flipper_length_mm), 
+                body_mass_g_log10 = log10(body_mass_g))
+penguins_log
 ```
 
 ---
 
 # Exercício 13
 
-### Ordene os dados em forma decrescente pela coluna `altitude`, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
+### Usando o conjunto de dados `penguins`, ordene as linhas em forma decrescente pela coluna `body_mass_g`, atribuindo o resultado a um novo objeto `penguins_arrange` utilizando o formato tidyverse
 
 
 
 ---
 
 # Exercício 13
+
 ## Solução
 
+
 ```r
-# solucao
-si_ar &lt;- si %&gt;% 
-  dplyr::arrange(-altitude)
-si_ar
+# exercicio 13
+penguins_arrange &lt;- penguins %&gt;% 
+  dplyr::arrange(-body_mass_g)
+penguins_arrange
 ```
 
 ---
 
 # Exercício 14
 
-###  Filtre as linhas com `altitude` maior que 1000 mm, `temperature` menor que 15 ºC e `precipitation` maior que 1000 mm, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
+### Usando o conjunto de dados `penguins`, filtre as linhas com `bill_length_mm` maior que 50 mm, `bill_depth_mm` menor que 20 mm, `flipper_length_mm` maior que 220 mm e `body_mass_g` menor que 5500 g, atribuindo o resultado a um novo objeto `penguins_filter` utilizando o formato tidyverse
 
 
 
 ---
 
 # Exercício 14
+
 ## Solução
 
+
 ```r
-# solucao
-si_fi &lt;- si %&gt;% 
-  dplyr::filter(altitude &gt; 1000,
-                temperature &lt; 15,
-                precipitation &gt; 1000)
-si_fi
+# exercicio 14
+penguins_filter &lt;- penguins %&gt;% 
+  dplyr::filter(bill_length_mm &gt; 50, 
+                bill_depth_mm &lt; 20, 
+                flipper_length_mm &gt; 220, 
+                body_mass_g &lt; 5500)
+penguins_filter
 ```
 
 ---
 
 # Exercício 15
 
-### Amostre 200 linhas aleatoriamente com número de espécies maior que 15 espécies, atribuindo o resultado a um novo objeto utilizando o formato tidyverse
+### Usando o conjunto de dados `penguins`, amostre 70% das linhas aleatoriamente com `body_mass_g` menor que  5000 g, atribuindo o resultado a um novo objeto `penguins_sample` utilizando o formato tidyverse
 
 
 
 ---
 
 # Exercício 15
+
 ## Solução
 
+
 ```r
-# solucao
-si_sa &lt;- si %&gt;% 
-  dplyr::filter(species_number &gt; 15) %&gt;% 
-  dplyr::sample_n(200)
-si_sa
+# exercicio 15
+penguins_sample &lt;- penguins %&gt;% 
+  dplyr::filter(body_mass_g &lt; 5000) %&gt;% 
+  dplyr::slice_sample(prop = .7)
+penguins_sample
 ```
 
 ---
@@ -2225,127 +2261,190 @@ class: clear
 background-image: url(img/package_stringr.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[stringr](https://stringr.tidyverse.org/)
+
 ---
 
 background-image: url(img/cheatsheet_stringr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 4.8 stringr
+# 9. stringr
 
 ## Work with Strings Cheatsheet
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] https://github.com/rstudio/cheatsheets/raw/master/strings.pdf
-
----
-
-# 4.8 stringr
-
-## Pacote para a manipulação de strings
-
-### Comprimento
-
-```r
-stringr::str_length("abc")
-```
-
---
-
-### Extração por posição
-
-```r
-stringr::str_sub("abc", 3)
-```
+[Work with Strings Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf)
 
 ---
 
-# 4.8 stringr
+# 9. stringr
 
-### Inserir espaço em branco - esquerda
+## Descrição
 
-```r
-stringr::str_pad("abc", width = 4, side = "left")
-```
+### Pacote para a manipulação de strings ou caracteres
 
 --
 
-### Inserir espaço em branco - direira
-
-```r
-stringr::str_pad("abc", width = 4, side = "right")
-```
+### Exemplos: Correspondência de padrões, retirar e acrescentar espaços em branco, mudar maiúsculas e minúsculas
 
 --
 
-### Remover espaço em branco do começo, final ou ambos
+### Pode ser utilizado em conjunto com o pacote `dplyr` para manejar colunas
 
-```r
-stringr::str_trim(" abc ")
-```
+--
+
+### Para funções mais específicas, recomenda-se usar o pacote [stringi](https://stringi.gagolewski.com/)
 
 ---
 
-# 4.8 stringr
+# 9. stringr
 
-### Minúsculas e maiúsculas
+## Comprimento
+
 
 ```r
-stringr::str_to_upper("abc")
+# comprimento
+stringr::str_length(string = "penguins")
 ```
+
 --
 
-```r
-stringr::str_to_title("abc")
-```
---
+## Substituir
+
 
 ```r
-stringr::str_to_title("aBc")
+# substituir
+stringr::str_replace(string = "penguins", pattern = "i", replacement = "y")
+```
+
+--
+
+## Separar
+
+
+```r
+# separar
+stringr::str_split(string = "p-e-n-g-u-i-n-s", pattern = "-", simplify = TRUE)
 ```
 
 ---
 
-# 4.8 stringr
+# 9. stringr
 
-### Ordenação
+## Extrair pela posição
+
 
 ```r
-le &lt;- sample(letters, 26, rep = TRUE)
-le
+# extrair pela posicao
+stringr::str_sub(string = "penguins", end = 3)
 ```
+
 --
 
-```r
-stringr::str_sort(le)
-```
---
+## Extrair por padrão
+
 
 ```r
-stringr::str_sort(le, dec = TRUE)
+# extrair por padrao
+stringr::str_extract(string = "penguins", pattern = "p")
 ```
 
 ---
 
-# 4.8 stringr
+# 9. stringr
 
-### Extrair por padrão
+## Inserir espacos em branco
+
 
 ```r
-stringr::str_extract("abc", "b")
+# inserir espaco em branco - esquerda
+stringr::str_pad(string = "penguins", width = 10, side = "left")
+
+# inserir espaco em branco - direita
+stringr::str_pad(string = "penguins", width = 10, side = "right")
+
+# inserir espaco em branco - ambos
+stringr::str_pad(string = "penguins", width = 10, side = "both")
 ```
 
-### Substituir
+---
+
+# 9. stringr
+
+## Remover espaços em branco
+
 
 ```r
-stringr::str_replace("abc", "a", "y")
+# remover espacos em branco - esquerda
+stringr::str_trim(string = " penguins ", side = "left")
+
+# remover espacos em branco - direta
+stringr::str_trim(string = " penguins ", side = "right")
+
+# remover espacos em branco - ambos
+stringr::str_trim(string = " penguins ", side = "both")
 ```
 
-### Separação
+---
+
+# 9. stringr
+
+## Alterar minúsculas e maiúsculas
+
 
 ```r
-stringr::str_split("a-b-c", "-")
+# minusculas
+stringr::str_to_lower(string = "Penguins")
+
+# maiusculas
+stringr::str_to_upper(string = "penguins")
+
+# primeiro caracter maiusculo da primeira palavra
+stringr::str_to_sentence(string = "palmer penGuins")
+
+# primeiro caracter maiusculo de cada palavra
+stringr::str_to_title(string = "palmer penGuins")
+```
+
+---
+
+# 9. stringr
+
+## Ordenar
+
+
+```r
+# ordenar - crescente
+stringr::str_sort(x = letters)
+
+# ordenar - decrescente
+stringr::str_sort(x = letters, dec = TRUE)
+```
+
+---
+
+# 9. stringr
+
+## Alterar valores das colunas
+
+
+```r
+# alterar valores das colunas
+penguins_stringr_valores &lt;- penguins %&gt;% 
+  dplyr::mutate(species = stringr::str_to_lower(species))
+```
+
+--
+
+## Alterar nome das colunas
+
+
+```r
+# alterar nome das colunas
+penguins_stringr_nomes &lt;- penguins %&gt;% 
+  dplyr::rename_with(stringr::str_to_title)
 ```
 
 ---
@@ -2354,112 +2453,123 @@ class: clear
 background-image: url(img/package_forcats.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[forcats](https://forcats.tidyverse.org/)
+
 ---
 
 background-image: url(img/cheatsheet_forcats.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 4.9 forcats
+# 10. forcats
 
 ## Factors with forcats Cheatsheet
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] https://github.com/rstudio/cheatsheets/raw/master/factors.pdf
+[Factors with forcats Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/factors.pdf)
 
 ---
 
-# 4.9 forcats
+# 10. forcats
 
-### **as_factor()**: cria fatores
+## Descrição
+
+### Conjunto de ferramentas úteis para facilitar a manipulação de fatores e seus níveis
+
+--
+
+### Exemplos: mudar a ordem dos níveis, mudar os valores dos níveis, adicionar e remover níveis, combinar múltiplos níveis
+
+--
+
+### Pode ser utilizado em conjunto com o pacote `dplyr` para manejar colunas
+
+---
+
+# 10. forcats
+
+## Converter dados de string para fator
+
 
 ```r
-# fixar amostragem
-set.seed(42)
+# converter dados de string para fator
+forcats::as_factor(penguins_raw$Species) %&gt;% head()
+```
 
-# cria um fator
-fa &lt;- sample(c("alto", "medio", "baixo"), 30, rep = TRUE) %&gt;% 
-  forcats::as_factor()
-fa
+--
+
+## Mudar o nome dos níveis
+
+
+```r
+# mudar o nome dos niveis
+forcats::fct_recode(penguins$species, a = "Adelie", c = "Chinstrap", g = "Gentoo") %&gt;% head()
 ```
 
 ---
 
-# 4.9 forcats
+# 10. forcats
 
-### **fct_recode()**: muda o nome dos níveis
+## Inverter os níveis
+
 
 ```r
-# muda o nome dos niveis
-fa_recode &lt;- fa %&gt;% 
-  forcats::fct_recode(a = "alto", m = "medio", b = "baixo")
-fa_recode
+# inverter os niveis
+forcats::fct_rev(penguins$species) %&gt;% head()
+```
+
+--
+
+## Especificar a ordem dos níveis
+
+
+```r
+# especificar a ordem dos niveis
+forcats::fct_relevel(penguins$species, "Chinstrap", "Gentoo", "Adelie") %&gt;% head()
 ```
 
 ---
 
-# 4.9 forcats
+# 10. forcats
 
-### **fct_rev()**: inverte os níveis
+## Níveis pela ordem em que aparecem
+
 
 ```r
-# inverte os niveis
-fa_rev &lt;- fa_recode %&gt;% 
-  forcats::fct_rev()
-fa_rev
+# niveis pela ordem em que aparecem
+forcats::fct_inorder(penguins$species) %&gt;% head()
+```
+
+## Ordem (decrescente) de frequência
+
+
+```r
+## ordem (decrescente) de frequecia
+forcats::fct_infreq(penguins$species) %&gt;% head()
 ```
 
 ---
 
-# 4.9 forcats
+# 10. forcats
 
-### **fct_relevel()**: especifica a classificação de um ou mais níveis
+## Agregação de níveis raros em um nível
 
-```r
-# especifica a classificacao de um nivel
-fa_relevel &lt;- fa_recode %&gt;% 
-  forcats::fct_relevel(c("a", "m", "b"))
-fa_relevel
-```
-
----
-
-# 4.9 forcats
-
-### **fct_inorder()**: ordem em que aparece
-
-```r
-# ordem em que aparece
-fa_inorder &lt;- fa_recode %&gt;% 
-  forcats::fct_inorder()
-fa_inorder
-```
-
----
-
-# 4.9 forcats
-
-### **fct_infreq()**: ordem (decrescente) de frequência
-
-```r
-# ordem (decrescente) de frequencia
-fa_infreq &lt;- fa_recode %&gt;% 
-  forcats::fct_infreq()
-fa_infreq
-```
-
----
-
-# 4.9 forcats
-
-### **fct_lump()**: agregação de níveis raros em um nível
 
 ```r
 # agregacao de niveis raros em um nivel
-fa_lump &lt;- fa_recode %&gt;% 
-  forcats::fct_lump()
-fa_lump
+forcats::fct_lump(penguins$species) %&gt;% head()
+```
+
+--
+
+## Transformar várias colunas em fator
+
+
+```r
+# transformar varias colunas em fator
+penguins_raw_multi_factor &lt;- penguins_raw %&gt;% 
+  dplyr::mutate(across(where(is.character), forcats::as_factor))
 ```
 
 ---
@@ -2468,98 +2578,119 @@ class: clear
 background-image: url(img/package_lubridate.png)
 background-size: 400px
 
----
-
-class: clear
-background-image: url(img/lubridate_allison.png)
-background-size: 600px
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-Fonte: [@allison_horst](https://twitter.com/allison_horst)
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[lubridate](https://lubridate.tidyverse.org/)
 
 ---
 
 background-image: url(img/cheatsheet_lubridate.png)
-background-size: 600px
+background-size: 550px
 background-position: 50% 50%
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Dates and Times Cheatsheet
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf
+[Dates and Times Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf)
 
 ---
 
-# 4.10 lubridate
+background-image: url(img/lubridate_allison.png)
+background-size: 400px
+background-position: 50% 90%
+
+# 11. lubridate
 
 ## Pacote à parte do tidyverse
 
-### Instalar
+### Carregar sempre que for utilizar
 
-```r
-# install
-install.packages("lubridate")
-```
-
-### Carregar
 
 ```r
 # load
 library(lubridate)
 ```
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[@allison_horst](https://twitter.com/allison_horst)
+
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
-### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
+## Descrição
 
-### **date**: classe para datas
+### Conjunto de funções para a manipulação de dados de data e horário
+
+--
+
+### A manipulação desses dados não é intuitiva e muda dependendo do tipo de objeto de data e horário
+
+--
+
+### O formato desses dados deve levar em consideração fuso horários, anos bissextos, horários de verão, etc.
+
+--
+
+### Exemplos: transformações de data/horário, componentes, arredondamentos, durações, períodos, intervalos, etc.
+
+---
+
+background-image: url(img/mhs_package.png)
+background-size: 200px
+background-position: 85% 90%
+
+# 11. lubridate
+
+## Tipos de dados
+
+- **Data**: tempo em dias, meses e anos `&lt;date&gt;`
+- **Horário**: tempo dentro de um dia `&lt;time&gt;`
+- **Data-horário**: tempo em um instante (data mais tempo) `&lt;dttm&gt;`
+
+### Para trabalhar exclusivamente com horários, podemos utilizar o pacote [hms](https://hms.tidyverse.org/)
+
+### Algumas letras possuem significados temporais, sendo abreviações de diferentes períodos em inglês: 
+
+&lt;br&gt;
+- **y**ear (ano), **m**onth (mês) 
+ 
+- **w**eak (semana), **d**ay (dia) 
+
+- **h**our (hora), **m**inute (minuto) e **s**econd (segundo)
+
+---
+
+# 11. lubridate
+
+## Data e horários atuais
+
 
 ```r
-# string
-data_string &lt;- "2020-04-24"
-data_string
-class(data_string)
+# extrair a data nesse instante
+lubridate::today()
+
+# extrair a data e tempo nesse instante
+lubridate::now()
 ```
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
-### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
+## Existem três maneiras de criar um dado de data/horário
 
-### **date**: classe para datas
+### 1. De um string
 
-```r
-# criar um objeto com a classe data
-data_date &lt;- lubridate::date(data_string)
-data_date
-class(data_date)
-```
+### 2. De componentes individuais de data e horário
+
+### 3. De um objeto de data/horário existente
+
 
 ---
 
-# 4.10 lubridate
-
-### As funções `date()` e `as_date()` assumem que a ordem segue o padrão da língua inglesa: ano-mês-dia (ymd)
-
-### **date**: classe para datas
-
-```r
-# criar um objeto com a classe data
-data_date &lt;- lubridate::as_date(data_string)
-data_date
-class(data_date)
-```
-
----
-
-# 4.10 lubridate
+# 11. lubridate
 
 ### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
 
@@ -2574,7 +2705,7 @@ class(data_string)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
 
@@ -2589,7 +2720,7 @@ class(data_date)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Além de outros diversos formatos
 
@@ -2604,7 +2735,7 @@ lubridate::dmy("20.10.2020")
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Especificar horários
 
@@ -2622,7 +2753,7 @@ background-image: url(img/package_lubridate.png)
 background-size: 300px
 background-position: 80% 80%
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Funções úteis
 - second() - extrai os segundos
@@ -2639,7 +2770,7 @@ background-position: 80% 80%
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Extração
 
@@ -2659,7 +2790,7 @@ lubridate::month(data)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Extração
 
@@ -2678,7 +2809,7 @@ lubridate::wday(data, label = TRUE)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Inclusão
 
@@ -2697,7 +2828,7 @@ data
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Extrair a data no instante da execução
 &lt;br&gt;
@@ -2721,7 +2852,7 @@ quando eu preparava essa aula...
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Fusos horários
 
@@ -2739,7 +2870,7 @@ OlsonNames()
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ### Fusos horários
 
@@ -2758,7 +2889,7 @@ lubridate::force_tz(agora, tzone = "GMT")
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Operações com datas
 
@@ -2778,7 +2909,7 @@ class(r_interval)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Operações com datas
 
@@ -2800,7 +2931,7 @@ lubridate::int_overlaps(r_interval, namoro_interval)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Operações com datas
 
@@ -2814,7 +2945,7 @@ inicio_r + lubridate::dyears(1)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Operações com datas
 
@@ -2828,7 +2959,7 @@ reunioes
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Operações com datas
 
@@ -2849,7 +2980,7 @@ r_interval / lubridate::ddays(1)
 
 ---
 
-# 4.10 lubridate
+# 11. lubridate
 
 ## Operações com datas
 
@@ -2872,6 +3003,9 @@ class: clear
 background-image: url(img/package_purrr.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[purrr](https://purrr.tidyverse.org/)
+
 ---
 
 background-image: url(img/cheatsheet_purrr.png)
@@ -2880,27 +3014,24 @@ background-position: 50% 50%
 
 # 4.11 purrr
 
-## Data Import Cheatsheet
+## Apply functions with purrr Cheatsheet
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf
+[Apply functions with purrr](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
 ---
 
 # 4.11 purrr
 
+## Descrição
+
 ### Pacote que implementa **Programação Funcional** 
 
 --
 
-&lt;br&gt;
-
 ### Uma função **chama outra função** para ser **aplicada repetidamente** percorrendo **elementos de um objeto** (vetor, lista ou data frame)
 
 --
-
-&lt;br&gt;
 
 ## Exemplos:
 - Análise de experimento em vários locais 
@@ -2912,7 +3043,7 @@ background-position: 50% 50%
 ---
 
 background-image: url(img/purrr_map.png)
-background-size: 400px
+background-size: 500px
 background-position: 85% 90%
 
 # 4.11 purrr
