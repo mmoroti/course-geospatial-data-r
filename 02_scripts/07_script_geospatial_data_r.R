@@ -1,652 +1,652 @@
 #' ---
-#' title: aula 07 - estrutura e manipulação de dados matriciais
+#' title: aula 06 - estrutura e manejo de dados vetoriais 
 #' author: mauricio vancine
 #' date: 2020-10-22
 #' ---
-
+ 
 # packages ----------------------------------------------------------------
-library(raster)
+library(sp)
 library(sf)
-library(tidyverse)
 library(geobr)
 library(rnaturalearth)
-library(viridis)
+library(tidyverse)
 
 # topics ------------------------------------------------------------------
-# 7.1 pacotes
-# 7.2 sados raster
-# 7.3 classes raster
-# 7.4 importar dados matriciais
-# 7.5 descricao de objetos raster
-# 7.6 converter crs
-# 7.7 manipulação de dados raster
-# 7.8 opera_rccao espaciais
-# 7.9 opera_rccao geometricas
-# 7.10 intera_rccoes raster-vetor
-# 7.11 conversoes raster-vetor
-# 7.12 exportar dados matriciais
+# 6.1 pacotes
+# 6.2 geometrias sf
+# 6.3 classes sf
+# 6.4 importar dados vetoriais
+# 6.5 descricao de objetos sf
+# 6.6 converter dados para sf
+# 6.7 converter crs
+# 6.8 operacoes de atributos
+# 6.9 operacoes espaciais
+# 6.10 operacoes geometricas
+# 6.11 exportar dados vetoriais
 
-# 7.1 pacotes -------------------------------------------------------------
-# raster
-# install.packages("raster")
-# library(raster)
+# 6.1 pacotes -------------------------------------------------------------
+# sp
+# install.packages("sp")
+# library(sp)
 
-# terra_rc
-# install.packages("terra_rc")
-# library(terra_rc)
+# sf
+# install.packages("sf")
+# library(sf)
 
-# stars
-# install.packages("stars")
-# library(stars)
+# 6.3 classes sf ----------------------------------------------------------
+# simple feature geometries (sfg)
 
-# 7.3 classes raster ------------------------------------------------------
-# volcano
-volcano
+# simple
+# sf::st_point()
+# sf::st_linestring()
+# sf::st_polygon()
 
-# rasterlayer
-ra_lay <- raster::raster(volcano)
-ra_lay
+# multi
+# sf::st_multipoint()
+# sf::st_multilinestring()
+# sf::st_multipolygon()
 
-# plot
-raster::plot(ra_lay)
+# collections
+# sf::st_geometrycollection()
 
-# plot
-raster::plot(ra_lay, col = viridis::viridis(10))
-raster::plot(ra_lay, col = viridis::viridis(100))
+# vector - point
+vec <- c(5, 2)
+vec
 
-# stack
-set.seed(42)
-ra_sta <- raster::stack(raster::raster(volcano), 
-                        raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
-                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
-                        raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
-ra_sta
+po <- sf::st_point(vec)
+po
 
 # plot
-raster::plot(ra_sta, col = viridis::viridis(10))
+plot(po, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 
-# brick
-set.seed(42)
-ra_bri <- raster::brick(raster::raster(volcano), 
-                        raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
-                        raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
-                        raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
-ra_bri
+# matrix - multipoint
+multipoint_matrix <-  rbind(c(5, 2), c(1, 3), c(3, 4), c(3, 2))
+multipoint_matrix
+
+po_mul <- sf::st_multipoint(multipoint_matrix)
+po_mul
 
 # plot
-raster::plot(ra_bri, col = viridis::viridis(10))
+plot(po_mul, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 
-# 7.4 importar dados matriciais -------------------------------------------
+# matrix - multipoint
+multipoint_matrix <- rbind(c(5, 2), c(1, 3), c(3, 4), c(3, 2))
+multipoint_matrix
+
+lin <- sf::st_linestring(multipoint_matrix)
+lin
+
+# plot
+plot(lin, lwd = 2, axes = TRUE, graticule = TRUE)
+
+# list - polygon
+polygon_list <- list(rbind(c(1, 5), c(2, 2), c(4, 1), c(4, 4), c(1, 5)))
+polygon_list
+
+pol <- sf::st_polygon(polygon_list)
+pol
+
+# plot
+plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
+
+# simple feature columns (sfc)
+# sf::st_sfc()
+# sf::st_geometry_type()
+# sf::st_crs()
+
+# sfc point
+point1 <- sf::st_point(c(5, 2))
+point1
+
+point2 <- sf::st_point(c(1, 3))
+point2
+
+points_sfc <- sf::st_sfc(point1, point2)
+points_sfc
+
+sf::st_geometry_type(points_sfc)
+
+# plot
+plot(points_sfc, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
+
+# sfc geometry
+po_pol_sfc <- sf::st_sfc(po, pol)
+po_pol_sfc
+
+sf::st_geometry_type(po_pol_sfc)
+
+# plot
+plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE, graticule = TRUE)
+
+# epgs definition
+points_sfc_wgs <- sf::st_sfc(point1, point2, crs = 4326)
+points_sfc_wgs
+
+sf::st_crs(points_sfc_wgs)
+
+# proj4string definition
+points_sfc_wgs <- sf::st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
+points_sfc_wgs
+
+sf::st_crs(points_sfc_wgs)
+
+# plot
+plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
+
+# class sf
+rc_point <- sf::st_point(c(-47.57,-22.39))         # sfg object
+rc_point
+
+rc_geom <- sf::st_sfc(rc_point, crs = 4326)        # sfc object
+rc_geom
+
+rc_attrib <- data.frame(                       # data.frame object
+  name = "Rio Claro",
+  temperature = 19,
+  date = as.Date("2020-10-13")
+)
+rc_attrib
+
+rc_sf <- sf::st_sf(rc_attrib, geometry = rc_geom)  # sf object
+rc_sf
+
+class(rc_sf)
+
+# plot
+plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - plotar a primeira coluna
+
+# plot
+plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[2] - plotar a segunda coluna
+
+# plot
+plot(rc_sf$geometry, pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf$geometry - plotar apenas a geometria
+
+# 6.4 importar dados ------------------------------------------------------
 # create directory
-dir.create(here::here("03_dados", "raster2"))
+dir.create(here::here("03_dados", "vetor"))
 
-# elevation data
 # increase time to download
 options(timeout = 600)
 
-# download
-raster::getData(name = "SRTM", lon = -47, lat = -23,
-                path = here::here("03_dados", "raster2"))
-
-# import raster
-ra <- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
-ra
-
-# rio claro
-rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019) %>% 
-  sf::st_transform(crs = 4326)
-rc_2019
-
-# plot
-raster::plot(ra, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .5), add = TRUE)
-
-# mask
-ra_rc <- raster::crop(ra, rc_2019)
-ra_rc
-
-# plot
-raster::plot(ra_rc, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .3), lwd = 2, add = TRUE)
-
-# climate data
-# download
-download.file(url = "https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip",
-              destfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"), mode = "wb")
-
-# unzip
-unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"),
-      exdir = here::here("03_dados", "raster"))
-
-# list files
-fi <- dir(path = here::here("03_dados", "raster"), pattern = "wc") %>% 
-  grep(".tif", ., value = TRUE)
-fi
-
-# import stack
-st <- raster::stack(here::here("03_dados", "raster", fi))
-st
-
-# map
-raster::plot(st[[1:2]], col = viridis::viridis(10))
-
-# 7.5 descricao de objetos raster -----------------------------------------
-# raster
-ra_rc
-
-# class
-class(ra_rc)
-
-# dimension
-dim(ra_rc)
-
-# number of layers
-nlayers(ra_rc)
-
-# number of rows
-nrow(ra_rc)
-
-# number of columns
-ncol(ra_rc)
-
-# number of cells
-ncell(ra_rc)
-
-# raster resolution
-res(ra_rc)
-
-# stack resolution
-res(st)
-
-# raster extent
-extent(ra_rc)
-
-# stack extent
-extent(st)
-
-# projection
-projection(ra_rc)
-
-# projection
-projection(st)
-
-# raster names
-names(ra_rc)
-
-# stack names
-names(st)
-
-# raster values
-getValues(ra_rc) %>% head
-values(ra_rc) %>% head
-ra_rc[] %>% head
-
-# raster values histogram
-ra_rc %>% 
-  raster::values() %>% 
-  hist(col = "steelblue", br = 10, border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
-
-# stack values
-values(st[[1:3]]) %>% head
-
-# stack values - pairs
-st[[1:3]] %>% 
-  raster::values() %>% 
-  tibble::as_tibble() %>% 
-  dplyr::sample_n(1e3) %>% 
-  pairs(cex = 1.4, pch = 20, col = adjustcolor("steelblue", .7))
-
-# 7.6 conversao do crs ----------------------------------------------------
-# projection
-ra_rc
-
-# proj4string utm 23 s
-utm23 <- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-utm23
-
-# reprojection raster
-ra_rc_utm23 <- raster::projectRaster(ra_rc, crs = utm23)
-ra_rc_utm23
-
-# reprojection raster
-ra_rc_utm23 <- raster::projectRaster(ra_rc, crs = utm23, res = 90, method = "bilinear")
-ra_rc_utm23
-
-# reprojection vector
-rc_2019_utm23 <- sf::st_transform(rc_2019, crs = utm23)
-rc_2019_utm23
-
-# plot
-raster::plot(ra_rc_utm23, col = viridis::viridis(10))
-plot(rc_2019_utm23$geom, col = adjustcolor("red", .3), lwd = 2, add = TRUE)
-
-# crs global
-# WGS84/GCS
-st$wc2.1_10m_bio_1
-
-# plot
-raster::plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
-
-# proj4string mollweide
-moll <- "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
-moll
-
-# reprojection
-bio01_moll <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, method = "bilinear")
-bio01_moll
-
-# plot
-raster::plot(bio01_moll, col = viridis::viridis(10))
-
-# proj4string winkel tripel
-wintri <- "+proj=wintri +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
-wintri
-
-# reprojection
-bio01_wintri <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = wintri, res = 25e3, method = "bilinear")
-bio01_wintri
-
-# plot
-raster::plot(bio01_wintri, col = viridis::viridis(10))
-
-# proj4string eckert iv
-eck4 <- "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
-eck4
-
-# reprojection
-bio01_eck4 <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = eck4, res = 25e3, method = "bilinear")
-bio01_eck4
-
-# plot
-raster::plot(bio01_eck4, col = viridis::viridis(10))
-
-# proj4string lambert 
-laea <- "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
-laea
-
-# reprojection
-bio01_laea <- raster::projectRaster(st$wc2.1_10m_bio_1, crs = laea, res = 25e3, method = "bilinear")
-bio01_laea
-
-# plot
-raster::plot(bio01_laea, col = viridis::viridis(10))
-
-# 7.7 manipulacao de dados raster -----------------------------------------
-# indexacao de linha-coluna ou id da celula
-# raster - row 1, column 1
-ra[1, 1]
-
-# cell is 1
-ra[1]
-
-# selection layer in stack
-st_bio01 <- raster::subset(st, "wc2.1_10m_bio_1")
-st_bio01
-
-# selection layer in stack
-st_bio01 <- raster::raster(st, layer = 1)
-st_bio01
-
-# selection layer in stack
-st_bio01 <- st[["wc2.1_10m_bio_1"]]
-st_bio01
-
-# selection layer in stack
-st_bio01 <- st[[1]]
-st_bio01
-
-# selection layer in stack
-st_bio01 <- st$wc2.1_10m_bio_1
-st_bio01
-
-# map
-raster::plot(st_bio01, col = viridis::viridis(10))
-
-# rename
-# names
-names(ra_rc)
-
-# rename
-names(ra_rc) <- "elevation"
-
-# names
-names(ra_rc)
-
-# name
-names(st)
-
-# rename
-names(st) <- c("bio01", paste0("bio", 10:19), paste0("bio0", 2:9))
-
-# names
-names(st)
-
-# summarize information
-# mean from all cells
-raster::cellStats(ra_rc, mean)
-
-# mean from all cells
-raster::cellStats(st[[1:3]], mean)
-
-# count cells
-raster::freq(ra_rc)
-
-# count cells
-raster::freq(st[[1:3]])
-
-# 7.8 operacoes espaciais -------------------------------------------------
-# sum
-ra_rc2 <- ra_rc + ra_rc
-ra_rc2
-
-# map
-raster::plot(ra_rc2, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# division
-ra_rc_km <- ra_rc / 1e3
-ra_rc_km
-
-# map
-raster::plot(ra_rc_km, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# log10
-ra_rc_log10 <- log10(ra_rc)
-ra_rc_log10
-
-# map
-raster::plot(ra_rc_log10, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# upper 600
-ra_rc_up_600 <- ra_rc > 600
-ra_rc_up_600
-
-# map
-raster::plot(ra_rc_up_600)
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# bottom
-ra_rc_bot_600 <- ra_rc <= 600
-ra_rc_bot_600
-
-# map
-raster::plot(ra_rc_bot_600)
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# values
-ra_rc[] %>% head
-
-# copy
-ra_rc_up_700 <- ra_rc
-ra_rc_up_700
-
-# values bottom 700 == NA
-ra_rc_up_700[ra_rc_up_700 < 700] <- NA
-ra_rc_up_700
-
-# map
-raster::plot(ra_rc_up_700, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# reclassify
-# matrix for reclassification
-rcl  <- matrix(c(400,500,4, 
-                 500,600,5, 
-                 600,700,6,
-                 700,800,7,
-                 800,900,8,
-                 900,1000,9), 
-               ncol = 3, byrow = TRUE)
-rcl
-
-# reclassify
-ra_rc_rcl <- raster::reclassify(ra_rc, rcl = rcl)
-ra_rc_rcl
-
-# plot
-raster::plot(ra_rc_rcl, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# moving window
-ra_rc_mw_sd <- raster::focal(ra_rc, w = matrix(1, nrow = 3, ncol = 3), fun = sd)
-ra_rc_mw_sd
-
-# plot
-raster::plot(ra_rc_mw_sd, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .1), add = TRUE)
-
-# zonal statistics
-raster::zonal(ra_rc, ra_rc_rcl, fun = "mean")
-
-# zonal statistics
-ra_rc_stats <- data.frame(raster::zonal(ra_rc, ra_rc_rcl, fun = "summary"))
-colnames(ra_rc_stats) <- c("zone", "min", "1qt", "median", "mean", "3qt", "max")
-ra_rc_stats
-
-# 7.9 operacoes geometricas -----------------------------------------------
-# aggregation
-# resolution
-res(ra_rc)[1]
-
-# aggregation - increases the pixel size of the raster
-ra_rc_agg_mean <- raster::aggregate(ra_rc, fact = 10, fun = "mean")
-ra_rc_agg_mean
-
-# plot
-raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# disaggregate
-# resolution
-res(ra_rc)[1]
-
-# disaggregate - decreases the pixel size of the raster
-ra_rc_dis_bil <- raster::disaggregate(ra_rc, fact = 2, fun = "bilinear")
-ra_rc_dis_bil
-
-# plot
-raster::plot(ra_rc_dis_bil, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# 7.10 interacoes raster vetor --------------------------------------------
-# raster cropping
-# crop - adjust extension
-ra_rc_crop <- raster::crop(ra, rc_2019)
-ra_rc_crop
-
-# plot
-raster::plot(ra_rc_crop, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# mask - adjust limit
-ra_rc_mask <- raster::mask(ra, rc_2019)
-ra_rc_mask
-
-# plot
-raster::plot(ra_rc_mask, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# crop and mask - adjust extension and limit
-ra_rc_crop_mask <- ra %>% 
-  raster::crop(rc_2019) %>% 
-  raster::mask(rc_2019)
-ra_rc_crop_mask
-
-# plot
-raster::plot(ra_rc_crop_mask, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# crop and mask inverse - adjust extension and limit
-ra_rc_crop_mask_inv <- ra %>% 
-  raster::crop(rc_2019) %>% 
-  raster::mask(rc_2019, inverse = TRUE)
-ra_rc_crop_mask_inv
-
-# plot
-raster::plot(ra_rc_crop_mask_inv, col = viridis::viridis(10))
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
-
-# download atlantic forest
-af <- geobr::read_biomes(year = 2004) %>% 
-  dplyr::filter(name_biome == "Mata Atlântica")
-af
-
-# plot
-plot(af$geom, col = "gray", main = NA, axes = TRUE, gratidule = TRUE)
-
-# crop and mask - adjust extension and limit
-st_af_crop_mask <- st %>% 
-  raster::crop(af) %>% 
-  raster::mask(af)
-st_af_crop_mask
-
-# plot
-raster::plot(st_af_crop_mask[[1:4]], col = viridis::viridis(10))
+# download points
+for(i in c(".dbf", ".prj", ".shp", ".shx")){
+  download.file(url = paste0("http://geo.fbds.org.br/SP/RIO_CLARO/HIDROGRAFIA/SP_3543907_NASCENTES", i),
+                destfile = here::here("03_dados", "vetor", paste0("SP_3543907_NASCENTES", i)), mode = "wb")
+}
+
+# download lines
+for(i in c(".dbf", ".prj", ".shp", ".shx")){
+  download.file(url = paste0("http://geo.fbds.org.br/SP/RIO_CLARO/HIDROGRAFIA/SP_3543907_RIOS_SIMPLES", i),
+                destfile = here::here("03_dados", "vetor", paste0("SP_3543907_RIOS_SIMPLES", i)), mode = "wb")
+}
+
+# download polygons
+for(i in c(".dbf", ".prj", ".shp", ".shx")){
+  download.file(url = paste0("http://geo.fbds.org.br/SP/RIO_CLARO/USO/SP_3543907_USO", i),
+                destfile = here::here("03_dados", "vetor", paste0("SP_3543907_USO", i)), mode = "wb")
+}
 
 # import points
-rc_spr <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_NASCENTES.shp"), quiet = TRUE) %>% 
-  sf::st_transform(crs = 4326)
+rc_spr <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_NASCENTES.shp"), quiet = TRUE)
 rc_spr
 
 # plot
 plot(rc_spr$geometry, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019$geom, add = TRUE)
 
-# extraction
-rc_spr_ele <- raster::extract(ra_rc, rc_spr)
-rc_spr_ele
-
-# extraction
-rc_spr_ele <- rc_spr %>% 
-  dplyr::mutate(elev = raster::extract(ra_rc, .))
-rc_spr_ele
+# import lines
+rc_riv <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_RIOS_SIMPLES.shp"), quiet = TRUE)
+rc_riv
 
 # plot
-plot(rc_spr_ele["elev"], pch = 20, main = NA, axes = TRUE, graticule = TRUE)
-
-# histogram
-rc_spr_ele %>% 
-  dplyr::pull(elev) %>% 
-  hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
-
-# zonal statistics
-# buffers
-set.seed(42)
-rc_spr_buf <- rc_spr %>% 
-  dplyr::sample_n(10) %>% 
-  sf::as_Spatial() %>% 
-  raster::buffer(width = 1000, dissolve = FALSE) %>% 
-  sf::st_as_sf()
-rc_spr_buf
-
-# plot
-plot(rc_spr_buf$geometry, col = adjustcolor("steelblue", .7), pch = 20, main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019$geom, add = TRUE)
-
-# zonal statistics
-raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE, df = TRUE)
-
-# zonal statistics
-rc_spr_buf <- rc_spr_buf %>% 
-  dplyr::mutate(elev_mean = raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE))
-rc_spr_buf
-
-# plot
-plot(rc_spr_buf["elev_mean"], pch = 20, main = NA, axes = TRUE, graticule = TRUE)
-
-# 7.11 Conversoes raster-vetor --------------------------------------------
-# rasterize points
-rc_spr_rast <- raster::rasterize(x = rc_spr, y = ra_rc_agg_mean, field = 1, fun = "count")
-rc_spr_rast
-
-# plot
-raster::plot(rc_spr_rast, col = viridis::viridis(10))
-plot(rc_spr$geometry, pch = 20, cex = 1, col = adjustcolor("gray50", .6), add = TRUE)
-
-# statistics
-plot(ra_rc_agg_mean[], rc_spr_rast[], col = adjustcolor("gray30", .5), 
-     pch = 20, cex = 1.5, bty = "l", xlab = "Elevação (m)", ylab = "Número de nascentes")
+plot(rc_riv$geometry, col = "steelblue", main = NA, axes = TRUE, graticule = TRUE)
 
 # import polygons
-rc_use <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), quiet = TRUE) %>% 
-  dplyr::mutate(CLASSE_USO = as.factor(CLASSE_USO)) %>% 
-  sf::st_transform(crs = 4326)
-
-# rasterize polygons
-rc_use_rast <- raster::rasterize(x = rc_use, y = ra_rc_agg_mean, field = "CLASSE_USO")
-rc_use_rast
+rc_use <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), quiet = TRUE)
+rc_use
 
 # plot
-raster::plot(rc_use_rast, col = viridis::viridis(10))
-plot(rc_use$geom, add = TRUE)
+plot(rc_use$geometry, col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
 
-# package fasterize
-# install.packages("fasterize")
-library(fasterize)
-
-# rasterize with fasterize
-rc_use_fast <- fasterize::fasterize(sf = rc_use, raster = ra_rc_agg_mean, field = "CLASSE_USO")
-rc_use_fast
+# import gps data
+gps_gpx <- sf::read_sf(here::here("03_dados", "vetor", "waypoints.gpx"), layer = "waypoints")
+gps_gpx
 
 # plot
-raster::plot(rc_use_fast, col = viridis::viridis(10))
-plot(rc_use$geom, add = TRUE)
+plot(gps_gpx$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
 
-# vectorization points
-ra_rc_agg_mean_points = raster::rasterToPoints(ra_rc_agg_mean, spatial = TRUE) %>% 
+# import gps data
+gps_kml <- sf::read_sf(here::here("03_dados", "vetor", "waypoints.kml"))
+gps_kml
+
+# plot
+plot(gps_kml$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
+
+# import data from packages
+# brazil 2019
+br_2019 <- geobr::read_country(year = 2019)
+br_2019
+
+# plot
+plot(br_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+
+# brazil 1872
+br_1872 <- geobr::read_country(year = 1872)
+br_1872
+
+# plot
+plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+
+# sao paulo state
+sp_2019 <- geobr::read_state(code_state = "SP", year = 2019)
+sp_2019
+
+# plot
+plot(sp_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+
+# sao paulo municipalities
+sp_mun_2019 <- geobr::read_municipality(code_muni = "SP", year = 2019)
+sp_mun_2019
+
+# plot
+plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+
+# rio claro
+rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019)
+rc_2019
+
+# plot
+plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+
+# biomes
+bi_2019 <- geobr::read_biomes(year = 2019)
+bi_2019
+
+# plot
+plot(bi_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+
+# list all datasets available in the geobr package
+geobr::list_geobr()
+
+# south america
+sa <- rnaturalearth::ne_countries(scale = "small", continent = "South America", returnclass = "sf")
+sa
+
+# plot
+plot(sa$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+
+# coast lines
+coastline <- rnaturalearth::ne_coastline(scale = "small", returnclass = "sf")
+coastline
+
+# plot
+plot(coastline$geometry, col = "blue", main = NA)
+
+# 6.5 descricao de objetos sf ---------------------------------------------
+# south america
+sa
+
+# geometry
+sf::st_geometry_type(sa)
+
+# extention
+sf::st_bbox(sa)
+
+# coordinate reference system
+sf::st_crs(sa)
+
+# acessar a tabela de atributos
+sa_tab <- sf::st_drop_geometry(sa)
+sa_tab
+
+# classe
+class(sa_tab)
+
+# 6.6 converter dados sf --------------------------------------------------
+# import table
+si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"))
+si
+
+# add column
+si <- si %>% 
+  dplyr::mutate(lon = longitude, lat = latitude, .before = 1)
+si
+
+# convert to sf
+si_ve <- si %>% 
+  sf::st_as_sf(coords = c("lon", "lat"), crs = 4326)
+si_ve
+
+# plot
+plot(si_ve$geometry, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
+
+# countries sp
+co110_sp <- rnaturalearth::countries110
+co110_sp
+
+# countries sf
+co110_sf <- sf::st_as_sf(co110_sp)
+co110_sf
+
+# plot
+plot(co110_sf$geometry, col = "gray", main = NA)
+
+# countries sp
+co110_sp <- sf::as_Spatial(co110_sf)
+co110_sp
+
+# 6.7 conversao do crs --------------------------------------------------
+# crs local
+# convert coordinate system
+rc_2019_sirgas2000_utm23s <- sf::st_transform(rc_2019, crs = 31983)
+rc_2019_sirgas2000_utm23s
+
+# convert datum and coordinate system
+rc_2019_wgs84_utm23s <- sf::st_transform(rc_2019, crs = 32723)
+rc_2019_wgs84_utm23s
+
+# convert datum
+rc_2019_wgs84_gcs <- sf::st_transform(rc_2019, crs = 4326)
+rc_2019_wgs84_gcs
+
+# crs global
+# countries - WGS84/GCS
+co110_sf
+
+# plot
+plot(co110_sf$geometry, col = "gray", graticule = TRUE)
+
+# mollweide projection
+co110_sf_moll <- sf::st_transform(co110_sf, crs = "+proj=moll")
+co110_sf_moll
+
+# plot
+plot(co110_sf_moll$geometry, col = "gray", graticule = TRUE)
+
+# winkel tripel projection
+co110_sf_wintri <- lwgeom::st_transform_proj(co110_sf, crs = "+proj=wintri")
+co110_sf_wintri
+
+# plot
+plot(co110_sf_wintri$geometry, col = "gray")
+
+# eckert iv projection
+co110_sf_eck4 <- sf::st_transform(co110_sf, crs = "+proj=eck4")
+co110_sf_eck4
+
+# plot
+plot(co110_sf_eck4$geometry, col = "gray", graticule = TRUE)
+
+# lambert projection
+co110_sf_laea1 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
+co110_sf_laea1
+
+# plot
+plot(co110_sf_laea1$geometry, col = "gray", graticule = TRUE)
+
+# lambert projection
+co110_sf_laea2 <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-50 +lat_0=0")
+co110_sf_laea2
+
+# plot
+plot(co110_sf_laea2$geometry, col = "gray", graticule = TRUE)
+
+# 6.8 operacoes de atributos ----------------------------------------------
+# 1. attribute subsetting
+rc_use_forest <- rc_use %>% 
+  dplyr::filter(CLASSE_USO == "formação florestal")
+rc_use_forest
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+
+# 2. attribute joining
+# create data
+da_class <- tibble::tibble(CLASSE_USO = rc_use$CLASSE_USO, 
+                           classe = c("agua", "antropico", "edificado", "floresta", "silvicultura"))
+da_class
+
+# attribute joining
+rc_use_class <- dplyr::left_join(rc_use, da_class, by = "CLASSE_USO") %>% 
+  sf::st_drop_geometry()
+rc_use_class
+
+# 3. attribute aggregation
+rc_spr_n <- rc_spr %>% 
+  dplyr::group_by(MUNICIPIO, HIDRO) %>% 
+  dplyr::summarise(n = n())
+rc_spr_n
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_n$geometry, pch = 20, col = "blue", add = TRUE)
+
+# 4. attribute create - columns
+rc_use_use_area <- rc_use %>% 
+  dplyr::mutate(classe_area = paste0(CLASSE_USO, " (", AREA_HA, " ha)")) %>% 
+  sf::st_drop_geometry()
+rc_use_use_area
+
+# 4. attribute create - area
+rc_use_area <- rc_use %>% 
+  dplyr::mutate(area_m2 = sf::st_area(rc_use),
+                area_ha = sf::st_area(rc_use)/1e4) %>% 
+  sf::st_drop_geometry()
+rc_use_area
+
+# feature manipulation
+# dplyr::filter()
+# dplyr::distinc()
+# dplyr::slice()
+# dplyr::n_sample()
+# dplyr::group_by()
+# dplyr::summarise()
+
+# attribute table manipulation
+# dplyr::select()
+# dplyr::pull()
+# dplyr::rename()
+# dplyr::mutate()
+# dplyr::arrange()
+# dplyr::*_join()
+
+# 6.9 operacoes espaciais -------------------------------------------------
+# 1. spatial subsetting
+sf::st_intersects(x = rc_spr, y = rc_use_forest)
+
+# 1. spatial subsetting
+sf::st_intersects(x = rc_spr, y = rc_use_forest, sparse = FALSE)
+
+# 1. spatial subsetting - inside
+rc_spr_forest <- rc_spr %>% 
+  dplyr::filter(sf::st_intersects(x = ., y = rc_use_forest, sparse = FALSE))
+rc_spr_forest
+
+# 1. spatial subsetting - inside
+rc_spr_forest <- rc_spr[rc_use_forest, ]
+rc_spr_forest
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
+
+# 1. spatial subsetting - outside
+rc_spr_forest_out <- rc_spr %>% 
+  dplyr::filter(!sf::st_intersects(x = ., y = rc_use_forest, sparse = FALSE))
+rc_spr_forest_out
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geometry, col = "forestgreen", add = TRUE)
+plot(rc_spr_forest_out$geometry, col = "steelblue", pch = 20, cex = 1, add = TRUE)
+plot(rc_spr_forest$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
+
+# 2. spatial join
+rc_spr_use <- rc_spr %>% 
+  sf::st_join(x = ., y = rc_use)
+rc_spr_use
+
+# 2. spatial join
+rc_spr_use %>% 
+  sf::st_drop_geometry() %>% 
+  dplyr::count(CLASSE_USO)
+
+# 2. attribute join
+col <- tibble::tibble(CLASSE_USO = c("água", "área antropizada", "área edificada", "formação florestal", "silvicultura"),
+                      color = c("blue", "orange", "gray30", "forestgreen", "green"))
+col
+
+# 2. attribute join
+rc_spr_use <- dplyr::left_join(rc_spr_use, col, by = "CLASSE_USO")
+rc_spr_use
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_use[10], col = rc_spr_use$color, pch = 20, add = TRUE)
+
+# 3. random points
+rc_2019_sirgas2000_utm23s_rp <- sf::st_sample(rc_2019_sirgas2000_utm23s, 1e3)
+rc_2019_sirgas2000_utm23s_rp
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_rp, pch = 20, cex = .5, col = "red", add = TRUE)
+
+# 3. random points
+rc_use_forest_rp <- sf::st_sample(rc_use_forest, 1e3)
+rc_use_forest_rp
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_use_forest$geom, col = "forestgreen", add = TRUE)
+plot(rc_use_forest_rp, pch = 20, cex = .5, col = "red", add = TRUE)
+
+# 4. grid
+rc_2019_sirgas2000_utm23s_grid <- rc_2019_sirgas2000_utm23s %>% 
+  sf::st_make_grid(cellsize = 2000)
+rc_2019_sirgas2000_utm23s_grid
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid, col = adjustcolor("red", .1), add = TRUE)
+
+# 4. grid - subset
+rc_2019_sirgas2000_utm23s_grid_in <- rc_2019_sirgas2000_utm23s_grid[rc_2019_sirgas2000_utm23s, ]
+rc_2019_sirgas2000_utm23s_grid_in
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_grid_in, col = adjustcolor("red", .1), add = TRUE)
+
+# 4. grid - count spring by cell
+rc_2019_sirgas2000_utm23s_grid_in_spr_count <- rc_2019_sirgas2000_utm23s_grid_in %>% 
+  dplyr::mutate(n = sf::st_intersects(x = ., rc_spr) %>% lengths())
+rc_2019_sirgas2000_utm23s_grid_in_spr_count
+
+# map
+plot(rc_2019_sirgas2000_utm23s_grid_in_spr_count["n"], axes = TRUE, graticule = TRUE)
+
+# 5. hexagon
+rc_2019_sirgas2000_utm23s_hex <- rc_2019_sirgas2000_utm23s %>% 
+  sf::st_make_grid(cellsize = 2000, square = FALSE) %>% 
   sf::st_as_sf()
-ra_rc_agg_mean_points
+rc_2019_sirgas2000_utm23s_hex
 
 # plot
-raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
-plot(ra_rc_agg_mean_points, pch = 20, main = FALSE, add = TRUE)
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
 
-# vectorization lines
-ra_rc_agg_mean_lines = raster::rasterToContour(x = ra_rc_agg_mean, 
-                                               levels = seq(500, 900, by = 50)) %>% 
-  sf::st_as_sf()
-ra_rc_agg_mean_lines
+# 5. hexagon - count spring by hexagon
+rc_2019_sirgas2000_utm23s_hex_spr_count <- rc_2019_sirgas2000_utm23s_hex %>% 
+  dplyr::mutate(n = sf::st_intersects(x = ., rc_spr) %>% lengths())
+rc_2019_sirgas2000_utm23s_hex_spr_count
 
-# plot
-raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
-contour(ra_rc_agg_mean, levels =  seq(500, 900, by = 50),
-        col = "white", pch = 20, lwd = 1.5, labcex = 2, main = FALSE, add = TRUE)
-plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+# map
+plot(rc_2019_sirgas2000_utm23s_hex_spr_count["n"], axes = TRUE, graticule = TRUE)
 
-# vectorization polygons
-rc_use_fast_polygon <- raster::rasterToPolygons(rc_use_fast) %>% 
-  sf::st_as_sf()
-rc_use_fast_polygon
+# 6.10 operacoes geometricas ----------------------------------------------
+# 1. simplification
+rc_riv_simp <- sf::st_simplify(rc_riv, dTolerance = 1e4)
+rc_riv_simp
+
+rc_riv_simp <- sf::st_simplify(rc_2019, dTolerance = 1e4)
+rc_riv_simp
 
 # plot
-raster::plot(rc_use_fast, col = viridis::viridis(10))
-plot(rc_use_fast_polygon$geometry, main = FALSE, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_riv$geometry, col = "steelblue", add = TRUE)
+plot(rc_riv_simp$geometry, col = "red", add = TRUE)
 
-# vectorization polygons dissolve
-rc_use_fast_polygon_diss <- raster::rasterToPolygons(rc_use_fast, dissolve = TRUE) %>% 
-  sf::st_as_sf()
-rc_use_fast_polygon_diss
+# 2. centroids
+rc_2019_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s)
+rc_2019_cent
 
 # plot
-raster::plot(rc_use_fast, col = viridis::viridis(10))
-plot(rc_use_fast_polygon_diss$geometry, main = FALSE, add = TRUE)
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_cent$geom, cex = 3, col = "red", pch = 20, add = TRUE)
 
-# export raster
-raster::writeRaster(x = ra_rc, 
-                    filename = here::here("03_dados", "raster", "srtm_27_17_rc"),
-                    format = "GTiff",
-                    progress = "text",
-                    overwrite = TRUE)
+# 2. centroids
+rc_2019_sirgas2000_utm23s_hex_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s_hex)
+rc_2019_sirgas2000_utm23s_hex_cent
 
-# export stack
-raster::writeRaster(x = st_af_crop_mask, 
-                    filename = here::here("03_dados", "raster", names(st_af_crop_mask)), 
-                    bylayer = TRUE, 
-                    format = "GTiff",
-                    progress = "text",
-                    overwrite = TRUE)
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_2019_sirgas2000_utm23s_hex_cent, col = "blue", pch = 20, add = TRUE)
+
+# 3. buffer
+rc_spr_forest_buf <- rc_spr_forest %>% 
+  sf::st_buffer(dist = 500)
+rc_spr_forest_buf
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
+plot(rc_spr_forest_buf$geom, col = adjustcolor("white", 0), add = TRUE)
+
+# 4. union
+rc_spr_forest_buf_union <- sf::st_union(rc_spr_forest_buf)
+rc_spr_forest_buf_union
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_forest$geom, pch = 20, cex = .5, col = "blue", add = TRUE)
+plot(rc_spr_forest_buf_union, col = adjustcolor("white", 0), add = TRUE)
+
+# 5. clipping - intersection
+rc_riv_spr_forest_buf_int <- sf::st_intersection(x = rc_riv, y = rc_spr_forest_buf_union)
+rc_riv_spr_forest_buf_int
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_riv_spr_forest_buf_int$geometry, col = "blue", add = TRUE)
+
+# 5. clipping - difference
+rc_riv_spr_forest_buf_dif <- sf::st_difference(x = rc_riv, y = rc_spr_forest_buf_union)
+rc_riv_spr_forest_buf_dif
+
+# plot
+plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_spr_forest_buf_union, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_riv_spr_forest_buf_dif$geometry, col = "blue", add = TRUE)
+
+# 6.11 exportar dados -----------------------------------------------------
+# export shapefile
+sf::st_write(obj = rc_spr_forest_buf, 
+             dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.shp"),
+             layer = "rc_spr_forest_buf.shp",
+             driver = "ESRI Shapefile")
+
+# export geopackage
+sf::st_write(obj = rc_spr_forest_buf, 
+             dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.gpkg"),
+             layer = "rc_spr_forest_buf")
+
+# export geopackage
+sf::st_write(obj = rc_spr_forest_buf_union, 
+             dsn = here::here("03_dados", "vetor", "rc_spr_forest_buf.gpkg"),
+             layer = "rc_spr_forest_buf_union")
 
 # end ---------------------------------------------------------------------

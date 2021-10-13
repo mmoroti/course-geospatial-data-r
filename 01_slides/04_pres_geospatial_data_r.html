@@ -8,6 +8,8 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown/countdown.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
   <body>
@@ -206,7 +208,7 @@ class: clear
 background-image: url(img/package_tidyverse.png)
 background-size: 400px
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 [tidyverse](https://tidyverse.tidyverse.org/)
 
 ---
@@ -219,13 +221,13 @@ background-size: 400px
 
 
 ```r
-# instalar o pacote
+# instalar pacote
 install.packages("tidyverse")
 ```
 
 
 ```r
-# carregar o pacote
+# carregar pacote
 library(tidyverse)
 ```
 
@@ -239,6 +241,17 @@ library(tidyverse)
 ```r
 # listar todos os pacotes no tidyverse 
 tidyverse::tidyverse_packages(include_self = TRUE)
+```
+
+```
+##  [1] "broom"         "cli"           "crayon"        "dbplyr"       
+##  [5] "dplyr"         "dtplyr"        "forcats"       "googledrive"  
+##  [9] "googlesheets4" "ggplot2"       "haven"         "hms"          
+## [13] "httr"          "jsonlite"      "lubridate"     "magrittr"     
+## [17] "modelr"        "pillar"        "purrr"         "readr"        
+## [21] "readxl"        "reprex"        "rlang"         "rstudioapi"   
+## [25] "rvest"         "stringr"       "tibble"        "tidyr"        
+## [29] "xml2"          "tidyverse"
 ```
 
 ---
@@ -442,6 +455,29 @@ si &lt;- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_
 si
 ```
 
+```
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              &lt;NA&gt;          
+## 10 amp1010             1006              1 ab     fo              &lt;NA&gt;          
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
+## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
+## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
+## #   precipitation &lt;dbl&gt;
+```
+
 ---
 
 # 4. readr, readxl e writexl
@@ -459,6 +495,28 @@ si
 ```
 
 
+```
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              &lt;NA&gt;          
+## 10 amp1010             1006              1 ab     fo              &lt;NA&gt;          
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
+## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
+## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
+## #   precipitation &lt;dbl&gt;
+```
 
 ---
 
@@ -473,6 +531,29 @@ si
 # importar sites
 si &lt;- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
 si
+```
+
+```
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              &lt;NA&gt;          
+## 10 amp1010             1006              1 ab     fo              &lt;NA&gt;          
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
+## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
+## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
+## #   precipitation &lt;dbl&gt;
 ```
 
 ---
@@ -546,15 +627,34 @@ library("writexl")
 ```r
 # importar sites
 si &lt;- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
-                        sheet = 1, encoding = "latin1")
+                        sheet = 1)
 si
 ```
 
----
+```
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  NA            
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              NA            
+## 10 amp1010             1006              1 ab     fo              NA            
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;chr&gt;,
+## #   year_start &lt;chr&gt;, month_finish &lt;chr&gt;, year_finish &lt;chr&gt;,
+## #   effort_months &lt;chr&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;chr&gt;,
+## #   precipitation &lt;chr&gt;
+```
 
-background-image: url(img/gif_frog.gif)
-background-size: 200px
-background-position: 50% 100%
+---
 
 # Importar os dados
 
@@ -623,8 +723,38 @@ background-size: 400px
 
 
 ```r
-# descrição dos dados de sites
+# descricao dos dados de sites
 tibble::glimpse(si)
+```
+
+```
+## Rows: 1,163
+## Columns: 25
+## $ id                    &lt;chr&gt; "amp1001", "amp1002", "amp1003", "amp1004", "amp…
+## $ reference_number      &lt;dbl&gt; 1001, 1002, 1002, 1002, 1003, 1004, 1005, 1005, …
+## $ species_number        &lt;dbl&gt; 19, 16, 14, 13, 30, 42, 23, 19, 13, 1, 1, 2, 4, …
+## $ record                &lt;chr&gt; "ab", "co", "co", "co", "co", "co", "co", "co", …
+## $ sampled_habitat       &lt;chr&gt; "fo,ll", "fo,la,ll", "fo,la,ll", "fo,la,ll", "fo…
+## $ active_methods        &lt;chr&gt; "as", "as", "as", "as", "as", NA, "as", "as,sb,t…
+## $ passive_methods       &lt;chr&gt; "pt", "pt", "pt", "pt", NA, NA, NA, NA, "pt", "p…
+## $ complementary_methods &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ period                &lt;chr&gt; "mo,da,tw,ni", "mo,da,tw,ni", "mo,da,tw,ni", "mo…
+## $ month_start           &lt;dbl&gt; 9, 12, 12, 12, 7, NA, 4, 4, 4, 5, 5, 5, 5, 5, 5,…
+## $ year_start            &lt;dbl&gt; 2000, 2007, 2007, 2007, 1988, NA, 2007, 2007, 20…
+## $ month_finish          &lt;dbl&gt; 1, 5, 5, 5, 8, NA, 4, 4, 4, 7, 7, 7, 7, 7, 7, 7,…
+## $ year_finish           &lt;dbl&gt; 2002, 2009, 2009, 2009, 2001, NA, 2009, 2009, 20…
+## $ effort_months         &lt;dbl&gt; 16, 17, 17, 17, 157, NA, 24, 24, 24, 2, 2, 2, 2,…
+## $ country               &lt;chr&gt; "Brazil", "Brazil", "Brazil", "Brazil", "Brazil"…
+## $ state                 &lt;chr&gt; "PiauÃ­", "CearÃ¡", "CearÃ¡", "CearÃ¡", "CearÃ¡"…
+## $ state_abbreviation    &lt;chr&gt; "BR-PI", "BR-CE", "BR-CE", "BR-CE", "BR-CE", "BR…
+## $ municipality          &lt;chr&gt; "Canto do Buriti", "SÃ£o GonÃ§alo do Amarante", …
+## $ site                  &lt;chr&gt; "Parque Nacional Serra das ConfusÃµes", "Dunas",…
+## $ latitude              &lt;dbl&gt; -8.680000, -3.545527, -3.574194, -3.515250, -4.2…
+## $ longitude             &lt;dbl&gt; -43.42194, -38.85783, -38.88869, -38.91880, -38.…
+## $ coordinate_precision  &lt;chr&gt; "gm", "dd", "dd", "dd", "gm", NA, "gms", "gms", …
+## $ altitude              &lt;dbl&gt; 543, 15, 29, 25, 750, 745, 863, 878, 826, 93, 35…
+## $ temperature           &lt;dbl&gt; 24.98, 26.53, 26.45, 26.55, 21.35, 20.45, 21.57,…
+## $ precipitation         &lt;dbl&gt; 853, 1318, 1248, 1376, 1689, 1249, 1520, 1474, 1…
 ```
 
 ---
@@ -637,6 +767,21 @@ tibble::glimpse(si)
 ```r
 # descricao dos dados de especies
 tibble::glimpse(sp)
+```
+
+```
+## Rows: 17,618
+## Columns: 10
+## $ id          &lt;chr&gt; "amp1001", "amp1001", "amp1009", "amp1009", "amp1009", "am…
+## $ order       &lt;chr&gt; "Anura", NA, "Anura", NA, "Anura", "Anura", "Anura", "Anur…
+## $ superfamily &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ family      &lt;chr&gt; "Hylidae", NA, "Hylidae", NA, "Odontophrynidae", "Phyllome…
+## $ subfamily   &lt;chr&gt; "Dendropsophinae", NA, "Lophyohylinae", NA, NA, NA, NA, "L…
+## $ genus       &lt;chr&gt; "Dendropsophus", NA, "Corythomantis", NA, "Odontophrynus",…
+## $ species     &lt;chr&gt; "Dendropsophus soaresi", "Scinax sp.", "Corythomantis gree…
+## $ valid_name  &lt;chr&gt; "Dendropsophus soaresi", NA, "Corythomantis greeningi", NA…
+## $ individuals &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ endemic     &lt;dbl&gt; 0, NA, NA, NA, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 1, 0, 0, …
 ```
 
 ---
@@ -652,11 +797,24 @@ tibble::glimpse(sp)
 df &lt;- data.frame(ch = c("a", "b"), nu = 1:2)
 str(df)
 ```
+
+```
+## 'data.frame':	2 obs. of  2 variables:
+##  $ ch: chr  "a" "b"
+##  $ nu: int  1 2
+```
 --
 
 ```r
 tb &lt;- tibble::tibble(ch = c("a", "b"), nu = 1:2)
 tibble::glimpse(tb)
+```
+
+```
+## Rows: 2
+## Columns: 2
+## $ ch &lt;chr&gt; "a", "b"
+## $ nu &lt;int&gt; 1, 2
 ```
 
 ---
@@ -671,11 +829,19 @@ tibble::glimpse(tb)
 df_ch &lt;- df[, 1]
 class(df_ch)
 ```
+
+```
+## [1] "character"
+```
 --
 
 ```r
 tb_ch &lt;- tb[, 1]
 class(tb_ch)
+```
+
+```
+## [1] "tbl_df"     "tbl"        "data.frame"
 ```
 --
 
@@ -683,6 +849,10 @@ class(tb_ch)
 # indexacao pelo nome devolve um vetor
 tb_ch &lt;- tb$ch
 class(tb_ch)
+```
+
+```
+## [1] "character"
 ```
 
 ---
@@ -696,10 +866,18 @@ class(tb_ch)
 ```r
 df$c 
 ```
+
+```
+## [1] "a" "b"
+```
 --
 
 ```r
 tb$c
+```
+
+```
+## NULL
 ```
 
 ---
@@ -757,6 +935,10 @@ background-position: 50% 70%
 sqrt(sum(1:100))
 ```
 
+```
+## [1] 71.06335
+```
+
 ---
 
 background-image: url(img/general_fog02.jpg)
@@ -773,6 +955,10 @@ background-position: 50% 80%
 sqrt(sum(1:100))
 ```
 
+```
+## [1] 71.06335
+```
+
 ---
 
 # 6. magrittr (pipe - %&gt;%)
@@ -785,12 +971,20 @@ sqrt(sum(1:100))
 sqrt(sum(1:100))
 ```
 
+```
+## [1] 71.06335
+```
+
 
 ```r
 # com pipe
 1:100 %&gt;% 
   sum() %&gt;% 
   sqrt()
+```
+
+```
+## [1] 71.06335
 ```
 
 ---
@@ -808,6 +1002,10 @@ set.seed(42)
 ve &lt;- sum(sqrt(sort(log10(rpois(100, 10)))))
 ve
 ```
+
+```
+## [1] 99.91426
+```
 --
 
 ```r
@@ -821,6 +1019,10 @@ ve &lt;- rpois(100, 10) %&gt;%
   sqrt() %&gt;% 
   sum()
 ve  
+```
+
+```
+## [1] 99.91426
 ```
 
 ---
@@ -873,7 +1075,9 @@ class: inverse, center, middle
 &lt;br&gt;
 `sum(sort(sample(1:10, 10000, rep = TRUE)))`
 
-
+<div class="countdown" id="timer_61672de8" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -961,7 +1165,7 @@ background-position: 20% 90%, 80% 90%
 
 ```r
 # instalar 
-# install.packages("palmerpenguins")
+install.packages("palmerpenguins")
 
 # carregar
 library(palmerpenguins)
@@ -1092,6 +1296,18 @@ penguins_raw_unir &lt;- tidyr::unite(data = penguins_raw,
 head(penguins_raw_unir[, c("Region", "Island", "region_island")])
 ```
 
+```
+## # A tibble: 6 × 3
+##   Region Island    region_island    
+##   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            
+## 1 Anvers Torgersen Anvers, Torgersen
+## 2 Anvers Torgersen Anvers, Torgersen
+## 3 Anvers Torgersen Anvers, Torgersen
+## 4 Anvers Torgersen Anvers, Torgersen
+## 5 Anvers Torgersen Anvers, Torgersen
+## 6 Anvers Torgersen Anvers, Torgersen
+```
+
 ---
 
 # 7. tidyr
@@ -1109,6 +1325,18 @@ penguins_raw_separar &lt;- tidyr::separate(data = penguins_raw,
                                         sep = ", ",
                                         remove = FALSE)
 head(penguins_raw_separar[, c("Stage", "stage", "egg_stage")])
+```
+
+```
+## # A tibble: 6 × 3
+##   Stage              stage egg_stage  
+##   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;      
+## 1 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 2 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 3 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 4 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 5 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 6 Adult, 1 Egg Stage Adult 1 Egg Stage
 ```
 
 ---
@@ -1129,6 +1357,18 @@ head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species",
                                      "Region", "Island", "Stage")])
 ```
 
+```
+## # A tibble: 6 × 6
+##   studyName `Sample Number` Species                    Region Island   Stage    
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;    
+## 1 PAL0708                 1 Adelie Penguin (Pygosceli… Anvers Torgers… Adult    
+## 2 PAL0708                 1 Adelie Penguin (Pygosceli… Anvers Torgers… 1 Egg St…
+## 3 PAL0708                 2 Adelie Penguin (Pygosceli… Anvers Torgers… Adult    
+## 4 PAL0708                 2 Adelie Penguin (Pygosceli… Anvers Torgers… 1 Egg St…
+## 5 PAL0708                 3 Adelie Penguin (Pygosceli… Anvers Torgers… Adult    
+## 6 PAL0708                 3 Adelie Penguin (Pygosceli… Anvers Torgers… 1 Egg St…
+```
+
 ---
 
 # 7. tidyr
@@ -1142,6 +1382,22 @@ head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species",
 # remover linhas com na
 penguins_raw_todas_na &lt;- tidyr::drop_na(data = penguins_raw)
 head(penguins_raw_todas_na)
+```
+
+```
+## # A tibble: 6 × 17
+##   studyName `Sample Number` Species       Region Island  Stage   `Individual ID`
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;          
+## 1 PAL0708                 7 Adelie Pengu… Anvers Torger… Adult,… N4A1           
+## 2 PAL0708                 8 Adelie Pengu… Anvers Torger… Adult,… N4A2           
+## 3 PAL0708                29 Adelie Pengu… Anvers Biscoe  Adult,… N18A1          
+## 4 PAL0708                30 Adelie Pengu… Anvers Biscoe  Adult,… N18A2          
+## 5 PAL0708                39 Adelie Pengu… Anvers Dream   Adult,… N25A1          
+## 6 PAL0809                69 Adelie Pengu… Anvers Torger… Adult,… N32A1          
+## # … with 10 more variables: Clutch Completion &lt;chr&gt;, Date Egg &lt;date&gt;,
+## #   Culmen Length (mm) &lt;dbl&gt;, Culmen Depth (mm) &lt;dbl&gt;,
+## #   Flipper Length (mm) &lt;dbl&gt;, Body Mass (g) &lt;dbl&gt;, Sex &lt;chr&gt;,
+## #   Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;, Comments &lt;chr&gt;
 ```
 
 ---
@@ -1160,6 +1416,18 @@ penguins_raw_colunas_na &lt;- tidyr::drop_na(data = penguins_raw,
 head(penguins_raw_colunas_na[, "Comments"])
 ```
 
+```
+## # A tibble: 6 × 1
+##   Comments                             
+##   &lt;chr&gt;                                
+## 1 Not enough blood for isotopes.       
+## 2 Adult not sampled.                   
+## 3 Nest never observed with full clutch.
+## 4 Nest never observed with full clutch.
+## 5 No blood sample obtained.            
+## 6 No blood sample obtained for sexing.
+```
+
 ---
 
 # 7. tidyr
@@ -1174,6 +1442,18 @@ head(penguins_raw_colunas_na[, "Comments"])
 penguins_raw_subs_na &lt;- tidyr::replace_na(data = penguins_raw,
                                           list(Comments = "Unknown"))
 head(penguins_raw_subs_na[, "Comments"])
+```
+
+```
+## # A tibble: 6 × 1
+##   Comments                      
+##   &lt;chr&gt;                         
+## 1 Not enough blood for isotopes.
+## 2 Unknown                       
+## 3 Unknown                       
+## 4 Adult not sampled.            
+## 5 Unknown                       
+## 6 Unknown
 ```
 
 ---
@@ -1209,6 +1489,18 @@ penguins_raw_pivot_wider &lt;- tidyr::pivot_wider(data = penguins_raw[, c(2, 3, 
 head(penguins_raw_pivot_wider)
 ```
 
+```
+## # A tibble: 6 × 4
+##   `Sample Number` `Adelie Penguin (Py… `Gentoo penguin (Py… `Chinstrap penguin …
+##             &lt;dbl&gt;                &lt;dbl&gt;                &lt;dbl&gt;                &lt;dbl&gt;
+## 1               1                 3750                 4500                 3500
+## 2               2                 3800                 5700                 3900
+## 3               3                 3250                 4450                 3650
+## 4               4                   NA                 5700                 3525
+## 5               5                 3450                 5400                 3725
+## 6               6                 3650                 4550                 3950
+```
+
 ---
 
 # 7. tidyr
@@ -1230,6 +1522,18 @@ penguins_raw_pivot_longer &lt;- tidyr::pivot_longer(data = penguins_raw[, c(2, 3
 head(penguins_raw_pivot_longer)
 ```
 
+```
+## # A tibble: 6 × 4
+##   `Sample Number` Species                             medidas            valores
+##             &lt;dbl&gt; &lt;chr&gt;                               &lt;chr&gt;                &lt;dbl&gt;
+## 1               1 Adelie Penguin (Pygoscelis adeliae) Culmen Length (mm)    39.1
+## 2               1 Adelie Penguin (Pygoscelis adeliae) Culmen Depth (mm)     18.7
+## 3               1 Adelie Penguin (Pygoscelis adeliae) Flipper Length (m…   181  
+## 4               1 Adelie Penguin (Pygoscelis adeliae) Body Mass (g)       3750  
+## 5               2 Adelie Penguin (Pygoscelis adeliae) Culmen Length (mm)    39.5
+## 6               2 Adelie Penguin (Pygoscelis adeliae) Culmen Depth (mm)     17.4
+```
+
 ---
 
 class: inverse, center, middle
@@ -1242,7 +1546,9 @@ class: inverse, center, middle
 
 ### Separe os nomes comuns dos nomes científicos dos pinguins do dados `penguins_raw`
 
-
+<div class="countdown" id="timer_61672b9b" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -1261,13 +1567,31 @@ penguins_raw_sep &lt;- penguins_raw %&gt;%
 head(penguins_raw_sep)
 ```
 
+```
+## # A tibble: 6 × 19
+##   studyName `Sample Number` Species  common_names scientific_names Region Island
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt; 
+## 1 PAL0708                 1 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 2 PAL0708                 2 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 3 PAL0708                 3 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 4 PAL0708                 4 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 5 PAL0708                 5 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 6 PAL0708                 6 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## # … with 12 more variables: Stage &lt;chr&gt;, Individual ID &lt;chr&gt;,
+## #   Clutch Completion &lt;chr&gt;, Date Egg &lt;date&gt;, Culmen Length (mm) &lt;dbl&gt;,
+## #   Culmen Depth (mm) &lt;dbl&gt;, Flipper Length (mm) &lt;dbl&gt;, Body Mass (g) &lt;dbl&gt;,
+## #   Sex &lt;chr&gt;, Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;, Comments &lt;chr&gt;
+```
+
 ---
 
 # Exercício 11
 
 ### Calcule a massa média dos indivíduos das espécies de penguins por ilha. Dicas: `tidyr::replace_na()` e `tidyr::pivot_wider()`
 
-
+<div class="countdown" id="timer_61672b57" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -1284,6 +1608,15 @@ penguins_raw_pivot_wider &lt;- penguins_raw[, c("Island", "Species", "Body Mass 
                      values_from = `Body Mass (g)`,
                      values_fn = mean)
 head(penguins_raw_pivot_wider)
+```
+
+```
+## # A tibble: 3 × 4
+##   Island    `Adelie Penguin (Pygo… `Gentoo penguin (Pyg… `Chinstrap penguin (Py…
+##   &lt;chr&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 Torgersen                  3635.                   NA                      NA 
+## 2 Biscoe                     3710.                 5035.                     NA 
+## 3 Dream                      3688.                   NA                    3733.
 ```
 
 ---
@@ -1420,6 +1753,19 @@ penguins_relocate_col &lt;- penguins %&gt;%
 head(penguins_relocate_col)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+## 1 Adelie  Torgersen male    2007           39.1          18.7               181
+## 2 Adelie  Torgersen female  2007           39.5          17.4               186
+## 3 Adelie  Torgersen female  2007           40.3          18                 195
+## 4 Adelie  Torgersen &lt;NA&gt;    2007           NA            NA                  NA
+## 5 Adelie  Torgersen female  2007           36.7          19.3               193
+## 6 Adelie  Torgersen male    2007           39.3          20.6               190
+## # … with 1 more variable: body_mass_g &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1434,6 +1780,19 @@ head(penguins_relocate_col)
 penguins_relocate_ncol &lt;- penguins %&gt;% 
   dplyr::relocate(sex, year, .after = 2)
 head(penguins_relocate_ncol)
+```
+
+```
+## # A tibble: 6 × 8
+##   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+## 1 Adelie  Torgersen male    2007           39.1          18.7               181
+## 2 Adelie  Torgersen female  2007           39.5          17.4               186
+## 3 Adelie  Torgersen female  2007           40.3          18                 195
+## 4 Adelie  Torgersen &lt;NA&gt;    2007           NA            NA                  NA
+## 5 Adelie  Torgersen female  2007           36.7          19.3               193
+## 6 Adelie  Torgersen male    2007           39.3          20.6               190
+## # … with 1 more variable: body_mass_g &lt;int&gt;
 ```
 
 ---
@@ -1455,6 +1814,18 @@ penguins_rename &lt;- penguins %&gt;%
 head(penguins_rename)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island    bill_length bill_depth flipper_length body_mass sex     year
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;      &lt;dbl&gt;          &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;
+## 1 Adelie  Torgersen        39.1       18.7            181      3750 male    2007
+## 2 Adelie  Torgersen        39.5       17.4            186      3800 female  2007
+## 3 Adelie  Torgersen        40.3       18              195      3250 female  2007
+## 4 Adelie  Torgersen        NA         NA               NA        NA &lt;NA&gt;    2007
+## 5 Adelie  Torgersen        36.7       19.3            193      3450 female  2007
+## 6 Adelie  Torgersen        39.3       20.6            190      3650 male    2007
+```
+
 ---
 
 # 8. dplyr
@@ -1469,6 +1840,19 @@ head(penguins_rename)
 penguins_rename_with &lt;- penguins %&gt;% 
   dplyr::rename_with(toupper)
 head(penguins_rename_with)
+```
+
+```
+## # A tibble: 6 × 8
+##   SPECIES ISLAND BILL_LENGTH_MM BILL_DEPTH_MM FLIPPER_LENGTH_… BODY_MASS_G SEX  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: YEAR &lt;int&gt;
 ```
 
 ---
@@ -1487,6 +1871,18 @@ penguins_select_position &lt;- penguins %&gt;%
 head(penguins_select_position)
 ```
 
+```
+## # A tibble: 6 × 4
+##   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1           39.1          18.7               181        3750
+## 2           39.5          17.4               186        3800
+## 3           40.3          18                 195        3250
+## 4           NA            NA                  NA          NA
+## 5           36.7          19.3               193        3450
+## 6           39.3          20.6               190        3650
+```
+
 ---
 
 # 8. dplyr
@@ -1501,6 +1897,18 @@ head(penguins_select_position)
 penguins_select_names &lt;- penguins %&gt;% 
   dplyr::select(bill_length_mm:body_mass_g)
 head(penguins_select_names)
+```
+
+```
+## # A tibble: 6 × 4
+##   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1           39.1          18.7               181        3750
+## 2           39.5          17.4               186        3800
+## 3           40.3          18                 195        3250
+## 4           NA            NA                  NA          NA
+## 5           36.7          19.3               193        3450
+## 6           39.3          20.6               190        3650
 ```
 
 ---
@@ -1518,6 +1926,18 @@ penguins_select_names_remove &lt;- penguins %&gt;%
   dplyr::select(-bill_length_mm:body_mass_g)
 head(penguins_select_names_remove)
 ```
+
+```
+## # A tibble: 6 × 6
+##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7               181        3750
+## 2 Adelie  Torgersen           39.5          17.4               186        3800
+## 3 Adelie  Torgersen           40.3          18                 195        3250
+## 4 Adelie  Torgersen           NA            NA                  NA          NA
+## 5 Adelie  Torgersen           36.7          19.3               193        3450
+## 6 Adelie  Torgersen           39.3          20.6               190        3650
+```
 ---
 
 # 8. dplyr
@@ -1532,6 +1952,18 @@ head(penguins_select_names_remove)
 penguins_select_contains &lt;- penguins %&gt;% 
   dplyr::select(contains("_mm"))
 head(penguins_select_contains)
+```
+
+```
+## # A tibble: 6 × 3
+##   bill_length_mm bill_depth_mm flipper_length_mm
+##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+## 1           39.1          18.7               181
+## 2           39.5          17.4               186
+## 3           40.3          18                 195
+## 4           NA            NA                  NA
+## 5           36.7          19.3               193
+## 6           39.3          20.6               190
 ```
 
 ---
@@ -1550,6 +1982,10 @@ penguins_select_pull &lt;- penguins %&gt;%
 head(penguins_select_pull, 15)
 ```
 
+```
+##  [1] 39.1 39.5 40.3   NA 36.7 39.3 38.9 39.2 34.1 42.0 37.8 37.8 41.1 38.6 34.6
+```
+
 ---
 
 # 8. dplyr
@@ -1564,6 +2000,19 @@ head(penguins_select_pull, 15)
 penguins_mutate &lt;- penguins %&gt;% 
   dplyr::mutate(body_mass_kg = body_mass_g/1e3, .before = sex)
 head(penguins_mutate)
+```
+
+```
+## # A tibble: 6 × 9
+##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7               181        3750
+## 2 Adelie  Torgersen           39.5          17.4               186        3800
+## 3 Adelie  Torgersen           40.3          18                 195        3250
+## 4 Adelie  Torgersen           NA            NA                  NA          NA
+## 5 Adelie  Torgersen           36.7          19.3               193        3450
+## 6 Adelie  Torgersen           39.3          20.6               190        3650
+## # … with 3 more variables: body_mass_kg &lt;dbl&gt;, sex &lt;fct&gt;, year &lt;int&gt;
 ```
 
 ---
@@ -1582,6 +2031,19 @@ penguins_mutate_across &lt;- penguins %&gt;%
 head(penguins_mutate_across)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;chr&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1596,6 +2058,19 @@ head(penguins_mutate_across)
 penguins_arrange &lt;- penguins %&gt;% 
   dplyr::arrange(body_mass_g)
 head(penguins_arrange)
+```
+
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Chinst… Dream            46.9          16.6              192        2700 fema…
+## 2 Adelie  Biscoe           36.5          16.6              181        2850 fema…
+## 3 Adelie  Biscoe           36.4          17.1              184        2850 fema…
+## 4 Adelie  Biscoe           34.5          18.1              187        2900 fema…
+## 5 Adelie  Dream            33.1          16.1              178        2900 fema…
+## 6 Adelie  Torge…           38.6          17                188        2900 fema…
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -1614,6 +2089,19 @@ penguins_arrange_desc &lt;- penguins %&gt;%
 head(penguins_arrange_desc)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 2 Gentoo  Biscoe           59.6          17                230        6050 male 
+## 3 Gentoo  Biscoe           51.1          16.3              220        6000 male 
+## 4 Gentoo  Biscoe           48.8          16.2              222        6000 male 
+## 5 Gentoo  Biscoe           45.2          16.4              223        5950 male 
+## 6 Gentoo  Biscoe           49.8          15.9              229        5950 male 
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1630,6 +2118,19 @@ penguins_arrange_desc_m &lt;- penguins %&gt;%
 head(penguins_arrange_desc_m)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 2 Gentoo  Biscoe           59.6          17                230        6050 male 
+## 3 Gentoo  Biscoe           51.1          16.3              220        6000 male 
+## 4 Gentoo  Biscoe           48.8          16.2              222        6000 male 
+## 5 Gentoo  Biscoe           45.2          16.4              223        5950 male 
+## 6 Gentoo  Biscoe           49.8          15.9              229        5950 male 
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1644,6 +2145,19 @@ head(penguins_arrange_desc_m)
 penguins_arrange_across &lt;- penguins %&gt;% 
   dplyr::arrange(across(where(is.numeric)))
 head(penguins_arrange_across)
+```
+
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Dream            32.1          15.5              188        3050 fema…
+## 2 Adelie  Dream            33.1          16.1              178        2900 fema…
+## 3 Adelie  Torge…           33.5          19                190        3600 fema…
+## 4 Adelie  Dream            34            17.1              185        3400 fema…
+## 5 Adelie  Torge…           34.1          18.1              193        3475 &lt;NA&gt; 
+## 6 Adelie  Torge…           34.4          18.4              184        3325 fema…
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -1759,6 +2273,19 @@ penguins_slice &lt;- penguins %&gt;%
 head(penguins_slice)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           40.3          18                195        3250 fema…
+## 3 Chinst… Dream            50.6          19.4              193        3800 male 
+## 4 Chinst… Dream            46.7          17.9              195        3300 fema…
+## 5 Chinst… Dream            52            19                197        4150 male 
+## 6 Chinst… Dream            50.5          18.4              200        3400 fema…
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1773,6 +2300,18 @@ head(penguins_slice)
 penguins_slice_head &lt;- penguins %&gt;% 
   dplyr::slice_head(n = 5)
 head(penguins_slice_head)
+```
+
+```
+## # A tibble: 5 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -1791,6 +2330,19 @@ penguins_slice_max &lt;- penguins %&gt;%
 head(penguins_slice_max)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 2 Gentoo  Biscoe           59.6          17                230        6050 male 
+## 3 Gentoo  Biscoe           51.1          16.3              220        6000 male 
+## 4 Gentoo  Biscoe           48.8          16.2              222        6000 male 
+## 5 Gentoo  Biscoe           45.2          16.4              223        5950 male 
+## 6 Gentoo  Biscoe           49.8          15.9              229        5950 male 
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1805,6 +2357,19 @@ head(penguins_slice_max)
 penguins_slice_sample &lt;- penguins %&gt;% 
   dplyr::slice_sample(n = 30)
 head(penguins_slice_sample)
+```
+
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           48.2          15.6              221        5100 male 
+## 2 Adelie  Biscoe           35.7          16.9              185        3150 fema…
+## 3 Adelie  Biscoe           41            20                203        4725 male 
+## 4 Gentoo  Biscoe           46.2          14.5              209        4800 fema…
+## 5 Adelie  Dream            37.8          18.1              193        3750 male 
+## 6 Gentoo  Biscoe           50            15.3              220        5550 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -1823,6 +2388,18 @@ penguins_distinct &lt;- penguins %&gt;%
 head(penguins_distinct)
 ```
 
+```
+## # A tibble: 6 × 1
+##   body_mass_g
+##         &lt;int&gt;
+## 1        3750
+## 2        3800
+## 3        3250
+## 4          NA
+## 5        3450
+## 6        3650
+```
+
 ---
 
 # 8. dplyr
@@ -1837,6 +2414,19 @@ head(penguins_distinct)
 penguins_distinct_keep_all &lt;- penguins %&gt;% 
   dplyr::distinct(body_mass_g, .keep_all = TRUE)
 head(penguins_distinct_keep_all)
+```
+
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -1855,6 +2445,19 @@ penguins_distinct_keep_all_across &lt;- penguins %&gt;%
 head(penguins_distinct_keep_all_across)
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1869,6 +2472,15 @@ head(penguins_distinct_keep_all_across)
 penguins_count &lt;- penguins %&gt;% 
   dplyr::count(species)
 penguins_count
+```
+
+```
+## # A tibble: 3 × 2
+##   species       n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Adelie      152
+## 2 Chinstrap    68
+## 3 Gentoo      124
 ```
 
 ---
@@ -1887,6 +2499,17 @@ penguins_count_two &lt;- penguins %&gt;%
 penguins_count_two
 ```
 
+```
+## # A tibble: 5 × 3
+##   species   island        n
+##   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
+## 1 Adelie    Biscoe       44
+## 2 Adelie    Dream        56
+## 3 Adelie    Torgersen    52
+## 4 Chinstrap Dream        68
+## 5 Gentoo    Biscoe      124
+```
+
 ---
 
 # 8. dplyr
@@ -1903,6 +2526,20 @@ penguins_group_by &lt;- penguins %&gt;%
 head(penguins_group_by)
 ```
 
+```
+## # A tibble: 6 × 8
+## # Groups:   species [1]
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1917,6 +2554,20 @@ head(penguins_group_by)
 penguins_group_by_across &lt;- penguins %&gt;% 
   dplyr::group_by(across(where(is.factor)))
 head(penguins_group_by_across)
+```
+
+```
+## # A tibble: 6 × 8
+## # Groups:   species, island, sex [3]
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -1937,6 +2588,15 @@ penguins_summarise &lt;- penguins %&gt;%
 penguins_summarise
 ```
 
+```
+## # A tibble: 3 × 3
+##   species   body_mass_g_mean body_mass_g_sd
+##   &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Adelie               3701.           459.
+## 2 Chinstrap            3733.           384.
+## 3 Gentoo               5076.           504.
+```
+
 ---
 
 # 8. dplyr
@@ -1952,6 +2612,15 @@ penguins_summarise_across &lt;- penguins %&gt;%
   dplyr::group_by(species) %&gt;% 
   dplyr::summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
 penguins_summarise_across
+```
+
+```
+## # A tibble: 3 × 6
+##   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Adelie              38.8          18.3              190.       3701. 2008.
+## 2 Chinstrap           48.8          18.4              196.       3733. 2008.
+## 3 Gentoo              47.5          15.0              217.       5076. 2008.
 ```
 
 ---
@@ -1973,6 +2642,19 @@ penguins_bind_rows &lt;- dplyr::bind_rows(penguins_01, penguins_02, .id = "id")
 head(penguins_bind_rows)
 ```
 
+```
+## # A tibble: 6 × 9
+##   id    species island    bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##   &lt;chr&gt; &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+## 1 1     Adelie  Torgersen           39.1          18.7              181        3750
+## 2 1     Adelie  Torgersen           39.5          17.4              186        3800
+## 3 1     Adelie  Torgersen           40.3          18                195        3250
+## 4 1     Adelie  Torgersen           NA            NA                 NA          NA
+## 5 1     Adelie  Torgersen           36.7          19.3              193        3450
+## 6 2     Adelie  Biscoe              39.6          17.7              186        3500
+## # … with 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
 ---
 
 # 8. dplyr
@@ -1990,6 +2672,22 @@ penguins_02 &lt;- dplyr::slice(penguins, 51:55)
 ## combinar as colunas
 penguins_bind_cols &lt;- dplyr::bind_cols(penguins_01, penguins_02, .name_repair = "unique")
 head(penguins_bind_cols)
+```
+
+```
+## # A tibble: 5 × 16
+##   species...1 island...2 bill_length_mm...3 bill_depth_mm...4 flipper_length_mm…
+##   &lt;fct&gt;       &lt;fct&gt;                   &lt;dbl&gt;             &lt;dbl&gt;              &lt;int&gt;
+## 1 Adelie      Torgersen                39.1              18.7                181
+## 2 Adelie      Torgersen                39.5              17.4                186
+## 3 Adelie      Torgersen                40.3              18                  195
+## 4 Adelie      Torgersen                NA                NA                   NA
+## 5 Adelie      Torgersen                36.7              19.3                193
+## # … with 11 more variables: body_mass_g...6 &lt;int&gt;, sex...7 &lt;fct&gt;,
+## #   year...8 &lt;int&gt;, species...9 &lt;fct&gt;, island...10 &lt;fct&gt;,
+## #   bill_length_mm...11 &lt;dbl&gt;, bill_depth_mm...12 &lt;dbl&gt;,
+## #   flipper_length_mm...13 &lt;int&gt;, body_mass_g...14 &lt;int&gt;, sex...15 &lt;fct&gt;,
+## #   year...16 &lt;int&gt;
 ```
 
 ---
@@ -2074,6 +2772,16 @@ penguin_islands &lt;- tibble(
 penguin_islands
 ```
 
+```
+## # A tibble: 4 × 3
+##   island    longitude latitude
+##   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Torgersen     -64.1    -64.8
+## 2 Biscoe        -63.8    -64.8
+## 3 Dream         -64.2    -64.7
+## 4 Alpha         -63      -64.3
+```
+
 ---
 
 # 8. dplyr
@@ -2087,6 +2795,19 @@ penguin_islands
 # juncao - left
 penguins_left_join &lt;- dplyr::left_join(penguins, penguin_islands, by = "island")
 head(penguins_left_join)
+```
+
+```
+## # A tibble: 6 × 10
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 3 more variables: year &lt;int&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;
 ```
 
 ---
@@ -2126,6 +2847,23 @@ penguins_dplyr &lt;- penguins %&gt;%
 penguins_dplyr
 ```
 
+```
+## # A tibble: 344 × 5
+##    species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie            39.1          18.7               181        3750
+##  2 Adelie            39.5          17.4               186        3800
+##  3 Adelie            40.3          18                 195        3250
+##  4 Adelie            NA            NA                  NA          NA
+##  5 Adelie            36.7          19.3               193        3450
+##  6 Adelie            39.3          20.6               190        3650
+##  7 Adelie            38.9          17.8               181        3625
+##  8 Adelie            39.2          19.6               195        4675
+##  9 Adelie            34.1          18.1               193        3475
+## 10 Adelie            42            20.2               190        4250
+## # … with 334 more rows
+```
+
 ---
 
 # 8. dplyr
@@ -2137,6 +2875,23 @@ penguins_dplyr &lt;- penguins %&gt;%
   dplyr::select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %&gt;% 
   dplyr::filter(if_all(where(is.numeric), ~ !is.na(.)))
 penguins_dplyr
+```
+
+```
+## # A tibble: 342 × 5
+##    species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie            39.1          18.7               181        3750
+##  2 Adelie            39.5          17.4               186        3800
+##  3 Adelie            40.3          18                 195        3250
+##  4 Adelie            36.7          19.3               193        3450
+##  5 Adelie            39.3          20.6               190        3650
+##  6 Adelie            38.9          17.8               181        3625
+##  7 Adelie            39.2          19.6               195        4675
+##  8 Adelie            34.1          18.1               193        3475
+##  9 Adelie            42            20.2               190        4250
+## 10 Adelie            37.8          17.1               186        3300
+## # … with 332 more rows
 ```
 
 ---
@@ -2154,6 +2909,15 @@ penguins_dplyr &lt;- penguins %&gt;%
 penguins_dplyr
 ```
 
+```
+## # A tibble: 3 × 5
+##   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Adelie              38.8          18.3              190.       3701.
+## 2 Chinstrap           48.8          18.4              196.       3733.
+## 3 Gentoo              47.5          15.0              217.       5076.
+```
+
 ---
 
 class: inverse, center, middle
@@ -2166,7 +2930,9 @@ class: inverse, center, middle
 
 ### Usando o conjunto de dados `penguins`, adicione essas novas colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10`, que são a operação `log10` das colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10` e atribua ao mesmo objeto `penguins_log` utilizando o formato tidyverse
 
-
+<div class="countdown" id="timer_61672c62" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -2185,13 +2951,34 @@ penguins_log &lt;- penguins %&gt;%
 penguins_log
 ```
 
+```
+## # A tibble: 344 × 12
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 6 more variables: sex &lt;fct&gt;, year &lt;int&gt;,
+## #   bill_length_mm_log10 &lt;dbl&gt;, bill_depth_mm_log10 &lt;dbl&gt;,
+## #   flipper_length_mm_log10 &lt;dbl&gt;, body_mass_g_log10 &lt;dbl&gt;
+```
+
 ---
 
 # Exercício 13
 
 ### Usando o conjunto de dados `penguins`, ordene as linhas em forma decrescente pela coluna `body_mass_g`, atribuindo o resultado a um novo objeto `penguins_arrange` utilizando o formato tidyverse
 
-
+<div class="countdown" id="timer_61672b4f" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -2207,13 +2994,32 @@ penguins_arrange &lt;- penguins %&gt;%
 penguins_arrange
 ```
 
+```
+## # A tibble: 344 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo  Biscoe           49.2          15.2               221        6300
+##  2 Gentoo  Biscoe           59.6          17                 230        6050
+##  3 Gentoo  Biscoe           51.1          16.3               220        6000
+##  4 Gentoo  Biscoe           48.8          16.2               222        6000
+##  5 Gentoo  Biscoe           45.2          16.4               223        5950
+##  6 Gentoo  Biscoe           49.8          15.9               229        5950
+##  7 Gentoo  Biscoe           48.4          14.6               213        5850
+##  8 Gentoo  Biscoe           49.3          15.7               217        5850
+##  9 Gentoo  Biscoe           55.1          16                 230        5850
+## 10 Gentoo  Biscoe           49.5          16.2               229        5800
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
 ---
 
 # Exercício 14
 
 ### Usando o conjunto de dados `penguins`, filtre as linhas com `bill_length_mm` maior que 50 mm, `bill_depth_mm` menor que 20 mm, `flipper_length_mm` maior que 220 mm e `body_mass_g` menor que 5500 g, atribuindo o resultado a um novo objeto `penguins_filter` utilizando o formato tidyverse
 
-
+<div class="countdown" id="timer_61672c58" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
 
 ---
 
@@ -2232,13 +3038,28 @@ penguins_filter &lt;- penguins %&gt;%
 penguins_filter
 ```
 
+```
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           50.5          15.9              225        5400 male 
+## 2 Gentoo  Biscoe           50.1          15                225        5000 male 
+## 3 Gentoo  Biscoe           52.5          15.6              221        5450 male 
+## 4 Gentoo  Biscoe           52.2          17.1              228        5400 male 
+## 5 Gentoo  Biscoe           50.8          15.7              226        5200 male 
+## 6 Gentoo  Biscoe           51.1          16.5              225        5250 male 
+## # … with 1 more variable: year &lt;int&gt;
+```
+
 ---
 
 # Exercício 15
 
 ### Usando o conjunto de dados `penguins`, amostre 70% das linhas aleatoriamente com `body_mass_g` menor que  5000 g, atribuindo o resultado a um novo objeto `penguins_sample` utilizando o formato tidyverse
 
-
+<div class="countdown" id="timer_61672d41" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
+</div>
 
 ---
 
@@ -2253,6 +3074,23 @@ penguins_sample &lt;- penguins %&gt;%
   dplyr::filter(body_mass_g &lt; 5000) %&gt;% 
   dplyr::slice_sample(prop = .7)
 penguins_sample
+```
+
+```
+## # A tibble: 192 × 8
+##    species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo    Biscoe           47.2          13.7               214        4925
+##  2 Adelie    Dream            39.6          18.1               186        4450
+##  3 Gentoo    Biscoe           45.5          13.9               210        4200
+##  4 Chinstrap Dream            50.8          18.5               201        4450
+##  5 Adelie    Dream            41.1          17.5               190        3900
+##  6 Chinstrap Dream            50.7          19.7               203        4050
+##  7 Gentoo    Biscoe           45.8          14.6               210        4200
+##  8 Adelie    Dream            40.6          17.2               187        3475
+##  9 Adelie    Dream            39.5          16.7               178        3250
+## 10 Adelie    Biscoe           34.5          18.1               187        2900
+## # … with 182 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
 ```
 
 ---
@@ -2309,6 +3147,10 @@ background-position: 50% 50%
 stringr::str_length(string = "penguins")
 ```
 
+```
+## [1] 8
+```
+
 --
 
 ## Substituir
@@ -2319,6 +3161,10 @@ stringr::str_length(string = "penguins")
 stringr::str_replace(string = "penguins", pattern = "i", replacement = "y")
 ```
 
+```
+## [1] "penguyns"
+```
+
 --
 
 ## Separar
@@ -2327,6 +3173,11 @@ stringr::str_replace(string = "penguins", pattern = "i", replacement = "y")
 ```r
 # separar
 stringr::str_split(string = "p-e-n-g-u-i-n-s", pattern = "-", simplify = TRUE)
+```
+
+```
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+## [1,] "p"  "e"  "n"  "g"  "u"  "i"  "n"  "s"
 ```
 
 ---
@@ -2341,6 +3192,10 @@ stringr::str_split(string = "p-e-n-g-u-i-n-s", pattern = "-", simplify = TRUE)
 stringr::str_sub(string = "penguins", end = 3)
 ```
 
+```
+## [1] "pen"
+```
+
 --
 
 ## Extrair por padrão
@@ -2349,6 +3204,10 @@ stringr::str_sub(string = "penguins", end = 3)
 ```r
 # extrair por padrao
 stringr::str_extract(string = "penguins", pattern = "p")
+```
+
+```
+## [1] "p"
 ```
 
 ---
@@ -2361,12 +3220,28 @@ stringr::str_extract(string = "penguins", pattern = "p")
 ```r
 # inserir espaco em branco - esquerda
 stringr::str_pad(string = "penguins", width = 10, side = "left")
+```
 
+```
+## [1] "  penguins"
+```
+
+```r
 # inserir espaco em branco - direita
 stringr::str_pad(string = "penguins", width = 10, side = "right")
+```
 
+```
+## [1] "penguins  "
+```
+
+```r
 # inserir espaco em branco - ambos
 stringr::str_pad(string = "penguins", width = 10, side = "both")
+```
+
+```
+## [1] " penguins "
 ```
 
 ---
@@ -2379,12 +3254,28 @@ stringr::str_pad(string = "penguins", width = 10, side = "both")
 ```r
 # remover espacos em branco - esquerda
 stringr::str_trim(string = " penguins ", side = "left")
+```
 
+```
+## [1] "penguins "
+```
+
+```r
 # remover espacos em branco - direta
 stringr::str_trim(string = " penguins ", side = "right")
+```
 
+```
+## [1] " penguins"
+```
+
+```r
 # remover espacos em branco - ambos
 stringr::str_trim(string = " penguins ", side = "both")
+```
+
+```
+## [1] "penguins"
 ```
 
 ---
@@ -2397,15 +3288,37 @@ stringr::str_trim(string = " penguins ", side = "both")
 ```r
 # minusculas
 stringr::str_to_lower(string = "Penguins")
+```
 
+```
+## [1] "penguins"
+```
+
+```r
 # maiusculas
 stringr::str_to_upper(string = "penguins")
+```
 
+```
+## [1] "PENGUINS"
+```
+
+```r
 # primeiro caracter maiusculo da primeira palavra
 stringr::str_to_sentence(string = "palmer penGuins")
+```
 
+```
+## [1] "Palmer penguins"
+```
+
+```r
 # primeiro caracter maiusculo de cada palavra
 stringr::str_to_title(string = "palmer penGuins")
+```
+
+```
+## [1] "Palmer Penguins"
 ```
 
 ---
@@ -2418,9 +3331,21 @@ stringr::str_to_title(string = "palmer penGuins")
 ```r
 # ordenar - crescente
 stringr::str_sort(x = letters)
+```
 
+```
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+## [20] "t" "u" "v" "w" "x" "y" "z"
+```
+
+```r
 # ordenar - decrescente
 stringr::str_sort(x = letters, dec = TRUE)
+```
+
+```
+##  [1] "z" "y" "x" "w" "v" "u" "t" "s" "r" "q" "p" "o" "n" "m" "l" "k" "j" "i" "h"
+## [20] "g" "f" "e" "d" "c" "b" "a"
 ```
 
 ---
@@ -2497,6 +3422,13 @@ background-position: 50% 50%
 forcats::as_factor(penguins_raw$Species) %&gt;% head()
 ```
 
+```
+## [1] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
+## [3] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
+## [5] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
+## 3 Levels: Adelie Penguin (Pygoscelis adeliae) ...
+```
+
 --
 
 ## Mudar o nome dos níveis
@@ -2505,6 +3437,11 @@ forcats::as_factor(penguins_raw$Species) %&gt;% head()
 ```r
 # mudar o nome dos niveis
 forcats::fct_recode(penguins$species, a = "Adelie", c = "Chinstrap", g = "Gentoo") %&gt;% head()
+```
+
+```
+## [1] a a a a a a
+## Levels: a c g
 ```
 
 ---
@@ -2519,6 +3456,11 @@ forcats::fct_recode(penguins$species, a = "Adelie", c = "Chinstrap", g = "Gentoo
 forcats::fct_rev(penguins$species) %&gt;% head()
 ```
 
+```
+## [1] Adelie Adelie Adelie Adelie Adelie Adelie
+## Levels: Gentoo Chinstrap Adelie
+```
+
 --
 
 ## Especificar a ordem dos níveis
@@ -2527,6 +3469,11 @@ forcats::fct_rev(penguins$species) %&gt;% head()
 ```r
 # especificar a ordem dos niveis
 forcats::fct_relevel(penguins$species, "Chinstrap", "Gentoo", "Adelie") %&gt;% head()
+```
+
+```
+## [1] Adelie Adelie Adelie Adelie Adelie Adelie
+## Levels: Chinstrap Gentoo Adelie
 ```
 
 ---
@@ -2541,12 +3488,22 @@ forcats::fct_relevel(penguins$species, "Chinstrap", "Gentoo", "Adelie") %&gt;% h
 forcats::fct_inorder(penguins$species) %&gt;% head()
 ```
 
+```
+## [1] Adelie Adelie Adelie Adelie Adelie Adelie
+## Levels: Adelie Gentoo Chinstrap
+```
+
 ## Ordem (decrescente) de frequência
 
 
 ```r
-## ordem (decrescente) de frequecia
+# ordem (decrescente) de frequecia
 forcats::fct_infreq(penguins$species) %&gt;% head()
+```
+
+```
+## [1] Adelie Adelie Adelie Adelie Adelie Adelie
+## Levels: Adelie Gentoo Chinstrap
 ```
 
 ---
@@ -2559,6 +3516,11 @@ forcats::fct_infreq(penguins$species) %&gt;% head()
 ```r
 # agregacao de niveis raros em um nivel
 forcats::fct_lump(penguins$species) %&gt;% head()
+```
+
+```
+## [1] Adelie Adelie Adelie Adelie Adelie Adelie
+## Levels: Adelie Gentoo Other
 ```
 
 --
@@ -2608,7 +3570,7 @@ background-position: 50% 90%
 
 
 ```r
-# load
+# carregar
 library(lubridate)
 ```
 
@@ -2629,7 +3591,7 @@ library(lubridate)
 
 --
 
-### O formato desses dados deve levar em consideração fuso horários, anos bissextos, horários de verão, etc.
+### O formato desses dados deve levar em consideração Fusos horários, anos bissextos, horários de verão, etc.
 
 --
 
@@ -2670,9 +3632,19 @@ background-position: 85% 90%
 ```r
 # extrair a data nesse instante
 lubridate::today()
+```
 
+```
+## [1] "2021-10-13"
+```
+
+```r
 # extrair a data e tempo nesse instante
 lubridate::now()
+```
+
+```
+## [1] "2021-10-13 15:52:31 -03"
 ```
 
 ---
@@ -2681,7 +3653,7 @@ lubridate::now()
 
 ## Existem três maneiras de criar um dado de data/horário
 
-### 1. De um string
+### 1. De um string ou caracter
 
 ### 2. De componentes individuais de data e horário
 
@@ -2692,199 +3664,190 @@ lubridate::now()
 
 # 11. lubridate
 
-### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
+## **1. String ou caracter **
 
-### **date**: classe para datas
+### Os dados de data/horário geralmente estão no formato de strings
+
+### Podemos transformar os dados especificando a ordem dos seus componentes usando as letras `y` (ano), `m` (mês) e `d` (dia)
+
 
 ```r
-# string
-data_string &lt;- "20-10-2020"
-data_string
-class(data_string)
+# strings e numeros para datas
+lubridate::dmy("03-03-2021")
+```
+
+```
+## [1] "2021-03-03"
 ```
 
 ---
 
 # 11. lubridate
 
-### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
+## **1. String ou caracter **
 
-### **date**: classe para datas
+### Essas funções também aceitam números sem aspas, além funcionarem em outros diversos formatos
+
 
 ```r
-# criar um objeto com a classe data
-data_date &lt;- lubridate::dmy(data_string)
-data_date
-class(data_date)
+# strings e numeros para datas
+lubridate::dmy("03-Mar-2021")
+lubridate::dmy(03032021)
+lubridate::dmy("03032021")
+lubridate::dmy("03/03/2021")
+lubridate::dmy("03.03.2021")
 ```
 
 ---
 
 # 11. lubridate
 
-### Além de outros diversos formatos
+## **1. String ou caracter **
+
+### Especificar horários e Fusos horários
 
 
 ```r
-# formatos
-lubridate::dmy(20102020)
-lubridate::dmy("20102020")
-lubridate::dmy("20/10/2020")
-lubridate::dmy("20.10.2020")
+# especificar horarios e fuso horario
+lubridate::dmy_h("03-03-2021 13")
+lubridate::dmy_hm("03-03-2021 13:32")
+lubridate::dmy_hms("03-03-2021 13:32:01")
+lubridate::dmy_hms("03-03-2021 13:32:01", tz = "America/Sao_Paulo")
 ```
 
 ---
 
 # 11. lubridate
 
-### Especificar horários
+## **2. Componentes individuais de data e horário**
 
 
 ```r
-# especificar horarios
-lubridate::dmy_h(2010202020)
-lubridate::dmy_hm(201020202035)
-lubridate::dmy_hms(20102020203535)
+# dados com componentes individuais
+dados &lt;- tibble::tibble(
+  ano = c(2021, 2021, 2021),
+  mes = c(1, 2, 3),
+  dia = c(12, 20, 31),
+  hora = c(2, 14, 18), 
+  minuto = c(2, 44, 55))
+dados
 ```
 
----
-
-background-image: url(img/package_lubridate.png)
-background-size: 300px
-background-position: 80% 80%
-
-# 11. lubridate
-
-## Funções úteis
-- second() - extrai os segundos
-- minute() - extrai os minutos
-- hour() - extrai a hora
-- wday() - extrai o dia da semana
-- mday() - extrai o dia do mês
-- month() - extrai o mês
-- year() - extrai o ano
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] http://material.curso-r.com/lubridate/
+```
+## # A tibble: 3 × 5
+##     ano   mes   dia  hora minuto
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2021     1    12     2      2
+## 2  2021     2    20    14     44
+## 3  2021     3    31    18     55
+```
 
 ---
 
 # 11. lubridate
 
-### Extração
+## **2. Componentes individuais de data e horário**
+
 
 ```r
-# criar
-data &lt;- lubridate::dmy_hms(20102020203535)
-data
+# dados com componentes individuais
+dados %&gt;% 
+  dplyr::mutate(data = lubridate::make_datetime(ano, mes, dia, hora, minuto))
 ```
---
+
+```
+## # A tibble: 3 × 6
+##     ano   mes   dia  hora minuto data               
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dttm&gt;             
+## 1  2021     1    12     2      2 2021-01-12 02:02:00
+## 2  2021     2    20    14     44 2021-02-20 14:44:00
+## 3  2021     3    31    18     55 2021-03-31 18:55:00
+```
+
+---
+
+# 11. lubridate
+
+## **3. Objeto de data/horário existente**
+
+
+```r
+# data para data-horario
+lubridate::as_datetime(today())
+```
+
+```
+## [1] "2021-10-13 UTC"
+```
+
+```r
+# data-horario para data
+lubridate::as_date(now())
+```
+
+```
+## [1] "2021-10-13"
+```
+
+---
+
+# 11. lubridate
+
+## Funções para acessar e definir componentes individuais de datas e horários
+
+- `year()`: acessa o ano
+- `month()`: acessa o mês
+- `day()`: acessa o dia
+- `yday()`: acessa o dia do ano
+- `mday()`: acessa o dia do mês
+- `wday()`: acessa o dia da semana
+- `hour()`: acessa as horas
+- `minute()`: acessa os minutos
+- `second()`: acessa os segundos
+
+---
+
+# 11. lubridate
+
+## Funções para acessar e definir componentes individuais de datas e horários
+
 
 ```r
 # extrair
-lubridate::second(data)
-lubridate::day(data)
-lubridate::month(data)
+lubridate::year(now())
+lubridate::month(now())
+lubridate::month(now(), label = TRUE)
+lubridate::day(now())
+lubridate::wday(now())
+lubridate::wday(now(), label = TRUE)
+lubridate::second(now())
 ```
 
 ---
 
 # 11. lubridate
 
-### Extração
-
-```r
-# criar
-data &lt;- lubridate::dmy_hms(20102020203535)
-data
-```
+## Inclusão de informações de datas e horários.
 
 
 ```r
-# extrair
-lubridate::wday(data)
-lubridate::wday(data, label = TRUE)
-```
+# data
+data &lt;- dmy_hms("04-03-2021 01:04:56")
 
----
-
-# 11. lubridate
-
-### Inclusão
-
-```r
-# criar
-data &lt;- lubridate::dmy(20102020)
-data
-```
-
-
-```r
-# inlcuir
+# incluir
+lubridate::year(data) &lt;- 2020
+lubridate::month(data) &lt;- 01
 lubridate::hour(data) &lt;- 13
-data
-```
-
----
-
-# 11. lubridate
-
-### Extrair a data no instante da execução
-&lt;br&gt;
-
-```r
-# extrair a data no instante da execucao
-lubridate::today() 
-```
-
---
-
-&lt;br&gt;
-
-
-```r
-# extrair a data e horario no instante da execucao
-lubridate::now()
-```
-
-quando eu preparava essa aula...
-
----
-
-# 11. lubridate
-
-### Fusos horários
-
-```r
-# agora
-agora &lt;- lubridate::ymd_hms(lubridate::now(), tz = "America/Sao_Paulo")
-agora
 ```
 --
 
 ```r
-# verificar os tz
-OlsonNames()
+# incluir varios valores
+update(data, year = 2020, month = 1, mday = 1, hour = 1)
 ```
 
----
-
-# 11. lubridate
-
-### Fusos horários
-
-```r
-# que horas sao em...
-lubridate::with_tz(agora, tzone = "GMT")
-lubridate::with_tz(agora, tzone = "Europe/Stockholm")  
 ```
---
-&lt;br&gt;&lt;br&gt;
-
-```r
-# altera o fuso sem mudar a hora
-lubridate::force_tz(agora, tzone = "GMT")
+## [1] "2020-01-01 01:04:56 UTC"
 ```
 
 ---
@@ -2893,108 +3856,507 @@ lubridate::force_tz(agora, tzone = "GMT")
 
 ## Operações com datas
 
-### Intervalos
-Intervalos podem ser salvos em objetos com classe interval
+### Muitas vezes precisamos fazer operações com datas, como subtração, adição e divisão. Para tanto, é preciso entender três classes importantes que representam intervalos de tempo
+
+### **1. Durações**: representam um número exato de segundos
+
+### **2. Períodos**: representam unidades humanas como semanas e meses
+
+### **3. Intervalos**: representam um ponto inicial e final
+
+---
+
+# 11. lubridate
+
+## **1. Durações**
+
+###Registram o intervalo de tempo em segundos, com alguma unidade de tempo maior entre parênteses
+
+### Funções
+
+- `duration()`: cria data em duração
+- `as.duration()`: converte datas em duração
+- `dyears()`: duração de anos
+- `dmonths()`: duração de meses
+- `dweeks()`: duração de semanas
+- `ddays()`: duração de dias
+- `dhours()`: duração de horas
+- `dminutes()`: duração de minutos
+- `dseconds()`: duração de segundos
+
+---
+
+# 11. lubridate
+
+## **1. Durações**
+
+### Subtração de datas e conversão para duração
+
 
 ```r
-# datas
-inicio_r &lt;- lubridate::dmy("30-11-2011")
-hoje_r &lt;- lubridate::today()
+# subtracao de datas
+tempo_estudando_r &lt;- lubridate::today() - lubridate::dmy("30-11-2011")
 
-# intervalo
-r_interval &lt;- lubridate::interval(inicio_r, hoje_r)
-r_interval
-class(r_interval)
+# conversao para duracao
+tempo_estudando_r_dur &lt;- lubridate::as.duration(tempo_estudando_r)
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **1. Durações**
 
-### Intervalos
-Intersecção de intervalor com a função `int_overlaps()`
+### Criando durações
 
 
 ```r
-# outra forma de definir um intervalo: o operador %--%
-r_interval &lt;- lubridate::dmy("30-11-2011") %--% lubridate::today() 
-namoro_interval &lt;- lubridate::dmy("25-06-2008") %--% lubridate::today()   
+# criando duracoes
+lubridate::duration(90, "seconds")
 ```
---
+
+```
+## [1] "90s (~1.5 minutes)"
+```
 
 ```r
-# verificar sobreposicao
-lubridate::int_overlaps(r_interval, namoro_interval)
+lubridate::duration(1.5, "minutes")
+```
+
+```
+## [1] "90s (~1.5 minutes)"
+```
+
+```r
+lubridate::duration(1, "days")
+```
+
+```
+## [1] "86400s (~1 days)"
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **1. Durações**
 
-### Aritmética com datas
+### Transformação das durações
+
+
+```r
+# transformacao da duracao
+lubridate::dseconds(100)
+lubridate::dminutes(100)
+lubridate::dhours(100)
+lubridate::ddays(100)
+lubridate::dweeks(100)
+lubridate::dyears(100)
+```
+
+---
+
+# 11. lubridate
+
+## **1. Durações**
+
+### Operações com durações
+
+
+```r
+# somando duracoes a datas
+lubridate::today() + lubridate::ddays(1)
+```
+
+```
+## [1] "2021-10-14"
+```
+
+```r
+# subtraindo duracoes de datas
+lubridate::today() - lubridate::dyears(1)
+```
+
+```
+## [1] "2020-10-12 18:00:00 UTC"
+```
+
+```r
+# multiplicando duracoes
+2 * dyears(2)
+```
+
+```
+## [1] "126230400s (~4 years)"
+```
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### São extensões de tempo não fixados em segundos como as durações, mas flexíveis, como dias, semanas, meses ou anos
+
+### Funções
+
+- `period()`: cria data em período
+- `as.period()`: converte datas em período
+- `seconds()`: período em segundos
+- `minutes()`: período em minutos
+- `hours()`: período em horas
+- `days()`: período em dias
+- `weeks()`: período em semanas
+- `months()`: período em meses
+- `years()`: período em anos
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### Criando períodos
+
+
+```r
+# criando periodos
+period(c(90, 5), c("second", "minute"))
+```
+
+```
+## [1] "5M 90S"
+```
+
+```r
+period(c(3, 1, 2, 13, 1), c("second", "minute", "hour", "day", "week"))
+```
+
+```
+## [1] "20d 2H 1M 3S"
+```
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### Transformações de períodos
+
+
+```r
+# transformacao de periodos
+lubridate::seconds(100)
+lubridate::minutes(100)
+lubridate::hours(100)
+lubridate::days(100)
+lubridate::weeks(100)
+lubridate::years(100)
+```
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### Operações com os períodos
+
 
 ```r
 # somando datas
-inicio_r + lubridate::ddays(1)
-inicio_r + lubridate::dyears(1)
+lubridate::today() + lubridate::weeks(10)
 ```
 
----
+```
+## [1] "2021-12-22"
+```
 
-# 11. lubridate
+```r
+# subtraindo datas
+lubridate::today() - lubridate::weeks(10)
+```
 
-## Operações com datas
-
-### Aritmética com datas
+```
+## [1] "2021-08-04"
+```
 
 ```r
 # criando datas recorrentes
-reunioes &lt;- lubridate::today() + lubridate::weeks(0:10)
-reunioes
+lubridate::today() + lubridate::weeks(0:10)
+```
+
+```
+##  [1] "2021-10-13" "2021-10-20" "2021-10-27" "2021-11-03" "2021-11-10"
+##  [6] "2021-11-17" "2021-11-24" "2021-12-01" "2021-12-08" "2021-12-15"
+## [11] "2021-12-22"
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **3. Intervalos**
 
-### Aritmética com datas
+### Períodos de tempo limitados por duas datas, possuindo uma duração com um ponto de partida, que o faz preciso para determinar uma duração
+
+### Funções
+
+- `interval()`: cria data em intervalo
+- `%--%: cria data em intervalo
+- `as.interval()`: converte datas em intervalo
+- `int_start()`: acessa ou atribui data inicial de um intervalo
+- `int_end()`: acessa ou atribui data final de um intervalo
+- `int_length()`: comprimento de um intervalo em segundos
+- `int_flip()`: inverte a ordem da data de início e da data de término em um intervalo
+- `int_shift()`: desloca as datas de início e término de um intervalo
+- `int_aligns()`: testa se dois intervalos compartilham um ponto final
+- `int_standardize()`: garante que todos os intervalos sejam positivos
+- `int_diff()`: retorna os intervalos que ocorrem entre os elementos de data/horário
+- `int_overlaps()`: testa se dois intervalos se sobrepõem
+- `%within%: testa se o primeiro intervalo está contido no segundo
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Criando intervalos
+
 
 ```r
-# duracao de um intervalo 
-r_interval &lt;- inicio_r %--% lubridate::today()
-r_interval
-```
---
+# criando duas datas - inicio de estudos do R e nascimento do meu filho
+r_inicio &lt;- lubridate::dmy("30-11-2011")
+filho_nascimento &lt;- lubridate::dmy("26-09-2013")
+r_hoje &lt;- lubridate::today()
 
-```r
-# transformacoes
-r_interval / lubridate::dyears(1)
-r_interval / lubridate::ddays(1)
+# criando intervalos - interval
+r_intervalo &lt;- lubridate::interval(r_inicio, r_hoje)
+
+# criando intervalos - interval %--%
+filho_intervalo &lt;- filho_nascimento %--% lubridate::today()
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **3. Intervalos**
 
-### Aritmética com datas
+### Operaçõpes com intervalos
+
 
 ```r
-# total do periodo estudando r
-lubridate::as.period(r_interval)
+# operacooes com intervalos
+lubridate::int_start(r_intervalo)
+lubridate::int_end(r_intervalo)
+lubridate::int_length(r_intervalo)
+lubridate::int_flip(r_intervalo)
+lubridate::int_shift(r_intervalo, duration(days = 30))
 ```
---
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Sobreposição entre dois intervalos
+
 
 ```r
-# tempo de namoro
-lubridate::as.period(namoro_interval)
+# verificar sobreposicao - int_overlaps
+lubridate::int_overlaps(r_intervalo, filho_intervalo)
+```
+
+```
+## [1] TRUE
+```
+
+```r
+# verificar se intervalo esta contido
+r_intervalo %within% filho_intervalo
+```
+
+```
+## [1] FALSE
+```
+
+```r
+filho_intervalo %within% r_intervalo
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Calcular quantos períodos existem dentro de um intervalo
+
+
+```r
+# periodos dentro de um intervalo - anos
+r_intervalo / lubridate::years()
+```
+
+```
+## [1] 9.868493
+```
+
+```r
+r_intervalo %/% lubridate::years()
+```
+
+```
+## [1] 9
+```
+
+```r
+# periodos dentro de um intervalo - dias e semandas
+filho_intervalo / lubridate::days()
+```
+
+```
+## [1] 2939
+```
+
+```r
+filho_intervalo / lubridate::weeks()
+```
+
+```
+## [1] 419.8571
+```
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Transformações dos dados para períodos
+
+
+```r
+# tempo total estudando R
+lubridate::as.period(r_intervalo)
+```
+
+```
+## [1] "9y 10m 13d 0H 0M 0S"
+```
+
+```r
+# idade do meu filho
+lubridate::as.period(filho_intervalo)
+```
+
+```
+## [1] "8y 0m 17d 0H 0M 0S"
+```
+
+---
+
+background-image: url(img/lubridate_fusos01.png), url(img/lubridate_fusos02.png)
+background-size: 600px, 500px
+background-position: 5% 75%, 90% 75%
+
+# 11. lubridate
+
+## Fusos horários
+
+### Tendem a ser um **fator complicador** quando precisamos analisar informações **instantâneas de tempo (horário)** de outras partes do planeta, ou mesmo fazer conversões dos horários
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Fuso horário, como funciona](https://ipemsp.wordpress.com/2020/09/30/fuso-horario-como-funciona/), [Paradigma dos fusos horários e suas ocasionalidades](https://medium.com/@plowzzer/paradigma-dos-fusos-hor%C3%A1rios-997a3eb29039)
+
+---
+
+# 11. lubridate
+
+## Fusos horários
+
+### Descobrir o fuso horário que o R está considerando
+
+
+```r
+# fuso horario no r
+Sys.timezone()
+```
+
+```
+## [1] "America/Sao_Paulo"
+```
+
+### Listagem dos nomes dos fusos horários
+
+
+```r
+# verificar os fusos horarios
+length(OlsonNames())
+```
+
+```
+## [1] 607
+```
+
+```r
+head(OlsonNames())
+```
+
+```
+## [1] "Africa/Abidjan"     "Africa/Accra"       "Africa/Addis_Ababa"
+## [4] "Africa/Algiers"     "Africa/Asmara"      "Africa/Asmera"
+```
+
+---
+
+# 11. lubridate
+
+## Fusos horários
+
+### Perguntar que horas são em outra parte do globo ou fazer as conversões
+
+
+```r
+# que horas sao em...
+lubridate::with_tz(lubridate::now(), tzone = "America/Sao_Paulo")
+```
+
+```
+## [1] "2021-10-13 15:52:31 -03"
+```
+
+```r
+lubridate::with_tz(lubridate::now(), tzone = "GMT")
+```
+
+```
+## [1] "2021-10-13 18:52:31 GMT"
+```
+
+```r
+lubridate::with_tz(lubridate::now(), tzone = "Europe/Berlin")
+```
+
+```
+## [1] "2021-10-13 20:52:31 CEST"
+```
+
+```r
+# alterar o fuso sem mudar a hora
+lubridate::force_tz(lubridate::now(), tzone = "GMT")
+```
+
+```
+## [1] "2021-10-13 15:52:31 GMT"
 ```
 
 ---
@@ -3012,152 +4374,281 @@ background-image: url(img/cheatsheet_purrr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 4.11 purrr
+# 12. purrr
 
 ## Apply functions with purrr Cheatsheet
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-[Apply functions with purrr](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
+[Apply functions with purrr Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
 ---
 
-# 4.11 purrr
+background-image: url(img/purrr_cats.jpeg)
+background-size: 400px
+background-position: 50% 85%
+
+# 12. purrr
 
 ## Descrição
 
-### Pacote que implementa **Programação Funcional** 
+### Implementa a **Programação Funcional no R**, fornecendo um conjunto completo e consistente de ferramentas para trabalhar com funções e vetores
 
 --
 
-### Uma função **chama outra função** para ser **aplicada repetidamente** percorrendo **elementos de um objeto** (vetor, lista ou data frame)
+### Permite substituir muitos *loops* for por um código mais sucinto e fácil de ler
 
---
+---
 
-## Exemplos:
-- Análise de experimento em vários locais 
-- Análise de todas as respostas de um experimento
-- Análise dos dados com diferentes transformações de variáveis
-- Simulação computacional com diferentes delineamentos
-- Importação de todos os datasets de um diretório
+# 12. purrr
+
+## *Loop*
+
+## Um loop for pode ser entendido como uma iteração: um bloco de códigos é repetido mudando um contador de uma lista de possibilidades
+
+
+```r
+# loop for
+for(i in 1:10){
+  print(i)
+}
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+```
+
+---
+
+# 12. purrr
+
+## Programação funcional
+
+
+```r
+# loop for com map
+purrr::map(.x = 1:10, .f = print)
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] 5
+## 
+## [[6]]
+## [1] 6
+## 
+## [[7]]
+## [1] 7
+## 
+## [[8]]
+## [1] 8
+## 
+## [[9]]
+## [1] 9
+## 
+## [[10]]
+## [1] 10
+```
 
 ---
 
 background-image: url(img/purrr_map.png)
-background-size: 500px
-background-position: 85% 90%
+background-size: 600px
+background-position: 85% 80%
 
-# 4.11 purrr
+# 12. purrr
 
-## A principal função é a `map*()` e sua "família"
+## Estrutura
 
-&lt;br&gt;
-
-## map(.x, .f)
-### .x: uma vetor, lista ou data frame
-### .f: uma função
+### `map(.x, .f)`
+### `.x`: uma vetor, lista ou data frame
+### `.f`: uma função
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
-## Aplicando uma função em série
+### Exemplo: aplicar a função `sum()` para somar os valores de vários elementos de uma lista
+
 
 ```r
+# lista
 x &lt;- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
-```
 
-
-```r
+# funcao map
 purrr::map(x, sum)
 ```
 
+```
+## [[1]]
+## [1] 15
+## 
+## [[2]]
+## [1] 16
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 10
+```
+
 ---
 
-# 4.11 purrr
+# 12. purrr
 
 ## Tipos de retorno
 
-&lt;br&gt;&lt;br&gt;
+### Diferentes funções retornam diferentes estruturas de dados
 
-|  map |  returns |
-|:--|:--|
-|`map()` | list |
-|`map_chr()` | character vector |
-|`map_dbl()` | double vector (numeric) |
-|`map_int()` | integer vector |
-|`map_lgl()` | logical vector |
-|`map_dfc()` | data frame (by column) |
-|`map_dfr()` | data frame (by row) |
+- `map()`: retorna uma lista
+- `map_chr()`: retorna um vetor de strings
+- `map_dbl()`: retorna um vetor numérico (double)
+- `map_int()`: retorna um vetor numérico (integer)
+- `map_lgl()`: retorna um vetor lógico
+- `map_dfr()`: retorna um data frame (por linhas)
+- `map_dfc()`: retorna um data frame (por colunas)
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
-&lt;br&gt;&lt;br&gt;
+## Tipos de retorno
 
-## Retorna double vector (numeric)
 
 ```r
+# variacoes da funcao map
 purrr::map_dbl(x, sum)
 ```
 
-&lt;br&gt;
-
---
-
-## Retorna strings
+```
+## [1] 15 16  3 10
+```
 
 ```r
 purrr::map_chr(x, paste, collapse = " ")
 ```
 
----
-
-# 4.11 purrr
-
-## Duas listas em paralelo
-
-```r
-x &lt;- list(3, 5, 0, 1)
-y &lt;- list(3, 5, 0, 1)
-
-purrr::map2_dbl(x, y, prod)
+```
+## [1] "1 2 3 4 5" "4 5 7"     "1 1 1"     "2 2 2 2 2"
 ```
 
---
+---
 
-## Várias listas aninhadas
+# 12. purrr
+
+## Duas ou mais listas em paralelo
+
 
 ```r
+# listas
 x &lt;- list(3, 5, 0, 1)
 y &lt;- list(3, 5, 0, 1)
 z &lt;- list(3, 5, 0, 1)
 
+# map2* duas litas
+purrr::map2_dbl(x, y, prod)
+```
+
+```
+## [1]  9 25  0  1
+```
+
+```r
+# pmap muitas listas
 purrr::pmap_dbl(list(x, y, z), prod)
+```
+
+```
+## [1]  27 125   0   1
 ```
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
-### Calcular a média para várias colunas
+## Implementar rotinas de manipulação e análise de dados
+
 
 ```r
-mean_var &lt;- si %&gt;% 
-  dplyr::select(species_number, altitude) %&gt;% 
+# resumo dos dados
+penguins %&gt;% 
+  dplyr::select(where(is.numeric)) %&gt;% 
+  tidyr::drop_na() %&gt;% 
   purrr::map_dbl(mean)
-mean_var
 ```
 
---
+```
+##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
+##          43.92193          17.15117         200.91520        4201.75439 
+##              year 
+##        2008.02924
+```
 
-### Calcular o desvio padrão para várias colunas
+---
+
+# 12. purrr
+
+## Implementar rotinas de manipulação e análise de dados
+
 
 ```r
-sd_var &lt;- si %&gt;% 
-  dplyr::select(species_number, altitude) %&gt;% 
-  purrr::map_dbl(sd)
-sd_var
+# analise dos dados
+penguins %&gt;%
+  dplyr::group_split(island, species) %&gt;% 
+  purrr::map(~ lm(bill_depth_mm ~ bill_length_mm, data = .x)) %&gt;% 
+  purrr::map(summary) %&gt;% 
+  purrr::map("r.squared")
+```
+
+```
+## [[1]]
+## [1] 0.2192052
+## 
+## [[2]]
+## [1] 0.4139429
+## 
+## [[3]]
+## [1] 0.2579242
+## 
+## [[4]]
+## [1] 0.4271096
+## 
+## [[5]]
+## [1] 0.06198376
 ```
 
 ---
@@ -3166,7 +4657,7 @@ background-image: url(img/general_curso_r.png), url(img/person_jenny_bryan.jpeg)
 background-size: 400px, 300px
 background-position: 10% 70%, 90% 80%
 
-# 4.11 purrr
+# 12. purrr
 
 ## Material
 
@@ -3180,39 +4671,40 @@ class: clear
 background-image: url(img/package_furrr.png)
 background-size: 400px
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[furrr](https://furrr.futureverse.org/)
+
 ---
 
-background-image: url(img/package_furrr.png)
-background-size: 300px
-background-position: 50% 65%
+background-image: url(img/processor01.png), url(img/processor02.png)
+background-size: 500px, 400px
+background-position: 15% 65%, 85% 75%
 
-# 4.12 furrr
+# 12. furrr
 
 ## Programação funcional paralelizada
 
-### Faz o mapeamento em paralelo mais integrado possível
+### Faz o mapeamento em paralelo utilizando os *cores* do processador
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-[*] https://www.tidyverse.org/blog/2020/10/furrr-0-2-0/
-
----
-
-class: inverse, center, middle
-
-# Leitura
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Quick Intro to Parallel Computing in R](https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html)
 
 ---
 
-background-image: url(img/geo_geoprocessing02.png)
-background-size: 800px
-background-position: 50% 40%
+# 12. furrr
 
-# Leitura
+## Programação funcional paralelizada
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### Número de *cores* do seu computador
 
-*[http://www.ufrrj.br/lga/tiagomarino/artigos/oqueegeoprocessamento.pdf]
+
+```r
+# carregar
+library(parallel)
+
+# numero de cores
+parallel::detectCores()
+```
 
 ---
 

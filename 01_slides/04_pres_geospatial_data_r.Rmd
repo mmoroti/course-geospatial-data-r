@@ -21,9 +21,10 @@ output:
 options(htmltools.dir.version = FALSE, 
         encoding = "UTF-8",
         knitr.table.format = "html")
-knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE, eval = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, warning = FALSE, message = FALSE)
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 if(!require(tidyverse)) install.packages("tidyverse")
+if(!require(palmerpenguins)) install.packages("palmerpenguins")
 ```
 
 class: clear
@@ -207,7 +208,7 @@ class: clear
 background-image: url(img/package_tidyverse.png)
 background-size: 400px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 [tidyverse](https://tidyverse.tidyverse.org/)
 
 ---
@@ -219,12 +220,12 @@ background-size: 400px
 ### Para utilizar os pacotes do **tidyverse** é preciso instalar e carregar o pacote `tidyverse`
 
 ```{r eval=FALSE}
-# instalar o pacote
+# instalar pacote
 install.packages("tidyverse")
 ```
 
 ```{r message=TRUE}
-# carregar o pacote
+# carregar pacote
 library(tidyverse)
 ```
 
@@ -540,15 +541,11 @@ library("writexl")
 ```{r}
 # importar sites
 si <- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
-                        sheet = 1, encoding = "latin1")
+                        sheet = 1)
 si
 ```
 
 ---
-
-background-image: url(img/gif_frog.gif)
-background-size: 200px
-background-position: 50% 100%
 
 # Importar os dados
 
@@ -573,7 +570,7 @@ si
 ### Dados das espécies
 
 ```{r include=FALSE}
-# import species
+# import especies
 sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"),
                       locale = readr::locale(encoding = "latin1"))
 sp
@@ -624,7 +621,7 @@ background-size: 400px
 ## Descrição dos modos das colunas através da função `glimpse()` - "espiar os dados"
 
 ```{r}
-# descrição dos dados de sites
+# descricao dos dados de sites
 tibble::glimpse(si)
 ```
 
@@ -946,7 +943,7 @@ background-position: 20% 90%, 80% 90%
 
 ```{r eval=FALSE}
 # instalar 
-# install.packages("palmerpenguins")
+install.packages("palmerpenguins")
 
 # carregar
 library(palmerpenguins)
@@ -2468,7 +2465,7 @@ forcats::fct_inorder(penguins$species) %>% head()
 ## Ordem (decrescente) de frequência
 
 ```{r}
-## ordem (decrescente) de frequecia
+# ordem (decrescente) de frequecia
 forcats::fct_infreq(penguins$species) %>% head()
 ```
 
@@ -2528,7 +2525,7 @@ background-position: 50% 90%
 ### Carregar sempre que for utilizar
 
 ```{r}
-# load
+# carregar
 library(lubridate)
 ```
 
@@ -2549,7 +2546,7 @@ library(lubridate)
 
 --
 
-### O formato desses dados deve levar em consideração fuso horários, anos bissextos, horários de verão, etc.
+### O formato desses dados deve levar em consideração Fusos horários, anos bissextos, horários de verão, etc.
 
 --
 
@@ -2600,7 +2597,7 @@ lubridate::now()
 
 ## Existem três maneiras de criar um dado de data/horário
 
-### 1. De um string
+### 1. De um string ou caracter
 
 ### 2. De componentes individuais de data e horário
 
@@ -2611,183 +2608,145 @@ lubridate::now()
 
 # 11. lubridate
 
-### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
+## **1. String ou caracter **
 
-### **date**: classe para datas
+### Os dados de data/horário geralmente estão no formato de strings
+
+### Podemos transformar os dados especificando a ordem dos seus componentes usando as letras `y` (ano), `m` (mês) e `d` (dia)
+
 ```{r}
-# string
-data_string <- "20-10-2020"
-data_string
-class(data_string)
+# strings e numeros para datas
+lubridate::dmy("03-03-2021")
 ```
 
 ---
 
 # 11. lubridate
 
-### Datas no padrão da língua portuguesa: dia-mês-ano (dmy)
+## **1. String ou caracter **
 
-### **date**: classe para datas
-```{r}
-# criar um objeto com a classe data
-data_date <- lubridate::dmy(data_string)
-data_date
-class(data_date)
+### Essas funções também aceitam números sem aspas, além funcionarem em outros diversos formatos
+
+```{r eval=FALSE}
+# strings e numeros para datas
+lubridate::dmy("03-Mar-2021")
+lubridate::dmy(03032021)
+lubridate::dmy("03032021")
+lubridate::dmy("03/03/2021")
+lubridate::dmy("03.03.2021")
 ```
 
 ---
 
 # 11. lubridate
 
-### Além de outros diversos formatos
+## **1. String ou caracter **
 
-```{r}
-# formatos
-lubridate::dmy(20102020)
-lubridate::dmy("20102020")
-lubridate::dmy("20/10/2020")
-lubridate::dmy("20.10.2020")
+### Especificar horários e Fusos horários
+
+```{r eval=FALSE}
+# especificar horarios e fuso horario
+lubridate::dmy_h("03-03-2021 13")
+lubridate::dmy_hm("03-03-2021 13:32")
+lubridate::dmy_hms("03-03-2021 13:32:01")
+lubridate::dmy_hms("03-03-2021 13:32:01", tz = "America/Sao_Paulo")
 ```
 
 ---
 
 # 11. lubridate
 
-### Especificar horários
+## **2. Componentes individuais de data e horário**
 
 ```{r}
-# especificar horarios
-lubridate::dmy_h(2010202020)
-lubridate::dmy_hm(201020202035)
-lubridate::dmy_hms(20102020203535)
+# dados com componentes individuais
+dados <- tibble::tibble(
+  ano = c(2021, 2021, 2021),
+  mes = c(1, 2, 3),
+  dia = c(12, 20, 31),
+  hora = c(2, 14, 18), 
+  minuto = c(2, 44, 55))
+dados
 ```
-
----
-
-background-image: url(img/package_lubridate.png)
-background-size: 300px
-background-position: 80% 80%
-
-# 11. lubridate
-
-## Funções úteis
-- second() - extrai os segundos
-- minute() - extrai os minutos
-- hour() - extrai a hora
-- wday() - extrai o dia da semana
-- mday() - extrai o dia do mês
-- month() - extrai o mês
-- year() - extrai o ano
-
-<br><br><br><br><br><br><br>
-
-[*] http://material.curso-r.com/lubridate/
 
 ---
 
 # 11. lubridate
 
-### Extração
+## **2. Componentes individuais de data e horário**
+
 ```{r}
-# criar
-data <- lubridate::dmy_hms(20102020203535)
-data
+# dados com componentes individuais
+dados %>% 
+  dplyr::mutate(data = lubridate::make_datetime(ano, mes, dia, hora, minuto))
 ```
---
+
+---
+
+# 11. lubridate
+
+## **3. Objeto de data/horário existente**
+
 ```{r}
+# data para data-horario
+lubridate::as_datetime(today())
+
+# data-horario para data
+lubridate::as_date(now())
+```
+
+---
+
+# 11. lubridate
+
+## Funções para acessar e definir componentes individuais de datas e horários
+
+- `year()`: acessa o ano
+- `month()`: acessa o mês
+- `day()`: acessa o dia
+- `yday()`: acessa o dia do ano
+- `mday()`: acessa o dia do mês
+- `wday()`: acessa o dia da semana
+- `hour()`: acessa as horas
+- `minute()`: acessa os minutos
+- `second()`: acessa os segundos
+
+---
+
+# 11. lubridate
+
+## Funções para acessar e definir componentes individuais de datas e horários
+
+```{r eval=FALSE}
 # extrair
-lubridate::second(data)
-lubridate::day(data)
-lubridate::month(data)
+lubridate::year(now())
+lubridate::month(now())
+lubridate::month(now(), label = TRUE)
+lubridate::day(now())
+lubridate::wday(now())
+lubridate::wday(now(), label = TRUE)
+lubridate::second(now())
 ```
 
 ---
 
 # 11. lubridate
 
-### Extração
-```{r}
-# criar
-data <- lubridate::dmy_hms(20102020203535)
-data
-```
+## Inclusão de informações de datas e horários.
 
 ```{r}
-# extrair
-lubridate::wday(data)
-lubridate::wday(data, label = TRUE)
-```
+# data
+data <- dmy_hms("04-03-2021 01:04:56")
 
----
-
-# 11. lubridate
-
-### Inclusão
-```{r}
-# criar
-data <- lubridate::dmy(20102020)
-data
-```
-
-```{r}
-# inlcuir
+# incluir
+lubridate::year(data) <- 2020
+lubridate::month(data) <- 01
 lubridate::hour(data) <- 13
-data
-```
-
----
-
-# 11. lubridate
-
-### Extrair a data no instante da execução
-<br>
-```{r}
-# extrair a data no instante da execucao
-lubridate::today() 
-```
-
---
-
-<br>
-
-```{r}
-# extrair a data e horario no instante da execucao
-lubridate::now()
-```
-
-quando eu preparava essa aula...
-
----
-
-# 11. lubridate
-
-### Fusos horários
-```{r}
-# agora
-agora <- lubridate::ymd_hms(lubridate::now(), tz = "America/Sao_Paulo")
-agora
 ```
 --
 ```{r}
-# verificar os tz
-OlsonNames()
-```
-
----
-
-# 11. lubridate
-
-### Fusos horários
-```{r}
-# que horas sao em...
-lubridate::with_tz(agora, tzone = "GMT")
-lubridate::with_tz(agora, tzone = "Europe/Stockholm")  
-```
---
-<br><br>
-```{r}
-# altera o fuso sem mudar a hora
-lubridate::force_tz(agora, tzone = "GMT")
+# incluir varios valores
+update(data, year = 2020, month = 1, mday = 1, hour = 1)
 ```
 
 ---
@@ -2796,99 +2755,338 @@ lubridate::force_tz(agora, tzone = "GMT")
 
 ## Operações com datas
 
-### Intervalos
-Intervalos podem ser salvos em objetos com classe interval
-```{r}
-# datas
-inicio_r <- lubridate::dmy("30-11-2011")
-hoje_r <- lubridate::today()
+### Muitas vezes precisamos fazer operações com datas, como subtração, adição e divisão. Para tanto, é preciso entender três classes importantes que representam intervalos de tempo
 
-# intervalo
-r_interval <- lubridate::interval(inicio_r, hoje_r)
-r_interval
-class(r_interval)
+### **1. Durações**: representam um número exato de segundos
+
+### **2. Períodos**: representam unidades humanas como semanas e meses
+
+### **3. Intervalos**: representam um ponto inicial e final
+
+---
+
+# 11. lubridate
+
+## **1. Durações**
+
+###Registram o intervalo de tempo em segundos, com alguma unidade de tempo maior entre parênteses
+
+### Funções
+
+- `duration()`: cria data em duração
+- `as.duration()`: converte datas em duração
+- `dyears()`: duração de anos
+- `dmonths()`: duração de meses
+- `dweeks()`: duração de semanas
+- `ddays()`: duração de dias
+- `dhours()`: duração de horas
+- `dminutes()`: duração de minutos
+- `dseconds()`: duração de segundos
+
+---
+
+# 11. lubridate
+
+## **1. Durações**
+
+### Subtração de datas e conversão para duração
+
+```{r}
+# subtracao de datas
+tempo_estudando_r <- lubridate::today() - lubridate::dmy("30-11-2011")
+
+# conversao para duracao
+tempo_estudando_r_dur <- lubridate::as.duration(tempo_estudando_r)
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **1. Durações**
 
-### Intervalos
-Intersecção de intervalor com a função `int_overlaps()`
+### Criando durações
 
 ```{r}
-# outra forma de definir um intervalo: o operador %--%
-r_interval <- lubridate::dmy("30-11-2011") %--% lubridate::today() 
-namoro_interval <- lubridate::dmy("25-06-2008") %--% lubridate::today()   
-```
---
-```{r}
-# verificar sobreposicao
-lubridate::int_overlaps(r_interval, namoro_interval)
+# criando duracoes
+lubridate::duration(90, "seconds")
+lubridate::duration(1.5, "minutes")
+lubridate::duration(1, "days")
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **1. Durações**
 
-### Aritmética com datas
+### Transformação das durações
+
+```{r eval=FALSE}
+# transformacao da duracao
+lubridate::dseconds(100)
+lubridate::dminutes(100)
+lubridate::dhours(100)
+lubridate::ddays(100)
+lubridate::dweeks(100)
+lubridate::dyears(100)
+```
+
+---
+
+# 11. lubridate
+
+## **1. Durações**
+
+### Operações com durações
+
+```{r}
+# somando duracoes a datas
+lubridate::today() + lubridate::ddays(1)
+
+# subtraindo duracoes de datas
+lubridate::today() - lubridate::dyears(1)
+
+# multiplicando duracoes
+2 * dyears(2)
+```
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### São extensões de tempo não fixados em segundos como as durações, mas flexíveis, como dias, semanas, meses ou anos
+
+### Funções
+
+- `period()`: cria data em período
+- `as.period()`: converte datas em período
+- `seconds()`: período em segundos
+- `minutes()`: período em minutos
+- `hours()`: período em horas
+- `days()`: período em dias
+- `weeks()`: período em semanas
+- `months()`: período em meses
+- `years()`: período em anos
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### Criando períodos
+
+```{r}
+# criando periodos
+period(c(90, 5), c("second", "minute"))
+period(c(3, 1, 2, 13, 1), c("second", "minute", "hour", "day", "week"))
+```
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### Transformações de períodos
+
+```{r eval=FALSE}
+# transformacao de periodos
+lubridate::seconds(100)
+lubridate::minutes(100)
+lubridate::hours(100)
+lubridate::days(100)
+lubridate::weeks(100)
+lubridate::years(100)
+```
+
+---
+
+# 11. lubridate
+
+## **2. Períodos**
+
+### Operações com os períodos
+
 ```{r}
 # somando datas
-inicio_r + lubridate::ddays(1)
-inicio_r + lubridate::dyears(1)
-```
+lubridate::today() + lubridate::weeks(10)
 
----
+# subtraindo datas
+lubridate::today() - lubridate::weeks(10)
 
-# 11. lubridate
-
-## Operações com datas
-
-### Aritmética com datas
-```{r}
 # criando datas recorrentes
-reunioes <- lubridate::today() + lubridate::weeks(0:10)
-reunioes
+lubridate::today() + lubridate::weeks(0:10)
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **3. Intervalos**
 
-### Aritmética com datas
+### Períodos de tempo limitados por duas datas, possuindo uma duração com um ponto de partida, que o faz preciso para determinar uma duração
+
+### Funções
+
+- `interval()`: cria data em intervalo
+- `%--%: cria data em intervalo
+- `as.interval()`: converte datas em intervalo
+- `int_start()`: acessa ou atribui data inicial de um intervalo
+- `int_end()`: acessa ou atribui data final de um intervalo
+- `int_length()`: comprimento de um intervalo em segundos
+- `int_flip()`: inverte a ordem da data de início e da data de término em um intervalo
+- `int_shift()`: desloca as datas de início e término de um intervalo
+- `int_aligns()`: testa se dois intervalos compartilham um ponto final
+- `int_standardize()`: garante que todos os intervalos sejam positivos
+- `int_diff()`: retorna os intervalos que ocorrem entre os elementos de data/horário
+- `int_overlaps()`: testa se dois intervalos se sobrepõem
+- `%within%: testa se o primeiro intervalo está contido no segundo
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Criando intervalos
+
 ```{r}
-# duracao de um intervalo 
-r_interval <- inicio_r %--% lubridate::today()
-r_interval
-```
---
-```{r}
-# transformacoes
-r_interval / lubridate::dyears(1)
-r_interval / lubridate::ddays(1)
+# criando duas datas - inicio de estudos do R e nascimento do meu filho
+r_inicio <- lubridate::dmy("30-11-2011")
+filho_nascimento <- lubridate::dmy("26-09-2013")
+r_hoje <- lubridate::today()
+
+# criando intervalos - interval
+r_intervalo <- lubridate::interval(r_inicio, r_hoje)
+
+# criando intervalos - interval %--%
+filho_intervalo <- filho_nascimento %--% lubridate::today()
 ```
 
 ---
 
 # 11. lubridate
 
-## Operações com datas
+## **3. Intervalos**
 
-### Aritmética com datas
-```{r}
-# total do periodo estudando r
-lubridate::as.period(r_interval)
+### Operaçõpes com intervalos
+
+```{r eval=FALSE}
+# operacooes com intervalos
+lubridate::int_start(r_intervalo)
+lubridate::int_end(r_intervalo)
+lubridate::int_length(r_intervalo)
+lubridate::int_flip(r_intervalo)
+lubridate::int_shift(r_intervalo, duration(days = 30))
 ```
---
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Sobreposição entre dois intervalos
+
 ```{r}
-# tempo de namoro
-lubridate::as.period(namoro_interval)
+# verificar sobreposicao - int_overlaps
+lubridate::int_overlaps(r_intervalo, filho_intervalo)
+
+# verificar se intervalo esta contido
+r_intervalo %within% filho_intervalo
+filho_intervalo %within% r_intervalo
+```
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Calcular quantos períodos existem dentro de um intervalo
+
+```{r}
+# periodos dentro de um intervalo - anos
+r_intervalo / lubridate::years()
+r_intervalo %/% lubridate::years()
+
+# periodos dentro de um intervalo - dias e semandas
+filho_intervalo / lubridate::days()
+filho_intervalo / lubridate::weeks()
+```
+
+---
+
+# 11. lubridate
+
+## **3. Intervalos**
+
+### Transformações dos dados para períodos
+
+```{r}
+# tempo total estudando R
+lubridate::as.period(r_intervalo)
+
+# idade do meu filho
+lubridate::as.period(filho_intervalo)
+```
+
+---
+
+background-image: url(img/lubridate_fusos01.png), url(img/lubridate_fusos02.png)
+background-size: 600px, 500px
+background-position: 5% 75%, 90% 75%
+
+# 11. lubridate
+
+## Fusos horários
+
+### Tendem a ser um **fator complicador** quando precisamos analisar informações **instantâneas de tempo (horário)** de outras partes do planeta, ou mesmo fazer conversões dos horários
+
+<br><br><br><br><br><br><br><br><br><br>
+[Fuso horário, como funciona](https://ipemsp.wordpress.com/2020/09/30/fuso-horario-como-funciona/), [Paradigma dos fusos horários e suas ocasionalidades](https://medium.com/@plowzzer/paradigma-dos-fusos-hor%C3%A1rios-997a3eb29039)
+
+---
+
+# 11. lubridate
+
+## Fusos horários
+
+### Descobrir o fuso horário que o R está considerando
+
+```{r}
+# fuso horario no r
+Sys.timezone()
+```
+
+### Listagem dos nomes dos fusos horários
+
+```{r}
+# verificar os fusos horarios
+length(OlsonNames())
+head(OlsonNames())
+```
+
+---
+
+# 11. lubridate
+
+## Fusos horários
+
+### Perguntar que horas são em outra parte do globo ou fazer as conversões
+
+```{r}
+# que horas sao em...
+lubridate::with_tz(lubridate::now(), tzone = "America/Sao_Paulo")
+lubridate::with_tz(lubridate::now(), tzone = "GMT")
+lubridate::with_tz(lubridate::now(), tzone = "Europe/Berlin")
+
+# alterar o fuso sem mudar a hora
+lubridate::force_tz(lubridate::now(), tzone = "GMT")
 ```
 
 ---
@@ -2906,144 +3104,157 @@ background-image: url(img/cheatsheet_purrr.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 4.11 purrr
+# 12. purrr
 
 ## Apply functions with purrr Cheatsheet
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-[Apply functions with purrr](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
+[Apply functions with purrr Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf)
 
 ---
 
-# 4.11 purrr
+background-image: url(img/purrr_cats.jpeg)
+background-size: 400px
+background-position: 50% 85%
+
+# 12. purrr
 
 ## Descrição
 
-### Pacote que implementa **Programação Funcional** 
+### Implementa a **Programação Funcional no R**, fornecendo um conjunto completo e consistente de ferramentas para trabalhar com funções e vetores
 
 --
 
-### Uma função **chama outra função** para ser **aplicada repetidamente** percorrendo **elementos de um objeto** (vetor, lista ou data frame)
+### Permite substituir muitos *loops* for por um código mais sucinto e fácil de ler
 
---
+---
 
-## Exemplos:
-- Análise de experimento em vários locais 
-- Análise de todas as respostas de um experimento
-- Análise dos dados com diferentes transformações de variáveis
-- Simulação computacional com diferentes delineamentos
-- Importação de todos os datasets de um diretório
+# 12. purrr
+
+## *Loop*
+
+## Um loop for pode ser entendido como uma iteração: um bloco de códigos é repetido mudando um contador de uma lista de possibilidades
+
+```{r}
+# loop for
+for(i in 1:10){
+  print(i)
+}
+```
+
+---
+
+# 12. purrr
+
+## Programação funcional
+
+```{r}
+# loop for com map
+purrr::map(.x = 1:10, .f = print)
+```
 
 ---
 
 background-image: url(img/purrr_map.png)
-background-size: 500px
-background-position: 85% 90%
+background-size: 600px
+background-position: 85% 80%
 
-# 4.11 purrr
+# 12. purrr
 
-## A principal função é a `map*()` e sua "família"
+## Estrutura
 
-<br>
-
-## map(.x, .f)
-### .x: uma vetor, lista ou data frame
-### .f: uma função
+### `map(.x, .f)`
+### `.x`: uma vetor, lista ou data frame
+### `.f`: uma função
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
-## Aplicando uma função em série
+### Exemplo: aplicar a função `sum()` para somar os valores de vários elementos de uma lista
+
 ```{r}
+# lista
 x <- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
-```
 
-```{r}
+# funcao map
 purrr::map(x, sum)
 ```
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
 ## Tipos de retorno
 
-<br><br>
+### Diferentes funções retornam diferentes estruturas de dados
 
-|  map |  returns |
-|:--|:--|
-|`map()` | list |
-|`map_chr()` | character vector |
-|`map_dbl()` | double vector (numeric) |
-|`map_int()` | integer vector |
-|`map_lgl()` | logical vector |
-|`map_dfc()` | data frame (by column) |
-|`map_dfr()` | data frame (by row) |
+- `map()`: retorna uma lista
+- `map_chr()`: retorna um vetor de strings
+- `map_dbl()`: retorna um vetor numérico (double)
+- `map_int()`: retorna um vetor numérico (integer)
+- `map_lgl()`: retorna um vetor lógico
+- `map_dfr()`: retorna um data frame (por linhas)
+- `map_dfc()`: retorna um data frame (por colunas)
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
-<br><br>
+## Tipos de retorno
 
-## Retorna double vector (numeric)
 ```{r}
+# variacoes da funcao map
 purrr::map_dbl(x, sum)
-```
-
-<br>
-
---
-
-## Retorna strings
-```{r}
 purrr::map_chr(x, paste, collapse = " ")
 ```
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
-## Duas listas em paralelo
+## Duas ou mais listas em paralelo
+
 ```{r}
-x <- list(3, 5, 0, 1)
-y <- list(3, 5, 0, 1)
-
-purrr::map2_dbl(x, y, prod)
-```
-
---
-
-## Várias listas aninhadas
-```{r}
+# listas
 x <- list(3, 5, 0, 1)
 y <- list(3, 5, 0, 1)
 z <- list(3, 5, 0, 1)
 
+# map2* duas litas
+purrr::map2_dbl(x, y, prod)
+
+# pmap muitas listas
 purrr::pmap_dbl(list(x, y, z), prod)
 ```
 
 ---
 
-# 4.11 purrr
+# 12. purrr
 
-### Calcular a média para várias colunas
+## Implementar rotinas de manipulação e análise de dados
+
 ```{r}
-mean_var <- si %>% 
-  dplyr::select(species_number, altitude) %>% 
+# resumo dos dados
+penguins %>% 
+  dplyr::select(where(is.numeric)) %>% 
+  tidyr::drop_na() %>% 
   purrr::map_dbl(mean)
-mean_var
 ```
 
---
+---
 
-### Calcular o desvio padrão para várias colunas
+# 12. purrr
+
+## Implementar rotinas de manipulação e análise de dados
+
 ```{r}
-sd_var <- si %>% 
-  dplyr::select(species_number, altitude) %>% 
-  purrr::map_dbl(sd)
-sd_var
+# analise dos dados
+penguins %>%
+  dplyr::group_split(island, species) %>% 
+  purrr::map(~ lm(bill_depth_mm ~ bill_length_mm, data = .x)) %>% 
+  purrr::map(summary) %>% 
+  purrr::map("r.squared")
 ```
 
 ---
@@ -3052,7 +3263,7 @@ background-image: url(img/general_curso_r.png), url(img/person_jenny_bryan.jpeg)
 background-size: 400px, 300px
 background-position: 10% 70%, 90% 80%
 
-# 4.11 purrr
+# 12. purrr
 
 ## Material
 
@@ -3066,39 +3277,39 @@ class: clear
 background-image: url(img/package_furrr.png)
 background-size: 400px
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+[furrr](https://furrr.futureverse.org/)
+
 ---
 
-background-image: url(img/package_furrr.png)
-background-size: 300px
-background-position: 50% 65%
+background-image: url(img/processor01.png), url(img/processor02.png)
+background-size: 500px, 400px
+background-position: 15% 65%, 85% 75%
 
-# 4.12 furrr
+# 12. furrr
 
 ## Programação funcional paralelizada
 
-### Faz o mapeamento em paralelo mais integrado possível
+### Faz o mapeamento em paralelo utilizando os *cores* do processador
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://www.tidyverse.org/blog/2020/10/furrr-0-2-0/
-
----
-
-class: inverse, center, middle
-
-# Leitura
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+[Quick Intro to Parallel Computing in R](https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html)
 
 ---
 
-background-image: url(img/geo_geoprocessing02.png)
-background-size: 800px
-background-position: 50% 40%
+# 12. furrr
 
-# Leitura
+## Programação funcional paralelizada
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+### Número de *cores* do seu computador
 
-*[http://www.ufrrj.br/lga/tiagomarino/artigos/oqueegeoprocessamento.pdf]
+```{r eval=FALSE}
+# carregar
+library(parallel)
+
+# numero de cores
+parallel::detectCores()
+```
 
 ---
 

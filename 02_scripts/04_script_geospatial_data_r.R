@@ -27,64 +27,64 @@ library(lubridate)
 # 12. purrr
 
 # 2. tidyverse -----------------------------------------------------------
-# instalar o pacote
+# instalar pacote
 # install.packages("tidyverse")
 
-# carregar o pacote
+# carregar pacote
 library(tidyverse)
 
 # list all packages in the tidyverse 
 tidyverse::tidyverse_packages(include_self = TRUE)
 
 # 3. here -----------------------------------------------------------------
-# install
+# instalar
 # install.packages("here")
 
-# load
+# carregar
 library(here)
 
-# confer
+# conferir
 here::here()
 
-# create a .here file
+# criar um arquivo .here
 # here::set_here()
 
 # 4. readr, readxl e writexl ----------------------------------------------
 # formato .csv
-# import sites
+# importar sites com here
 si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
                       locale = readr::locale(encoding = "latin1"))
 si
 
-# import sites
+# importar sites sem here
 si <- readr::read_csv("./03_dados/tabelas/ATLANTIC_AMPHIBIANS_sites.csv",
                       locale = readr::locale(encoding = "latin1"))
 si
 
 # formato .txt
-# import sites
+# importar sites
 si <- readr::read_tsv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.txt"))
 si
 
-# import .xlsx
+# importar .xlsx
 # install.packages("readxl")
 library("readxl")
 
-# export .xlsx
+# exportar .xlsx
 # install.packages("writexl")
 library("writexl")
 
-# import sites
+# importar sites
 si <- readxl::read_xlsx(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.xlsx"), 
-                        sheet = 1, encoding = "latin1")
+                        sheet = 1)
 si
 
-# import sites
+# importar sites
 si <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_sites.csv"),
                       locale = readr::locale(encoding = "latin1"))
 si
 
-# import species
+# importar especies
 sp <- readr::read_csv(here::here("03_dados", "tabelas", "ATLANTIC_AMPHIBIANS_species.csv"),
                       locale = readr::locale(encoding = "latin1"))
 sp
@@ -92,10 +92,10 @@ sp
 # 5. tibble --------------------------------------------------------------
 
 # view the sites data
-glimpse(si)
+tibble::glimpse(si)
 
 # view the species data
-glimpse(sp)
+tibble::glimpse(sp)
 
 # tibble vs data.frame
 
@@ -157,7 +157,7 @@ ve
 # palmerpenquins ----------------------------------------------------------
 
 # instalar 
-# install.packages("palmerpenguins")
+install.packages("palmerpenguins")
 
 # carregar
 library(palmerpenguins)
@@ -176,554 +176,640 @@ tibble::glimpse(penguins_raw)
 
 # 7. tidyr ---------------------------------------------------------------
 # funcoes
-# 1 unite(): junta dados de multiplas colunas em uma
-# 2 separate(): separa caracteres em mulplica colunas
-# 3 drop_na(): retira linhas com NA
-# 4 replace_na(): substitui NA
-# 5 spread(): long para wide
-# 6 gather(): wide para long
+# 1. unite(): junta dados de múltiplas colunas em uma
+# 2. separate(): separa caracteres em múlplica colunas
+# 3. separate_rows(): separa caracteres em múlplica colunas e linhas
+# 4. drop_na(): retira linhas com NA
+# 5. replace_na(): substitui NA
+# 6. pivot_wider(): long para wide
+# 7. pivot_longer(): wide para long
+
+# 1. unite()
+# unir colunas
+penguins_raw_unir <- tidyr::unite(data = penguins_raw, 
+                                  col = "region_island",
+                                  Region:Island, 
+                                  sep = ", ",
+                                  remove = FALSE)
+head(penguins_raw_unir[, c("Region", "Island", "region_island")])
   
-# 1 unite
-# sem pipes
-si_unite <- tidyr::unite(si, "lat_lon", latitude:longitude, sep = ",")
-si_unite$lat_lon
+# 2. separate()
+# separar colunas
+penguins_raw_separar <- tidyr::separate(data = penguins_raw, 
+                                        col = Stage,
+                                        into = c("stage", "egg_stage"), 
+                                        sep = ", ",
+                                        remove = FALSE)
+head(penguins_raw_separar[, c("Stage", "stage", "egg_stage")])
 
-# com pipes
-si_unite <- si%>% 
-  tidyr::unite("lat_lon", c(latitude:longitude, municipality), sep = ",")
-si_unite$lat_lon
-  
-# 2 separate
-# separar os dados de "period" em quatro colunas dos seus valores
-si_separate <- si %>% 
-  tidyr::separate("period", c("mo", "da", "tw", "ni"), remove = FALSE, fill = "right")
-si_separate[, c(1, 9:13)]
+# 3. separate_rows()
+# separar colunas em linhas
+penguins_raw_separar_linhas <- tidyr::separate_rows(data = penguins_raw,
+                                                    Stage,
+                                                    sep = ", ")
+head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species", 
+                                     "Region", "Island", "Stage")])
 
-# 3 separate_rows()
-# Separar os dados de "period" na mesma coluna e repetindo os valores
-si_separate_row <- si %>% 
-  tidyr::separate_rows("period")
-si_separate_row[, c(1, 9:13)]
+# 4. drop_na()
+# remover linhas com na
+penguins_raw_todas_na <- tidyr::drop_na(data = penguins_raw)
+head(penguins_raw_todas_na)
 
-si_separate_row <- si %>% 
-  tidyr::separate_rows("period")
-si_separate_row[, c(1, 9:13)]
+# remover linhas com na de uma coluna
+penguins_raw_colunas_na <- tidyr::drop_na(data = penguins_raw,
+                                          any_of("Comments"))
+head(penguins_raw_colunas_na[, "Comments"])
 
-# 4 drop_na()
-# remove as linhas com NA de todas as colunas
-si_drop_na <- si %>% 
-  tidyr::drop_na()
-si_drop_na
+# 5. replace_na()
+# substituir nas por 0 em uma coluna
+penguins_raw_subs_na <- tidyr::replace_na(data = penguins_raw,
+                                          list(Comments = "Unknown"))
+head(penguins_raw_subs_na[, "Comments"])
 
-# remove as linhas com NA da coluna "active_methods"
-si_drop_na <- si %>% 
-  tidyr::drop_na(active_methods)
-si_drop_na
+# 6. pivot_wider()
+# long para wide
+penguins_raw_pivot_wider <- tidyr::pivot_wider(data = penguins_raw[, c(2, 3, 13)], 
+                                               names_from = Species, 
+                                               values_from = `Body Mass (g)`)
+head(penguins_raw_pivot_wider)
 
-# 5 replace_na()
-# Substituir os NAs da coluna "active_methods" por 0 
-si_replace_na <- si %>% 
-  tidyr::replace_na(list(active_methods = 0))
-si_replace_na
-
-# 6 pivot_wider():  long para wide
-
-# 1. id_cols: variavel id
-# 2. names_from: variavel categorica que ira definir os nomes das colunas
-# 3. values_from: variavel numerica que ira preencher os dados
-# 4. values_fill: valor para preencher os NAs
-
-# sites
-si[, c("id", "state_abbreviation", "species_number")]
-
-si_wide <- si %>% 
-  tidyr::pivot_wider(id_cols = id, 
-                     names_from = state_abbreviation,
-                     values_from = species_number, 
-                     values_fill = list(species_number = 0))
-si_wide
-
-# species
-sp[1:1000, c("id", "species", "individuals")]
-
-sp_wide <- sp[1:1000, ] %>% 
-  tidyr::replace_na(list(individuals = 0)) %>% 
-  tidyr::pivot_wider(id_cols = id, 
-                     names_from = species, 
-                     values_from = individuals, 
-                     values_fill = list(individuals = 0))
-sp_wide
-
-# 7 pivot_longer(): wide para long
-
-# 1. cols: coluna do id
-# 2. names_to: nome da coluna que receberá os nomes
-# 3. values_to: nome da coluna que receberá os valores
-
-si_long <- si_wide %>% 
-  tidyr::pivot_longer(cols = -id, 
-                      names_to = "state_abbreviation", 
-                      values_to = "species_number") %>% 
-  dplyr::filter(species_number != 0)
-si_long
-
-sp_long <- sp_wide %>% 
-  tidyr::pivot_longer(cols = -id, 
-                      names_to = "species", 
-                      values_to = "individuals") %>% 
-  dplyr::filter(individuals != 0)
-sp_long
+# 7. pivot_longer()
+# wide para long
+penguins_raw_pivot_longer <- tidyr::pivot_longer(data = penguins_raw[, c(2, 3, 10:13)], 
+                                                 cols = `Culmen Length (mm)`:`Body Mass (g)`,
+                                                 names_to = "medidas", 
+                                                 values_to = "valores")
+head(penguins_raw_pivot_longer)
 
 # exercicio 10 ------------------------------------------------------------
-si_un <- si %>% 
-  tidyr::unite("local_total", country:site, sep = ", ")
-si_un$local_total
+
 
 # exercicio 11 ------------------------------------------------------------
-family_wide <- sp[1:1000, ] %>% 
-  tidyr::replace_na(list(individuals = 0)) %>% 
-  tidyr::drop_na(family) %>% 
-  tidyr::pivot_wider(id_cols = id, 
-                     names_from = family, 
-                     values_from = individuals, 
-                     values_fn = list(individuals = sum),
-                     values_fill = list(individuals = 0))
-family_wide
 
 
-# 4.7 dplyr ---------------------------------------------------------------
+# 8. dplyr ---------------------------------------------------------------
 # funcoes
-# 1 select(): seleciona colunas pelo nome gerando um tibble
-# 2 pull(): seleciona uma coluna como vetor
-# 3 rename(): muda o nome das colunas
-# 4 mutate(): adiciona novas colunas ou adiciona resultados em colunas existentes
-# 5 arrange(): reordenar as linhas com base nos valores de colunas
-# 6 filter(): seleciona linhas com base em valores
-# 7 distinct(): remove linhas com valores repetidos com base nos valores de colunas
-# 8 slice(): seleciona linhas pelos numeros
-# 9 n_sample(): amostragem aleatoria de linhas
-# 10 summarise(): agrega ou resume os dados atraves de funcoes, podendo considerar valores das colunas
-# 11 *_join(): junta dados de duas tabelas atraves de uma coluna chave
+# 1. relocate(): muda a ordem das colunas
+# 2. rename(): muda o nome das colunas
+# 3. select(): seleciona colunas pelo nome ou posição
+# 4. pull(): seleciona uma coluna como vetor
+# 5. mutate(): adiciona novas colunas ou resultados em colunas existentes
+# 6. arrange(): reordena as linhas com base nos valores de colunas
+# 7. filter(): seleciona linhas com base em valores de colunas
+# 8. slice(): seleciona linhas de diferente formas
+# 9. distinct(): remove linhas com valores repetidos com base nos valores de colunas
+# 10. count(): conta observações para um grupo
+# 11. group_by(): agrupa linhas pelos valores das colunas
+# 12. summarise(): resume os dados através de funções considerando valores das colunas
+# 13. *_join(): funções que juntam dados de duas tabelas através de uma coluna chave
 
+# 1. relocate()
+# reordenar colunas - posicao
+penguins_relocate_ncol <- penguins %>% 
+  dplyr::relocate(sex, year, .after = 2)
+head(penguins_relocate_ncol)
 
-# 1 select
-# seleciona colunas pelo nome
-si_select <- si %>% 
-  select(id, longitude, latitude)
-si_select
+# 2. rename()
+# renomear colunas
+penguins_rename <- penguins %>% 
+  dplyr::rename(bill_length = bill_length_mm,
+                bill_depth = bill_depth_mm,
+                flipper_length = flipper_length_mm,
+                body_mass = body_mass_g)
+head(penguins_rename)
 
-# nao seleciona colunas pelo nome
-si_select <- si %>% 
-  select(-c(id, longitude, latitude))
-si_select
+# renomear todas as colunas
+penguins_rename_with <- penguins %>% 
+  dplyr::rename_with(toupper)
+head(penguins_rename_with)
 
-#  starts_with(), ends_with() e contains()
-si_select <- si %>% 
-  select(contains("method"))
-si_select
+# 3. select()
+# selecionar colunas por posicao
+penguins_select_position <- penguins %>% 
+  dplyr::select(3:6)
+head(penguins_select_position)
 
-si_select <- si %>% 
-  dplyr::select(1:10)
-si_select
+# selecionar colunas por nomes
+penguins_select_names <- penguins %>% 
+  dplyr::select(bill_length_mm:body_mass_g)
+head(penguins_select_names)
 
-# 2 pull
+# remover colunas pelo nome
+penguins_select_names_remove <- penguins %>% 
+  dplyr::select(-bill_length_mm:body_mass_g)
+head(penguins_select_names_remove)
+
+# selecionar colunas por padrao - starts_with(), ends_with() e contains()
+penguins_select_contains <- penguins %>% 
+  dplyr::select(contains("_mm"))
+head(penguins_select_contains)
+
+# 4. pull()
 # coluna para vetor
-si_pull <- si %>% 
-  pull(id)
-si_pull
+penguins_select_pull <- penguins %>% 
+  dplyr::pull(bill_length_mm)
+head(penguins_select_pull, 15)
 
-si %>% 
-  pull(species_number) %>% 
-  hist
+# 5. mutate()
+# adicionar colunas
+penguins_mutate <- penguins %>% 
+  dplyr::mutate(body_mass_kg = body_mass_g/1e3, .before = sex)
+head(penguins_mutate)
 
+## modificar varias colunas
+penguins_mutate_across <- penguins %>% 
+  dplyr::mutate(across(where(is.factor), as.character))
+head(penguins_mutate_across)
 
-# 3 rename
-si_rename <- si %>%
-  rename(sp = species_number)
-si_rename
+# 6. arrange()
+# reordenar os valores por ordem crescente
+penguins_arrange <- penguins %>% 
+  dplyr::arrange(body_mass_g)
+head(penguins_arrange)
 
-# 4 mutate
-si_mutate <- si %>% 
-  mutate(record_factor = as.factor(record))
-si_mutate$record_factor
+# reordenar os valores por ordem decrescente
+penguins_arrange_desc <- penguins %>% 
+  dplyr::arrange(desc(body_mass_g))
+head(penguins_arrange_desc)
 
-si %>% 
-  dplyr::mutate(species_number_hell = sqrt(species_number)) %>% # hellinger
-  dplyr::rename(sph = species_number_hell) %>%  # rename
-  dplyr::pull() %>%  # vector
-  hist # hist
+# reordenar os valores por ordem decrescente
+penguins_arrange_desc_m <- penguins %>% 
+  dplyr::arrange(-body_mass_g)
+head(penguins_arrange_desc_m)
 
-# 5 arrange
-si_arrange <- si %>% 
-  arrange(species_number)
-si_arrange
+# reordenar os valores por ordem crescente de varias colunas
+penguins_arrange_across <- penguins %>% 
+  dplyr::arrange(across(where(is.numeric)))
+head(penguins_arrange_across)
 
-si_arrange <- si %>% 
-  arrange(desc(species_number))
-si_arrange
+# 7. filter()
+# filtrar linhas por valores de uma coluna
+penguins_filter <- penguins %>% 
+  dplyr::filter(species == "Adelie")
+head(penguins_filter)
 
-si_arrange <- si %>% 
-  arrange(-species_number)
-si_arrange
+# filtrar linhas por valores de duas colunas
+penguins_filter_two <- penguins %>% 
+  dplyr::filter(species == "Adelie" & sex == "female")
+head(penguins_filter_two)
 
-# 6 filter
-si_filter <- si %>% 
-  filter(species_number > 5)
-si_filter
+# filtrar linhas por mais de um valor e mais de uma coluna
+penguins_filter_in <- penguins %>% 
+  dplyr::filter(species %in% c("Adelie", "Gentoo"),
+                sex == "female")
+head(penguins_filter_in)
 
-si_filter <- si %>% 
-  filter(between(species_number, 1, 5))
-si_filter
+# filtrar linhas por nas
+penguins_filter_na <- penguins %>% 
+  dplyr::filter(!is.na(sex) == TRUE)
+head(penguins_filter_na)
 
-si_filter <- si %>% 
-  filter(is.na(passive_methods))
-si_filter
+# filtrar linhas por valores em um intervalo
+penguins_filter_between <- penguins %>% 
+  dplyr::filter(between(body_mass_g, 3000, 4000))
+head(penguins_filter_between)
 
-si_filter <- si %>% 
-  dplyr::filter(!is.na(passive_methods))
-si_filter
+# filtrar linhas por valores de varias colunas
+penguins_filter_if <- penguins %>% 
+  dplyr::filter(if_all(where(is.integer), ~ . > 200))
+head(penguins_filter_if)
 
-si_filter <- si %>% 
-  filter(!is.na(active_methods) & !is.na(passive_methods))
-si_filter
+# 8. slice()
+# selecionar linhas por intervalos
+penguins_slice <- penguins %>% 
+  dplyr::slice(n = c(1, 3, 300:n()))
+head(penguins_slice)
 
-si_filter <- si %>% 
-  filter(species_number > 5 & state_abbreviation == "BR-SP") 
-si_filter
+# selecionar linhas iniciais
+penguins_slice_head <- penguins %>% 
+  dplyr::slice_head(n = 5)
+head(penguins_slice_head)
 
-si_filter <- si %>% 
-  filter(species_number > 5 | state_abbreviation == "BR-SP")
-si_filter
+# selecionar linhas por valores de uma coluna
+penguins_slice_max <- penguins %>% 
+  dplyr::slice_max(body_mass_g, n = 5)
+head(penguins_slice_max)
 
-si_filter <- si %>% 
-  dplyr::filter(state_abbreviation %in% c("BR-SP", "BR-MG", "BR-ES", "BR-RJ"))
-si_filter$state_abbreviation %>% table
+# selecionar linhas aleatoriamente
+penguins_slice_sample <- penguins %>% 
+  dplyr::slice_sample(n = 30)
+head(penguins_slice_sample)
 
-# 7 distinct
-si_distinct <- si %>% 
-  distinct(species_number)
-si_distinct
+# 9. distinct()
+# retirar linhas com valores duplicados
+penguins_distinct <- penguins %>% 
+  dplyr::distinct(body_mass_g)
+head(penguins_distinct)
 
-si_distinct <- si %>% 
-  distinct(species_number, .keep_all = TRUE)
-si_distinct
+# retirar linhas com valores duplicados e manter colunas
+penguins_distinct_keep_all <- penguins %>% 
+  dplyr::distinct(body_mass_g, .keep_all = TRUE)
+head(penguins_distinct_keep_all)
 
-# 8 slice 
-si_slice <- si %>% 
-  slice(1:10)
-si_slice
+# retirar linhas com valores duplicados para varias colunas
+penguins_distinct_keep_all_across <- penguins %>% 
+  dplyr::distinct(across(where(is.integer)), .keep_all = TRUE)
+head(penguins_distinct_keep_all_across)
 
-# 9 n_sample 
-si_sample_n <- si %>% 
-  sample_n(100)
-si_sample_n
+# 10. count()
+# contagens de valores para uma coluna
+penguins_count <- penguins %>% 
+  dplyr::count(species)
+penguins_count
 
-# 10 summarise
-si_summarise <- si %>% 
-  summarise(mean_sp = mean(species_number), 
-            sd_sp = sd(species_number))
-si_summarise
+# contagens de valores para mais de uma coluna
+penguins_count_two <- penguins %>% 
+  dplyr::count(species, island)
+penguins_count_two
 
-si_summarise_group <- si %>% 
-  group_by(country) %>% 
-  summarise(mean_sp = mean(species_number), 
-            sd_sp = sd(species_number))
-si_summarise_group
+# 11. group_by()
+# agrupamento
+penguins_group_by <- penguins %>% 
+  dplyr::group_by(species)
+head(penguins_group_by)
 
-# 11 join
-si_coord <- si %>% 
-  select(id, longitude, latitude)
-si_coord 
+# agrupamento de várias colunas
+penguins_group_by_across <- penguins %>% 
+  dplyr::group_by(across(where(is.factor)))
+head(penguins_group_by_across)
 
-sp_join <- sp %>% 
-  left_join(si_coord, by = "id")
-sp_join
+# 12. summarise()
+# resumo
+penguins_summarise <- penguins %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+                   body_mass_g_sd = sd(body_mass_g, na.rm = TRUE))
+penguins_summarise
 
-colnames(sp_join)
+# resumo para várias colunas
+penguins_summarise_across <- penguins %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+penguins_summarise_across
 
-sp_join %>% 
-  dplyr::select(species, longitude, latitude)
+# 13. bind_rows() e bind_cols()
+# selecionar as linhas para dois tibbles
+penguins_01 <- dplyr::slice(penguins, 1:5)
+penguins_02 <- dplyr::slice(penguins, 51:55)
 
-# sufixos _at(), _if(), _all(): realiza operações dependente de confições
-sp_wide_rename <- sp_wide %>% 
-  dplyr::rename_at(vars(contains(" ")), 
-                   list(~stringr::str_replace_all(., " ", "_"))) %>% 
-  dplyr::rename_all(list(~stringr::str_to_lower(.)))
-sp_wide_rename
+# combinar as linhas
+penguins_bind_rows <- dplyr::bind_rows(penguins_01, penguins_02, .id = "id")
+head(penguins_bind_rows)
 
-#  manipular os dados de forma mais simples
-da <- si %>% 
-  select(id, state_abbreviation, species_number)
-da
+## combinar as colunas
+penguins_bind_cols <- dplyr::bind_cols(penguins_01, penguins_02, .name_repair = "unique")
+head(penguins_bind_cols)
 
-da <- si %>% 
-  select(id, state_abbreviation, species_number) %>% 
-  filter(species_number > 5)
-da
+# 14. *_join()
+## coordenadas
+penguin_islands <- tibble(
+  island = c("Torgersen", "Biscoe", "Dream", "Alpha"),
+  longitude = c(-64.083333, -63.775636, -64.233333, -63),
+  latitude = c(-64.766667, -64.818569, -64.733333, -64.316667))
+penguin_islands
 
-da <- si %>% 
-  select(id, state_abbreviation, species_number) %>% 
-  filter(species_number > 5) %>% 
-  group_by(state_abbreviation) %>% 
-  summarise(nsp_state_abb = n())
-da
+# juncao - left
+penguins_left_join <- dplyr::left_join(penguins, penguin_islands, by = "island")
+head(penguins_left_join)
 
-da <- si %>% 
-  select(id, state_abbreviation, species_number) %>% 
-  filter(species_number > 5) %>% 
-  group_by(state_abbreviation) %>% 
-  summarise(nsp_state_abb = n()) %>% 
-  arrange(nsp_state_abb)
-da
+# manipular dados
+# selecionar colunas
+penguins_dplyr <- penguins %>% 
+  dplyr::select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
+penguins_dplyr
 
+# selecionar colunas e retirar linhas com nas
+penguins_dplyr <- penguins %>% 
+  dplyr::select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>% 
+  dplyr::filter(if_all(where(is.numeric), ~ !is.na(.)))
+penguins_dplyr
+
+# selecionar colunas, retirar linhas com nas e calcular a media das colunas para as especies
+penguins_dplyr <- penguins %>% 
+  dplyr::select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>% 
+  dplyr::filter(if_all(where(is.numeric), ~ !is.na(.))) %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::summarize(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+penguins_dplyr
 
 # exercicio 12 ------------------------------------------------------------
-dplyr::mutate(si, 
-              alt_log = log10(altitude), 
-              tem_log = log10(temperature),
-              pre_log = log10(precipitation)) %>% 
-  dplyr::select(alt_log, tem_log, pre_log)
 
 # exercicio 13 ------------------------------------------------------------
-si_fi <- si %>% 
-  dplyr::filter(altitude > 1000,
-                temperature < 15,
-                precipitation > 1000)
-si_fi
-
 
 # exercicio 14 ------------------------------------------------------------
 
-
-
 # exercicio 15 ------------------------------------------------------------
-si_sa <- si %>% 
-  dplyr::sample_n(200) %>% 
-  dplyr::filter(species_number > 15)
-si_sa
 
 
-# 4.8 stringr -------------------------------------------------------------
+
+# 9. stringr -------------------------------------------------------------
+
 # comprimento
-stringr::str_length("abc")
-
-# extrai
-stringr::str_sub("abc", 3)
-
-# inserir espaco em branco
-stringr::str_pad("abc", width = 4, side = "left")
-stringr::str_pad("abc", width = 4, side = "right")
-
-# remover espaco em branco do comeco, final ou ambos
-stringr::str_trim(" abc ")
-
-# minusculas e maiusculas
-stringr::str_to_upper("abc")
-stringr::str_to_title("abc")
-stringr::str_to_title("aBc")
-
-# ordenacao
-le <- sample(letters, 26, rep = TRUE)
-le
-
-stringr::str_sort(le)
-stringr::str_sort(le, dec = TRUE)
-
-# extrair
-stringr::str_extract("abc", "b")
+stringr::str_length(string = "penguins")
 
 # substituir
-stringr::str_replace("abc", "a", "y")
+stringr::str_replace(string = "penguins", pattern = "i", replacement = "y")
 
-# separacao
-stringr::str_split("a-b-c", "-")
+# separar
+stringr::str_split(string = "p-e-n-g-u-i-n-s", pattern = "-", simplify = TRUE)
 
-# 4.9 forcats -------------------------------------------------------------
-# fixar amostragem
-set.seed(42)
+# extrair pela posicao
+stringr::str_sub(string = "penguins", end = 3)
 
-# as_factor(): cria fatores
-fa <- sample(c("alto", "medio", "baixo"), 30, rep = TRUE) %>% 
-  forcats::as_factor()
-fa
+# extrair por padrao
+stringr::str_extract(string = "penguins", pattern = "p")
 
-# fct_recode(): muda o nome dos níveis
-fa_recode <- fa %>% 
-  forcats::fct_recode(a = "alto", m = "medio", b = "baixo")
-fa_recode
+# inserir espaco em branco - esquerda
+stringr::str_pad(string = "penguins", width = 10, side = "left")
 
-# fct_rev(): inverte os niveis
-fa_rev <- fa_recode %>% 
-  forcats::fct_rev()
-fa_rev
+# inserir espaco em branco - direita
+stringr::str_pad(string = "penguins", width = 10, side = "right")
 
-# fct_relevel(): especifica a classificacao de um nivel
-fa_relevel <- fa_recode %>% 
-  forcats::fct_relevel(c("a", "m", "b"))
-fa_relevel
+# inserir espaco em branco - ambos
+stringr::str_pad(string = "penguins", width = 10, side = "both")
 
-# fct_inorder(): ordem em que aparece
-fa_inorder <- fa_recode %>% 
-  forcats::fct_inorder()
-fa_inorder
+# remover espacos em branco - esquerda
+stringr::str_trim(string = " penguins ", side = "left")
 
-# fct_infreq: ordem (decrescente) de frequencia
-fa_infreq <- fa_recode %>% 
-  forcats::fct_infreq()
-fa_infreq
+# remover espacos em branco - direta
+stringr::str_trim(string = " penguins ", side = "right")
 
-# fct_lump(): agregacao de niveis raros em um nivel
-fa_lump <- fa_recode %>% 
-  forcats::fct_lump()
-fa_lump
+# remover espacos em branco - ambos
+stringr::str_trim(string = " penguins ", side = "both")
 
-# 4.10 lubridate ----------------------------------------------------------
-# install
-install.packages("lubridate")
+# minusculas
+stringr::str_to_lower(string = "Penguins")
 
-# load
+# maiusculas
+stringr::str_to_upper(string = "penguins")
+
+# primeiro caracter maiusculo da primeira palavra
+stringr::str_to_sentence(string = "palmer penGuins")
+
+# primeiro caracter maiusculo de cada palavra
+stringr::str_to_title(string = "palmer penGuins")
+
+# ordenar - crescente
+stringr::str_sort(x = letters)
+
+# ordenar - decrescente
+stringr::str_sort(x = letters, dec = TRUE)
+
+# alterar valores das colunas
+penguins_stringr_valores <- penguins %>% 
+  dplyr::mutate(species = stringr::str_to_lower(species))
+
+# alterar nome das colunas
+penguins_stringr_nomes <- penguins %>% 
+  dplyr::rename_with(stringr::str_to_title)
+
+# 10. forcats -------------------------------------------------------------
+
+# converter dados de string para fator
+forcats::as_factor(penguins_raw$Species) %>% head()
+
+# mudar o nome dos niveis
+forcats::fct_recode(penguins$species, a = "Adelie", c = "Chinstrap", g = "Gentoo") %>% head()
+
+# inverter os niveis
+forcats::fct_rev(penguins$species) %>% head()
+
+# especificar a ordem dos niveis
+forcats::fct_relevel(penguins$species, "Chinstrap", "Gentoo", "Adelie") %>% head()
+
+# niveis pela ordem em que aparecem
+forcats::fct_inorder(penguins$species) %>% head()
+
+## ordem (decrescente) de frequecia
+forcats::fct_infreq(penguins$species) %>% head()
+
+# agregacao de niveis raros em um nivel
+forcats::fct_lump(penguins$species) %>% head()
+
+# transformar varias colunas em fator
+penguins_raw_multi_factor <- penguins_raw %>% 
+  dplyr::mutate(across(where(is.character), forcats::as_factor))
+
+# 11. lubridate ----------------------------------------------------------
+# carregar
 library(lubridate)
 
-# string
-data_string <- "2020-04-24"
-data_string
-class(data_string)
+# extrair a data nesse instante
+lubridate::today()
 
-# criar um objeto com a classe data
-data_date <- lubridate::date(data_string)
-data_date
-class(data_date)
-
-# criar um objeto com a classe data
-data_date <- lubridate::as_date(data_string)
-data_date
-class(data_date)
-
-# string
-data_string <- "20-10-2020"
-data_string
-class(data_string)
-
-# criar um objeto com a classe data
-data_date <- lubridate::dmy(data_string)
-data_date
-class(data_date)
-
-# formatos
-lubridate::dmy(20102020)
-lubridate::dmy("20102020")
-lubridate::dmy("20/10/2020")
-lubridate::dmy("20.10.2020")
-
-# especificar horarios
-lubridate::dmy_h(2010202020)
-lubridate::dmy_hm(201020202035)
-lubridate::dmy_hms(20102020203535)
-
-# criar
-data <- lubridate::dmy_hms(20102020203535)
-data
-
-# extrair
-lubridate::second(data)
-lubridate::day(data)
-lubridate::month(data)
-lubridate::wday(data)
-lubridate::wday(data, label = TRUE)
-
-# inlcuir
-lubridate::hour(data) <- 13
-data
-
-# extrair a data no instante da execucao
-lubridate::today() 
-
-# extrair a data e horario no instante da execucao
+# extrair a data e tempo nesse instante
 lubridate::now()
 
-# agora
-agora <- lubridate::ymd_hms(lubridate::now(), tz = "America/Sao_Paulo")
-agora
+# strings e numeros para datas
+lubridate::dmy("03-03-2021")
 
-# verificar os tz
-OlsonNames()
+# strings e numeros para datas
+lubridate::dmy("03-Mar-2021")
+lubridate::dmy(03032021)
+lubridate::dmy("03032021")
+lubridate::dmy("03/03/2021")
+lubridate::dmy("03.03.2021")
 
-# que horas sao em...
-lubridate::with_tz(agora, tzone = "GMT")
-lubridate::with_tz(agora, tzone = "Europe/Stockholm")  
+# especificar horarios e fuso horario
+lubridate::dmy_h("03-03-2021 13")
+lubridate::dmy_hm("03-03-2021 13:32")
+lubridate::dmy_hms("03-03-2021 13:32:01")
+lubridate::dmy_hms("03-03-2021 13:32:01", tz = "America/Sao_Paulo")
 
-# altera o fuso sem mudar a hora
-lubridate::force_tz(agora, tzone = "GMT")
+# dados com componentes individuais
+dados <- tibble::tibble(
+  ano = c(2021, 2021, 2021),
+  mes = c(1, 2, 3),
+  dia = c(12, 20, 31),
+  hora = c(2, 14, 18), 
+  minuto = c(2, 44, 55))
+dados
 
-# datas
-inicio_r <- lubridate::dmy("30-11-2011")
-inicio_r
+# dados com componentes individuais
+dados %>% 
+  dplyr::mutate(data = lubridate::make_datetime(ano, mes, dia, hora, minuto))
 
-hoje_r <- lubridate::today()
-hoje_r
+# data para data-horario
+lubridate::as_datetime(today())
 
-# intervalo
-r_interval <- lubridate::interval(inicio_r, hoje_r)
-r_interval
-class(r_interval)
+# data-horario para data
+lubridate::as_date(now())
 
-# outra forma de definir um intervalo: o operador %--%
-r_interval <- lubridate::dmy("30-11-2011") %--% lubridate::today() 
-namoro_interval <- lubridate::dmy("25-06-2008") %--% lubridate::today()   
+# extrair
+lubridate::year(now())
+lubridate::month(now())
+lubridate::month(now(), label = TRUE)
+lubridate::day(now())
+lubridate::wday(now())
+lubridate::wday(now(), label = TRUE)
+lubridate::second(now())
 
-# verificar sobreposicao
-lubridate::int_overlaps(r_interval, namoro_interval)
+# incluir
+# data
+data <- dmy_hms("04-03-2021 01:04:56")
+
+# incluir
+lubridate::year(data) <- 2020
+lubridate::month(data) <- 01
+lubridate::hour(data) <- 13
+
+# incluir varios valores
+update(data, year = 2020, month = 1, mday = 1, hour = 1)
+
+# duracoes
+# subtracao de datas
+tempo_estudando_r <- lubridate::today() - lubridate::dmy("30-11-2011")
+
+# conversao para duracao
+tempo_estudando_r_dur <- lubridate::as.duration(tempo_estudando_r)
+
+# criando duracoes
+lubridate::duration(90, "seconds")
+lubridate::duration(1.5, "minutes")
+lubridate::duration(1, "days")
+
+# transformacao da duracao
+lubridate::dseconds(100)
+lubridate::dminutes(100)
+lubridate::dhours(100)
+lubridate::ddays(100)
+lubridate::dweeks(100)
+lubridate::dyears(100)
+
+# somando duracoes a datas
+lubridate::today() + lubridate::ddays(1)
+
+# subtraindo duracoes de datas
+lubridate::today() - lubridate::dyears(1)
+
+# multiplicando duracoes
+2 * dyears(2)
+
+# periodos
+# criando periodos
+period(c(90, 5), c("second", "minute"))
+period(c(3, 1, 2, 13, 1), c("second", "minute", "hour", "day", "week"))
+
+# transformacao de periodos
+lubridate::seconds(100)
+lubridate::minutes(100)
+lubridate::hours(100)
+lubridate::days(100)
+lubridate::weeks(100)
+lubridate::years(100)
 
 # somando datas
-inicio_r + lubridate::ddays(1)
-inicio_r + lubridate::dyears(1)
+lubridate::today() + lubridate::weeks(10)
+
+# subtraindo datas
+lubridate::today() - lubridate::weeks(10)
 
 # criando datas recorrentes
-reunioes <- lubridate::today() + lubridate::weeks(0:10)
-reunioes
+lubridate::today() + lubridate::weeks(0:10)
 
-# duracao de um intervalo 
-r_interval <- inicio_r %--% lubridate::today()
-r_interval
+# intervalos
+# criando duas datas - inicio de estudos do R e nascimento do meu filho
+r_inicio <- lubridate::dmy("30-11-2011")
+filho_nascimento <- lubridate::dmy("26-09-2013")
+r_hoje <- lubridate::today()
 
-# transformacoes
-r_interval / lubridate::dyears(1)
-r_interval / lubridate::ddays(1)
+# criando intervalos - interval
+r_intervalo <- lubridate::interval(r_inicio, r_hoje)
 
-# total do periodo estudando r
-lubridate::as.period(r_interval)
+# criando intervalos - interval %--%
+filho_intervalo <- filho_nascimento %--% lubridate::today()
 
-# tempo de namoro
-lubridate::as.period(namoro_interval)
+# operacooes com intervalos
+lubridate::int_start(r_intervalo)
+lubridate::int_end(r_intervalo)
+lubridate::int_length(r_intervalo)
+lubridate::int_flip(r_intervalo)
+lubridate::int_shift(r_intervalo, duration(days = 30))
 
-# 4.11 purrr --------------------------------------------------------------
+# verificar sobreposicao - int_overlaps
+lubridate::int_overlaps(r_intervalo, filho_intervalo)
+
+# verificar se intervalo esta contido
+r_intervalo %within% filho_intervalo
+
+# periodos dentro de um intervalo - anos
+r_intervalo / lubridate::years()
+r_intervalo %/% lubridate::years()
+
+# periodos dentro de um intervalo - dias e semandas
+filho_intervalo / lubridate::days()
+filho_intervalo / lubridate::weeks()
+
+# tempo total estudando R
+lubridate::as.period(r_intervalo)
+
+# idade do meu filho
+lubridate::as.period(filho_intervalo)
+
+# fusos horarios
+# fuso horario no r
+Sys.timezone()
+
+# verificar os fusos horarios
+length(OlsonNames())
+head(OlsonNames())
+
+# que horas sao em...
+lubridate::with_tz(lubridate::now(), tzone = "America/Sao_Paulo")
+lubridate::with_tz(lubridate::now(), tzone = "GMT")
+lubridate::with_tz(lubridate::now(), tzone = "Europe/Berlin")
+
+# alterar o fuso sem mudar a hora
+lubridate::force_tz(lubridate::now(), tzone = "GMT")
+
+# 12. purrr --------------------------------------------------------------
+# loop for
+for(i in 1:10){
+  print(i)
+}
+
+# loop for com map
+purrr::map(.x = 1:10, .f = print)
+
 # lista
 x <- list(1:5, c(4, 5, 7), c(1, 1, 1), c(2, 2, 2, 2, 2))
 x
 
+# funcao map
 purrr::map(x, sum)
+
+# variacoes da funcao map
 purrr::map_dbl(x, sum)
 purrr::map_chr(x, paste, collapse = " ")
 
-x <- list(3, 5, 0, 1)
-y <- list(3, 5, 0, 1)
-
-purrr::map2_dbl(x, y, prod)
-
+# listas
 x <- list(3, 5, 0, 1)
 y <- list(3, 5, 0, 1)
 z <- list(3, 5, 0, 1)
 
+# map2* duas litas
+purrr::map2_dbl(x, y, prod)
+
+# pmap muitas listas
 purrr::pmap_dbl(list(x, y, z), prod)
 
-mean_var <- si %>% 
-  dplyr::select(species_number, altitude) %>% 
+# resumo dos dados
+penguins %>% 
+  dplyr::select(where(is.numeric)) %>% 
+  tidyr::drop_na() %>% 
   purrr::map_dbl(mean)
-mean_var
 
-sd_var <- si %>% 
-  dplyr::select(species_number, altitude) %>% 
-  purrr::map_dbl(sd)
-sd_var
+# analise dos dados
+penguins %>%
+  dplyr::group_split(island, species) %>% 
+  purrr::map(~ lm(bill_depth_mm ~ bill_length_mm, data = .x)) %>% 
+  purrr::map(summary) %>% 
+  purrr::map("r.squared")
+
+# carregar
+library(parallel)
+
+# numero de cores
+parallel::detectCores()
 
 # end ---------------------------------------------------------------------
