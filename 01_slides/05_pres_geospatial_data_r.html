@@ -8,6 +8,14 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/plotly-binding/plotly.js"></script>
+    <script src="libs/typedarray/typedarray.min.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="libs/plotly-main/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
   <body>
@@ -102,38 +110,41 @@ background-position: 85% 75%
 
 --
 
-#### **graphics**: simples, porém útil para visualizações rápidas de quase todos os formatos de arquivos
+#### [graphics](http://search.r-project.org/R/library/graphics/html/00Index.html): simples, porém útil para visualizações rápidas de quase todos os formatos de arquivos
 
 --
 
-#### **ggplot2**: pacote integrado ao tidyverse, possui uma sintaxe própria baseada na grática de gráficos por camadas (layers)
+#### [ggplot2](https://ggplot2.tidyverse.org/): pacote integrado ao tidyverse, possui uma sintaxe própria baseada na grática de gráficos por camadas (layers)
 
 --
 
-#### **ggplot2 extentions**: conjunto de pacotes que adicionam diversas expansões ao pacote ggplot2. Exemplos: gganimate, GGally e esquisse
+#### [ggplot2 extentions](https://exts.ggplot2.tidyverse.org/): conjunto de pacotes que adicionam diversas expansões ao pacote ggplot2. Exemplos: [GGally](https://ggobi.github.io/ggally/), [gganimate](https://gganimate.com/) e [esquisse](https://dreamrs.github.io/esquisse/)
 
 --
 
-#### **visdat**: Crie visualizações preliminares de dados exploratórios de um conjunto de dados inteiro para identificar problemas ou recursos inesperados usando ‘ggplot2’
+#### [visdat](https://docs.ropensci.org/visdat/): cria visualizações preliminares de um conjunto de dados inteiro para identificar problemas ou recursos inesperados usando `ggplot2`
 
 --
 
-#### **ggpubr**: fornece algumas funções simplificadas para criar gráficos para publicação, baseados no "ggplot2" `gg*()`
+#### [ggpubr](https://rpkgs.datanovia.com/ggpubr/): fornece algumas funções simplificadas para criar gráficos para publicação, baseados no `ggplot2`
 
 --
 
-#### **pacthwork**: pacote que permite combinar vários gráficos em um só de forma extremamente simples e com alta qualidade
+#### [pacthwork](https://patchwork.data-imaginist.com/): pacote que permite combinar vários gráficos em um só de forma extremamente simples e com alta qualidade
 
 --
 
-#### **plotly**: pacote para criar gráficos interativos da web por meio da biblioteca gráfica de JavaScript de código aberto plotly.js
+#### [plotly](https://plotly.com/r/): pacote para criar gráficos interativos da web por meio da biblioteca gráfica de JavaScript de código aberto plotly.js
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_graphics.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
 
 ---
 
@@ -180,10 +191,13 @@ plot(flipper_length_mm ~ body_mass_g, data = penguins)
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -244,10 +258,13 @@ ggplot(data = penguins) + aes(x = body_mass_g, y = flipper_length_mm) + geom_poi
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggpubr.png)
-background-size: 300px
+background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggpubr](https://rpkgs.datanovia.com/ggpubr/)
 
 ---
 
@@ -616,10 +633,13 @@ background-position: 30% 80%, 70% 80%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_graphics.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
 
 ---
 
@@ -837,17 +857,15 @@ polygon(density(na.omit(penguins$flipper_length_mm)), col = "gray50")
 dev.off()
 ```
 
-```
-## png 
-##   3
-```
-
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -1147,10 +1165,13 @@ ggsave(filename = "histogram_ggplot2.png", plot = ggplot_densidade, wi = 20, he 
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggpubr.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggpubr](https://rpkgs.datanovia.com/ggpubr/)
 
 ---
 
@@ -1163,11 +1184,11 @@ background-position: 50% 50%
 gghistogram(data = penguins, 
             x = "flipper_length_mm",
             add = "median",
-            fill = "cyan4",
-            rug = TRUE,
-            add_density = TRUE,
+            color = "species",
+            fill = "species",
+            palette = c("darkorange", "darkorchid", "cyan4"),
             xlab = "Comprimento da nadadeira (mm)",
-            ylab = "Frequência (%)")
+            ylab = "Densidade")
 ```
 ]
 
@@ -1186,9 +1207,9 @@ gghistogram(data = penguins,
 ggdensity(data = penguins, 
           x = "flipper_length_mm",
           add = "median",
-          fill = "cyan4",
-          rug = TRUE,
-          add_density = TRUE,
+          color = "species",
+          fill = "species",
+          palette = c("darkorange", "darkorchid", "cyan4"),
           xlab = "Comprimento da nadadeira (mm)",
           ylab = "Densidade")
 ```
@@ -1234,10 +1255,13 @@ background-position: 50% 90%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_graphics.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
 
 ---
 
@@ -1264,7 +1288,6 @@ pie(c(280, 60, 20),
 # 8. Gráfico de setores (*Pie chart*)
 
 ### Tabela de frequência
-
 
 ```r
 # calculo da proporcao
@@ -1306,10 +1329,13 @@ legend("topright", legend = penguins_prop$species,
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -1336,10 +1362,13 @@ ggplot(data = penguins_prop, aes(x = "", y = prop, fill = species)) +
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggpubr.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggpubr](https://rpkgs.datanovia.com/ggpubr/)
 
 ---
 
@@ -1388,7 +1417,7 @@ background-image: url(img/plot_donut.png)
 background-size: 300px
 background-position: 50% 90%
 
-# 4.4 Gráfico de setores (*Donut chart*)
+# 8. Gráfico de setores (*Donut chart*)
 
 ### **Representa os dados de**: uma coluna
 ### **Tipo de dado**: categórico
@@ -1396,10 +1425,13 @@ background-position: 50% 90%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -1430,10 +1462,13 @@ ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = species)) +
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggpubr.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggpubr](https://rpkgs.datanovia.com/ggpubr/)
 
 ---
 
@@ -1472,10 +1507,13 @@ background-position: 50% 90%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_graphics.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
 
 ---
 
@@ -1525,10 +1563,13 @@ barplot(n ~ species,
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -1583,10 +1624,13 @@ ggplot(data = penguins_count,
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggpubr.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggpubr](https://rpkgs.datanovia.com/ggpubr/)
 
 ---
 
@@ -1687,10 +1731,13 @@ background-position: 50% 35%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_graphics.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
 
 ---
 
@@ -1719,10 +1766,13 @@ boxplot(flipper_length_mm ~ as.factor(species),
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -1798,10 +1848,13 @@ ggplot(data = penguins,
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggpubr.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggpubr](https://rpkgs.datanovia.com/ggpubr/)
 
 ---
 
@@ -1869,10 +1922,13 @@ background-position: 50% 90%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_graphics.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
 
 ---
 
@@ -1901,10 +1957,13 @@ plot(bill_depth_mm ~ bill_length_mm,
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -2026,10 +2085,13 @@ datasaurus_dozen %&gt;%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggpubr.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggpubr](https://rpkgs.datanovia.com/ggpubr/)
 
 ---
 
@@ -2141,20 +2203,13 @@ background-position: 50% 90%
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_graphics.png)
 background-size: 400px
 background-position: 50% 50%
 
----
-
-# 12. Gráfico pareado (*Pairs plot*)
-
-## Selecionar as colunas
-
-```r
-# selecionar as colunas
-```
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
 
 ---
 
@@ -2172,15 +2227,18 @@ penguins %&gt;%
 ]
 
 .pull-right[
-![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-63-1.png)&lt;!-- --&gt;
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-62-1.png)&lt;!-- --&gt;
 ]
 
 ---
 
-class: clear, center, middle
+class: clear
 background-image: url(img/package_ggplot2.png)
 background-size: 400px
 background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[GGally](http://ggobi.github.io/ggally/)
 
 ---
 
@@ -2197,12 +2255,12 @@ library(GGally)
 penguins %&gt;%
   dplyr::select(body_mass_g, ends_with("_mm")) %&gt;%
   ggpairs() +
-  theme_bw()
+  theme_bw(base_size = 16)
 ```
 ]
 
 .pull-right[
-![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-64-1.png)&lt;!-- --&gt;
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-63-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -2218,20 +2276,13 @@ penguins %&gt;%
   GGally::ggpairs(aes(color = species)) +
   scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw()
+  theme_bw(base_size = 16)
 ```
 ]
 
 .pull-right[
-![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-65-1.png)&lt;!-- --&gt;
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-64-1.png)&lt;!-- --&gt;
 ]
-
----
-
-class: clear, center, middle
-background-image: url(img/package_ggpubr.png)
-background-size: 400px
-background-position: 50% 50%
 
 ---
 
@@ -2260,7 +2311,412 @@ penguins %&gt;%
 ]
 
 .pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-65-1.png)&lt;!-- --&gt;
+]
+
+---
+
+background-image: url(img/cowplot_graphics.png), url(img/patchwork_graphics.png)
+background-size: 600px, 350px
+background-position: 10% 97%, 85% 95%
+
+# 13. Combinando gráficos
+
+## Descrição
+
+### Muitas vezes precisamos **combinar gráficos** para representar nossos dados
+
+--
+
+### Essa tarefa pode ser realizada depois da criação dos gráficos em aplicaticos como [Inkskape](https://inkscape.org/pt-br/) ou [GIMP](https://www.gimp.org/)
+
+--
+
+### Outras vezes, podemios códigos e pacotes do R para fazer essa tarefa
+
+---
+
+class: clear
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[graphics](http://search.r-project.org/R/library/graphics/html/00Index.html)
+
+---
+
+# 13. Combinando gráficos
+
+## graphics
+
+.pull-left[
+
+```r
+par(mfrow = c(1, 2))
+
+boxplot(flipper_length_mm ~ as.factor(species),
+        data = penguins,
+        col = c("darkorange", "purple", "cyan4"),
+        main = "Espécies por amostragens",
+        xlab = "Espécies",
+        ylab = "Comprimento da nadadeira (mm)",
+        cex.main = 1.5, cex.lab = 1.3, cex.axis = 1.2)
+
+plot(bill_depth_mm ~ bill_length_mm,
+     data = penguins,
+     pch = 20,
+     cex = 1.5,
+     main = "Comprimento e profundidade do bico", 
+     xlab = "Comprimento do bico (mm)", 
+     ylab = "Profundidade do bico (mm)",
+     cex.lab = 1.5, cex.axis = 1.3)
+```
+]
+
+.pull-right[
 ![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-66-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 13. Combinando gráficos
+
+## graphics
+
+.pull-left[
+
+```r
+par(mfrow = c(2, 1))
+
+boxplot(flipper_length_mm ~ as.factor(species),
+        data = penguins,
+        col = c("darkorange", "purple", "cyan4"),
+        main = "Espécies por amostragens",
+        xlab = "Espécies",
+        ylab = "Comprimento da nadadeira (mm)",
+        cex.main = 1.5, cex.lab = 1.3, cex.axis = 1.2)
+
+plot(bill_depth_mm ~ bill_length_mm,
+     data = penguins,
+     pch = 20,
+     cex = 1.5,
+     main = "Comprimento e profundidade do bico", 
+     xlab = "Comprimento do bico (mm)", 
+     ylab = "Profundidade do bico (mm)",
+     cex.lab = 1.5, cex.axis = 1.3)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-67-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2](https://ggplot2.tidyverse.org/)
+
+---
+
+# 13. Combinando gráficos
+
+## ggplot2
+
+.pull-left[
+
+```r
+ggplot_boxplot &lt;- ggplot(data = penguins, 
+                         aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot(width = .3, 
+               show.legend = FALSE) +
+  geom_jitter(alpha = .5, 
+              show.legend = FALSE, 
+              position = position_jitter(width = .1, seed = 0)) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Species", y = "Flipper length (mm)")
+ggplot_boxplot
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-68-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 13. Combinando gráficos
+
+## ggplot2
+
+.pull-left[
+
+```r
+ggplot_scatterplot &lt;- ggplot(data = penguins, 
+                             aes(x = bill_length_mm, 
+                                 y = bill_depth_mm,
+                                 color = species,
+                                 shape = species)) +
+  geom_point(size = 3, alpha = .8) +
+  scale_shape_manual(values = c(19, 15, 17))+
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Comprimento do bico (mm)", 
+       y = "Profundidade do bico (mm)", 
+       color = "Espécies", shape = "Espécies")
+ggplot_scatterplot
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-69-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear
+background-image: url(img/cowplot_package.png)
+background-size: 400px
+background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[cowplot](https://wilkelab.org/cowplot/)
+
+---
+
+# 13. Combinando gráficos
+
+## cowplot
+
+.pull-left[
+
+```r
+# pacote
+# install.packages("cowplot")
+library(cowplot)
+
+# combinacao horizontal
+plot_grid(ggplot_boxplot, ggplot_scatterplot, 
+          align = "h", rel_widths = c(1, 1.5),
+          labels = "AUTO")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-70-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 13. Combinando gráficos
+
+## cowplot
+
+.pull-left[
+
+```r
+# combinacao vertical
+plot_grid(ggplot_boxplot, ggplot_scatterplot, 
+          ncol = 1, align = "v", 
+          labels = "AUTO")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-71-1.png)&lt;!-- --&gt;
+]
+
+
+---
+
+class: clear
+background-image: url(img/patchwork_package.png)
+background-size: 300px
+background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[patchwork](https://patchwork.data-imaginist.com/)
+
+---
+
+# 13. Combinando gráficos
+
+## patchwork
+
+.pull-left[
+
+```r
+# pacote
+# install.packages("patchwork")
+library(patchwork)
+
+# combinacao horizontal
+ggplot_boxplot + ggplot_scatterplot
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-72-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 13. Combinando gráficos
+
+## patchwork
+
+.pull-left[
+
+```r
+# combinacao vertical
+ggplot_boxplot / ggplot_scatterplot
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-73-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear
+background-image: url(img/gganimate_package.png)
+background-size: 400px
+background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[gganimate](https://gganimate.com/)
+
+---
+
+# 14. Gráficos animados
+
+.pull-left[
+
+```r
+# pacote
+# devtools::install_github('thomasp85/gganimate')
+library(gganimate)
+
+ggplot(data = penguins,
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm, 
+           color = species)) +
+  geom_point() +
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Comprimento do bico (mm)", 
+       y = "Profundidade do bico (mm)", 
+       color = "Espécies", shape = "Espécies") +
+  labs(title = "{closest_state}") +
+  transition_states(species, 
+                    transition_length = 3, 
+                    state_length = 1, 
+                    wrap = FALSE) 
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-74-1.gif)&lt;!-- --&gt;
+]
+
+---
+
+class: clear
+background-image: url(img/plotly_package.png)
+background-size: 600px
+background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[plotly](https://plotly.com/r/)
+
+---
+
+# 15. Gráficos interativos
+
+.pull-left[
+
+```r
+# pacote
+# install.packages("plotly")
+library(plotly)
+
+plot_ly(data = penguins,
+        x = ~bill_length_mm, 
+        y = ~bill_depth_mm, 
+        type = "scatter",
+        color = ~species,
+        colors = c("darkorange", "purple", "cyan4")) %&gt;% 
+  layout(xaxis = list(title = "Comprimento do bico (mm)"),
+         yaxis = list(title = "Profundidade do bico (mm)"))
+```
+]
+
+.pull-right[
+<div id="htmlwidget-b20dc2a931752ae4f30d" style="width:504px;height:504px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b20dc2a931752ae4f30d">{"x":{"visdat":{"f2c559fe957b":["function () ","plotlyVisDat"]},"cur_data":"f2c559fe957b","attrs":{"f2c559fe957b":{"x":{},"y":{},"color":{},"colors":["darkorange","purple","cyan4"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Comprimento do bico (mm)"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Profundidade do bico (mm)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[39.1,39.5,40.3,36.7,39.3,38.9,39.2,34.1,42,37.8,37.8,41.1,38.6,34.6,36.6,38.7,42.5,34.4,46,37.8,37.7,35.9,38.2,38.8,35.3,40.6,40.5,37.9,40.5,39.5,37.2,39.5,40.9,36.4,39.2,38.8,42.2,37.6,39.8,36.5,40.8,36,44.1,37,39.6,41.1,37.5,36,42.3,39.6,40.1,35,42,34.5,41.4,39,40.6,36.5,37.6,35.7,41.3,37.6,41.1,36.4,41.6,35.5,41.1,35.9,41.8,33.5,39.7,39.6,45.8,35.5,42.8,40.9,37.2,36.2,42.1,34.6,42.9,36.7,35.1,37.3,41.3,36.3,36.9,38.3,38.9,35.7,41.1,34,39.6,36.2,40.8,38.1,40.3,33.1,43.2,35,41,37.7,37.8,37.9,39.7,38.6,38.2,38.1,43.2,38.1,45.6,39.7,42.2,39.6,42.7,38.6,37.3,35.7,41.1,36.2,37.7,40.2,41.4,35.2,40.6,38.8,41.5,39,44.1,38.5,43.1,36.8,37.5,38.1,41.1,35.6,40.2,37,39.7,40.2,40.6,32.1,40.7,37.3,39,39.2,36.6,36,37.8,36,41.5],"y":[18.7,17.4,18,19.3,20.6,17.8,19.6,18.1,20.2,17.1,17.3,17.6,21.2,21.1,17.8,19,20.7,18.4,21.5,18.3,18.7,19.2,18.1,17.2,18.9,18.6,17.9,18.6,18.9,16.7,18.1,17.8,18.9,17,21.1,20,18.5,19.3,19.1,18,18.4,18.5,19.7,16.9,18.8,19,18.9,17.9,21.2,17.7,18.9,17.9,19.5,18.1,18.6,17.5,18.8,16.6,19.1,16.9,21.1,17,18.2,17.1,18,16.2,19.1,16.6,19.4,19,18.4,17.2,18.9,17.5,18.5,16.8,19.4,16.1,19.1,17.2,17.6,18.8,19.4,17.8,20.3,19.5,18.6,19.2,18.8,18,18.1,17.1,18.1,17.3,18.9,18.6,18.5,16.1,18.5,17.9,20,16,20,18.6,18.9,17.2,20,17,19,16.5,20.3,17.7,19.5,20.7,18.3,17,20.5,17,18.6,17.2,19.8,17,18.5,15.9,19,17.6,18.3,17.1,18,17.9,19.2,18.5,18.5,17.6,17.5,17.5,20.1,16.5,17.9,17.1,17.2,15.5,17,16.8,18.7,18.6,18.4,17.8,18.1,17.1,18.5],"type":"scatter","mode":"markers","name":"Adelie","marker":{"color":"rgba(255,140,0,1)","line":{"color":"rgba(255,140,0,1)"}},"textfont":{"color":"rgba(255,140,0,1)"},"error_y":{"color":"rgba(255,140,0,1)"},"error_x":{"color":"rgba(255,140,0,1)"},"line":{"color":"rgba(255,140,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[46.5,50,51.3,45.4,52.7,45.2,46.1,51.3,46,51.3,46.6,51.7,47,52,45.9,50.5,50.3,58,46.4,49.2,42.4,48.5,43.2,50.6,46.7,52,50.5,49.5,46.4,52.8,40.9,54.2,42.5,51,49.7,47.5,47.6,52,46.9,53.5,49,46.2,50.9,45.5,50.9,50.8,50.1,49,51.5,49.8,48.1,51.4,45.7,50.7,42.5,52.2,45.2,49.3,50.2,45.6,51.9,46.8,45.7,55.8,43.5,49.6,50.8,50.2],"y":[17.9,19.5,19.2,18.7,19.8,17.8,18.2,18.2,18.9,19.9,17.8,20.3,17.3,18.1,17.1,19.6,20,17.8,18.6,18.2,17.3,17.5,16.6,19.4,17.9,19,18.4,19,17.8,20,16.6,20.8,16.7,18.8,18.6,16.8,18.3,20.7,16.6,19.9,19.5,17.5,19.1,17,17.9,18.5,17.9,19.6,18.7,17.3,16.4,19,17.3,19.7,17.3,18.8,16.6,19.9,18.8,19.4,19.5,16.5,17,19.8,18.1,18.2,19,18.7],"type":"scatter","mode":"markers","name":"Chinstrap","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"line":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[46.1,50,48.7,50,47.6,46.5,45.4,46.7,43.3,46.8,40.9,49,45.5,48.4,45.8,49.3,42,49.2,46.2,48.7,50.2,45.1,46.5,46.3,42.9,46.1,44.5,47.8,48.2,50,47.3,42.8,45.1,59.6,49.1,48.4,42.6,44.4,44,48.7,42.7,49.6,45.3,49.6,50.5,43.6,45.5,50.5,44.9,45.2,46.6,48.5,45.1,50.1,46.5,45,43.8,45.5,43.2,50.4,45.3,46.2,45.7,54.3,45.8,49.8,46.2,49.5,43.5,50.7,47.7,46.4,48.2,46.5,46.4,48.6,47.5,51.1,45.2,45.2,49.1,52.5,47.4,50,44.9,50.8,43.4,51.3,47.5,52.1,47.5,52.2,45.5,49.5,44.5,50.8,49.4,46.9,48.4,51.1,48.5,55.9,47.2,49.1,47.3,46.8,41.7,53.4,43.3,48.1,50.5,49.8,43.5,51.5,46.2,55.1,44.5,48.8,47.2,46.8,50.4,45.2,49.9],"y":[13.2,16.3,14.1,15.2,14.5,13.5,14.6,15.3,13.4,15.4,13.7,16.1,13.7,14.6,14.6,15.7,13.5,15.2,14.5,15.1,14.3,14.5,14.5,15.8,13.1,15.1,14.3,15,14.3,15.3,15.3,14.2,14.5,17,14.8,16.3,13.7,17.3,13.6,15.7,13.7,16,13.7,15,15.9,13.9,13.9,15.9,13.3,15.8,14.2,14.1,14.4,15,14.4,15.4,13.9,15,14.5,15.3,13.8,14.9,13.9,15.7,14.2,16.8,14.4,16.2,14.2,15,15,15.6,15.6,14.8,15,16,14.2,16.3,13.8,16.4,14.5,15.6,14.6,15.9,13.8,17.3,14.4,14.2,14,17,15,17.1,14.5,16.1,14.7,15.7,15.8,14.6,14.4,16.5,15,17,15.5,15,13.8,16.1,14.7,15.8,14,15.1,15.2,15.9,15.2,16.3,14.1,16,15.7,16.2,13.7,14.3,15.7,14.8,16.1],"type":"scatter","mode":"markers","name":"Gentoo","marker":{"color":"rgba(0,139,139,1)","line":{"color":"rgba(0,139,139,1)"}},"textfont":{"color":"rgba(0,139,139,1)"},"error_y":{"color":"rgba(0,139,139,1)"},"error_x":{"color":"rgba(0,139,139,1)"},"line":{"color":"rgba(0,139,139,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+# 15. Gráficos interativos
+
+.pull-left[
+
+```r
+plot_ly(data = penguins,
+        x = ~bill_length_mm, 
+        y = ~bill_depth_mm, 
+        z = ~body_mass_g,
+        type = "scatter3d",
+        color = ~species,
+        colors = c("darkorange", "purple", "cyan4")) %&gt;% 
+  layout(scene = list(xaxis = list(title = "Comprimento do bico (mm)"),
+                    yaxis = list(title = "Profundidade do bico (mm)"),
+                    zaxis = list(title = "Massa (g)")))
+```
+]
+
+.pull-right[
+<div id="htmlwidget-7598595affc4f25ab85b" style="width:504px;height:504px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7598595affc4f25ab85b">{"x":{"visdat":{"f2c524c23d37":["function () ","plotlyVisDat"]},"cur_data":"f2c524c23d37","attrs":{"f2c524c23d37":{"x":{},"y":{},"z":{},"color":{},"colors":["darkorange","purple","cyan4"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Comprimento do bico (mm)"},"yaxis":{"title":"Profundidade do bico (mm)"},"zaxis":{"title":"Massa (g)"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[39.1,39.5,40.3,36.7,39.3,38.9,39.2,34.1,42,37.8,37.8,41.1,38.6,34.6,36.6,38.7,42.5,34.4,46,37.8,37.7,35.9,38.2,38.8,35.3,40.6,40.5,37.9,40.5,39.5,37.2,39.5,40.9,36.4,39.2,38.8,42.2,37.6,39.8,36.5,40.8,36,44.1,37,39.6,41.1,37.5,36,42.3,39.6,40.1,35,42,34.5,41.4,39,40.6,36.5,37.6,35.7,41.3,37.6,41.1,36.4,41.6,35.5,41.1,35.9,41.8,33.5,39.7,39.6,45.8,35.5,42.8,40.9,37.2,36.2,42.1,34.6,42.9,36.7,35.1,37.3,41.3,36.3,36.9,38.3,38.9,35.7,41.1,34,39.6,36.2,40.8,38.1,40.3,33.1,43.2,35,41,37.7,37.8,37.9,39.7,38.6,38.2,38.1,43.2,38.1,45.6,39.7,42.2,39.6,42.7,38.6,37.3,35.7,41.1,36.2,37.7,40.2,41.4,35.2,40.6,38.8,41.5,39,44.1,38.5,43.1,36.8,37.5,38.1,41.1,35.6,40.2,37,39.7,40.2,40.6,32.1,40.7,37.3,39,39.2,36.6,36,37.8,36,41.5],"y":[18.7,17.4,18,19.3,20.6,17.8,19.6,18.1,20.2,17.1,17.3,17.6,21.2,21.1,17.8,19,20.7,18.4,21.5,18.3,18.7,19.2,18.1,17.2,18.9,18.6,17.9,18.6,18.9,16.7,18.1,17.8,18.9,17,21.1,20,18.5,19.3,19.1,18,18.4,18.5,19.7,16.9,18.8,19,18.9,17.9,21.2,17.7,18.9,17.9,19.5,18.1,18.6,17.5,18.8,16.6,19.1,16.9,21.1,17,18.2,17.1,18,16.2,19.1,16.6,19.4,19,18.4,17.2,18.9,17.5,18.5,16.8,19.4,16.1,19.1,17.2,17.6,18.8,19.4,17.8,20.3,19.5,18.6,19.2,18.8,18,18.1,17.1,18.1,17.3,18.9,18.6,18.5,16.1,18.5,17.9,20,16,20,18.6,18.9,17.2,20,17,19,16.5,20.3,17.7,19.5,20.7,18.3,17,20.5,17,18.6,17.2,19.8,17,18.5,15.9,19,17.6,18.3,17.1,18,17.9,19.2,18.5,18.5,17.6,17.5,17.5,20.1,16.5,17.9,17.1,17.2,15.5,17,16.8,18.7,18.6,18.4,17.8,18.1,17.1,18.5],"z":[3750,3800,3250,3450,3650,3625,4675,3475,4250,3300,3700,3200,3800,4400,3700,3450,4500,3325,4200,3400,3600,3800,3950,3800,3800,3550,3200,3150,3950,3250,3900,3300,3900,3325,4150,3950,3550,3300,4650,3150,3900,3100,4400,3000,4600,3425,2975,3450,4150,3500,4300,3450,4050,2900,3700,3550,3800,2850,3750,3150,4400,3600,4050,2850,3950,3350,4100,3050,4450,3600,3900,3550,4150,3700,4250,3700,3900,3550,4000,3200,4700,3800,4200,3350,3550,3800,3500,3950,3600,3550,4300,3400,4450,3300,4300,3700,4350,2900,4100,3725,4725,3075,4250,2925,3550,3750,3900,3175,4775,3825,4600,3200,4275,3900,4075,2900,3775,3350,3325,3150,3500,3450,3875,3050,4000,3275,4300,3050,4000,3325,3500,3500,4475,3425,3900,3175,3975,3400,4250,3400,3475,3050,3725,3000,3650,4250,3475,3450,3750,3700,4000],"type":"scatter3d","mode":"markers","name":"Adelie","marker":{"color":"rgba(255,140,0,1)","line":{"color":"rgba(255,140,0,1)"}},"textfont":{"color":"rgba(255,140,0,1)"},"error_y":{"color":"rgba(255,140,0,1)"},"error_x":{"color":"rgba(255,140,0,1)"},"line":{"color":"rgba(255,140,0,1)"},"frame":null},{"x":[46.5,50,51.3,45.4,52.7,45.2,46.1,51.3,46,51.3,46.6,51.7,47,52,45.9,50.5,50.3,58,46.4,49.2,42.4,48.5,43.2,50.6,46.7,52,50.5,49.5,46.4,52.8,40.9,54.2,42.5,51,49.7,47.5,47.6,52,46.9,53.5,49,46.2,50.9,45.5,50.9,50.8,50.1,49,51.5,49.8,48.1,51.4,45.7,50.7,42.5,52.2,45.2,49.3,50.2,45.6,51.9,46.8,45.7,55.8,43.5,49.6,50.8,50.2],"y":[17.9,19.5,19.2,18.7,19.8,17.8,18.2,18.2,18.9,19.9,17.8,20.3,17.3,18.1,17.1,19.6,20,17.8,18.6,18.2,17.3,17.5,16.6,19.4,17.9,19,18.4,19,17.8,20,16.6,20.8,16.7,18.8,18.6,16.8,18.3,20.7,16.6,19.9,19.5,17.5,19.1,17,17.9,18.5,17.9,19.6,18.7,17.3,16.4,19,17.3,19.7,17.3,18.8,16.6,19.9,18.8,19.4,19.5,16.5,17,19.8,18.1,18.2,19,18.7],"z":[3500,3900,3650,3525,3725,3950,3250,3750,4150,3700,3800,3775,3700,4050,3575,4050,3300,3700,3450,4400,3600,3400,2900,3800,3300,4150,3400,3800,3700,4550,3200,4300,3350,4100,3600,3900,3850,4800,2700,4500,3950,3650,3550,3500,3675,4450,3400,4300,3250,3675,3325,3950,3600,4050,3350,3450,3250,4050,3800,3525,3950,3650,3650,4000,3400,3775,4100,3775],"type":"scatter3d","mode":"markers","name":"Chinstrap","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"line":{"color":"rgba(160,32,240,1)"},"frame":null},{"x":[46.1,50,48.7,50,47.6,46.5,45.4,46.7,43.3,46.8,40.9,49,45.5,48.4,45.8,49.3,42,49.2,46.2,48.7,50.2,45.1,46.5,46.3,42.9,46.1,44.5,47.8,48.2,50,47.3,42.8,45.1,59.6,49.1,48.4,42.6,44.4,44,48.7,42.7,49.6,45.3,49.6,50.5,43.6,45.5,50.5,44.9,45.2,46.6,48.5,45.1,50.1,46.5,45,43.8,45.5,43.2,50.4,45.3,46.2,45.7,54.3,45.8,49.8,46.2,49.5,43.5,50.7,47.7,46.4,48.2,46.5,46.4,48.6,47.5,51.1,45.2,45.2,49.1,52.5,47.4,50,44.9,50.8,43.4,51.3,47.5,52.1,47.5,52.2,45.5,49.5,44.5,50.8,49.4,46.9,48.4,51.1,48.5,55.9,47.2,49.1,47.3,46.8,41.7,53.4,43.3,48.1,50.5,49.8,43.5,51.5,46.2,55.1,44.5,48.8,47.2,46.8,50.4,45.2,49.9],"y":[13.2,16.3,14.1,15.2,14.5,13.5,14.6,15.3,13.4,15.4,13.7,16.1,13.7,14.6,14.6,15.7,13.5,15.2,14.5,15.1,14.3,14.5,14.5,15.8,13.1,15.1,14.3,15,14.3,15.3,15.3,14.2,14.5,17,14.8,16.3,13.7,17.3,13.6,15.7,13.7,16,13.7,15,15.9,13.9,13.9,15.9,13.3,15.8,14.2,14.1,14.4,15,14.4,15.4,13.9,15,14.5,15.3,13.8,14.9,13.9,15.7,14.2,16.8,14.4,16.2,14.2,15,15,15.6,15.6,14.8,15,16,14.2,16.3,13.8,16.4,14.5,15.6,14.6,15.9,13.8,17.3,14.4,14.2,14,17,15,17.1,14.5,16.1,14.7,15.7,15.8,14.6,14.4,16.5,15,17,15.5,15,13.8,16.1,14.7,15.8,14,15.1,15.2,15.9,15.2,16.3,14.1,16,15.7,16.2,13.7,14.3,15.7,14.8,16.1],"z":[4500,5700,4450,5700,5400,4550,4800,5200,4400,5150,4650,5550,4650,5850,4200,5850,4150,6300,4800,5350,5700,5000,4400,5050,5000,5100,4100,5650,4600,5550,5250,4700,5050,6050,5150,5400,4950,5250,4350,5350,3950,5700,4300,4750,5550,4900,4200,5400,5100,5300,4850,5300,4400,5000,4900,5050,4300,5000,4450,5550,4200,5300,4400,5650,4700,5700,4650,5800,4700,5550,4750,5000,5100,5200,4700,5800,4600,6000,4750,5950,4625,5450,4725,5350,4750,5600,4600,5300,4875,5550,4950,5400,4750,5650,4850,5200,4925,4875,4625,5250,4850,5600,4975,5500,4725,5500,4700,5500,4575,5500,5000,5950,4650,5500,4375,5850,4875,6000,4925,4850,5750,5200,5400],"type":"scatter3d","mode":"markers","name":"Gentoo","marker":{"color":"rgba(0,139,139,1)","line":{"color":"rgba(0,139,139,1)"}},"textfont":{"color":"rgba(0,139,139,1)"},"error_y":{"color":"rgba(0,139,139,1)"},"error_x":{"color":"rgba(0,139,139,1)"},"line":{"color":"rgba(0,139,139,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+class: clear
+background-image: url(img/esquisse_package.png)
+background-size: 500px
+background-position: 50% 50%
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[gganimate](https://dreamrs.github.io/esquisse/)
+
+---
+
+# 16. Gráficos usando uma interface
+
+.pull-left[
+
+```r
+# pacote
+#install.packages("esquisse")
+library(esquisse)
+
+# iniciar
+esquisse::esquisser(iris)
+esquisse::esquisser(palmerpenguins::penguins)
+```
+]
+
+.pull-right[
+![](img/esquisse.gif)&lt;!-- --&gt;
 ]
 
 ---
