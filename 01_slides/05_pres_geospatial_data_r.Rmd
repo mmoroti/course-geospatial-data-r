@@ -19,8 +19,9 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, eval = TRUE)
 if(!require(tidyverse)) devtools::install_github("tidyverse")
+if(!require(palmerpenguins)) devtools::install_github("palmerpenguins")
 if(!require(countdown)) devtools::install_github("gadenbuie/countdown")
 ```
 
@@ -32,143 +33,100 @@ background-position: 50% 50%
 ---
 
 background-image: url(img/package_ggplot2.png)
-background-size: 250px
+background-size: 300px
 background-position: 85% 75%
 
-# 4 Visualização de dados
+# 5 Visualização de dados
 
 ## Conteúdo
 
-4.1 Principais pacotes para gráficos
-<br>
-4.2 Principais livros e sites
-<br>
-4.3 Colunas como eixos do gráficos (*variáveis = colunas*)
-<br>
-4.4 Principais tipos de gráficos
-<br>
-4.5 Histograma (*histogram*)
-<br>
-4.6 Gráfico de setores (*pie chart* e *donut plot*)
-<br>
-4.7 Gráfico de barras (*bar plot*)
-<br>
-4.8 Gráfico de caixa (*box plot* e *violin plot*)
-<br>
-4.9 Gráfico de dispersão (*scatter plot*)
-<br>
-4.10 Gráfico pareado (*pairs plot*)
+1. Contextualização
+1. Principais pacotes para gráficos 
+1. Grámatica dos gráficos
+1. Principais livros e sites 
+1. Colunas como eixos dos gráficos
+1. Principais tipos de gráficos 
+1. Histograma e Densidade
+1. Gráfico de setores
+1. Gráfico de barras
+1. Gráfico de caixas
+1. Gráfico de dispersão
+1. Gráfico pareado
+1. Gráficos animados
+1. Combinando gráficos
+1. Gráficos usando uma interface
+
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 
-# 4 Visualização de dados
+# 5 Visualização de dados
 
 ## Script
 
 <br><br><br><br><br><br>
 
-## .center[`script_aula_04.R`]
+## .center[`05_script_geospatial_data_r.R`]
 
 ---
 
-# 4 Visualização de dados
+# 1. Contextualização
 
-## **Importância dos gráficos**
+## Descrição
 
-<br><br>
-
-### Melhor forma de **apresentar** e **discutir** seus dados
+### Melhor forma de **apresentar, sintetizar, discutir e interpretar** seus dados
 
 --
 
-### Faz uma **síntese** para melhor entendimento
+### Necessário em quase todas as **análises estatísticas** 
 
 --
 
-### Necessário em quase todas as **análises estatísticas**
+### Necessário em quase todas as **publicações**, trabalhos de consultoria, TCC, dissertação, tese, etc. 
 
 --
 
-### Necessário em quase todas as **publicações**, trabalhos de consultoria, TCC, dissertação, tese 
-
----
-
-class: clear, inverse, center, middle
-
-# E que dados vamos usar?
-
----
-
-class: clear, inverse, center, middle
-
-background-image: url(img/general_real_data.jpg)
-background-size: 500px
-background-position: 50% 30%
-
----
-
-class: clear, inverse, center, middle
-
-# Vamos importar os dados do data paper de anfíbios
-
----
-
-background-image: url(img/general_data_eu_mesmo.png)
-background-size: 600px
-background-position: 50% 90%
-
-# Importar dados para gráficos
-
-## ATLANTIC AMPHIBIANS: a dataset of amphibian communities from the Atlantic Forests of South America
-
-### Eu mesmo et al. (2018)
-
----
-
-# Importar dados para gráficos
-```{r, warning=FALSE, message=FALSE, eval=FALSE}
-# package
-library(tidyverse)
-
-# directory
-setwd("/home/mude/data/github/minicurso-tidyverse/03_dados")
-
-# importar
-da <- readr::read_csv("ATLANTIC_AMPHIBIANS_sites.csv")
-da
-
-# verificar
-dplyr::glimpse(da)
-```
-
-```{r, include = FALSE}
-library(tidyverse)
-da <- read_csv("/home/mude/data/github/minicurso-tidyverse/03_dados/ATLANTIC_AMPHIBIANS_sites.csv")
-```
-
----
-
-# 4.1 Principais pacotes para gráficos
-
-## Atualmente, há **três principais pacotes** para gerar **gráficos gerais** no R:
-
-<br>
+### Existem vários **tipos de gráficos** para representar os padrões em seus dados para **diferentes tipos de finalidades**
 
 --
 
-#### **1 graphics**: simples, porém útil para visualizações rápidas de quase todos os formatos de arquivos `plot()`
+### De forma simplificada, os gráficos são **representações** dos nossos dados tabulares
 
-<br>
+---
+
+# 2. Principais pacotes para gráficos
+
+## Atualmente, há vários pacotes para gerar gráficos no R
+
+### Principais
 
 --
 
-#### **2 ggplot2**: complexos, demandam mais tempo para realização, mas ficam muito bons `ggplot()`
-
-<br>
+#### **graphics**: simples, porém útil para visualizações rápidas de quase todos os formatos de arquivos
 
 --
 
-#### **3 ggpubr**: fornece algumas funções simplificadas para criar gráficos para publicação, baseados no "ggplot2" `gg*()`
+#### **ggplot2**: pacote integrado ao tidyverse, possui uma sintaxe própria baseada na grática de gráficos por camadas (layers)
+
+--
+
+#### **ggplot2 extentions**: conjunto de pacotes que adicionam diversas expansões ao pacote ggplot2. Exemplos: gganimate, GGally e esquisse
+
+--
+
+#### **visdat**: Crie visualizações preliminares de dados exploratórios de um conjunto de dados inteiro para identificar problemas ou recursos inesperados usando ‘ggplot2’
+
+--
+
+#### **ggpubr**: fornece algumas funções simplificadas para criar gráficos para publicação, baseados no "ggplot2" `gg*()`
+
+--
+
+#### **pacthwork**: pacote que permite combinar vários gráficos em um só de forma extremamente simples e com alta qualidade
+
+--
+
+#### **plotly**: pacote para criar gráficos interativos da web por meio da biblioteca gráfica de JavaScript de código aberto plotly.js
 
 ---
 
@@ -183,7 +141,7 @@ background-image: url(img/package_graphics.png)
 background-size: 250px
 background-position: 85% 85%
 
-# 4.1 Principais pacotes para gráficos
+# 2. Principais pacotes para gráficos
 
 ## **graphics**
 
@@ -208,13 +166,13 @@ background-position: 85% 85%
 
 ---
 
-# 4.1 Principais pacotes para gráficos
+# 2. Principais pacotes para gráficos
 
 ## **graphics**
 
-```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "50%"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", out.width="35%"}
 # graphics
-plot(species_number ~ effort_months, data = da)
+plot(flipper_length_mm ~ body_mass_g, data = penguins)
 ```
 
 ---
@@ -230,13 +188,13 @@ background-image: url(img/cheatsheet_ggplot2.png)
 background-size: 600px
 background-position: 50% 50%
 
-# 4.1 ggplot2
+# 2. Principais pacotes para gráficos
 
 ## Data Visualization Cheatsheet
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-[*] https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf
+[Data Visualization with ggplot2 Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
 
 ---
 
@@ -244,7 +202,7 @@ background-image: url(img/package_ggplot2.png)
 background-size: 250px
 background-position: 85% 85%
 
-# 4.1 Principais pacotes para gráficos
+# 2. Principais pacotes para gráficos
 
 ## **ggplot2**
 
@@ -268,24 +226,14 @@ background-position: 85% 85%
 
 ---
 
-background-image: url(img/plot_ggplot2.png)
-background-size: 600px
-background-position: 50% 70%
-
-# 4.1 Principais pacotes para gráficos
+# 2. Principais pacotes para gráficos
 
 ## **ggplot2**
 
----
-
-# 4.1 Principais pacotes para gráficos
-
-## **ggplot2**
-
-```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "45%"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "35%"}
 # ggplot2
 library(ggplot2)
-ggplot(data = da) + aes(effort_months, species_number) + geom_point()
+ggplot(data = penguins) + aes(x = body_mass_g, y = flipper_length_mm) + geom_point()
 ```
 
 ---
@@ -301,7 +249,7 @@ background-image: url(img/package_ggpubr.png)
 background-size: 250px
 background-position: 85% 85%
 
-# 4.1 Principais pacotes para gráficos
+# 2. Principais pacotes para gráficos
 
 ## **ggpubr**
 
@@ -324,14 +272,31 @@ background-position: 85% 85%
 
 ---
 
-# 4.1 Principais pacotes para gráficos
+# 2. Principais pacotes para gráficos
 
 ## **ggpubr**
 
-```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "50%"}
+```{r, warning=FALSE, message=FALSE, fig.align="center", out.width = "35%"}
 library(ggpubr)
-ggscatter(da, x = "effort_months", y = "species_number")
+ggscatter(penguins, x = "body_mass_g", y = "flipper_length_mm")
 ```
+
+---
+
+background-image: url(img/plot_ggplot2.png), url(img/ggplot2_gramatica.png)
+background-size: 500px, 600px
+background-position: 5% 70%, 90% 70%
+
+# 3. Grámatica dos gráficos
+
+## Descrição
+
+#### Wilkinson (2005) *Grammar of Graphics*: representação gráfica dos dados a partir de atributos estéticos (do inglês *aesthetic*)
+
+#### Wickham (2008) criou o pacote **ggplot2**, onde “gg” representa a contração de Grammar of Graphics
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+[Wilkinson (2005)](https://www.springer.com/gp/book/9780387245447), [Wickham (2008)](https://ggplot2-book.org/)
 
 ---
 
@@ -339,15 +304,14 @@ background-image: url(img/person_hadley_wickham.jpg)
 background-size: 500px
 background-position: 50% 70%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Livros
 
 ### O idealizador e mantenedor do pacote **ggplot2** foi de novo o **Hadley Wickham**
 
-<br><br><br><br><br><br><br><br><br><br><br>
-
-[*] http://hadley.nz/
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+[Hadley Wickham](http://hadley.nz/)
 
 ---
 
@@ -355,15 +319,14 @@ background-image: url(img/cover_ggplot2.jpg)
 background-size: 230px
 background-position: 50% 63%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Livros
 
 ### ggplot2 (2009, 2016)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://ggplot2.tidyverse.org/
+[Wickham (2009, 2016)](https://ggplot2.tidyverse.org/)
 
 ---
 
@@ -371,15 +334,14 @@ background-image: url(img/cover_r_graphics_cookbook.jpg)
 background-size: 250px
 background-position: 50% 63%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Livros
 
 ### R Graphics Cookbook (2018)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] http://www.cookbook-r.com/Graphs/
+[Chang (2018)](http://www.cookbook-r.com/Graphs/)
 
 ---
 
@@ -387,15 +349,14 @@ background-image: url(img/cover_data_science_r.png)
 background-size: 250px
 background-position: 50% 70%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Livros
 
 ### R for Data Science (2017)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://r4ds.had.co.nz/
+[Wickham & Grolemund (2017)](https://r4ds.had.co.nz/)
 
 ---
 
@@ -403,15 +364,14 @@ background-image: url(img/cover_data_visualization_with_r.png)
 background-size: 230px
 background-position: 50% 65%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Livros
 
 ### Data Visualization with R (2018)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://rkabacoff.github.io/datavis/
+[Kabacoff (2018)](https://rkabacoff.github.io/datavis/)
 
 ---
 
@@ -419,15 +379,14 @@ background-image: url(img/cover_fundamentals_of_data_visualization.png)
 background-size: 260px
 background-position: 50% 63%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Livros
 
 ### Fundamentals of Data Visualization (2019)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://serialmentor.com/dataviz/
+[Wilke (2019)](https://serialmentor.com/dataviz/)
 
 ---
 
@@ -435,31 +394,29 @@ background-image: url(img/package_ggplot2.png)
 background-size: 300px
 background-position: 50% 60%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Sites
 
 ### ggplot2: Reference
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://ggplot2.tidyverse.org/reference/
+[ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
 
 ---
 
 background-image: url(img/plot_r_graph_gallery.png)
-background-size: 600px
-background-position: 50% 55%
+background-size: 800px
+background-position: 50% 60%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Sites
 
 ### R Graph Gallery
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://www.r-graph-gallery.com/
+[R Graph Gallery](https://www.r-graph-gallery.com/)
 
 ---
 
@@ -467,111 +424,153 @@ background-image: url(img/plot_tree_s.png)
 background-size: 400px
 background-position: 50% 60%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Sites
 
 ### from Data to Viz
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://www.data-to-viz.com/
+[from Data to Viz](https://www.data-to-viz.com/)
 
 ---
 
 background-image: url(img/plot_sthda.png)
-background-size: 250px
-background-position: 50% 60%
+background-size: 300px
+background-position: 50% 70%
 
-# 4.2 Principais livros e sites
+# 4. Principais livros e sites
 
 ## Sites
 
 ### Statistical tools for high-throughput data analysis (STHDA)
 
-<br><br><br><br><br><br><br><br><br><br><br>
-
-[*] http://www.sthda.com/english/
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+[STHDA](http://www.sthda.com/english/)
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Dúvidas?
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Os elementos de um gráfico são representações das colunas (eixos) e linhas (elementos) de nossas matrizes de dados
 
 ---
 
 background-image: url(img/plot_data_table_scatterplot.png)
-background-size: 700px
-background-position: 50% 80%
+background-size: 800px
+background-position: 50% 70%
 
-# 4.3 Colunas como eixos do gráficos
+# 5. Colunas como eixos dos gráficos
 
 ## Colunas se tornam eixos e valores a representação
 
 ---
 
 background-image: url(img/plot_variables.png)
-background-size: 700px
-background-position: 50% 50%
-
-# 4.3 Colunas como eixos do gráficos
-
-## Tipos de variáveis
-
----
-
-class: clear, inverse, center, middle
-
-# Ou seja <u>**tipo e quantidade das variáveis**</u> irá indicar o melhor tipo de gráfico para <u>**representar</u>** os dados
-
----
-
-background-image: url(img/plot_select_chart.jpg)
 background-size: 800px
 background-position: 50% 50%
 
-# 4.4 Principais tipos de gráficos
+# 5. Colunas como eixos dos gráficos
+
+## Tipos de variáveis
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+[Matthiopoulos (2011)](http://greenmaths.st-andrews.ac.uk/)
 
 ---
 
-background-image: url(img/plot_tree_s.png)
-background-size: 400px
+background-image: url(img/nominal_ordinal_binary.png), url(img/continuous_discrete.png), url(img/plot_variables.png)
+background-size: 420px, 335px, 400px
+background-position: 23% 78%, 69% 78%, 50% 15%
+
+# 5. Colunas como eixos dos gráficos
+
+## Tipos de variáveis
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+[Matthiopoulos (2011)](http://greenmaths.st-andrews.ac.uk/), [@allison_horst](https://twitter.com/allison_horst)
+
+---
+
+class: inverse, center, middle
+
+# O **tipo e quantidade das variáveis** irá indicar o melhor tipo de gráfico para **representar** os dados
+
+---
+
+background-image: url(img/ggplot_data_from_viz.png)
+background-size: 800px
 background-position: 50% 60%
 
-# 4.4 Principais tipos de gráficos
+# 6. Principais tipos de gráficos
 
-## Sites
+## from Data to Viz
 
-### from Data to Viz
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://www.data-to-viz.com/
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+[from Data to Viz](https://www.data-to-viz.com/)
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Dúvidas?
 
 ---
 
-background-image: url(img/plot_histogram.png)
-background-size: 300px
-background-position: 50% 90%
+class: inverse, center, middle
 
-# 4.5 Histograma (histogram)
+# E que dados vamos usar?
+
+---
+
+class: clear
+background-image: url(img/package_palmerpenguins.png)
+background-size: 400px
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+
+---
+
+background-image: url(img/culmen_depth.png), url(img/lter_penguins.png)
+background-size: 400px, 400px
+background-position: 20% 85%, 80% 85%
+
+# palmerpenguins
+
+## Dados de medidas de pinguins chamados `palmerpenguins`
+
+```{r}
+# carregar
+library(palmerpenguins)
+
+# visualizar os dados
+penguins
+
+# glimpse
+tibble::glimpse(penguins)
+```
+
+<br><br><br><br><br><br><br><br>
+[palmerpenguins ](https://allisonhorst.github.io/palmerpenguins/)
+
+---
+
+background-image: url(img/plot_histogram.png), url(img/plot_density.png)
+background-size: 300px, 300px
+background-position: 30% 80%, 70% 80%
+
+# 7. Histograma (*Histogram*)
 
 ### **Representa os dados de**: uma coluna
 ### **Tipo de dado**: discreto ou contínuo
-### Distribuição de frequência e densidade de dados contínuos
+### Distribuição de frequência e densidade de dados discretos ou contínuos
 
 ---
 
@@ -582,219 +581,213 @@ background-position: 50% 50%
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## graphics
 .pull-left[
-```{r plot1, eval=FALSE}
-hist(da$species_number) #<<
+```{r hist_graphics1, eval=FALSE}
+hist(penguins$flipper_length_mm)
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot1", echo=FALSE}
+```{r ref.label="hist_graphics1", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## graphics
 .pull-left[
-```{r plot2, eval=FALSE}
-hist(da$species_number,
-     col = "gray50", #<<
-     border = "gray") #<<
+```{r hist_graphics2, eval=FALSE}
+hist(penguins$flipper_length_mm,
+     col = "gray50",
+     border = "gray")
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot2", echo=FALSE}
+```{r ref.label="hist_graphics2", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## graphics
 .pull-left[
-```{r plot3, eval=FALSE}
-hist(da$species_number,
+```{r hist_graphics3, eval=FALSE}
+hist(penguins$flipper_length_mm,
      col = "gray50",
      border = "gray",
-     main = "Ti") #<<
+     main = "Comprimento da nadadeira dos penguins")
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot3", echo=FALSE}
+```{r ref.label="hist_graphics3", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## graphics
 .pull-left[
-```{r plot4, eval=FALSE}
-hist(da$species_number,
+```{r hist_graphics4, eval=FALSE}
+hist(penguins$flipper_length_mm,
      col = "gray50",
      border = "gray",
-     main = "Ti",
-     xlab = "Sp", #<<
-     ylab = "Fr") #<<
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)")
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot4", echo=FALSE}
+```{r ref.label="hist_graphics4", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## graphics
 .pull-left[
-```{r plot5, eval=FALSE}
-hist(da$species_number,
+```{r hist_graphics5, eval=FALSE}
+hist(penguins$flipper_length_mm,
      col = "gray50",
      border = "gray",
-     main = "Ti",
-     xlab = "Sp",
-     ylab = "Fr",
-     br = 50) #<<
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)",
+     br = 50)
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot5", echo=FALSE}
+```{r ref.label="hist_graphics5", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## graphics
 .pull-left[
-```{r plot6, eval=FALSE}
-hist(da$species_number,
+```{r hist_graphics6, eval=FALSE}
+par(mar = c(5, 5, 5, 5))
+hist(penguins$flipper_length_mm,
      col = "gray50",
      border = "gray",
-     main = "Ti",
-     xlab = "Sp",
-     ylab = "Fr",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)",
      br = 50,
-     cex.main = 2.5, #<<
-     cex.lab = 2.2, #<< 
-     cex.axis = 2) #<<
+     cex.main = 2,
+     cex.lab = 2, 
+     cex.axis = 2)
+
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot6", echo=FALSE}
+```{r ref.label="hist_graphics6", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Densidade (*Density*)
 
 ## graphics
-```{r, eval = FALSE}
-hist(da$species_number,
+.pull-left[
+```{r hist_graphics7, eval = FALSE}
+par(mar = c(5, 5, 5, 5))
+hist(penguins$flipper_length_mm,
      col = "gray50",
      border = "gray",
-     main = "Ti",
-     xlab = "Sp",
-     ylab = "Fr",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Densidade",
      br = 50,
-     cex.main = 2.5,
-     cex.lab = 2.2,
-     cex.axis = 2,
-     prob = TRUE) #<<
-
-lines(density(da$species_number)) #<<
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## graphics
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-hist(da$species_number,
-     col = "gray50",
-     border = "gray",
-     main = "Ti",
-     xlab = "Sp",
-     ylab = "Fr",
-     br = 50,
-     cex.main = 2.5,
-     cex.lab = 2.2,
+     cex.main = 2,
+     cex.lab = 2, 
      cex.axis = 2,
      prob = TRUE)
-
-lines(density(da$species_number))
+lines(density(na.omit(penguins$flipper_length_mm)))
 ```
+]
+.pull-right[
+```{r ref.label="hist_graphics7", echo=FALSE}
+```
+]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Densidade (*Density*)
+
+## graphics
+.pull-left[
+```{r hist_graphics8, eval=FALSE}
+par(mar = c(5, 5, 5, 5))
+plot(density(na.omit(penguins$flipper_length_mm)),
+     col = "gray50",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Densidade",
+     cex.main = 2,
+     cex.lab = 2, 
+     cex.axis = 2)
+polygon(density(na.omit(penguins$flipper_length_mm)), 
+        col = "gray50")
+```
+]
+.pull-right[
+```{r ref.label="hist_graphics8", echo=FALSE}
+```
+]
+
+
+---
+
+# 7. Densidade (*Density*)
 
 ## graphics
 
 ### Exportar
 ```{r, eval = FALSE}
 # diretorio
-setwd("")
+setwd("/home/mude/data/github/course-geospatial-data-r/03_dados")
 ```
 
----
+--
 
-# 4.5 Histograma (histogram)
-
-## graphics
-
-### Exportar
 ```{r}
-png("meu_primeiro_histograma.png", wi = 15, he = 15, un = "cm", res = 300)
+png("plot_densidade.png", wi = 15, he = 15, un = "cm", res = 300)
 ```
 
----
+--
 
-# 4.5 Histograma (histogram)
-
-## graphics
-
-### Exportar
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "50%"}
-hist(da$species_number,
+```{r, eval = FALSE}
+par(mar = c(5, 5, 5, 5))
+plot(density(na.omit(penguins$flipper_length_mm)),
      col = "gray50",
-     border = "gray",
-     main = "Ti",
-     xlab = "Sp",
-     ylab = "Fr",
-     br = 50,
-     cex.main = 2.5,
-     cex.lab = 2.2,
-     cex.axis = 2,
-     prob = TRUE)
-lines(density(da$species_number))
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)",
+     cex.main = 2,  cex.lab = 2, cex.axis = 2)
+polygon(density(na.omit(penguins$flipper_length_mm)), col = "gray50")
 ```
 
----
+--
 
-# 4.5 Histograma (histogram)
-
-## graphics
-
-### Exportar  
 ```{r}
 dev.off()
 ```
@@ -808,320 +801,297 @@ background-position: 50% 50%
 
 ---
 
-background-image: url(img/plot_ggplot1.png)
-background-size: 700px
-background-position: 50% 60%
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-
-### A gramática dos gráficos
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://oestatistico.com.br/a-gramatica-dos-graficos/
-
----
-
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## ggplot2
 .pull-left[
-```{r plot7, eval=FALSE}
-ggplot(data = da) #<<
+```{r hist_ggplot1, eval=FALSE}
+ggplot(data = penguins)
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot7", echo=FALSE}
+```{r ref.label="hist_ggplot1", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## ggplot2
 .pull-left[
-```{r plot8, eval=FALSE}
-ggplot(data = da) +
-  aes(x = species_number) #<<
+```{r hist_ggplot2, eval=FALSE}
+ggplot(data = penguins, aes(x = flipper_length_mm))
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot8", echo=FALSE}
+```{r ref.label="hist_ggplot2", echo=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## ggplot2
 .pull-left[
-```{r plot9, eval=FALSE, message=FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram() #<<
+```{r hist_ggplot3, eval=FALSE, message=FALSE}
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram()
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot9", echo=FALSE, message=FALSE}
+```{r ref.label="hist_ggplot3", echo=FALSE, message=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## ggplot2
 .pull-left[
-```{r plot10, eval=FALSE, message=FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_density() #<<
+```{r hist_ggplot4, eval=FALSE, message=FALSE}
+ggplot(data = penguins,  aes(x = flipper_length_mm)) +
+  geom_histogram(color = "black", fill = "cyan4", bins = 10)
 ```
 ]
 
 .pull-right[
-```{r ref.label="plot10", echo=FALSE, message=FALSE}
+```{r ref.label="hist_ggplot4", echo=FALSE, message=FALSE}
 ```
 ]
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## ggplot2
+.pull-left[
+```{r hist_ggplot5, eval=FALSE, message=FALSE}
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(color = "black", fill = "cyan4", 
+                 bins = 10, alpha = .5) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot5", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot6, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(bins = 10, alpha = .5) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot6", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot7, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(bins = 10, alpha = .5, position = "dodge") +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot7", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot8, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(alpha = .5, position = "identity") +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot8", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot9, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram() +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  facet_wrap(~ species, ncol = 2, scale = "free_y") +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot9", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot10, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram() +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  facet_grid(species ~ .) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot10", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot11, eval=FALSE, message=FALSE}
+ggplot(data = penguins) +
+  aes(x = flipper_length_mm) +
+  geom_density(color = "black", fill = "cyan4", alpha = .5) + 
+  labs(title = "Comprimento da nadadeira dos penguins",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot11", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot12, eval=FALSE, message=FALSE}
+ggplot(data = penguins) +
+  aes(x = flipper_length_mm) +
+  geom_density(color = "black", fill = "cyan4", alpha = .5) + 
+  labs(title = "Comprimento da nadadeira dos penguins",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot12", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggplot2
+.pull-left[
+```{r hist_ggplot13, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_density(alpha = .5) +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade", 
+       fill = "Espécie") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggplot13", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+
+### Exportar
 ```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10) #<<
-```
+ggplot_densidade <- ggplot(data = penguins, 
+                           aes(x = flipper_length_mm, fill = species)) +
+  geom_density(alpha = .5) +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade", 
+       fill = "Espécie") +
+  theme_bw(base_size = 16)
 
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10) #<<
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, alpha = .5) +
-  labs(x = "Número de Espécies", y = "Frequência") + #<<
-  theme(axis.title = element_text(size = 24), #<<
-        axis.text.x = element_text(size = 20), #<<
-        axis.text.y = element_text(size = 20)) #<<
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) + #<<
-  labs(x = "Número de Espécies", y = "Frequência") + #<<
-  theme(axis.title = element_text(size = 24), #<<
-        axis.text.x = element_text(size = 20), #<<
-        axis.text.y = element_text(size = 20)) #<<
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_density(color = "black", fill = "forest green", alpha = .5) +  #<<
-  labs(x = "Número de Espécies", y = "Frequência") +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_density(color = "black", fill = "forest green", alpha = .5) +  #<<
-  labs(x = "Número de Espécies", y = "Frequência") +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-background-image: url(img/plot_ggplot2.png)
-background-size: 500px
-background-position: 50% 50%
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-
----
-
-background-image: url(img/plot_ggplot3.png)
-background-size: 500px
-background-position: 50% 50%
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) +
-  facet_wrap(~ record, ncol = 2, scale = "free_y") +  #<<
-  labs(x = "Número de Espécies", y = "Frequência") +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) +
-  facet_wrap(~ record, ncol = 2, scale = "free_y") + #<<
-  labs(x = "Número de Espécies", y = "Frequência") +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) +
-  facet_grid(record ~ .) + #<<
-  labs(x = "Número de Espécies", y = "Frequência") +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) +
-  facet_grid(record ~ .) + #<<
-  labs(x = "Número de Espécies",
-          y = "Frequência") +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) +
-  facet_grid(record ~ .) +
-  labs(x = "Número de Espécies",
-          y = "Frequência") +
-  theme_bw() + #<<
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) +
-  facet_grid(record ~ .) +
-  labs(x = "Número de Espécies",
-          y = "Frequência") +
-  theme_bw() + #<<
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggplot2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = species_number) +
-  geom_histogram(color = "black", fill = "forest green", bins = 10, 
-                 alpha = .5) +
-  facet_grid(record ~ .) +
-  labs(x = "Número de Espécies",
-          y = "Frequência") +
-  theme_bw() + 
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-
-ggsave("histogram_ggplot2.png", wi = 20, he = 15, un = "cm", dpi = 300) #<<
+ggsave(filename = "histogram_ggplot2.png", plot = ggplot_densidade, wi = 20, he = 15, un = "cm", dpi = 300)
 ```
 
 ---
@@ -1133,59 +1103,70 @@ background-position: 50% 50%
 
 ---
 
-# 4.5 Histograma (histogram)
+# 7. Histograma (*Histogram*)
 
 ## ggpubr
+.pull-left[
+```{r hist_ggpubr1, eval=FALSE, message=FALSE}
+gghistogram(data = penguins, 
+            x = "flipper_length_mm",
+            add = "median",
+            fill = "cyan4",
+            rug = TRUE,
+            add_density = TRUE,
+            xlab = "Comprimento da nadadeira (mm)",
+            ylab = "Frequência (%)")
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggpubr1", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggpubr
+.pull-left[
+```{r hist_ggpubr2, eval=FALSE, message=FALSE}
+ggdensity(data = penguins, 
+          x = "flipper_length_mm",
+          add = "median",
+          fill = "cyan4",
+          rug = TRUE,
+          add_density = TRUE,
+          xlab = "Comprimento da nadadeira (mm)",
+          ylab = "Densidade")
+```
+]
+
+.pull-right[
+```{r ref.label="hist_ggpubr2", echo=FALSE, message=FALSE}
+```
+]
+
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggpubr
+
+### Exportar
 ```{r, eval = FALSE}
-gghistogram(data = da, 
-            x = "species_number",
-            add = "median",
-            fill = "steelblue",
-            rug = TRUE,
-            add_density = TRUE,
-            xlab = "Número de espécies",
-            ylab = "Frequeência absoluta")
+ggpubr_densidade <- ggdensity(data = penguins, 
+                              x = "flipper_length_mm",
+                              add = "median",
+                              fill = "cyan4",
+                              rug = TRUE,
+                              add_density = TRUE,
+                              xlab = "Comprimento da nadadeira (mm)",
+                              ylab = "Densidade")
+
+ggsave(filename = "densidade_ggpubr.png", plot = ggpubr_densidade, wi = 20, he = 15, un = "cm", dpi = 300)
 ```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-gghistogram(data = da, 
-            x = "species_number",
-            add = "median",
-            fill = "steelblue",
-            rug = TRUE,
-            add_density = TRUE,
-            xlab = "Número de espécies",
-            ylab = "Frequeência absoluta")
-```
-
----
-
-# 4.5 Histograma (histogram)
-
-## ggpubr
-```{r, eval = FALSE}
-gghistogram(data = da, 
-            x = "species_number",
-            add = "median",
-            fill = "steelblue",
-            rug = TRUE,
-            add_density = TRUE,
-            xlab = "Número de espécies",
-            ylab = "Frequeência absoluta")
-
-ggsave("histogram_ggpubr.png", wi = 20, he = 15, un = "cm", dpi = 300) #<<
-```
-
----
-
-class: clear, inverse, center, middle
-
-# Dúvidas?
 
 ---
 
@@ -1193,7 +1174,7 @@ background-image: url(img/plot_pie.png)
 background-size: 300px
 background-position: 50% 90%
 
-# 4.6 Gráfico de setores (pie chart)
+# 8. Gráfico de setores (*Pie chart*)
 
 ### **Representa os dados de**: uma coluna
 ### **Tipo de dado**: categórico
@@ -1208,57 +1189,58 @@ background-position: 50% 50%
 
 ---
 
-# 4.6 Gráfico de setores (pie chart)
+# 8. Gráfico de setores (*Pie chart*)
 
 ### Clássico
-```{r pie, fig.cap="A fancy pie chart.", tidy=FALSE, fig.align='center', fig.height=5}
+.pull-left[
+```{r pie1, eval=FALSE, message=FALSE}
 par(mar = c(0, 1, 0, 1))
 pie(c(280, 60, 20),
-  c("Sky", "Sunny side of pyramid", "Shady side of pyramid"),
-  col = c("#0292D8", "#F7EA39", "#C4B632"),
-  init.angle = -50, border = NA)
+    c("Sky", "Sunny side of pyramid", "Shady side of pyramid"),
+    col = c("#0292D8", "#F7EA39", "#C4B632"),
+    init.angle = -50, border = NA)
 ```
+]
+
+.pull-right[
+```{r ref.label="pie1", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.6 Gráfico de setores (pie chart)
+# 8. Gráfico de setores (*Pie chart*)
 
 ### Tabela de frequência
 
 ```{r}
-# tabela de frequencia
-ta <- table(da$record)
-ta <- round(ta/sum(ta) * 100, 2)
-ta
+# calculo da proporcao
+penguins_prop <- penguins %>%
+  dplyr::count(species) %>% 
+  dplyr::mutate(prop = round(n/sum(n), 4)*100)
+penguins_prop
 ```
 
 ---
 
-# 4.6 Gráfico de setores (pie chart)
+# 8. Gráfico de setores (*Pie chart*)
 
 ## graphics
-```{r, eval=FALSE}
-pie(ta,
-    labels = paste(ta, "%"), 
-    main = "Tipos de amostragens",
-    col = c("steelblue", "brown"))
-legend("topright", c("Abundância", "Composição"), cex = 0.8, 
-       fill = c("steelblue", "brown"))
-
+.pull-left[
+```{r pie2, eval=FALSE, message=FALSE}
+pie(penguins_prop$prop,
+    labels = paste(penguins_prop$prop, "%"), 
+    main = "Espécies",
+    col = c("darkorange", "darkorchid", "cyan4"))
+legend("topright", legend = penguins_prop$species, 
+       fill = c("darkorange", "darkorchid", "cyan4"))
 ```
+]
 
----
-
-# 4.6 Gráfico de setores (pie chart)
-
-## graphics
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-pie(ta,
-    labels = paste(ta, "%"), 
-    main = "Tipos de amostragens",
-    col = c("steelblue", "brown"))
-legend("topright", c("Abundância", "Composição"), cex = 0.8, fill = c("steelblue", "brown"))
+.pull-right[
+```{r ref.label="pie2", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -1268,51 +1250,27 @@ background-size: 400px
 background-position: 50% 50%
 
 ---
-# 4.6 Gráfico de setores (pie chart)
 
-### Tabela de frequência
-
-```{r}
-ta_por <- ta %>%
-        as.data.frame %>% 
-        mutate(Amostragem = c("Abundância", "Composição"),
-               porc = paste0(Freq, "%"))
-ta_por
-```
-
----
-
-# 4.6 Gráfico de setores (pie chart)
+# 8. Gráfico de setores (*Pie chart*)
 
 ## ggplot2
-```{r, eval=FALSE}
-# pie
-ggplot(ta_por) +
-  aes(x = "", y = Freq, fill = Amostragem) +
-  geom_bar(width = 1, stat = "identity", color = "white") +
+.pull-left[
+```{r pie3, eval=FALSE, message=FALSE}
+ggplot(data = penguins_prop, aes(x = "", y = prop, fill = species)) + 
+  geom_bar(stat = "identity", color = "white") +
   coord_polar("y", start = 0) +
-  geom_text(aes(label = porc), color = "white", 
-            position = position_stack(vjust = 0.5), size = 8) +
-  scale_fill_manual(values = c(c("#0073C2FF", "#EFC000FF"))) +
-  theme_void()
+  geom_text(aes(label = paste0(prop, "%")), color = "white", 
+            position = position_stack(vjust = .5), size = 8) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_void() +
+  labs(fill = "Espécie")
 ```
+]
 
----
-
-# 4.6 Gráfico de setores (pie chart)
-
-## ggplot2
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(ta_por) +
-  aes(x = "", y = Freq, fill = Amostragem) +
-  geom_bar(width = 1, stat = "identity", color = "white") +
-  coord_polar("y", start = 0) +
-  geom_text(aes(label = porc), color = "white", 
-            position = position_stack(vjust = 0.5), size = 8) +
-  scale_fill_manual(values = c(c("#0073C2FF", "#EFC000FF"))) +
-  theme_void()
+.pull-right[
+```{r ref.label="pie3", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -1323,53 +1281,42 @@ background-position: 50% 50%
 
 ---
 
-# 4.6 Gráfico de setores (pie chart)
+# 8. Gráfico de setores (*Pie chart*)
 
 ## ggpubr
-```{r, eval=FALSE}
-# pie
-ggpie(ta_por,
-      "Freq", 
-      label = "porc",
+.pull-left[
+```{r pie4, eval=FALSE, message=FALSE}
+ggpie(penguins_prop,
+      "prop", 
+      label = "prop",
       lab.pos = "in", 
       lab.font = c(8, "white"),
-      fill = "Amostragem", 
+      fill = "species", 
       color = "white",
-      palette = c("#00AFBB", "#FC4E07"))
+      palette = c("darkorange", "purple", "cyan4"))
 ```
+]
+
+.pull-right[
+```{r ref.label="pie4", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.6 Gráfico de setores (pie chart)
-
-## ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-# pie
-ggpie(ta_por,
-      "Freq", 
-      label = "porc",
-      lab.pos = "in", 
-            lab.font = c(8, "white"),
-      fill = "Amostragem", 
-      color = "white",
-      palette = c("#00AFBB", "#FC4E07"))
-```
-
----
-
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Mas todos dizem para jogar o gráfico de pizza fora e pedir uma pizza...
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # ... e eu concordo...
 
 ---
 
-class: clear, inverse, center, middle
+class: inverse, center, middle
 
 # Então vamos usar algo mais saudável: vamos retirar o recheio da pizza...
 
@@ -1379,7 +1326,7 @@ background-image: url(img/plot_donut.png)
 background-size: 300px
 background-position: 50% 90%
 
-# 4.4 Gráfico de setores (donut chart)
+# 4.4 Gráfico de setores (*Donut chart*)
 
 ### **Representa os dados de**: uma coluna
 ### **Tipo de dado**: categórico
@@ -1394,45 +1341,30 @@ background-position: 50% 50%
 
 ---
 
-# 4.6 Gráfico de setores (donut chart)
+# 8. Gráfico de setores (*Donut chart*)
 
 ## ggplot2
-```{r, eval=FALSE}
-# donut
-ggplot(ta_por) +
-  aes(x = 2, y = Freq, fill = Amostragem) +
-  geom_bar(stat = "identity", color = "white") +
+.pull-left[
+```{r donut1, eval=FALSE, message=FALSE}
+ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = species)) +
+  geom_bar(stat = "identity") +
+  coord_polar(theta = "y", start = 0) +
+  geom_text(aes(label = paste0(prop, "%")), color = "white",
+            position = position_stack(vjust = .5), size = 5) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
   xlim(0, 2.5) +
-  coord_polar(theta ="y", start = 0) +
-  geom_text(aes(label = porc), color = "white", 
-            position = position_stack(vjust = 0.5), size = 5) +
-  scale_fill_manual(values = c(c("#0073C2FF", "#EFC000FF"))) +
   theme_void() +
   theme(legend.position = c(.5, .5),
         legend.title = element_text(size = 20),
-        legend.text = element_text(size = 15))
+        legend.text = element_text(size = 15)) +
+  labs(fill = "Espécie")
 ```
+]
 
----
-
-# 4.6 Gráfico de setores (donut chart)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-# donut
-ggplot(ta_por) +
-  aes(x = 2, y = Freq, fill = Amostragem) +
-  geom_bar(stat = "identity", color = "white") +
-  xlim(0, 2.5) +
-  coord_polar(theta ="y", start = 0) +
-  geom_text(aes(label = porc), color = "white", 
-            position = position_stack(vjust = 0.5), size = 5) +
-  scale_fill_manual(values = c(c("#0073C2FF", "#EFC000FF"))) +
-  theme_void() +
-  theme(legend.position = c(.5, .5),
-        legend.title = element_text(size = 20),
-        legend.text = element_text(size = 15))
+.pull-right[
+```{r ref.label="donut1", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -1443,43 +1375,26 @@ background-position: 50% 50%
 
 ---
 
-# 4.6 Gráfico de setores (donut chart)
+# 8. Gráfico de setores (*Donut chart*)
 
 ## ggpubr
-```{r, eval=FALSE}
-# pie
-ggdonutchart(ta_por,
-      "Freq", 
-      label = "porc",
-      lab.pos = "in", 
-      lab.font = c(7, "white"),
-      fill = "Amostragem", 
-      color = "white",
-      palette = c("#00AFBB", "#FC4E07"))
+.pull-left[
+```{r donut2, eval=FALSE, message=FALSE}
+ggdonutchart(penguins_prop,
+             "prop", 
+             label = "prop",
+             lab.pos = "in", 
+             lab.font = c(7, "white"),
+             fill = "species", 
+             color = "white",
+             palette = c("darkorange", "purple", "cyan4"))
 ```
+]
 
----
-
-# 4.6 Gráfico de setores (donut chart)
-
-## ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-# pie
-ggdonutchart(ta_por,
-      "Freq", 
-      label = "porc",
-      lab.pos = "in", 
-      lab.font = c(7, "white"),
-      fill = "Amostragem", 
-      color = "white",
-      palette = c("#00AFBB", "#FC4E07"))
+.pull-right[
+```{r ref.label="donut2", echo=FALSE, message=FALSE}
 ```
-
----
-
-class: clear, inverse, center, middle
-
-# Dúvidas?
+]
 
 ---
 
@@ -1487,7 +1402,7 @@ background-image: url(img/plot_barplot.png)
 background-size: 300px
 background-position: 50% 90%
 
-# 4.7 Gráfico de barras (bar plot)
+# 9. Gráfico de barras (*Bar plot*)
 
 ### **Representa os dados de**: duas colunas
 ### **Modo das colunas**: X = categórico e Y = categórico
@@ -1502,47 +1417,39 @@ background-position: 50% 50%
 
 ---
 
-# 4.7 Gráfico de barras (bar plot)
+# 9. Gráfico de barras (*Bar plot*)
 
 ## Tabela de frequência
 ```{r}
-ta <- table(da$record)
-names(ta) <- c("Abundância", "Composição")
-ta
+# numero de individuos coletados
+penguins_count <- penguins %>%
+  dplyr::count(species)
+penguins_count
 ```
 
 ---
 
-# 4.7 Gráfico de barras (bar plot)
+# 9. Gráfico de barras (*Bar plot*)
 
 ## graphics
-
-```{r, eval = FALSE}
-barplot(ta, 
-        col = c("blue", "forest green"),
-        main = "Frequência de tipos de amostragens",
-     xlab = "Tipo de registro",
-     ylab = "Frequência",
-     cex.main = 1.5,
-     cex.lab = 1.3,
-     cex.axis = 1.2)
+.pull-left[
+```{r bar1, eval=FALSE, message=FALSE}
+barplot(n ~ species,
+        data = penguins_count, 
+        col = c("darkorange", "purple", "cyan4"),
+        main = "Número de indivíduos coletados por espécie",
+        xlab = "Espécies",
+        ylab = "Frequência absoluta",
+        cex.main = 1.5,
+        cex.lab = 1.3,
+        cex.axis = 1.2)
 ```
+]
 
----
-
-# 4.7 Gráfico de barras (bar plot)
-
-## graphics
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-barplot(ta, 
-        col = c("blue", "forest green"),
-        main = "Frequência de tipos de amostragens",
-     xlab = "Tipo de registro",
-     ylab = "Frequência",
-     cex.main = 1.5,
-     cex.lab = 1.3,
-     cex.axis = 1.2)
+.pull-right[
+```{r ref.label="bar1", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -1553,53 +1460,54 @@ background-position: 50% 50%
 
 ---
 
-# 4.7 Gráfico de barras (bar plot)
+# 9. Gráfico de barras (*Bar plot*)
 
-### Tabela de frequência
-
-```{r}
-# tabela de frequencia
-ta_por <- ta %>% 
-  as.data.frame
-colnames(ta_por) <- c("record", "freq")
-ta_por
+## ggplot2
+.pull-left[
+```{r bar2, eval=FALSE, message=FALSE}
+ggplot(data = penguins_count, 
+       aes(x = species, y = n, fill = species)) +
+  geom_bar(stat = "identity") +
+  geom_label(aes(label = n), fill = "white") +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  theme(legend.position = "none") +
+  labs(x = "Espécie", 
+       y = "Número de indivíduos", 
+       fill = "Espécie")
 ```
+]
+
+.pull-right[
+```{r ref.label="bar2", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.7 Gráfico de barras (bar plot)
+# 9. Gráfico de barras (*Bar plot*)
 
 ## ggplot2
-```{r, eval = FALSE}
-ggplot(data = ta_por) +
-  aes(x = record, y = freq) +
-  geom_bar(fill = c("blue", "forest green"), stat = "identity") + #<<
-  geom_text(aes(x = record, y = freq, label = freq), size = 8, color = "white", vjust = 2)  + #<<
-  labs(x = "Tipo de registro",
-       y = "Frequência") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-left[
+```{r bar3, eval=FALSE, message=FALSE}
+ggplot(data = penguins_count, 
+       aes(x = species, y = n, fill = species)) +
+  geom_bar(stat = "identity") +
+  geom_label(aes(label = n), fill = "white") +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  coord_flip() +
+  theme_bw(base_size = 16) +
+  theme(legend.position = "none") +
+  labs(x = "Espécie", 
+       y = "Número de indivíduos", 
+       fill = "Espécie")
 ```
+]
 
----
-
-# 4.7 Gráfico de barras (bar plot)
-
-## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = ta_por) +
-  aes(x = record, y = freq) +
-  geom_bar(fill = c("blue", "forest green"), stat = "identity") + #<<
-  geom_text(aes(x = record, y = freq, label = freq), size = 8, color = "white", vjust = 2)  + #<<
-  labs(x = "Tipo de registro",
-       y = "Frequência") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-right[
+```{r ref.label="bar3", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -1610,53 +1518,62 @@ background-position: 50% 50%
 
 ---
 
-# 4.7 Gráfico de barras (bar plot)
+# 9. Gráfico de barras (bar plot)
 
 ### ggpubr
-```{r, eval = FALSE}
-ggbarplot(ta_por,
-          x = "record",
-          y = "freq", 
-          fill = "record", 
-          color = "record",
-          palette = c("#00AFBB", "#FC4E07"),
+.pull-left[
+```{r bar4, eval=FALSE, message=FALSE}
+ggbarplot(penguins_count,
+          x = "species",
+          y = "n", 
+          fill = "species", 
+          color = "species",
+          palette = c("darkorange", "purple", "cyan4"),
           label = TRUE, 
           lab.pos = "in", 
           lab.col = "white",
           lab.size = 8,
-          xlab = "Tipo de registro",
-          ylab = "Frequeência absoluta",
+          main = "Número de indivíduos coletados por espécie",
+          xlab = "Espécies",
+          ylab = "Frequência absoluta",
           legend = "none")
-
 ```
+]
+
+.pull-right[
+```{r ref.label="bar4", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.7 Gráfico de barras (bar plot)
+# 9. Gráfico de barras (bar plot)
 
 ### ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggbarplot(ta_por,
-          x = "record",
-          y = "freq", 
-          fill = "record", 
-          color = "record",
-          palette = c("#00AFBB", "#FC4E07"),
+.pull-left[
+```{r bar5, eval=FALSE, message=FALSE}
+ggbarplot(penguins_count,
+          x = "species",
+          y = "n", 
+          fill = "species", 
+          color = "species",
+          palette = c("darkorange", "purple", "cyan4"),
           label = TRUE, 
-          lab.pos = "in", 
-          lab.col = "white",
+          lab.pos = "out", 
+          lab.col = "black",
           lab.size = 8,
-          xlab = "Tipo de registro",
-          ylab = "Frequeência absoluta",
-          legend = "none")
-
+          main = "Número de indivíduos coletados por espécie",
+          xlab = "Espécies",
+          ylab = "Frequência absoluta",
+          legend = "none",
+          orientation = "horiz")
 ```
+]
 
----
-
-class: clear, inverse, center, middle
-
-# Dúvidas?
+.pull-right[
+```{r ref.label="bar5", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
@@ -1664,7 +1581,7 @@ background-image: url(img/plot_boxplot.png)
 background-size: 300px
 background-position: 50% 90%
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Box plot*)
 
 ### **Representa os dados de**: duas colunas
 ### **Modo das colunas**: X = categórico e Y = contínuo
@@ -1676,15 +1593,14 @@ background-image: url(img/plot_boxplot1.png)
 background-size: 600px
 background-position: 50% 70%
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Box plot*)
 
 ### Intervalo inter-quartil (*interquartile range* - IQR)
 ### Limite inferior e limite superipor (1.5 x IQR)
 ### Valores exteriores (*outliers*)
 
 <br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51
+[Understanding Boxplots](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51)
 
 ---
 
@@ -1692,11 +1608,10 @@ background-image: url(img/plot_boxplot2.png)
 background-size: 500px
 background-position: 50% 35%
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Box plot*)
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51
+[Understanding Boxplots](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51)
 
 ---
 
@@ -1707,39 +1622,28 @@ background-position: 50% 50%
 
 ---
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Box plot*)
 
 ## graphics
-```{r, eval = FALSE}
-boxplot(species_number ~ as.factor(record), #<<
-        data = da,
-        col = "gray",
+.pull-left[
+```{r box1, eval=FALSE, message=FALSE}
+boxplot(flipper_length_mm ~ as.factor(species),
+        data = penguins,
+        col = c("darkorange", "purple", "cyan4"),
         border = "black",
         main = "Espécies por amostragens",
-        xlab = "Tipo de registro",
-        ylab = "Número de Espécies",
+        xlab = "Espécies",
+        ylab = "Comprimento da nadadeira (mm)",
         cex.main = 1.5,
         cex.lab = 1.3,
         cex.axis = 1.2)
 ```
+]
 
----
-
-# 4.8 Gráfico de caixa (box plot)
-
-## graphics
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-boxplot(species_number ~ as.factor(record),
-        data = da,
-        col = "gray",
-        border = "black",
-        main = "Espécies por amostragens",
-        xlab = "Tipo de registro",
-        ylab = "Número de Espécies",
-        cex.main = 1.5,
-        cex.lab = 1.3,
-        cex.axis = 1.2)
+.pull-right[
+```{r ref.label="box1", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -1750,112 +1654,75 @@ background-position: 50% 50%
 
 ---
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Box plot*)
 
 ### ggplott2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = record, y = species_number) +
-  geom_boxplot(fill = c("blue", "forest green"), color = "black") + #<<
-  labs(x = "Tipo de registro",
-       y = "Número de espécies") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-
+.pull-left[
+```{r box2, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot(width = .3, 
+               show.legend = FALSE) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Species", y = "Flipper length (mm)")
 ```
+]
+
+.pull-right[
+```{r ref.label="box2", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Box plot*)
 
 ### ggplott2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = record, y = species_number) +
-  geom_boxplot(fill = c("blue", "forest green"), color = "black") +
-  labs(x = "Tipo de registro",
-          y = "Número de espécies") +
-  theme_classic() + 
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-left[
+```{r box3, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot(width = .3, 
+               show.legend = FALSE) +
+  geom_jitter(alpha = .5, 
+              show.legend = FALSE, 
+              position = position_jitter(width = .1, seed = 0)) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Species", y = "Flipper length (mm)")
 ```
+]
+
+.pull-right[
+```{r ref.label="box3", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Violin plot*)
 
 ### ggplott2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = record, y = species_number) +
-  geom_boxplot(fill = c("blue", "forest green"), color = "black") +
-  geom_jitter(width = .3, alpha = .4) + #<<
-  labs(x = "Tipo de registro",
-          y = "Número de espécies") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-left[
+```{r box4, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_violin(width = .3, 
+              show.legend = FALSE) +
+  geom_jitter(alpha = .5, 
+              show.legend = FALSE, 
+              position = position_jitter(width = .1, seed = 0)) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(title = "Pontos com jitter",, x = "Species", y = "Flipper length (mm)")
 ```
+]
 
----
-
-# 4.8 Gráfico de caixa (box plot)
-
-### ggplott2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = record, y = species_number) +
-  geom_boxplot(fill = c("blue", "forest green"), color = "black") +
-  geom_jitter(width = .3, alpha = .4) + #<<
-  labs(x = "Tipo de registro",
-          y = "Número de espécies") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-right[
+```{r ref.label="box4", echo=FALSE, message=FALSE}
 ```
-
----
-
-# 4.7 Gráfico de violino (violin plot)
-
-### ggplott2
-```{r, eval = FALSE}
-ggplot(data = da) +
-  aes(x = record, y = species_number) +
-  geom_violin(aes(fill = record), color = "black") + #<<
-  scale_fill_manual(values = c("blue", "forest green")) + #<<
-  geom_jitter(width = .3, alpha = .3) +
-  labs(x = "Tipo de registro",
-          y = "Número de espécies") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
-
----
-
-# 4.7 Gráfico de violino (violin plot)
-
-### ggplott2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = record, y = species_number) +
-  geom_violin(aes(fill = record), color = "black") + #<<
-  scale_fill_manual(values = c("blue", "forest green")) + #<<
-  geom_jitter(width = .3, alpha = .3) +
-  labs(x = "Tipo de registro",
-          y = "Número de espécies") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
-```
+]
 
 ---
 
@@ -1866,143 +1733,55 @@ background-position: 50% 50%
 
 ---
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Box plot*)
 
 ### ggpubr
-```{r, eval=FALSE}
-ggboxplot(data = da, 
-          x = "record", 
-          y = "species_number",
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta")
-```
-
----
-
-# 4.8 Gráfico de caixa (box plot)
-
-### ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggboxplot(data = da, 
-          x = "record", 
-          y = "species_number",
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta")
-```
-
----
-
-# 4.8 Gráfico de caixa (box plot)
-
-### ggpubr
-```{r, eval=FALSE}
-ggboxplot(data = da, 
-          x = "record", 
-          y = "species_number",
-          fill = "record",
-          palette = c("#00AFBB", "#FC4E07"),
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta",
-          legend = "none")
-```
-
----
-
-# 4.8 Gráfico de caixa (box plot)
-
-### ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggboxplot(data = da, 
-          x = "record", 
-          y = "species_number",
-          fill = "record",
-          palette = c("#00AFBB", "#FC4E07"),
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta",
-          legend = "none")
-```
-
----
-
-# 4.8 Gráfico de caixa (box plot)
-
-### ggpubr
-```{r, eval=FALSE}
-ggboxplot(data = da, 
-          x = "record", 
-          y = "species_number",
+.pull-left[
+```{r box5, eval=FALSE, message=FALSE}
+ggboxplot(data = penguins, 
+          x = "species", 
+          y = "flipper_length_mm",
           add = "jitter", 
-          shape = "record",
-          fill = "record",
+          shape = "species",
+          fill = "species",
           color = "black",
-          palette = c("#00AFBB", "#FC4E07"),
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta",
+          palette = c("darkorange", "purple", "cyan4"),
+          xlab = "Comprimento da nadadeira (mm)",
+          ylab = "Frequência absoluta",
           legend = "none")
 ```
+]
+
+.pull-right[
+```{r ref.label="box5", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.8 Gráfico de caixa (box plot)
+# 10. Gráfico de caixa (*Violin plot*)
 
 ### ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggboxplot(data = da, 
-          x = "record", 
-          y = "species_number",
-          add = "jitter", 
-          shape = "record",
-          fill = "record",
-          color = "black",
-          palette = c("#00AFBB", "#FC4E07"),
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta",
-          legend = "none")
-```
-
----
-
-# 4.7 Gráfico de violino (violin plot)
-
-### ggpubr
-```{r, eval=FALSE}
-ggviolin(data = da, 
-          x = "record", 
-          y = "species_number",
-          add = "jitter", 
-          shape = "record",
-          fill = "record",
-          color = "black",
-          palette = c("#00AFBB", "#FC4E07"),
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta",
+.pull-left[
+```{r box6, eval=FALSE, message=FALSE}
+ggviolin(data = penguins, 
+         x = "species", 
+         y = "flipper_length_mm",
+         add = "jitter", 
+         shape = "species",
+         fill = "species",
+         color = "black",
+         palette = c("darkorange", "purple", "cyan4"),
+         xlab = "Comprimento da nadadeira (mm)",
+         ylab = "Frequência absoluta",
          legend = "none")
 ```
+]
 
----
-
-# 4.7 Gráfico de violino (violin plot)
-
-### ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggviolin(data = da, 
-          x = "record", 
-          y = "species_number",
-          add = "jitter", 
-          shape = "record",
-          fill = "record",
-          color = "black",
-          palette = c("#00AFBB", "#FC4E07"),
-          xlab = "Número de espécies",
-          ylab = "Frequeência absoluta",
-         legend = "none")
+.pull-right[
+```{r ref.label="box6", echo=FALSE, message=FALSE}
 ```
-
----
-
-class: clear, inverse, center, middle
-
-# Dúvidas?
+]
 
 ---
 
@@ -2010,7 +1789,7 @@ background-image: url(img/plot_scatter.png)
 background-size: 300px
 background-position: 50% 90%
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
 ### **Representa os dados de**: duas colunas
 ### **Modo das colunas**: X = numérico e Y = numérico
@@ -2025,35 +1804,28 @@ background-position: 50% 50%
 
 ---
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
 ## graphics
-```{r, eval = FALSE}
-plot(species_number ~ effort_months,
-     data = da,
+.pull-left[
+```{r sca1, eval=FALSE, message=FALSE}
+par(mar = c(5, 5, 1, 1))
+plot(bill_depth_mm ~ bill_length_mm,
+     data = penguins,
      pch = 20,
-     xlab = "Esforço amostral",
-     ylab = "Número de espécies",
+     cex = 1.5,
+     xlab = "Comprimento do bico (mm)", 
+     ylab = "Profundidade do bico (mm)",
      cex.lab = 1.5,
      cex.axis = 1.3,
      bty = "l")
 ```
+]
 
----
-
-# 4.9 Gráfico de dispersão
-
-## graphics
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-plot(species_number ~ effort_months,
-     data = da,
-     pch = 20,
-     xlab = "Esforço amostral",
-     ylab = "Número de espécies",
-     cex.lab = 1.5,
-     cex.axis = 1.3,
-     bty = "l")
+.pull-right[
+```{r ref.label="sca1", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -2064,37 +1836,121 @@ background-position: 50% 50%
 
 ---
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
 ## ggplot2
-```{r, eval = FALSE, message=FALSE, warning=FALSE}
-ggplot(data = da) +
-  aes(x = effort_months, y = species_number) +
-  geom_point(colour = "black", fill = "forest green", size = 5,  #<<
-             alpha = .5, pch = 21) + #<<
-  labs(x = "Esforço amostral", y = "Número de espécies") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-left[
+```{r sca2, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm,
+           color = species,
+           shape = species)) +
+  geom_point(size = 3, alpha = .8) +
+  scale_shape_manual(values = c(19, 15, 17))+
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Comprimento do bico (mm)", 
+       y = "Profundidade do bico (mm)", 
+       color = "Espécies", shape = "Espécies")
 ```
+]
+
+.pull-right[
+```{r ref.label="sca2", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
 ## ggplot2
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggplot(data = da) +
-  aes(x = effort_months, y = species_number) +
-  geom_point(colour = "black", fill = "forest green", size = 5,  #<<
-             alpha = .5, pch = 21) + #<<
-  labs(x = "Esforço amostral", y = "Número de espécies") +
-  theme_classic() +
-  theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-left[
+```{r sca3, eval=FALSE, message=FALSE}
+ggplot(data = penguins, 
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm,
+           color = species,
+           shape = species)) +
+  geom_point(size = 3, alpha = .8) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_shape_manual(values = c(19, 15, 17))+
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Comprimento do bico (mm)", 
+       y = "Profundidade do bico (mm)", 
+       color = "Espécies", shape = "Espécies")
 ```
+]
+
+.pull-right[
+```{r ref.label="sca3", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+background-image: url(img/gif_data_dino_statistics.gif)
+background-size: 600px
+background-position: 50% 70%
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+### Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing
+
+#### Justin Matejka, George Fitzmaurice
+
+<br><br><br><br><br><br><br><br><br><br><br>
+[Matejka & Fitzmaurice (2017)](https://www.autodeskresearch.com/publications/samestats)
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## dino
+.pull-left[
+```{r sca4, eval=FALSE, message=FALSE}
+# package
+library(datasauRus)
+
+# data + plot
+datasaurus_dozen %>% 
+  dplyr::filter(dataset == "dino") %>% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_point(colour = "black", fill = "black", 
+             size = 5, alpha = .75, pch = 21) +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="sca4", echo=FALSE, message=FALSE}
+```
+]
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## Todos os plots
+.pull-left[
+```{r sca5, eval=FALSE, message=FALSE}
+datasaurus_dozen %>% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_point(colour = "black", fill = "black", 
+             size = 1, alpha = .75, pch = 21) +
+  facet_wrap(~dataset) +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+```{r ref.label="sca5", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
@@ -2105,144 +1961,107 @@ background-position: 50% 50%
 
 ---
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
 ## ggpubr
-```{r, eval = FALSE, message=FALSE, warning=FALSE}
-ggscatter(data = da,
-          x = "effort_months", 
-          y = "species_number",
-          color = "black",
-          fill = "forestgreen",
-          shape = 21, 
+.pull-left[
+```{r sca6, eval=FALSE, message=FALSE}
+ggscatter(data = penguins,
+          x = "flipper_length_mm", 
+          y = "bill_depth_mm",
+          color = "species",
+          fill = "species",
+          palette = c("darkorange", "purple", "cyan4"),
+          shape = "species", 
           size = 5,
-          xlab = "Esforço amostral", 
-          ylab = "Número de espécies")
+          xlab = "Comprimento do bico (mm)", 
+          ylab = "Profundidade do bico (mm)")
 ```
+]
+
+.pull-right[
+```{r ref.label="sca6", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
 ## ggpubr
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-ggscatter(data = da,
-          x = "effort_months", 
-          y = "species_number",
-          color = "black",
-          fill = "forestgreen",
-          shape = 21, 
+.pull-left[
+```{r sca7, eval=FALSE, message=FALSE}
+ggscatter(data = penguins,
+          x = "flipper_length_mm", 
+          y = "bill_depth_mm",
+          color = "species",
+          fill = "species",
+          palette = c("darkorange", "purple", "cyan4"),
+          shape = "species", 
           size = 5,
-          xlab = "Esforço amostral", 
-          ylab = "Número de espécies")
+          xlab = "Comprimento do bico (mm)", 
+          ylab = "Profundidade do bico (mm)",
+          ellipse = TRUE, 
+          mean.point = TRUE)
 ```
+]
 
----
-
-class: clear, inverse, center, middle
-
-# Bônus!
-
----
-
-background-image: url(img/gif_data_dino_statistics.gif)
-background-size: 600px
-background-position: 50% 70%
-
-# 4.9 Gráfico de dispersão
-
-### Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing
-
-#### Justin Matejka, George Fitzmaurice
-
-<br><br><br><br><br><br><br><br><br><br>
-
-[*] https://www.autodeskresearch.com/publications/samestats
-
----
-
-# 4.9 Gráfico de dispersão
-
-## dino
-```{r, eval = FALSE, message=FALSE, warning=FALSE}
-# package
-library(datasauRus)
-
-# data + plot
-datasaurus_dozen %>% 
-    dplyr::filter(dataset == "dino") %>% 
-    ggplot() +
-    aes(x = x, y = y) +
-    geom_point(colour = "black", fill = "black", 
-               size = 5, alpha = .75, pch = 21) +
-    theme_classic() +
-    theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+.pull-right[
+```{r ref.label="sca7", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
-## dino
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", fig.width=9, fig.height=7}
-library(datasauRus)
-
-# data + plot
-datasaurus_dozen %>% 
-    dplyr::filter(dataset == "dino") %>% 
-    ggplot() +
-    aes(x = x, y = y) +
-    geom_point(colour = "black", fill = "black", 
-               size = 5, pch = 21) +
-    theme_classic() +
-    theme(axis.title = element_text(size = 24),
-        axis.text.x = element_text(size = 20),
-        axis.text.y = element_text(size = 20))
+## ggpubr
+.pull-left[
+```{r sca8, eval=FALSE, message=FALSE}
+ggscatter(data = datasaurus_dozen %>% 
+            dplyr::filter(dataset == "dino"),
+          x = "x", 
+          y = "y",
+          size = 5,
+          xlab = "X", 
+          ylab = "Y")
 ```
+]
 
----
-
-# 4.9 Gráfico de dispersão
-
-## All plots
-```{r, eval = FALSE, message=FALSE, warning=FALSE}
-# all plot
-datasaurus_dozen %>% 
-  ggplot() +
-  aes(x = x, y = y) +
-  geom_point(colour = "black", fill = "black", 
-             size = 1, alpha = .75, pch = 21) +
-  facet_wrap(~dataset) +
-  theme_bw()
+.pull-right[
+```{r ref.label="sca8", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
-# 4.9 Gráfico de dispersão
+# 11. Gráfico de dispersão (*scatter plot*)
 
-## All plots
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", fig.width=9, fig.height=7}
-# all plot
-datasaurus_dozen %>% 
-  ggplot() +
-  aes(x = x, y = y) +
-  geom_point(colour = "black", fill = "black", 
-             size = 1, alpha = .75, pch = 21) +
-  facet_wrap(~dataset) +
-  labs(x = "", y = "") +
-  theme_bw()
+## ggpubr
+.pull-left[
+```{r sca9, eval=FALSE, message=FALSE}
+ggscatter(data = datasaurus_dozen,
+          x = "x", 
+          y = "y",
+          size = 1,
+          xlab = "X", 
+          ylab = "Y",
+          facet.by = "dataset")
 ```
+]
 
+.pull-right[
+```{r ref.label="sca9", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-background-image: url(https://www.data-to-viz.com/img/section/Correlogram150.png)
+background-image: url(img/plot_correlogram.png)
 background-size: 300px
 background-position: 50% 90%
 
-# 4.10 Gráfico pareado (pairs plot)
+# 12. Gráfico pareado (*Pairs plot*)
 
 ### **Representa os dados de**: muitas colunas
 ### **Modo das colunas**: X = numérico e Y = numérico
@@ -2257,38 +2076,32 @@ background-position: 50% 50%
 
 ---
 
-# 4.10 Gráfico pareado (pairs plot)
+# 12. Gráfico pareado (*Pairs plot*)
 
 ## Selecionar as colunas
 ```{r}
 # selecionar as colunas
-da_sel <- da %>% 
-  select(temperature, precipitation, altitude)
-da_sel
+
 ```
 
 ---
 
-# 4.10 Gráfico pareado (pairs plot)
+# 12. Gráfico pareado (*Pairs plot*)
 
 ## graphics
-```{r, eval = FALSE}
-# pairs plot
-pairs(da_sel,
-      pch = 20,
-      upper.panel = NULL)
+.pull-left[
+```{r pair1, eval=FALSE, message=FALSE}
+penguins %>%
+  dplyr::select(body_mass_g, ends_with("_mm")) %>%
+  pairs(pch = 20,
+        upper.panel = NULL)
 ```
+]
 
----
-
-# 4.10 Gráfico pareado (pairs plot)
-
-## graphics
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-# pairs plot
-pairs(da_sel,
-      pch = 20)
+.pull-right[
+```{r ref.label="pair1", echo=FALSE, message=FALSE}
 ```
+]
 
 ---
 
@@ -2299,33 +2112,47 @@ background-position: 50% 50%
 
 ---
 
-# 4.10 Gráfico pareado (pairs plot)
+# 12. Gráfico pareado (*Pairs plot*)
 
 ## GGally
-```{r, eval = FALSE, message=FALSE, warning=FALSE}
-# package
-install.packages("GGally")
+.pull-left[
+```{r pair2, eval=FALSE, message=FALSE}
+# pacote
+# install.packages("GGally")
 library(GGally)
 
-# ggpairs
-ggpairs(data = da_sel) +
+penguins %>%
+  dplyr::select(body_mass_g, ends_with("_mm")) %>%
+  ggpairs() +
   theme_bw()
-        
 ```
+]
+
+.pull-right[
+```{r ref.label="pair2", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.10 Gráfico pareado (pairs plot)
+# 12. Gráfico pareado (*Pairs plot*)
 
 ## GGally
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-# package
-library(GGally)
-
-# ggpairs
-ggpairs(data = da_sel) +
+.pull-left[
+```{r pair3, eval=FALSE, message=FALSE}
+penguins %>%
+  dplyr::select(species, sex, body_mass_g, ends_with("_mm")) %>%
+  GGally::ggpairs(aes(color = species)) +
+  scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
   theme_bw()
 ```
+]
+
+.pull-right[
+```{r ref.label="pair3", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
@@ -2336,54 +2163,72 @@ background-position: 50% 50%
 
 ---
 
-# 4.10 Gráfico pareado (pairs plot)
+# 12. Gráfico pareado (*Pairs plot*)
 
 ## psych
-```{r, eval = FALSE, message=FALSE, warning=FALSE}
-# package
-install.packages("psych")
+.pull-left[
+```{r pair4, eval=FALSE, message=FALSE}
+# pacote
+# install.packages("psych")
 library(psych)
 
-# pairs
-pairs.panels(da_sel, 
-             method = "spearman",
-             pch = 20, 
-             ellipses = FALSE, 
-             density = FALSE, 
-             stars = TRUE, 
-             hist.col = "gray",
-             digits = 2,
-             rug = FALSE,
-             breaks = 10,
-             ci = TRUE)
+penguins %>%
+  dplyr::select(body_mass_g, ends_with("_mm")) %>%
+  pairs.panels(pch = 20, 
+               ellipses = FALSE, 
+               density = FALSE, 
+               stars = TRUE, 
+               hist.col = "gray",
+               digits = 2,
+               rug = FALSE,
+               breaks = 10,
+               ci = TRUE)
 ```
+]
+
+.pull-right[
+```{r ref.label="pair4", echo=FALSE, message=FALSE}
+```
+]
 
 ---
 
-# 4.10 Gráfico pareado (pairs plot)
-
-## psych
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", out.width = "60%"}
-# package
-library(psych)
-
-# pairs
-pairs.panels(da_sel, 
-             method = "spearman",
-             pch = 20, 
-             ellipses = FALSE, 
-             density = FALSE, 
-             stars = TRUE, 
-             hist.col = "gray",
-             digits = 2,
-             rug = FALSE,
-             breaks = 10,
-             ci = TRUE)
-```
+# 13. Combinando gráficos
 
 ---
 
-class: clear, inverse, center, middle
+# 14. Gráficos animados
+
+---
+
+# 15. Gráficos usando uma interface
+
+---
+
+class: inverse, center, middle
+
+# Dúvidas?
+
+---
+
+class: inverse, center, middle
+
+# Leitura
+
+---
+
+background-image: url(img/geo_geoprocessing02.png)
+background-size: 800px
+background-position: 50% 40%
+
+# Leitura
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+[Xavier-da-Silva (2009)](http://www.ufrrj.br/lga/tiagomarino/artigos/oqueegeoprocessamento.pdf)
+
+---
+
+class: inverse, center, middle
 
 # Dúvidas?
 

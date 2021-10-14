@@ -1,0 +1,2424 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução ao uso de dados geoespaciais no R    </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maurício H. Vancine   Milton C. Ribeiro" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução ao uso de dados geoespaciais no R <br><br><br>
+## 5 Visualização de dados
+### Maurício H. Vancine <br> Milton C. Ribeiro
+### UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)
+### 25/10/2021
+
+---
+
+
+
+
+class: clear, center, middle
+background-image: url(img/plot_saurus.png)
+background-size: 800px
+background-position: 50% 50%
+
+---
+
+background-image: url(img/package_ggplot2.png)
+background-size: 300px
+background-position: 85% 75%
+
+# 5 Visualização de dados
+
+## Conteúdo
+
+1. Contextualização
+1. Principais pacotes para gráficos 
+1. Grámatica dos gráficos
+1. Principais livros e sites 
+1. Colunas como eixos dos gráficos
+1. Principais tipos de gráficos 
+1. Histograma e Densidade
+1. Gráfico de setores
+1. Gráfico de barras
+1. Gráfico de caixas
+1. Gráfico de dispersão
+1. Gráfico pareado
+1. Gráficos animados
+1. Combinando gráficos
+1. Gráficos usando uma interface
+
+[ggplot2](https://ggplot2.tidyverse.org/)
+
+---
+
+# 5 Visualização de dados
+
+## Script
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## .center[`05_script_geospatial_data_r.R`]
+
+---
+
+# 1. Contextualização
+
+## Descrição
+
+### Melhor forma de **apresentar, sintetizar, discutir e interpretar** seus dados
+
+--
+
+### Necessário em quase todas as **análises estatísticas** 
+
+--
+
+### Necessário em quase todas as **publicações**, trabalhos de consultoria, TCC, dissertação, tese, etc. 
+
+--
+
+### Existem vários **tipos de gráficos** para representar os padrões em seus dados para **diferentes tipos de finalidades**
+
+--
+
+### De forma simplificada, os gráficos são **representações** dos nossos dados tabulares
+
+---
+
+# 2. Principais pacotes para gráficos
+
+## Atualmente, há vários pacotes para gerar gráficos no R
+
+### Principais
+
+--
+
+#### **graphics**: simples, porém útil para visualizações rápidas de quase todos os formatos de arquivos
+
+--
+
+#### **ggplot2**: pacote integrado ao tidyverse, possui uma sintaxe própria baseada na grática de gráficos por camadas (layers)
+
+--
+
+#### **ggplot2 extentions**: conjunto de pacotes que adicionam diversas expansões ao pacote ggplot2. Exemplos: gganimate, GGally e esquisse
+
+--
+
+#### **visdat**: Crie visualizações preliminares de dados exploratórios de um conjunto de dados inteiro para identificar problemas ou recursos inesperados usando ‘ggplot2’
+
+--
+
+#### **ggpubr**: fornece algumas funções simplificadas para criar gráficos para publicação, baseados no "ggplot2" `gg*()`
+
+--
+
+#### **pacthwork**: pacote que permite combinar vários gráficos em um só de forma extremamente simples e com alta qualidade
+
+--
+
+#### **plotly**: pacote para criar gráficos interativos da web por meio da biblioteca gráfica de JavaScript de código aberto plotly.js
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+background-image: url(img/package_graphics.png)
+background-size: 250px
+background-position: 85% 85%
+
+# 2. Principais pacotes para gráficos
+
+## **graphics**
+
+### Default do R e mais simples
+
+--
+
+### Pode ser utilizado para objetos de **diversas classes**
+
+--
+
+### Possui funções como:
+
+`plot()`&lt;br&gt;
+`hist()`&lt;br&gt;
+`barplot()`&lt;br&gt;
+`boxplot()`&lt;br&gt;
+`abline()`&lt;br&gt;
+`points()`&lt;br&gt;
+`lines()`&lt;br&gt;
+`polygon()`&lt;br&gt;
+
+---
+
+# 2. Principais pacotes para gráficos
+
+## **graphics**
+
+
+```r
+# graphics
+plot(flipper_length_mm ~ body_mass_g, data = penguins)
+```
+
+&lt;img src="05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-1-1.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+background-image: url(img/cheatsheet_ggplot2.png)
+background-size: 600px
+background-position: 50% 50%
+
+# 2. Principais pacotes para gráficos
+
+## Data Visualization Cheatsheet
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[Data Visualization with ggplot2 Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+
+---
+
+background-image: url(img/package_ggplot2.png)
+background-size: 250px
+background-position: 85% 85%
+
+# 2. Principais pacotes para gráficos
+
+## **ggplot2**
+
+### Integrado ao tidyverse, possui uma sintaxe própria
+
+--
+
+### Necessita de funções específicas para objetos de **classes diferentes**
+
+--
+
+### Estruturado dessa forma:
+
+`ggplot() +`&lt;br&gt;
+`aes() +`&lt;br&gt;
+`geom_() +`&lt;br&gt;
+`facet_() +`&lt;br&gt;
+`stats_() +`&lt;br&gt;
+`coord_() +`&lt;br&gt;
+`theme_()`&lt;br&gt;
+
+---
+
+# 2. Principais pacotes para gráficos
+
+## **ggplot2**
+
+
+```r
+# ggplot2
+library(ggplot2)
+ggplot(data = penguins) + aes(x = body_mass_g, y = flipper_length_mm) + geom_point()
+```
+
+&lt;img src="05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-2-1.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 300px
+background-position: 50% 50%
+
+---
+
+background-image: url(img/package_ggpubr.png)
+background-size: 250px
+background-position: 85% 85%
+
+# 2. Principais pacotes para gráficos
+
+## **ggpubr**
+
+### Funções fáceis de usar para criar e personalizar plots para publicação baseadas no "ggplot2"
+
+--
+
+### Necessita de funções específicas para gerar **gráficos específicos**
+
+--
+
+### Funções:
+
+`gghistogram()`&lt;br&gt;
+`ggdensity()`&lt;br&gt;
+`ggboxplot()`&lt;br&gt;
+`ggviolin()`&lt;br&gt;
+`ggbarplot()`&lt;br&gt;
+`ggscatter()`&lt;br&gt;
+
+---
+
+# 2. Principais pacotes para gráficos
+
+## **ggpubr**
+
+
+```r
+library(ggpubr)
+ggscatter(penguins, x = "body_mass_g", y = "flipper_length_mm")
+```
+
+&lt;img src="05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-3-1.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url(img/plot_ggplot2.png), url(img/ggplot2_gramatica.png)
+background-size: 500px, 600px
+background-position: 5% 70%, 90% 70%
+
+# 3. Grámatica dos gráficos
+
+## Descrição
+
+#### Wilkinson (2005) *Grammar of Graphics*: representação gráfica dos dados a partir de atributos estéticos (do inglês *aesthetic*)
+
+#### Wickham (2008) criou o pacote **ggplot2**, onde “gg” representa a contração de Grammar of Graphics
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Wilkinson (2005)](https://www.springer.com/gp/book/9780387245447), [Wickham (2008)](https://ggplot2-book.org/)
+
+---
+
+background-image: url(img/person_hadley_wickham.jpg)
+background-size: 500px
+background-position: 50% 70%
+
+# 4. Principais livros e sites
+
+## Livros
+
+### O idealizador e mantenedor do pacote **ggplot2** foi de novo o **Hadley Wickham**
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Hadley Wickham](http://hadley.nz/)
+
+---
+
+background-image: url(img/cover_ggplot2.jpg)
+background-size: 230px
+background-position: 50% 63%
+
+# 4. Principais livros e sites
+
+## Livros
+
+### ggplot2 (2009, 2016)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Wickham (2009, 2016)](https://ggplot2.tidyverse.org/)
+
+---
+
+background-image: url(img/cover_r_graphics_cookbook.jpg)
+background-size: 250px
+background-position: 50% 63%
+
+# 4. Principais livros e sites
+
+## Livros
+
+### R Graphics Cookbook (2018)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Chang (2018)](http://www.cookbook-r.com/Graphs/)
+
+---
+
+background-image: url(img/cover_data_science_r.png)
+background-size: 250px
+background-position: 50% 70%
+
+# 4. Principais livros e sites
+
+## Livros
+
+### R for Data Science (2017)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Wickham &amp; Grolemund (2017)](https://r4ds.had.co.nz/)
+
+---
+
+background-image: url(img/cover_data_visualization_with_r.png)
+background-size: 230px
+background-position: 50% 65%
+
+# 4. Principais livros e sites
+
+## Livros
+
+### Data Visualization with R (2018)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Kabacoff (2018)](https://rkabacoff.github.io/datavis/)
+
+---
+
+background-image: url(img/cover_fundamentals_of_data_visualization.png)
+background-size: 260px
+background-position: 50% 63%
+
+# 4. Principais livros e sites
+
+## Livros
+
+### Fundamentals of Data Visualization (2019)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Wilke (2019)](https://serialmentor.com/dataviz/)
+
+---
+
+background-image: url(img/package_ggplot2.png)
+background-size: 300px
+background-position: 50% 60%
+
+# 4. Principais livros e sites
+
+## Sites
+
+### ggplot2: Reference
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
+
+---
+
+background-image: url(img/plot_r_graph_gallery.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 4. Principais livros e sites
+
+## Sites
+
+### R Graph Gallery
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[R Graph Gallery](https://www.r-graph-gallery.com/)
+
+---
+
+background-image: url(img/plot_tree_s.png)
+background-size: 400px
+background-position: 50% 60%
+
+# 4. Principais livros e sites
+
+## Sites
+
+### from Data to Viz
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[from Data to Viz](https://www.data-to-viz.com/)
+
+---
+
+background-image: url(img/plot_sthda.png)
+background-size: 300px
+background-position: 50% 70%
+
+# 4. Principais livros e sites
+
+## Sites
+
+### Statistical tools for high-throughput data analysis (STHDA)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[STHDA](http://www.sthda.com/english/)
+
+---
+
+class: inverse, center, middle
+
+# Dúvidas?
+
+---
+
+class: inverse, center, middle
+
+# Os elementos de um gráfico são representações das colunas (eixos) e linhas (elementos) de nossas matrizes de dados
+
+---
+
+background-image: url(img/plot_data_table_scatterplot.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 5. Colunas como eixos dos gráficos
+
+## Colunas se tornam eixos e valores a representação
+
+---
+
+background-image: url(img/plot_variables.png)
+background-size: 800px
+background-position: 50% 50%
+
+# 5. Colunas como eixos dos gráficos
+
+## Tipos de variáveis
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Matthiopoulos (2011)](http://greenmaths.st-andrews.ac.uk/)
+
+---
+
+background-image: url(img/nominal_ordinal_binary.png), url(img/continuous_discrete.png), url(img/plot_variables.png)
+background-size: 420px, 335px, 400px
+background-position: 23% 78%, 69% 78%, 50% 15%
+
+# 5. Colunas como eixos dos gráficos
+
+## Tipos de variáveis
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Matthiopoulos (2011)](http://greenmaths.st-andrews.ac.uk/), [@allison_horst](https://twitter.com/allison_horst)
+
+---
+
+class: inverse, center, middle
+
+# O **tipo e quantidade das variáveis** irá indicar o melhor tipo de gráfico para **representar** os dados
+
+---
+
+background-image: url(img/ggplot_data_from_viz.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 6. Principais tipos de gráficos
+
+## from Data to Viz
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[from Data to Viz](https://www.data-to-viz.com/)
+
+---
+
+class: inverse, center, middle
+
+# Dúvidas?
+
+---
+
+class: inverse, center, middle
+
+# E que dados vamos usar?
+
+---
+
+class: clear
+background-image: url(img/package_palmerpenguins.png)
+background-size: 400px
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+
+---
+
+background-image: url(img/culmen_depth.png), url(img/lter_penguins.png)
+background-size: 400px, 400px
+background-position: 20% 85%, 80% 85%
+
+# palmerpenguins
+
+## Dados de medidas de pinguins chamados `palmerpenguins`
+
+
+```r
+# carregar
+library(palmerpenguins)
+
+# visualizar os dados
+penguins
+```
+
+```
+## # A tibble: 344 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+```
+
+```r
+# glimpse
+tibble::glimpse(penguins)
+```
+
+```
+## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[palmerpenguins ](https://allisonhorst.github.io/palmerpenguins/)
+
+---
+
+background-image: url(img/plot_histogram.png), url(img/plot_density.png)
+background-size: 300px, 300px
+background-position: 30% 80%, 70% 80%
+
+# 7. Histograma (*Histogram*)
+
+### **Representa os dados de**: uma coluna
+### **Tipo de dado**: discreto ou contínuo
+### Distribuição de frequência e densidade de dados discretos ou contínuos
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## graphics
+.pull-left[
+
+```r
+hist(penguins$flipper_length_mm)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## graphics
+.pull-left[
+
+```r
+hist(penguins$flipper_length_mm,
+     col = "gray50",
+     border = "gray")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## graphics
+.pull-left[
+
+```r
+hist(penguins$flipper_length_mm,
+     col = "gray50",
+     border = "gray",
+     main = "Comprimento da nadadeira dos penguins")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## graphics
+.pull-left[
+
+```r
+hist(penguins$flipper_length_mm,
+     col = "gray50",
+     border = "gray",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## graphics
+.pull-left[
+
+```r
+hist(penguins$flipper_length_mm,
+     col = "gray50",
+     border = "gray",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)",
+     br = 50)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## graphics
+.pull-left[
+
+```r
+par(mar = c(5, 5, 5, 5))
+hist(penguins$flipper_length_mm,
+     col = "gray50",
+     border = "gray",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)",
+     br = 50,
+     cex.main = 2,
+     cex.lab = 2, 
+     cex.axis = 2)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## graphics
+.pull-left[
+
+```r
+par(mar = c(5, 5, 5, 5))
+hist(penguins$flipper_length_mm,
+     col = "gray50",
+     border = "gray",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Densidade",
+     br = 50,
+     cex.main = 2,
+     cex.lab = 2, 
+     cex.axis = 2,
+     prob = TRUE)
+lines(density(na.omit(penguins$flipper_length_mm)))
+```
+]
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## graphics
+.pull-left[
+
+```r
+par(mar = c(5, 5, 5, 5))
+plot(density(na.omit(penguins$flipper_length_mm)),
+     col = "gray50",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Densidade",
+     cex.main = 2,
+     cex.lab = 2, 
+     cex.axis = 2)
+polygon(density(na.omit(penguins$flipper_length_mm)), 
+        col = "gray50")
+```
+]
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+]
+
+
+---
+
+# 7. Densidade (*Density*)
+
+## graphics
+
+### Exportar
+
+```r
+# diretorio
+setwd("/home/mude/data/github/course-geospatial-data-r/03_dados")
+```
+
+--
+
+
+```r
+png("plot_densidade.png", wi = 15, he = 15, un = "cm", res = 300)
+```
+
+--
+
+
+```r
+par(mar = c(5, 5, 5, 5))
+plot(density(na.omit(penguins$flipper_length_mm)),
+     col = "gray50",
+     main = "Comprimento da nadadeira dos penguins",
+     xlab = "Comprimento da nadadeira (mm)",
+     ylab = "Frequência (%)",
+     cex.main = 2,  cex.lab = 2, cex.axis = 2)
+polygon(density(na.omit(penguins$flipper_length_mm)), col = "gray50")
+```
+
+--
+
+
+```r
+dev.off()
+```
+
+```
+## png 
+##   3
+```
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, aes(x = flipper_length_mm))
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram()
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins,  aes(x = flipper_length_mm)) +
+  geom_histogram(color = "black", fill = "cyan4", bins = 10)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(color = "black", fill = "cyan4", 
+                 bins = 10, alpha = .5) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(bins = 10, alpha = .5) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(bins = 10, alpha = .5, position = "dodge") +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram(alpha = .5, position = "identity") +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram() +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  facet_wrap(~ species, ncol = 2, scale = "free_y") +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_histogram() +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  facet_grid(species ~ .) +
+  labs(title = "Comprimento da nadadeira dos penguins",
+       fill = "Espécies",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Frequência (%)") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins) +
+  aes(x = flipper_length_mm) +
+  geom_density(color = "black", fill = "cyan4", alpha = .5) + 
+  labs(title = "Comprimento da nadadeira dos penguins",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins) +
+  aes(x = flipper_length_mm) +
+  geom_density(color = "black", fill = "cyan4", alpha = .5) + 
+  labs(title = "Comprimento da nadadeira dos penguins",
+       x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, fill = species)) +
+  geom_density(alpha = .5) +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade", 
+       fill = "Espécie") +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggplot2
+
+### Exportar
+
+```r
+ggplot_densidade &lt;- ggplot(data = penguins, 
+                           aes(x = flipper_length_mm, fill = species)) +
+  geom_density(alpha = .5) +
+  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  labs(x = "Comprimento da nadadeira (mm)", 
+       y = "Densidade", 
+       fill = "Espécie") +
+  theme_bw(base_size = 16)
+
+ggsave(filename = "histogram_ggplot2.png", plot = ggplot_densidade, wi = 20, he = 15, un = "cm", dpi = 300)
+```
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 7. Histograma (*Histogram*)
+
+## ggpubr
+.pull-left[
+
+```r
+gghistogram(data = penguins, 
+            x = "flipper_length_mm",
+            add = "median",
+            fill = "cyan4",
+            rug = TRUE,
+            add_density = TRUE,
+            xlab = "Comprimento da nadadeira (mm)",
+            ylab = "Frequência (%)")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-31-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggpubr
+.pull-left[
+
+```r
+ggdensity(data = penguins, 
+          x = "flipper_length_mm",
+          add = "median",
+          fill = "cyan4",
+          rug = TRUE,
+          add_density = TRUE,
+          xlab = "Comprimento da nadadeira (mm)",
+          ylab = "Densidade")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+]
+
+
+---
+
+# 7. Densidade (*Density*)
+
+## ggpubr
+
+### Exportar
+
+```r
+ggpubr_densidade &lt;- ggdensity(data = penguins, 
+                              x = "flipper_length_mm",
+                              add = "median",
+                              fill = "cyan4",
+                              rug = TRUE,
+                              add_density = TRUE,
+                              xlab = "Comprimento da nadadeira (mm)",
+                              ylab = "Densidade")
+
+ggsave(filename = "densidade_ggpubr.png", plot = ggpubr_densidade, wi = 20, he = 15, un = "cm", dpi = 300)
+```
+
+---
+
+background-image: url(img/plot_pie.png)
+background-size: 300px
+background-position: 50% 90%
+
+# 8. Gráfico de setores (*Pie chart*)
+
+### **Representa os dados de**: uma coluna
+### **Tipo de dado**: categórico
+### Proporção ou porcentagem de dados categóricos
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 8. Gráfico de setores (*Pie chart*)
+
+### Clássico
+.pull-left[
+
+```r
+par(mar = c(0, 1, 0, 1))
+pie(c(280, 60, 20),
+    c("Sky", "Sunny side of pyramid", "Shady side of pyramid"),
+    col = c("#0292D8", "#F7EA39", "#C4B632"),
+    init.angle = -50, border = NA)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 8. Gráfico de setores (*Pie chart*)
+
+### Tabela de frequência
+
+
+```r
+# calculo da proporcao
+penguins_prop &lt;- penguins %&gt;%
+  dplyr::count(species) %&gt;% 
+  dplyr::mutate(prop = round(n/sum(n), 4)*100)
+penguins_prop
+```
+
+```
+## # A tibble: 3 × 3
+##   species       n  prop
+##   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;
+## 1 Adelie      152  44.2
+## 2 Chinstrap    68  19.8
+## 3 Gentoo      124  36.0
+```
+
+---
+
+# 8. Gráfico de setores (*Pie chart*)
+
+## graphics
+.pull-left[
+
+```r
+pie(penguins_prop$prop,
+    labels = paste(penguins_prop$prop, "%"), 
+    main = "Espécies",
+    col = c("darkorange", "darkorchid", "cyan4"))
+legend("topright", legend = penguins_prop$species, 
+       fill = c("darkorange", "darkorchid", "cyan4"))
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 8. Gráfico de setores (*Pie chart*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins_prop, aes(x = "", y = prop, fill = species)) + 
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = paste0(prop, "%")), color = "white", 
+            position = position_stack(vjust = .5), size = 8) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_void() +
+  labs(fill = "Espécie")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-37-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 8. Gráfico de setores (*Pie chart*)
+
+## ggpubr
+.pull-left[
+
+```r
+ggpie(penguins_prop,
+      "prop", 
+      label = "prop",
+      lab.pos = "in", 
+      lab.font = c(8, "white"),
+      fill = "species", 
+      color = "white",
+      palette = c("darkorange", "purple", "cyan4"))
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: inverse, center, middle
+
+# Mas todos dizem para jogar o gráfico de pizza fora e pedir uma pizza...
+
+---
+
+class: inverse, center, middle
+
+# ... e eu concordo...
+
+---
+
+class: inverse, center, middle
+
+# Então vamos usar algo mais saudável: vamos retirar o recheio da pizza...
+
+---
+
+background-image: url(img/plot_donut.png)
+background-size: 300px
+background-position: 50% 90%
+
+# 4.4 Gráfico de setores (*Donut chart*)
+
+### **Representa os dados de**: uma coluna
+### **Tipo de dado**: categórico
+### Proporção ou porcentagem de dados categóricos
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 8. Gráfico de setores (*Donut chart*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = species)) +
+  geom_bar(stat = "identity") +
+  coord_polar(theta = "y", start = 0) +
+  geom_text(aes(label = paste0(prop, "%")), color = "white",
+            position = position_stack(vjust = .5), size = 5) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  xlim(0, 2.5) +
+  theme_void() +
+  theme(legend.position = c(.5, .5),
+        legend.title = element_text(size = 20),
+        legend.text = element_text(size = 15)) +
+  labs(fill = "Espécie")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 8. Gráfico de setores (*Donut chart*)
+
+## ggpubr
+.pull-left[
+
+```r
+ggdonutchart(penguins_prop,
+             "prop", 
+             label = "prop",
+             lab.pos = "in", 
+             lab.font = c(7, "white"),
+             fill = "species", 
+             color = "white",
+             palette = c("darkorange", "purple", "cyan4"))
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
+]
+
+---
+
+background-image: url(img/plot_barplot.png)
+background-size: 300px
+background-position: 50% 90%
+
+# 9. Gráfico de barras (*Bar plot*)
+
+### **Representa os dados de**: duas colunas
+### **Modo das colunas**: X = categórico e Y = categórico
+### Resume dados de contagens para uma coluna com diversos tipos de dados
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 9. Gráfico de barras (*Bar plot*)
+
+## Tabela de frequência
+
+```r
+# numero de individuos coletados
+penguins_count &lt;- penguins %&gt;%
+  dplyr::count(species)
+penguins_count
+```
+
+```
+## # A tibble: 3 × 2
+##   species       n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Adelie      152
+## 2 Chinstrap    68
+## 3 Gentoo      124
+```
+
+---
+
+# 9. Gráfico de barras (*Bar plot*)
+
+## graphics
+.pull-left[
+
+```r
+barplot(n ~ species,
+        data = penguins_count, 
+        col = c("darkorange", "purple", "cyan4"),
+        main = "Número de indivíduos coletados por espécie",
+        xlab = "Espécies",
+        ylab = "Frequência absoluta",
+        cex.main = 1.5,
+        cex.lab = 1.3,
+        cex.axis = 1.2)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-42-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 9. Gráfico de barras (*Bar plot*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins_count, 
+       aes(x = species, y = n, fill = species)) +
+  geom_bar(stat = "identity") +
+  geom_label(aes(label = n), fill = "white") +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  theme(legend.position = "none") +
+  labs(x = "Espécie", 
+       y = "Número de indivíduos", 
+       fill = "Espécie")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-43-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 9. Gráfico de barras (*Bar plot*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins_count, 
+       aes(x = species, y = n, fill = species)) +
+  geom_bar(stat = "identity") +
+  geom_label(aes(label = n), fill = "white") +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  coord_flip() +
+  theme_bw(base_size = 16) +
+  theme(legend.position = "none") +
+  labs(x = "Espécie", 
+       y = "Número de indivíduos", 
+       fill = "Espécie")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-44-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 9. Gráfico de barras (bar plot)
+
+### ggpubr
+.pull-left[
+
+```r
+ggbarplot(penguins_count,
+          x = "species",
+          y = "n", 
+          fill = "species", 
+          color = "species",
+          palette = c("darkorange", "purple", "cyan4"),
+          label = TRUE, 
+          lab.pos = "in", 
+          lab.col = "white",
+          lab.size = 8,
+          main = "Número de indivíduos coletados por espécie",
+          xlab = "Espécies",
+          ylab = "Frequência absoluta",
+          legend = "none")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-45-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 9. Gráfico de barras (bar plot)
+
+### ggpubr
+.pull-left[
+
+```r
+ggbarplot(penguins_count,
+          x = "species",
+          y = "n", 
+          fill = "species", 
+          color = "species",
+          palette = c("darkorange", "purple", "cyan4"),
+          label = TRUE, 
+          lab.pos = "out", 
+          lab.col = "black",
+          lab.size = 8,
+          main = "Número de indivíduos coletados por espécie",
+          xlab = "Espécies",
+          ylab = "Frequência absoluta",
+          legend = "none",
+          orientation = "horiz")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
+]
+
+---
+
+background-image: url(img/plot_boxplot.png)
+background-size: 300px
+background-position: 50% 90%
+
+# 10. Gráfico de caixa (*Box plot*)
+
+### **Representa os dados de**: duas colunas
+### **Modo das colunas**: X = categórico e Y = contínuo
+### Resume informações de medidas contínuas para dois ou mais fatores categóricos
+
+---
+
+background-image: url(img/plot_boxplot1.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 10. Gráfico de caixa (*Box plot*)
+
+### Intervalo inter-quartil (*interquartile range* - IQR)
+### Limite inferior e limite superipor (1.5 x IQR)
+### Valores exteriores (*outliers*)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Understanding Boxplots](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51)
+
+---
+
+background-image: url(img/plot_boxplot2.png)
+background-size: 500px
+background-position: 50% 35%
+
+# 10. Gráfico de caixa (*Box plot*)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Understanding Boxplots](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51)
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 10. Gráfico de caixa (*Box plot*)
+
+## graphics
+.pull-left[
+
+```r
+boxplot(flipper_length_mm ~ as.factor(species),
+        data = penguins,
+        col = c("darkorange", "purple", "cyan4"),
+        border = "black",
+        main = "Espécies por amostragens",
+        xlab = "Espécies",
+        ylab = "Comprimento da nadadeira (mm)",
+        cex.main = 1.5,
+        cex.lab = 1.3,
+        cex.axis = 1.2)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-47-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 10. Gráfico de caixa (*Box plot*)
+
+### ggplott2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot(width = .3, 
+               show.legend = FALSE) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Species", y = "Flipper length (mm)")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-48-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 10. Gráfico de caixa (*Box plot*)
+
+### ggplott2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_boxplot(width = .3, 
+               show.legend = FALSE) +
+  geom_jitter(alpha = .5, 
+              show.legend = FALSE, 
+              position = position_jitter(width = .1, seed = 0)) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Species", y = "Flipper length (mm)")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-49-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 10. Gráfico de caixa (*Violin plot*)
+
+### ggplott2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = species, y = flipper_length_mm, fill = species)) +
+  geom_violin(width = .3, 
+              show.legend = FALSE) +
+  geom_jitter(alpha = .5, 
+              show.legend = FALSE, 
+              position = position_jitter(width = .1, seed = 0)) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(title = "Pontos com jitter",, x = "Species", y = "Flipper length (mm)")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-50-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 10. Gráfico de caixa (*Box plot*)
+
+### ggpubr
+.pull-left[
+
+```r
+ggboxplot(data = penguins, 
+          x = "species", 
+          y = "flipper_length_mm",
+          add = "jitter", 
+          shape = "species",
+          fill = "species",
+          color = "black",
+          palette = c("darkorange", "purple", "cyan4"),
+          xlab = "Comprimento da nadadeira (mm)",
+          ylab = "Frequência absoluta",
+          legend = "none")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-51-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 10. Gráfico de caixa (*Violin plot*)
+
+### ggpubr
+.pull-left[
+
+```r
+ggviolin(data = penguins, 
+         x = "species", 
+         y = "flipper_length_mm",
+         add = "jitter", 
+         shape = "species",
+         fill = "species",
+         color = "black",
+         palette = c("darkorange", "purple", "cyan4"),
+         xlab = "Comprimento da nadadeira (mm)",
+         ylab = "Frequência absoluta",
+         legend = "none")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-52-1.png)&lt;!-- --&gt;
+]
+
+---
+
+background-image: url(img/plot_scatter.png)
+background-size: 300px
+background-position: 50% 90%
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+### **Representa os dados de**: duas colunas
+### **Modo das colunas**: X = numérico e Y = numérico
+### Plota a relação entre duas variáveis contínuas
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## graphics
+.pull-left[
+
+```r
+par(mar = c(5, 5, 1, 1))
+plot(bill_depth_mm ~ bill_length_mm,
+     data = penguins,
+     pch = 20,
+     cex = 1.5,
+     xlab = "Comprimento do bico (mm)", 
+     ylab = "Profundidade do bico (mm)",
+     cex.lab = 1.5,
+     cex.axis = 1.3,
+     bty = "l")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-53-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm,
+           color = species,
+           shape = species)) +
+  geom_point(size = 3, alpha = .8) +
+  scale_shape_manual(values = c(19, 15, 17))+
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Comprimento do bico (mm)", 
+       y = "Profundidade do bico (mm)", 
+       color = "Espécies", shape = "Espécies")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-54-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## ggplot2
+.pull-left[
+
+```r
+ggplot(data = penguins, 
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm,
+           color = species,
+           shape = species)) +
+  geom_point(size = 3, alpha = .8) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_shape_manual(values = c(19, 15, 17))+
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw(base_size = 16) +
+  labs(x = "Comprimento do bico (mm)", 
+       y = "Profundidade do bico (mm)", 
+       color = "Espécies", shape = "Espécies")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-55-1.png)&lt;!-- --&gt;
+]
+
+---
+
+background-image: url(img/gif_data_dino_statistics.gif)
+background-size: 600px
+background-position: 50% 70%
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+### Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing
+
+#### Justin Matejka, George Fitzmaurice
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Matejka &amp; Fitzmaurice (2017)](https://www.autodeskresearch.com/publications/samestats)
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## dino
+.pull-left[
+
+```r
+# package
+library(datasauRus)
+
+# data + plot
+datasaurus_dozen %&gt;% 
+  dplyr::filter(dataset == "dino") %&gt;% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_point(colour = "black", fill = "black", 
+             size = 5, alpha = .75, pch = 21) +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-56-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## Todos os plots
+.pull-left[
+
+```r
+datasaurus_dozen %&gt;% 
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_point(colour = "black", fill = "black", 
+             size = 1, alpha = .75, pch = 21) +
+  facet_wrap(~dataset) +
+  theme_bw(base_size = 16)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-57-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## ggpubr
+.pull-left[
+
+```r
+ggscatter(data = penguins,
+          x = "flipper_length_mm", 
+          y = "bill_depth_mm",
+          color = "species",
+          fill = "species",
+          palette = c("darkorange", "purple", "cyan4"),
+          shape = "species", 
+          size = 5,
+          xlab = "Comprimento do bico (mm)", 
+          ylab = "Profundidade do bico (mm)")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-58-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## ggpubr
+.pull-left[
+
+```r
+ggscatter(data = penguins,
+          x = "flipper_length_mm", 
+          y = "bill_depth_mm",
+          color = "species",
+          fill = "species",
+          palette = c("darkorange", "purple", "cyan4"),
+          shape = "species", 
+          size = 5,
+          xlab = "Comprimento do bico (mm)", 
+          ylab = "Profundidade do bico (mm)",
+          ellipse = TRUE, 
+          mean.point = TRUE)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-59-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## ggpubr
+.pull-left[
+
+```r
+ggscatter(data = datasaurus_dozen %&gt;% 
+            dplyr::filter(dataset == "dino"),
+          x = "x", 
+          y = "y",
+          size = 5,
+          xlab = "X", 
+          ylab = "Y")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-60-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 11. Gráfico de dispersão (*scatter plot*)
+
+## ggpubr
+.pull-left[
+
+```r
+ggscatter(data = datasaurus_dozen,
+          x = "x", 
+          y = "y",
+          size = 1,
+          xlab = "X", 
+          ylab = "Y",
+          facet.by = "dataset")
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-61-1.png)&lt;!-- --&gt;
+]
+
+---
+
+background-image: url(img/plot_correlogram.png)
+background-size: 300px
+background-position: 50% 90%
+
+# 12. Gráfico pareado (*Pairs plot*)
+
+### **Representa os dados de**: muitas colunas
+### **Modo das colunas**: X = numérico e Y = numérico
+### Plota a relação entre duas variáveis contínuas, mas para várias colunas
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_graphics.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 12. Gráfico pareado (*Pairs plot*)
+
+## Selecionar as colunas
+
+```r
+# selecionar as colunas
+```
+
+---
+
+# 12. Gráfico pareado (*Pairs plot*)
+
+## graphics
+.pull-left[
+
+```r
+penguins %&gt;%
+  dplyr::select(body_mass_g, ends_with("_mm")) %&gt;%
+  pairs(pch = 20,
+        upper.panel = NULL)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-63-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggplot2.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 12. Gráfico pareado (*Pairs plot*)
+
+## GGally
+.pull-left[
+
+```r
+# pacote
+# install.packages("GGally")
+library(GGally)
+
+penguins %&gt;%
+  dplyr::select(body_mass_g, ends_with("_mm")) %&gt;%
+  ggpairs() +
+  theme_bw()
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-64-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# 12. Gráfico pareado (*Pairs plot*)
+
+## GGally
+.pull-left[
+
+```r
+penguins %&gt;%
+  dplyr::select(species, sex, body_mass_g, ends_with("_mm")) %&gt;%
+  GGally::ggpairs(aes(color = species)) +
+  scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+  theme_bw()
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-65-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: clear, center, middle
+background-image: url(img/package_ggpubr.png)
+background-size: 400px
+background-position: 50% 50%
+
+---
+
+# 12. Gráfico pareado (*Pairs plot*)
+
+## psych
+.pull-left[
+
+```r
+# pacote
+# install.packages("psych")
+library(psych)
+
+penguins %&gt;%
+  dplyr::select(body_mass_g, ends_with("_mm")) %&gt;%
+  pairs.panels(pch = 20, 
+               ellipses = FALSE, 
+               density = FALSE, 
+               stars = TRUE, 
+               hist.col = "gray",
+               digits = 2,
+               rug = FALSE,
+               breaks = 10,
+               ci = TRUE)
+```
+]
+
+.pull-right[
+![](05_pres_geospatial_data_r_files/figure-html/unnamed-chunk-66-1.png)&lt;!-- --&gt;
+]
+
+---
+
+class: inverse, center, middle
+
+# Dúvidas?
+
+---
+
+class: inverse, center, middle
+
+# Leitura
+
+---
+
+background-image: url(img/geo_geoprocessing02.png)
+background-size: 800px
+background-position: 50% 40%
+
+# Leitura
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Xavier-da-Silva (2009)](http://www.ufrrj.br/lga/tiagomarino/artigos/oqueegeoprocessamento.pdf)
+
+---
+
+class: inverse, center, middle
+
+# Dúvidas?
+
+---
+
+class: clear, middle
+background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif), url(img/package_xaringan.png)
+background-size: 250px, 500px, 130px
+background-position: 35% 50%, 90% 55%, 5% 86%
+
+## Maurício Vancine
+
+&lt;br&gt;&lt;br&gt;
+
+Contatos:
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauricio.vancine@gmail.com]()  
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [@mauriciovancine](https://twitter.com/mauriciovancine)  
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine](https://github.com/mauriciovancine)
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine.github.io](https://mauriciovancine.github.io)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis). Animação dos sapos por [@probzz](https://twitter.com/probzz/status/1367613720294170627).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "rainbow",
+"highlightLines": false,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

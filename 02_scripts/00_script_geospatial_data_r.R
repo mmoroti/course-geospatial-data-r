@@ -19,6 +19,14 @@ if(!require(openxlsx)) install.packages("openxlsx", dep = TRUE)
 if(!require(readxl)) install.packages("readxl", dep = TRUE)
 if(!require(writexl)) install.packages("writexl", dep = TRUE)
 
+# data
+if(!require(palmerpenguins)) install.packages("palmerpenguins", dep = TRUE)
+if(!require(datasauRus)) install.packages("datasauRus", dep = TRUE)
+
+# plot
+if(!require(palmerpenguins)) install.packages("palmerpenguins", dep = TRUE)
+if(!require(datasauRus)) install.packages("datasauRus", dep = TRUE)
+
 # geospatial data ---------------------------------------------------------
 # vector
 if(!require(sf)) install.packages("sf", dep = TRUE)

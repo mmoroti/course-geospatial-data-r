@@ -40,7 +40,7 @@ background-image: url(img/package_tidyverse.png)
 background-size: 300px
 background-position: 85% 75%
 
-# 4 tidyverse
+# 4 Introdução ao tidyverse
 
 ## Conteúdo
 
@@ -94,6 +94,9 @@ background-position: 90% 80%
 
 ### **tidy**: organizado, arrumado, ordenado
 ### **verse**: universo
+
+&lt;br&gt;&lt;br&gt;
+[What is the tidyverse?](https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/)
 
 ---
 
@@ -1075,7 +1078,7 @@ class: inverse, center, middle
 &lt;br&gt;
 `sum(sort(sample(1:10, 10000, rep = TRUE)))`
 
-<div class="countdown" id="timer_61672de8" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61675cc8" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1150,7 +1153,7 @@ background-position: 50% 80%
 #### Dois conjuntos de dados: **penguins_raw** (dados brutos) e **penguins** (versão simplificada)
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-[palmerpenguins ](https://allisonhorst.github.io/palmerpenguins/)
+[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
 
 ---
 
@@ -1546,7 +1549,7 @@ class: inverse, center, middle
 
 ### Separe os nomes comuns dos nomes científicos dos pinguins do dados `penguins_raw`
 
-<div class="countdown" id="timer_61672b9b" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61675fbc" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1589,7 +1592,7 @@ head(penguins_raw_sep)
 
 ### Calcule a massa média dos indivíduos das espécies de penguins por ilha. Dicas: `tidyr::replace_na()` e `tidyr::pivot_wider()`
 
-<div class="countdown" id="timer_61672b57" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61675daa" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -2930,7 +2933,7 @@ class: inverse, center, middle
 
 ### Usando o conjunto de dados `penguins`, adicione essas novas colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10`, que são a operação `log10` das colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10` e atribua ao mesmo objeto `penguins_log` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_61672c62" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61675f91" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -2976,7 +2979,7 @@ penguins_log
 
 ### Usando o conjunto de dados `penguins`, ordene as linhas em forma decrescente pela coluna `body_mass_g`, atribuindo o resultado a um novo objeto `penguins_arrange` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_61672b4f" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61675de7" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -3017,7 +3020,7 @@ penguins_arrange
 
 ### Usando o conjunto de dados `penguins`, filtre as linhas com `bill_length_mm` maior que 50 mm, `bill_depth_mm` menor que 20 mm, `flipper_length_mm` maior que 220 mm e `body_mass_g` menor que 5500 g, atribuindo o resultado a um novo objeto `penguins_filter` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_61672c58" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61675d5b" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -3057,7 +3060,7 @@ penguins_filter
 
 ### Usando o conjunto de dados `penguins`, amostre 70% das linhas aleatoriamente com `body_mass_g` menor que  5000 g, atribuindo o resultado a um novo objeto `penguins_sample` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_61672d41" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_61675cbe" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -3644,7 +3647,7 @@ lubridate::now()
 ```
 
 ```
-## [1] "2021-10-13 15:52:31 -03"
+## [1] "2021-10-13 19:25:02 -03"
 ```
 
 ---
@@ -4331,7 +4334,7 @@ lubridate::with_tz(lubridate::now(), tzone = "America/Sao_Paulo")
 ```
 
 ```
-## [1] "2021-10-13 15:52:31 -03"
+## [1] "2021-10-13 19:25:02 -03"
 ```
 
 ```r
@@ -4339,7 +4342,7 @@ lubridate::with_tz(lubridate::now(), tzone = "GMT")
 ```
 
 ```
-## [1] "2021-10-13 18:52:31 GMT"
+## [1] "2021-10-13 22:25:02 GMT"
 ```
 
 ```r
@@ -4347,7 +4350,7 @@ lubridate::with_tz(lubridate::now(), tzone = "Europe/Berlin")
 ```
 
 ```
-## [1] "2021-10-13 20:52:31 CEST"
+## [1] "2021-10-14 00:25:02 CEST"
 ```
 
 ```r
@@ -4356,7 +4359,7 @@ lubridate::force_tz(lubridate::now(), tzone = "GMT")
 ```
 
 ```
-## [1] "2021-10-13 15:52:31 GMT"
+## [1] "2021-10-13 19:25:02 GMT"
 ```
 
 ---
