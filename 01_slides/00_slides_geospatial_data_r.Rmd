@@ -3,7 +3,7 @@ title: "Introdução ao uso de dados geoespaciais no R <br><br><br>"
 subtitle: "PPG Ecologia, Evolução e Biodiversidade"
 author: " Maurício H. Vancine <br> Milton C. Ribeiro"
 institute: "UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)"
-date: "25/10/2021"
+date: "25/10/2021-05/11/2021"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts, custom.css]
@@ -299,7 +299,6 @@ background-position: 85% 65%
 1. Principais pacotes para gráficos 
 1. Grámatica dos gráficos
 1. Principais livros e sites 
-1. Colunas como eixos dos gráficos
 1. Principais tipos de gráficos 
 1. Histograma e Densidade
 1. Gráfico de setores
@@ -307,9 +306,12 @@ background-position: 85% 65%
 1. Gráfico de caixas
 1. Gráfico de dispersão
 1. Gráfico pareado
-1. Gráficos animados
 1. Combinando gráficos
+1. Gráficos animados
+1. Gráficos interativos
 1. Gráficos usando uma interface
+<br>
+[ggplot2](https://ggplot2.tidyverse.org/)
 
 ---
 

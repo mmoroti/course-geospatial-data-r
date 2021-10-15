@@ -1,0 +1,2741 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introdução ao uso de dados geoespaciais no R    </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maurício H. Vancine   Milton C. Ribeiro" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introdução ao uso de dados geoespaciais no R <br><br><br>
+## 8 Estrutura e manipulação de dados matriciais <br><br><br>
+### Maurício H. Vancine <br> Milton C. Ribeiro
+### 22/10/2020
+
+---
+
+
+
+
+class: clear
+background-image: url(img/geo_raster_wd.png)
+background-size: 800px
+
+---
+
+background-image: url(img/r_spatial.jpeg)
+background-size: 350px
+background-position: 80% 65%
+
+# 7 Estrutura e manejo de dados raster
+
+## Tópicos
+1. Pacotes
+1. Dados raster
+1. Classes raster
+1. Importar dados matriciais
+1. Descrição de objetos raster
+1. Converter CRS
+1. Manipulação de dados raster
+1. Operações espaciais
+1. Operações geométricas
+1. Interações raster-vetor
+1. Conversões raster-vetor
+1. Exportar dados matriciais
+
+---
+
+# 7 Estrutura e manejo de dados raster
+
+## Script
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+## .center[`07_script_intro_geocomp_r.R`]
+
+---
+
+background-image: url(img/geo_raster_package.png)
+background-size: 650px
+background-position: 50% 70%
+
+# 7.1 Pacotes
+
+## Pacote raster
+
+```r
+# raster
+install.packages("raster")
+library(raster)
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://rspatial.org/raster/pkg/
+
+---
+
+background-image: url(img/geo_terra_package.png)
+background-size: 650px
+background-position: 50% 70%
+
+# 7.1 Pacotes
+
+## Pacote terra
+
+```r
+# raster
+install.packages("terra")
+library(terra)
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://rspatial.org/terra/pkg/
+
+---
+
+background-image: url(img/geo_raster_stars.png)
+background-size: 500px
+background-position: 50% 70%
+
+# 7.1 Pacotes
+
+## Pacote stars
+
+```r
+# raster
+install.packages("stars")
+library(stars)
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://r-spatial.github.io/stars/
+
+---
+
+background-image: url(img/geo_raster.png)
+background-size: 500px
+background-position: 50% 90%
+
+# 7.2 Dados raster
+
+## Raster ou Gride ou Dado Matricial (matriz)
+
+---
+
+background-image: url(img/geo_raster_cont_cat.png)
+background-size: 700px
+background-position: 50% 70%
+
+# 7.2 Dados raster
+
+## Tipos de dados: contínuos ou categóricos
+
+---
+
+background-image: url(img/geo_raster_plot.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.2 Dados raster
+
+## Valores
+
+---
+
+background-image: url(img/geo_raster_single_multi_raster.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.3 Classes raster
+
+## RasterLayer, RasterStack ou RasterBrick
+
+---
+
+background-image: url(img/geo_raster_single_raster.png)
+background-size: 350px
+background-position: 50% 80%
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+```r
+# volcano
+volcano
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+```r
+# rasterlayer
+ra_lay &lt;- raster::raster(volcano)
+ra_lay
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+```r
+# plot
+raster::plot(ra_lay)
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+```r
+# plot
+raster::plot(ra_lay, col = viridis::viridis(10))
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterLayer
+
+### A classe **RasterLayer** representa apenas uma camada raster, representando **uma variável**
+
+```r
+# plot
+raster::plot(ra_lay, col = viridis::viridis(100))
+```
+
+---
+
+background-image: url(img/geo_raster_multi_raster.png)
+background-size: 350px
+background-position: 50% 90%
+
+# 7.3 Classes raster
+
+## RasterStack
+
+### A classe **RasterStack** é uma lista de objetos **RasterLayer** com a mesma extensão e resolução, representando **várias variáveis**
+
+---
+
+# 7.3 Classes raster
+
+## RasterStack
+
+```r
+# stack
+set.seed(42)
+ra_sta &lt;- raster::stack(raster::raster(volcano), 
+                           raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                           raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
+                           raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
+ra_sta
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterStack
+
+```r
+# plot
+raster::plot(ra_sta, col = viridis::viridis(10))
+```
+
+---
+
+background-image: url(img/geo_raster_multi_raster.png)
+background-size: 350px
+background-position: 50% 90%
+
+# 7.3 Classes raster
+
+## RasterBrick
+
+### A classe **RasterBrick** também é uma lista de objetos **RasterLayer** com a mesma extensão e resolução
+
+---
+
+background-image: url(img/geo_raster_brick.jpg)
+background-size: 600px
+background-position: 50% 90%
+
+# 7.3 Classes raster
+
+## RasterBrick
+
+### A principal diferença entre **RasterBrick** e **RasterStack** é que um **RasterBrick** é vinculado a um **único arquivo (multicamadas)**
+
+---
+
+# 7.3 Classes raster
+
+## RasterBrick
+
+```r
+# brick
+set.seed(42)
+ra_bri &lt;- raster::brick(raster::raster(volcano), 
+                           raster::raster(matrix(rnorm(prod(dim(volcano))), nrow = 87)),
+                           raster::raster(matrix(rpois(prod(dim(volcano)), 10), nrow = 87)),
+                           raster::raster(matrix(rbinom(prod(dim(volcano)), 1, .5), nrow = 87)))
+ra_bri
+```
+
+---
+
+# 7.3 Classes raster
+
+## RasterBrick
+
+```r
+# plot
+raster::plot(ra_bri, col = viridis::viridis(10))
+```
+
+---
+
+class: inverse, middle, center
+
+# Importar dados raster
+
+---
+
+class: inverse, middle, center
+
+# Dados de elevação
+
+---
+
+background-image: url(img/geo_raster_dem01.png), url(img/geo_raster_dem02.png)
+background-size: 340px,350px
+background-position: 10% 90%,85% 90%
+
+# 7.4 Importar dados matriciais
+
+## Dados de elevação
+
+### Modelo Digital de Elevação (DEM) ou Superfície (DSM)
+
+---
+
+background-image: url(img/geo_raster_srtm01.png), url(img/geo_raster_srtm02.png), url(img/geo_raster_srtm03.png)
+background-size: 400px,200px,320px
+background-position: 10% 90%,65% 45%, 95% 85%
+
+# 7.4 Importar dados matriciais
+
+## Dados de elevação
+
+### SRTM
+
+&gt; - Farr, Tom G. et al. ["The Shuttle Radar Topography Mission."](https://doi.org/10.1002/joc.5086) Reviews of Geophysics 45.2 (2007): 1.
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Dados de elevação (SRTM)
+
+### Download
+
+### Criar um diretório
+
+```r
+# create directory
+dir.create(here::here("03_dados", "raster"))
+```
+
+--
+
+### Download de dados de elevação
+
+```r
+# increase time to download
+options(timeout = 600)
+
+# download
+raster::getData(name = "SRTM", lon = -47, lat = -23, 
+                path = here::here("03_dados", "raster"))
+```
+
+[*] http://srtm.csi.cgiar.org/download
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### RasterLayer
+
+```r
+# import raster
+ra &lt;- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
+ra
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Rio Claro
+
+```r
+# rio claro
+rc_2019 &lt;- geobr::read_municipality(code_muni = 3543907, year = 2019, showProgress = FALSE) %&gt;% 
+  sf::st_transform(crs = 4326)
+rc_2019
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### RasterLayer
+
+```r
+# plot
+raster::plot(ra, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .5), add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_crop_mask_buffer_square.png)
+background-size: 700px
+background-position: 50% 80%
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+
+```r
+# crop
+ra_rc &lt;- raster::crop(ra, rc_2019)
+ra_rc
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar uma camada
+
+### Crop do RasterLayer
+
+```r
+# plot
+raster::plot(ra_rc, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .3), lwd = 2, add = TRUE)
+```
+
+---
+
+class: inverse, middle, center
+
+# Dados bioclimáticos
+
+---
+
+background-image: url(img/geo_raster_wc_artigo.png)
+background-size: 600px
+background-position: 50% 90%
+
+# 7.4 Importar dados matriciais
+
+## O que é o WorldClim?
+- Principal bases de **dados climáticos** para o mundo
+- Dados temporais de **temperatura e precipitação**
+- Construído à partir de dados de **estações meteorológicas, interpolação e topografia**
+- Principal forma de uso: **variáveis bioclimáticas**
+
+&gt; - Fick, Stephen E., Hijmans, Robert J. ["WorldClim 2: new 1‐km spatial resolution climate surfaces for global land areas."](https://doi.org/10.1002/joc.5086) International Journal of Climatology 37.12 (2017): 4302.
+
+---
+
+background-image: url(img/geo_raster_wc_mapas.png)
+background-size: 400px
+background-position: 50% 75%
+
+# 7.4 Importar dados matriciais
+
+## Estações meteorológicas
+
+---
+
+background-image: url(img/geo_raster_wc_method.png)
+background-size: 600px
+background-position: 50% 60%
+
+# 7.4 Importar dados matriciais
+
+## Interpolação
+
+---
+
+background-image: url(img/geo_raster_wc_interpolation.png)
+background-size: 450px
+background-position: 50% 65%
+
+# 7.4 Importar dados matriciais
+
+## Interpolação
+
+---
+
+background-image: url(img/geo_raster_bioclim.png)
+background-size: 550px
+background-position: 50% 90%
+
+# 7.4 Importar dados matriciais
+
+## Variáveis Bioclimáticas
+
+- São **19 variáveis** relacionadas com a **biologia das organismos**
+
+- Combinações temporais de **temperatura (BIO01-BIO11)** e **precipitação (BIO12-BIO19)**
+
+---
+
+background-image: url(img/geo_raster_bio01.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.4 Importar dados matriciais
+
+## Variáveis Bioclimáticas
+
+### BIO01: Temperatura média anual (º C)
+
+---
+
+background-image: url(img/geo_raster_merraclim.jpg)
+background-size: 800px
+background-position: 50% 75%
+
+# 7.4 Importar dados matriciais
+
+## Variáveis Bioclimáticas
+
+### Disponível em **várias resoluções** e **períodos (passado, presente e futuro)**
+
+---
+
+background-image: url(img/geo_raster_worldclim.png)
+background-size: 800px
+background-position: 50% 55%
+
+# 7.4 Importar dados matriciais
+
+## Site
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://www.worldclim.org/
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Download
+### Download de dados bioclimáticos
+
+```r
+# download
+download.file(url = "https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_bio.zip",
+              destfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"), mode = "wb")
+```
+
+--
+
+### Unzip
+
+```r
+# unzip
+unzip(zipfile = here::here("03_dados", "raster", "wc2.0_10m_bio.zip"),
+      exdir = here::here("03_dados", "raster"))
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar várias camadas
+
+### Listar arquivos
+
+```r
+# list files
+fi &lt;- dir(path = here::here("03_dados", "raster"), pattern = "wc") %&gt;% 
+  grep(".tif", ., value = TRUE)
+fi
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar várias camadas
+
+### RasterStack
+
+```r
+# import stack
+st &lt;- raster::stack(here::here("03_dados", "raster", fi))
+st
+```
+
+---
+
+# 7.4 Importar dados matriciais
+
+## Importar várias camadas
+
+### RasterStack
+
+```r
+# plot
+raster::plot(st[[1:2]], col = viridis::viridis(10))
+```
+
+---
+
+class: inverse, center, middle
+# Descrição de objetos raster
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+```r
+ra_rc
+```
+
+- *class*: classe raster do objeto
+- *dimensions*: número de linhas, colunas, células e camadas
+- *resolution*: largura e altura da célula
+- *extent*: coordenadas mínimas e máximas da longitude e latitude
+- *crs*: Sistema de Referência de Coordenadas
+- *source*: fonte dos dados (memória ou disco)
+- *names*: nome das camadas
+- *values*: valores máximos e mínimos das células
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+#### Classe
+
+```r
+class(ra_rc)
+```
+--
+#### Dimensões
+
+```r
+dim(ra_rc)
+```
+--
+#### Número de camadas
+
+```r
+nlayers(ra_rc)
+```
+
+---
+
+background-image: url(img/geo_raster.png)
+background-size: 450px
+background-position: 50% 90%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Número de linhas, colunas e células
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+#### Número de linhas
+
+```r
+nrow(ra_rc)
+```
+--
+#### Número de colunas
+
+```r
+ncol(ra_rc)
+```
+--
+#### Número de células
+
+```r
+ncell(ra_rc)
+```
+
+---
+
+background-image: url(img/geo_raster_resolution.png)
+background-size: 650px
+background-position: 50% 80%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Resolução
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Resolução
+
+```r
+# raster resolution
+res(ra_rc)
+```
+--
+
+```r
+# stack resolution
+res(st)
+```
+
+---
+
+background-image: url(img/geo_raster_extent.png)
+background-size: 600px
+background-position: 50% 90%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Extenção
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Extenção
+
+```r
+# raster extent
+extent(ra_rc)
+```
+--
+
+```r
+# stack extent
+extent(st)
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Projeção
+
+```r
+# projection
+projection(ra_rc)
+```
+--
+
+```r
+# projection
+projection(st)
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Nomes
+
+```r
+# raster names
+names(ra_rc)
+```
+--
+
+```r
+# stack names
+names(st)
+```
+
+---
+
+background-image: url(img/geo_raster_values.gif)
+background-size: 650px
+background-position: 50% 90%
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+
+```r
+# raster values
+getValues(ra_rc) %&gt;% head
+```
+--
+
+```r
+# raster values
+values(ra_rc) %&gt;% head
+```
+--
+
+```r
+# raster values
+ra_rc[] %&gt;% head
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+
+```r
+# raster values histogram
+ra_rc %&gt;% 
+  raster::values() %&gt;% 
+  hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+
+```r
+# stack values
+values(st[[1:3]]) %&gt;% head
+```
+
+---
+
+# 7.5 Descrição de objetos raster
+
+## Informações
+
+### Valores
+
+```r
+# stack values - pairs
+st[[1:3]] %&gt;% 
+  raster::values() %&gt;% 
+  tibble::as_tibble() %&gt;% 
+  dplyr::sample_n(1e3) %&gt;% 
+  pairs(cex = 1.4, pch = 20, col = adjustcolor("steelblue", .7))
+```
+
+---
+
+class: inverse, center, middle
+
+# Conversão do CRS
+
+---
+
+background-image: url(img/geo_raster_reprojection.png)
+background-size: 550px
+background-position: 50% 70%
+
+# 7.6 Conversão do CRS
+
+## Reprojeção
+
+---
+
+background-image: url(img/geo_raster_crs.png)
+background-size: 800px
+background-position: 50% 90%
+
+# 7.6 Conversão do CRS
+
+## Reprojeção
+1. Reprojeção vetorial de centróides celulares (muda a **posição e tamanho** do pixel)
+1. Cálculo de novos valores dos pixels por meio de reamostragem (muda o **valor** do pixel)
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
+
+```r
+# projection
+ra_rc
+```
+
+---
+
+background-image: url(img/geo_utm_zones.png)
+background-size: 400px
+background-position: 80% 80%
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
+
+```r
+# proj4string utm 23s
+utm23 &lt;- "+proj=utm +zone=23 +south +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+utm23
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://epsg.io/31983
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
+
+```r
+# reprojection
+ra_rc_utm23 &lt;- raster::projectRaster(ra_rc, crs = utm23)
+ra_rc_utm23
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local - especificando parâmetros
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
+
+```r
+# reprojection
+ra_rc_utm23 &lt;- raster::projectRaster(ra_rc, crs = utm23, res = 90, method = "bilinear")
+ra_rc_utm23
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local - especificando parâmetros
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
+
+```r
+# reprojection vector
+rc_2019_utm23 &lt;- sf::st_transform(rc_2019, crs = utm23)
+rc_2019_utm23
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS local
+
+### WGS84/GCS -&gt; SIRGAS2000/UTM23S (proj4string)
+
+```r
+# plot
+raster::plot(ra_rc_utm23, col = viridis::viridis(10))
+plot(rc_2019_utm23$geom, col = adjustcolor("red", .3), lwd = 2, add = TRUE)
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Datum WGS84 e coordenadas geográficas
+
+```r
+# WGS84/GCS
+st$wc2.1_10m_bio_1
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Datum WGS84 e coordenadas geográficas
+
+```r
+# plot
+raster::plot(st$wc2.1_10m_bio_1, col = viridis::viridis(10))
+```
+
+---
+
+background-image: url(img/geo_proj_moll.png)
+background-size: 450px
+background-position: 80% 80%
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide: preserva as relações de área
+
+```r
+# proj4string mollweide
+moll &lt;- "+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+moll
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://epsg.io/54009
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/mollweide.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide
+
+```r
+# reprojection
+bio01_moll &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = moll, res = 25e3, method = "bilinear")
+bio01_moll
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Mollweide
+
+```r
+# plot
+raster::plot(bio01_moll, col = viridis::viridis(10))
+```
+
+---
+
+background-image: url(img/geo_proj_wintri.png)
+background-size: 320px
+background-position: 50% 80%
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Winkel Tripel: mínimo de distorção para área, direção e distância
+
+```r
+# proj4string winkel tripel
+wintri &lt;- "+proj=wintri +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+wintri
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/winkel-tripel.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Winkel Tripel
+
+```r
+# reprojection
+bio01_wintri &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = wintri, res = 25e3, method = "bilinear")
+bio01_wintri
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Winkel Tripel
+
+```r
+# plot
+raster::plot(bio01_wintri, col = viridis::viridis(10))
+```
+
+---
+
+background-image: url(img/geo_proj_eck4.png)
+background-size: 400px
+background-position: 80% 82%
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV: presenva a área e com meridianos elípticos
+
+```r
+# proj4string eckert iv
+eck4 &lt;- "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+eck4
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://epsg.io/54012
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/eckert-iv.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV
+
+```r
+# reprojection
+bio01_eck4 &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = eck4, res = 25e3, method = "bilinear")
+bio01_eck4
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção de Eckert IV
+
+```r
+# plot
+raster::plot(bio01_eck4, col = viridis::viridis(10))
+```
+
+---
+
+background-image: url(img/geo_proj_laea.png)
+background-size: 180px
+background-position: 50% 78%
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert: preserva os tamanhos relativos e senso de direção a partir do centro
+
+```r
+# proj4string lambert 
+laea &lt;- "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
+laea
+```
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+```r
+# reprojection
+bio01_laea &lt;- raster::projectRaster(st$wc2.1_10m_bio_1, crs = laea, res = 25e3, method = "bilinear")
+bio01_laea
+```
+
+---
+
+# 7.6 Conversão do CRS
+
+## Converter CRS global
+
+### Projeção azimutal de Lambert
+
+```r
+# plot
+raster::plot(bio01_laea, col = viridis::viridis(10))
+```
+
+---
+
+class: inverse, center, middle
+# Operações de dados raster
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
+
+```r
+# raster - row 1, column 1
+ra[1, 1]
+```
+--
+
+```r
+# cell is 1
+ra[1]
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
+
+```r
+# stack - row 1, column 1
+st[1, 1]
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Indexação de linha-coluna ou id da célula
+
+```r
+# cell is 1
+st[1]
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer
+
+```r
+# selection layer in stack
+st_bio01 &lt;- raster::subset(st, "wc2.1_10m_bio_1")
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer
+
+```r
+# selection layer in stack
+st_bio01 &lt;- raster::raster(st, layer = 1)
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer [[]]
+
+```r
+# selection layer in stack
+st_bio01 &lt;- st[["wc2.1_10m_bio_1"]]
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer [[]]
+
+```r
+# selection layer in stack
+st_bio01 &lt;- st[[1]]
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer $
+
+```r
+# selection layer in stack
+st_bio01 &lt;- st$wc2.1_10m_bio_1
+st_bio01
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Subset do raster
+
+### Seleção de RasterLayer no StackLayer $
+
+```r
+# plot
+raster::plot(st_bio01, col = viridis::viridis(10))
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Renomear rasters
+
+```r
+# names
+names(ra_rc)
+```
+--
+
+```r
+# rename
+names(ra_rc) &lt;- "elevation"
+```
+--
+
+```r
+# names
+names(ra_rc)
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Renomear rasters
+
+```r
+# names
+names(st)
+```
+--
+
+```r
+# rename
+names(st) &lt;- c("bio01", paste0("bio", 10:19), paste0("bio0", 2:9))
+```
+--
+
+```r
+# names
+names(ra_rc)
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Resumir informações do raster
+
+### Média de todos os valores
+
+```r
+# mean from all cells
+raster::cellStats(ra_rc, mean)
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Resumir informações do raster
+
+### Média de todos os valores
+
+```r
+# mean from all cells
+raster::cellStats(st[[1:3]], mean)
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Resumir informações do raster
+
+### Frequência de cada valor
+
+```r
+# count cells
+raster::freq(ra_rc)
+```
+
+---
+
+# 7.7 Manipulação de dados raster
+
+## Resumir informações do raster
+
+### Frequência de cada valor
+
+```r
+# count cells
+raster::freq(st[[1:3]])
+```
+
+---
+
+class: inverse, center, middle
+# Operações espaciais
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster 
+
+```r
+# sum
+ra_rc2 &lt;- ra_rc + ra_rc
+ra_rc2
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster 
+
+```r
+# plot
+raster::plot(ra_rc2, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster 
+
+```r
+# division
+ra_rc_km &lt;- ra_rc / 1e3
+ra_rc_km
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster 
+
+```r
+# plot
+raster::plot(ra_rc_km, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster 
+
+```r
+# log10
+ra_rc_log10 &lt;- log10(ra_rc)
+ra_rc_log10
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster 
+
+```r
+# plot
+raster::plot(ra_rc_log10, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster por valor
+
+```r
+# upper 600
+ra_rc_up_600 &lt;- ra_rc &gt; 600
+ra_rc_up_600
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster por valor
+
+```r
+# plot
+raster::plot(ra_rc_up_600)
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster por valor
+
+```r
+# bottom
+ra_rc_bot_600 &lt;- ra_rc &lt;= 600
+ra_rc_bot_600
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Álgebra de raster por valor
+
+```r
+# plot
+raster::plot(ra_rc_bot_600)
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Alterar valores
+
+```r
+# values
+ra_rc[]
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Alterar valores
+
+```r
+# copy
+ra_rc_up_700 &lt;- ra_rc
+ra_rc_up_700
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Alterar valores
+
+```r
+# values bottom 700 == NA
+ra_rc_up_700[ra_rc_up_700 &lt; 700] &lt;- NA
+ra_rc_up_700
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Alterar valores
+
+```r
+# plot
+raster::plot(ra_rc_up_700, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_reclass.gif)
+background-size: 700px
+background-position: 50% 70%
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Reclassify
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Reclassify
+
+```r
+# matrix for reclassification
+rcl  &lt;- matrix(c(400,500,4, 
+                 500,600,5, 
+                 600,700,6,
+                 700,800,7,
+                 800,900,8,
+                 900,1000,9), 
+               ncol = 3, byrow = TRUE)
+rcl
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Reclassify
+
+```r
+# reclassify
+ra_rc_rcl &lt;- raster::reclassify(ra_rc, rcl = rcl)
+ra_rc_rcl
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operações locais 
+
+### Reclassify
+
+```r
+# plot
+raster::plot(ra_rc_rcl, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_focal.png)
+background-size: 600px
+background-position: 50% 70%
+
+# 7.8 Operações espaciais
+
+## Operação focal
+
+### Moving window
+
+---
+
+background-image: url(img/geo_raster_moving_window.gif),url(img/geo_raster_focal.png)
+background-size: 400px,600px
+background-position: 20% 65%,50% 70%
+
+# 7.8 Operações espaciais
+
+## Operação focal
+
+### Moving window
+
+---
+
+# 7.8 Operações espaciais
+
+## Operação focal
+
+### Moving window
+
+```r
+# moving window
+ra_rc_mw_sd &lt;- raster::focal(ra_rc, w = matrix(1, nrow = 3, ncol = 3), fun = sd)
+ra_rc_mw_sd
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operação focal
+
+### Moving window
+
+```r
+# plot
+raster::plot(ra_rc_mw_sd, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operação zonal
+
+```r
+# zonal statistics
+raster::zonal(ra_rc, ra_rc_rcl, fun = "mean")
+```
+
+---
+
+# 7.8 Operações espaciais
+
+## Operação zonal
+
+```r
+# zonal statistics
+ra_rc_stats &lt;- data.frame(raster::zonal(ra_rc, ra_rc_rcl, fun = "summary"))
+colnames(ra_rc_stats) &lt;- c("zone", "min", "1qt", "median", "mean", "3qt", "max")
+ra_rc_stats
+```
+
+---
+
+class: inverse, center, middle
+# Operações geométricas
+
+---
+
+background-image: url(img/geo_raster_resolution_diff.png)
+background-size: 900px
+background-position: 50% 50%
+
+# 7.9 Operações geométricas
+
+## Agregação e desagregação
+
+---
+
+background-image: url(img/geo_raster_aggregate.png)
+background-size: 700px
+background-position: 50% 70%
+
+# 7.9 Operações geométricas
+
+## Agregação e desagregação
+
+---
+
+background-image: url(img/geo_raster_long_lat_dist.gif)
+background-size: 650px
+background-position: 50% 90%
+
+# 7.9 Operações geométricas
+
+## Resolução - Relação de graus e distância em metros
+
+---
+
+# 7.9 Operações geométricas
+
+## Agregação - aumenta o tamanho do pixel
+
+```r
+# resolution
+res(ra_rc)[1]
+```
+--
+
+```r
+# aggregation - increases the pixel size of the raster
+ra_rc_agg_mean &lt;- raster::aggregate(ra_rc, fact = 10, fun = "mean")
+ra_rc_agg_mean
+```
+
+---
+
+# 7.9 Operações geométricas
+
+## Agregação
+
+```r
+# plot
+raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_disaggregate.png)
+background-size: 700px
+background-position: 50% 70%
+
+# 7.9 Operações geométricas
+
+## Desagregação
+
+---
+
+# 7.9 Operações geométricas
+
+## Desagregação - diminui o tamanho do pixel
+
+```r
+# resolution
+res(ra_rc)[1]
+```
+--
+
+```r
+# disaggregate - decreases the pixel size of the raster
+ra_rc_dis_bil &lt;- raster::disaggregate(ra_rc, fact = 2, fun = "bilinear")
+ra_rc_dis_bil
+```
+
+---
+
+# 7.9 Operações geométricas
+
+## Desagregação
+
+```r
+# plot
+raster::plot(ra_rc_dis_bil, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+# Interações raster-vetor
+
+---
+
+background-image: url(img/geo_raster_crop_mask.png)
+background-size: 800px
+background-position: 50% 60%
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop
+
+```r
+# crop - adjust extension
+ra_rc_crop &lt;- raster::crop(ra, rc_2019)
+ra_rc_crop
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop
+
+```r
+# plot
+raster::plot(ra_rc_crop, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Mask
+
+```r
+# mask - adjust limit
+ra_rc_mask &lt;- raster::mask(ra, rc_2019)
+ra_rc_mask
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Mask
+
+```r
+# plot
+raster::plot(ra_rc_mask, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask
+
+```r
+# crop and mask - adjust extension and limit
+ra_rc_crop_mask &lt;- ra %&gt;% 
+  raster::crop(rc_2019) %&gt;% 
+  raster::mask(rc_2019)
+ra_rc_crop_mask
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask
+
+```r
+# plot
+raster::plot(ra_rc_crop_mask, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask inverse
+
+```r
+# crop and mask inverse - adjust extension and limit
+ra_rc_crop_mask_inv &lt;- ra %&gt;% 
+  raster::crop(rc_2019) %&gt;% 
+  raster::mask(rc_2019, inverse = TRUE)
+ra_rc_crop_mask_inv
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask inverse
+
+```r
+# plot
+raster::plot(ra_rc_crop_mask_inv, col = viridis::viridis(10))
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask
+
+```r
+# download atlantic forest
+af &lt;- geobr::read_biomes(year = 2004, showProgress = FALSE) %&gt;% 
+  dplyr::filter(name_biome == "Mata Atlântica")
+af
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask
+
+```r
+# plot
+plot(af$geom, col = "gray", main = NA, axes = TRUE, gratidule = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask
+
+```r
+# crop and mask - adjust extension and limit
+st_af_crop_mask &lt;- st %&gt;% 
+  raster::crop(af) %&gt;% 
+  raster::mask(af)
+st_af_crop_mask
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster cropping
+
+### Crop and Mask
+
+```r
+# plot
+raster::plot(st_af_crop_mask[[1:4]], col = viridis::viridis(10))
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster extraction
+
+### Importar pontos
+
+```r
+# import points
+rc_spr &lt;- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_NASCENTES.shp"), quiet = TRUE) %&gt;% 
+  sf::st_transform(crs = 4326)
+rc_spr
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster extraction
+
+### Importar pontos
+
+```r
+# plot
+plot(rc_spr$geometry, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019$geom, add = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster extraction
+
+### Extração
+
+```r
+# extraction
+rc_spr_ele &lt;- raster::extract(ra_rc, rc_spr)
+rc_spr_ele
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster extraction
+
+### Extração
+
+```r
+# extraction
+rc_spr_ele &lt;- rc_spr %&gt;% 
+  dplyr::mutate(elev = raster::extract(ra_rc, .))
+rc_spr_ele
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster extraction
+
+### Extração
+
+```r
+# plot
+plot(rc_spr_ele["elev"], pch = 20, main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Raster extraction
+
+### Extração
+
+```r
+# histogram
+rc_spr_ele %&gt;% 
+  dplyr::pull(elev) %&gt;% 
+  hist(col = "steelblue", border = "white", main = NA, xlab = "Elevação (m)", ylab = "Frequência")
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Zonal statistics
+
+### Buffers
+
+```r
+# buffers
+set.seed(42)
+rc_spr_buf &lt;- rc_spr %&gt;% 
+  dplyr::sample_n(10) %&gt;% 
+  sf::as_Spatial() %&gt;% 
+  raster::buffer(width = 1000, dissolve = FALSE) %&gt;% 
+  sf::st_as_sf()
+rc_spr_buf
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Zonal statistics
+
+### Buffers
+
+```r
+# plot
+plot(rc_spr_buf$geometry, col = adjustcolor("steelblue", .7), pch = 20, main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2019$geom, add = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Zonal statistics
+
+### Buffers
+
+```r
+# zonal statistics
+raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE, df = TRUE)
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Zonal statistics
+
+### Buffers
+
+```r
+# zonal statistics
+rc_spr_buf &lt;- rc_spr_buf %&gt;% 
+  dplyr::mutate(elev_mean = raster::extract(x = ra_rc, y = rc_spr_buf, fun = mean, na.rm = TRUE))
+rc_spr_buf
+```
+
+---
+
+# 7.10 Interações raster-vetor
+
+## Zonal statistics
+
+### Buffers
+
+```r
+# plot
+plot(rc_spr_buf["elev_mean"], pch = 20, main = NA, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+# Conversões raster-vetor
+
+---
+
+background-image: url(img/geo_data_convert.png)
+background-size: 500px
+background-position: 50% 50%
+
+# 7.11 Conversões raster-vetor
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de pontos
+
+```r
+# rasterize points
+rc_spr_rast &lt;- raster::rasterize(x = rc_spr, y = ra_rc_agg_mean, field = 1, fun = "count")
+rc_spr_rast
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de pontos
+
+```r
+# plot
+raster::plot(rc_spr_rast, col = viridis::viridis(10))
+plot(rc_spr$geometry, pch = 20, cex = 1, col = adjustcolor("gray50", .6), add = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+# Será que existe relação entre a elevação e o número de nascentes?
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Estatística
+
+```r
+# statistics
+plot(ra_rc_agg_mean[], rc_spr_rast[], col = adjustcolor("gray30", .5), 
+     pch = 20, cex = 1.5, bty = "l", xlab = "Elevação (m)", ylab = "Número de nascentes")
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de polígonos
+
+```r
+# import polygons
+rc_use &lt;- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), quiet = TRUE) %&gt;% 
+  dplyr::mutate(CLASSE_USO = as.factor(CLASSE_USO)) %&gt;% 
+  sf::st_transform(crs = 4326)
+rc_use
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de polígonos
+
+```r
+# rasterize polygons
+rc_use_rast &lt;- raster::rasterize(x = rc_use, y = ra_rc_agg_mean, field = "CLASSE_USO")
+rc_use_rast
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de polígonos
+
+```r
+# plot
+raster::plot(rc_use_rast, col = viridis::viridis(10))
+plot(rc_use$geom, add = TRUE)
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de polígonos
+
+### Fasterize
+
+```r
+# package fasterize
+# install.packages("fasterize")
+library(fasterize)
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de polígonos
+
+### Fasterize
+
+```r
+# rasterize with fasterize
+rc_use_fast &lt;- fasterize::fasterize(sf = rc_use, raster = ra_rc_agg_mean, field = "CLASSE_USO")
+rc_use_fast
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Rasterização de polígonos
+
+### Fasterize
+
+```r
+# plot
+raster::plot(rc_use_fast, col = viridis::viridis(10))
+plot(rc_use$geom, add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_vectorization_points.png)
+background-size: 700px
+background-position: 50% 70%
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para pontos
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para pontos
+
+```r
+# vectorization points
+ra_rc_agg_mean_points = raster::rasterToPoints(ra_rc_agg_mean, spatial = TRUE) %&gt;% 
+  sf::st_as_sf()
+ra_rc_agg_mean_points
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para pontos
+
+```r
+# plot
+raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
+plot(ra_rc_agg_mean_points, pch = 20, main = FALSE, add = TRUE)
+plot(rc_2019$geom, col = adjustcolor("red", .2), add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_vectorization_lines_contour.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para linhas
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para linhas
+
+```r
+# vectorization points
+ra_rc_agg_mean_lines = raster::rasterToContour(x = ra_rc_agg_mean, 
+                                               levels = seq(500, 900, by = 50)) %&gt;% 
+  sf::st_as_sf()
+ra_rc_agg_mean_lines
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para linhas
+
+```r
+# plot
+raster::plot(ra_rc_agg_mean, col = viridis::viridis(10))
+contour(ra_rc_agg_mean, levels =  seq(500, 900, by = 50),
+        col = "white", pch = 20, lwd = 1.5, labcex = 2, main = FALSE, add = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_vectorization_polygons.png)
+background-size: 800px
+background-position: 50% 70%
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos
+
+```r
+# vectorization polygons
+rc_use_fast_polygon &lt;- raster::rasterToPolygons(rc_use_fast) %&gt;% 
+  sf::st_as_sf()
+rc_use_fast_polygon
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos
+
+```r
+# plot
+raster::plot(rc_use_fast, col = viridis::viridis(10))
+plot(rc_use_fast_polygon$geometry, lwd = 1.5, main = FALSE, add = TRUE)
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos dissolvidos
+
+```r
+# vectorization polygons
+rc_use_fast_polygon_diss &lt;- raster::rasterToPolygons(rc_use_fast, dissolve = TRUE) %&gt;% 
+  sf::st_as_sf()
+rc_use_fast_polygon_diss
+```
+
+---
+
+# 7.11 Conversões raster-vetor
+
+## Vetorização - Raster para polígonos dissolvidos
+
+```r
+# plot
+raster::plot(rc_use_fast, col = viridis::viridis(10))
+plot(rc_use_fast_polygon_diss$geometry, lwd = 1.5, main = FALSE, add = TRUE)
+```
+
+---
+
+class: inverse, center, middle
+# Exportar rasters
+
+---
+
+background-image: url(img/geo_raster_single_raster.png)
+background-size: 300px
+background-position: 50% 90%
+
+# 7.12 Exportar dados matriciais
+
+## Exportar raster
+
+```r
+# export raster
+raster::writeRaster(x = ra_rc, 
+                    filename = here::here("03_dados", "raster", "srtm_27_17_rc"),
+                    format = "GTiff",
+                    progress = "text",
+                    overwrite = TRUE)
+```
+
+---
+
+background-image: url(img/geo_raster_multi_raster.png)
+background-size: 250px
+background-position: 50% 90%
+
+# 7.12 Exportar dados matriciais
+
+## Exportar stack ou brick
+
+```r
+# export stack
+raster::writeRaster(x = st_af_crop_mask, 
+                    filename = here::here("03_dados", "raster", names(st_af_crop_mask)), 
+                    bylayer = TRUE, 
+                    format = "GTiff",
+                    progress = "text",
+                    overwrite = TRUE)
+```
+
+---
+
+class: inverse, middle, center
+
+# Dúvidas?
+
+---
+
+class: clear, middle
+background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif), url(img/package_xaringan.png)
+background-size: 250px, 500px, 130px
+background-position: 35% 50%, 90% 55%, 5% 86%
+
+## Maurício Vancine
+
+&lt;br&gt;&lt;br&gt;
+
+Contatos:
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauricio.vancine@gmail.com]()  
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; [@mauriciovancine](https://twitter.com/mauriciovancine)  
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine](https://github.com/mauriciovancine)
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#23373b;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"&gt;&lt;/path&gt;&lt;/svg&gt; [mauriciovancine.github.io](https://mauriciovancine.github.io)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis). Animação dos sapos por [@probzz](https://twitter.com/probzz/status/1367613720294170627).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "rainbow",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

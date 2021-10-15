@@ -1,22 +1,25 @@
 ---
 title: "Introdução ao uso de dados geoespaciais no R <br><br><br>"
-subtitle: "8 Estrutura e manipulação de dados matriciais <br><br><br>"
-author: "Maurício H. Vancine <br> Milton C. Ribeiro"
-date: "22/10/2020"
+subtitle: "8 Estrutura e manipulação de dados matriciais"
+author: " Maurício H. Vancine <br> Milton C. Ribeiro"
+institute: "UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)"
+date: "25/10/2021-05/11/2021"
 output:
   xaringan::moon_reader:
-    css: [metropolis, metropolis-fonts]
+    css: [default, metropolis, metropolis-fonts, custom.css]
     lib_dir: libs
     nature:
-      ratio: '16:9'
       highlightStyle: rainbow
-      highlightLines: true
+      highlightLines: false
+      highlightSpans: false
       countIncrementalSlides: false
+      slideNumberFormat: "%current%/%total%"
+      ratio: "16:9"   
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, encoding = "UTF-8")
-knitr::opts_chunk$set(fig.retina = 3, fig.align = 'center', out.width='40%', warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, fig.align = 'center', out.width='40%', warning = FALSE, message = FALSE, eval = FALSE)
 if(!require(raster)) install.packages("raster")
 if(!require(sf)) install.packages("sf")
 if(!require(tidyverse)) install.packages("tidyverse")
@@ -2445,9 +2448,9 @@ class: inverse, middle, center
 ---
 
 class: clear, middle
-background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif)
-background-size: 250px,500px
-background-position: 35% 60%,90% 70%
+background-image: url(img/gif_frog.gif),url(img/gif_frogs.gif), url(img/package_xaringan.png)
+background-size: 250px, 500px, 130px
+background-position: 35% 50%, 90% 55%, 5% 86%
 
 ## Maurício Vancine
 
@@ -2455,11 +2458,11 @@ background-position: 35% 60%,90% 70%
 
 Contatos:
 
-`r icon::icon_style(icon::fontawesome(name = "envelope", style = "solid"), fill = "#2369bd")` [mauricio.vancine@gmail.com]()  
-`r icon::icon_style(icon::fontawesome("twitter"), fill = "#2369bd")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
-`r icon::icon_style(icon::fontawesome(name = "github"), fill = "#2369bd")` [mauriciovancine](https://github.com/mauriciovancine)
-`r icon::icon_style(icon::fontawesome(name = "link", style = "solid"), fill = "#2369bd")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
+`r icons::icon_style(icons::fontawesome(name = "envelope", style = "solid"), fill = "#23373b")` [mauricio.vancine@gmail.com]()  
+`r icons::icon_style(icons::fontawesome("twitter"), fill = "#23373b")` [@mauriciovancine](https://twitter.com/mauriciovancine)  
+`r icons::icon_style(icons::fontawesome(name = "github"), fill = "#23373b")` [mauriciovancine](https://github.com/mauriciovancine)
+`r icons::icon_style(icons::fontawesome(name = "link", style = "solid"), fill = "#23373b")` [mauriciovancine.github.io](https://mauriciovancine.github.io)
 
-<br><br>
+<br><br><br><br><br>
 
-Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis)
+Slides criados via pacote [xaringan](https://github.com/yihui/xaringan) e tema [Metropolis](https://github.com/pat-s/xaringan-metropolis). Animação dos sapos por [@probzz](https://twitter.com/probzz/status/1367613720294170627).

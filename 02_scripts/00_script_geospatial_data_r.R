@@ -24,8 +24,13 @@ if(!require(palmerpenguins)) install.packages("palmerpenguins", dep = TRUE)
 if(!require(datasauRus)) install.packages("datasauRus", dep = TRUE)
 
 # plot
-if(!require(palmerpenguins)) install.packages("palmerpenguins", dep = TRUE)
-if(!require(datasauRus)) install.packages("datasauRus", dep = TRUE)
+if(!require(ggpubr)) install.packages("ggpubr", dep = TRUE)
+if(!require(psych)) install.packages("psych", dep = TRUE)
+if(!require(cowplot)) install.packages("cowplot", dep = TRUE)
+if(!require(patchwork)) install.packages("patchwork", dep = TRUE)
+if(!require(gganimate)) devtools::install_github('thomasp85/gganimate')
+if(!require(plotly)) install.packages("plotly", dep = TRUE)
+if(!require(esquisse)) install.packages("esquisse", dep = TRUE)
 
 # geospatial data ---------------------------------------------------------
 # vector

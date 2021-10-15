@@ -107,18 +107,21 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 
 ### 5 Visualização de dados
 
+1. Contextualização
 1. Principais pacotes para gráficos 
+1. Grámatica dos gráficos
 1. Principais livros e sites 
-1. Colunas como eixos dos gráficos
 1. Principais tipos de gráficos 
-1. Histograma 
+1. Histograma e Densidade
 1. Gráfico de setores
 1. Gráfico de barras
 1. Gráfico de caixas
 1. Gráfico de dispersão
 1. Gráfico pareado
-1. Gráficos animados
 1. Combinando gráficos
+1. Gráficos animados
+1. Gráficos interativos
+1. Gráficos usando uma interface
 
 ### 6 Estrutura e fonte de dados geoespaciais
 

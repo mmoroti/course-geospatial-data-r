@@ -3,7 +3,7 @@ title: "Introdução ao uso de dados geoespaciais no R <br><br><br>"
 subtitle: "1 Controle de versão, git e GitHub"
 author: " Maurício H. Vancine <br> Milton C. Ribeiro"
 institute: "UNESP - Rio Claro <br> Laboratório de Ecologia Espacial e Conservação (LEEC)"
-date: "25/10/2021"
+date: "25/10/2021-05/11/2021"
 output:
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts, custom.css]
