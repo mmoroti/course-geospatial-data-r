@@ -37,7 +37,7 @@ class: clear
 background-image: url(img/geo_vector_sf_allison.png)
 background-size: 800px
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 [@allison_horst](https://twitter.com/allison_horst)
 
 ---
@@ -198,12 +198,6 @@ background-position: 50% 70%
 
 ---
 
-class: inverse, center, middle
-
-# 2. Tipos de geometrias sf
-
----
-
 background-image: url(img/geo_vetor_dados.png), url(img/geo_vector_types.jpg)
 background-size: 650px, 450px
 background-position: 8% 60%, 95% 65%
@@ -231,12 +225,6 @@ background-position: 15% 60%, 85% 60%
 
 ---
 
-class: inverse, center, middle
-
-# 3. Classes sf
-
----
-
 # 3. Classes sf
 
 ## O pacote sf define um sistema de três classes hierárquicas
@@ -244,22 +232,324 @@ class: inverse, center, middle
 <br>
 
 ```{r echo=FALSE}
-kable(tibble(Classes = c("`sfg`", "`sfc`", "`sf`"), 
-             Hierarquia = c("Geometria", "Coluna de geometria", "Camada"),
-             Informação = c("Tipo de geometria e coordenadas", "Conjunto de `sfg` + CRS", "`sfc` + atributos")))
+kable(tibble(Classes = c("1. Simple feature geometries (`sfg`)", 
+                         "2. Simple feature columns (`sfc`)", 
+                         "3. Simple feature (`sf`)"), 
+             Hierarquia = c("Geometria", 
+                            "Coluna de geometria", 
+                            "Camada"),
+             Informação = c("Tipo de geometria e coordenadas", 
+                            "Conjunto de `sfg` + CRS", 
+                            "Conjunto de `sfc` + atributos")))
 ```
 
 <br>
 
--   Classe *sfg* - uma geometria única
--   Classe *sfc* - uma coluna de geometria, que é um conjunto de geometrias *sfg* e informações Sistema de Referência de Coordenadas (do inglês *Coordinate Reference Systems - CRS*)
--   Classe sf - uma camada, que é uma coluna de geometria *sfc* dentro de um dataframe com atributos não espaciais (tabela de atributos)
+-   1. Classe `sfg` - uma geometria única
+-   2. Classe `sfc` - uma coluna de geometria, que é um conjunto de geometrias `sfg` e informações Sistema de Referência de Coordenadas (do inglês *Coordinate Reference Systems - CRS*)
+-   3. Classe `sf` - uma camada, que é uma coluna de geometria `sfc` dentro de um dataframe com atributos não espaciais (tabela de atributos)
 
 ---
 
-class: inverse, center, middle
+# 3. Classes sf
 
-# 4. Importar dados vetoriais
+## **1. Simple feature geometries (`sfg`)**
+
+### A classe `sfg` representa os **diferentes tipos de geometrias** no R: ponto, linha, polígono (e seus equivalentes ‘multi’) ou coleção de geometrias
+
+--
+
+#### Funções para criar geometrias da classe `sfg`:
+
+```{r}
+# simple
+sf::st_point()
+sf::st_linestring()
+sf::st_polygon()
+
+# multi
+sf::st_multipoint()
+sf::st_multilinestring()
+sf::st_multipolygon()
+
+# collections
+sf::st_geometrycollection()
+```
+
+---
+
+# 3. Classes sf
+
+## **1. Simple feature geometries (`sfg`)**
+
+### Os objetos `sfg` podem ser **criados** a partir de **três tipos de dados R base**:
+
+<br>
+
+### 1. **vetor numérico**: um único ponto
+### 2. **matriz**: um conjunto de pontos, onde cada linha representa um ponto, um multiponto ou uma linha
+### 3. **lista**: uma coleção de objetos como matrizes, cadeias multilinha ou coleções de geometrias
+
+---
+
+# 3. Classes sf
+
+## **1. Simple feature geometries (`sfg`)**
+
+```{r}
+# vector - point
+vec <- c(5, 2)
+po <- sf::st_point(vec)
+po
+```
+
+```{r out.width='30%'}
+# plot
+plot(po, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 3. Classes sf
+
+## **1. Simple feature geometries (`sfg`)**
+
+```{r}
+# matrix - multipoint
+multipoint_matrix <- rbind(c(5, 2), c(1, 3), c(3, 4), c(3, 2))
+po_mul <- sf::st_multipoint(multipoint_matrix)
+po_mul
+```
+
+```{r out.width='30%'}
+# plot
+plot(po_mul, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 3. Classes sf
+
+## **1. Simple feature geometries (`sfg`)**
+
+```{r}
+# matrix - linestring
+multipoint_matrix <- rbind(c(5, 2), c(1, 3), c(3, 4), c(3, 2))
+lin <- sf::st_linestring(multipoint_matrix)
+lin
+```
+
+```{r out.width='30%'}
+# plot
+plot(lin, lwd = 2, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 3. Classes sf
+
+## **1. Simple feature geometries (`sfg`)**
+
+```{r}
+# list - polygon
+polygon_list <- list(rbind(c(1, 5), c(2, 2), c(4, 1), c(4, 4), c(1, 5)))
+pol <- sf::st_polygon(polygon_list)
+pol
+```
+
+```{r out.width='30%'}
+# plot
+plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+
+### Uma **lista de objetos** `sfg` que possui o **mesmo CSR** (*Coordinate Reference System*)
+
+--
+
+### Pode conter objetos da **mesma geometria** ou de **geometrias diferentes**
+
+--
+
+### Funções para **criar** a classe `sfc` e verificar o **tipo da geometria e CRS**:
+```{r eval=FALSE}
+sf::st_sfc()
+sf::st_geometry_type()
+sf::st_crs()
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+```{r}
+# sfc point
+point1 <- sf::st_point(c(5, 2))
+point2 <- sf::st_point(c(1, 3))
+points_sfc <- sf::st_sfc(point1, point2)
+points_sfc
+```
+
+```{r}
+sf::st_geometry_type(points_sfc)
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+```{r}
+# plot
+plot(points_sfc, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+```{r}
+# sfc geometry
+po_pol_sfc <- sf::st_sfc(po, pol)
+po_pol_sfc
+```
+
+```{r}
+sf::st_geometry_type(po_pol_sfc)
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+```{r}
+# plot
+plot(po_pol_sfc, pch = 20, cex = 4, lwd = 2, col = "gray", axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+
+### Coordinate Reference Systems (CRS) - EPSG
+```{r}
+# epsg definition
+points_sfc_wgs <- sf::st_sfc(point1, point2, crs = 4326)
+sf::st_crs(points_sfc_wgs)
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+
+### Coordinate Reference Systems (CRS) - proj4string
+```{r}
+# proj4string definition
+points_sfc_wgs <- sf::st_sfc(point1, point2, crs = "+proj=longlat +datum=WGS84 +no_defs")
+sf::st_crs(points_sfc_wgs)
+```
+
+---
+
+# 3. Classes sf
+
+## **2. Simple feature columns (`sfc`)**
+```{r}
+# plot
+plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
+```
+
+---
+
+# 3. Classes sf
+
+## **3. Simple feature (`sf`)**
+
+### A classe sf (simple features) são *data.frames* com **atributos espaciais** armazenados em uma coluna, geralmente chamada de **geometry** 
+
+--
+
+### Essa **dualidade** é central para o conceito de **simple features**: na maioria das vezes, um sf pode **ser tratado e se comporta** como um *data.frame *
+
+--
+
+### **Simple features** são, em essência, *data.frames* com uma **extensão espacial**
+
+---
+
+# 3. Classes sf
+
+## **3. Simple feature (`sf`)**
+
+### Criar um objeto sf
+```{r}
+rc_point <- sf::st_point(c(-47.57, -22.39))         # `sfg` object
+rc_geom <- sf::st_sfc(rc_point, crs = 4326)        # `sfc` object
+rc_attrib <- data.frame(                       # data.frame object
+  name = "Rio Claro",
+  temperature = 19,
+  date = as.Date("2020-10-13")
+)
+rc_sf <- sf::st_sf(rc_attrib, geometry = rc_geom)  # sf object
+```
+
+---
+
+# 3. Classes sf
+
+## **3. Simple feature (`sf`)**
+
+### A estrutura de um objeto sf
+```{r}
+rc_sf
+```
+
+### As duas classes do objeto sf
+```{r}
+class(rc_sf)
+```
+
+---
+
+# 3. Classes sf
+
+## **3. Simple feature (`sf`)**
+```{r}
+# plot
+plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - plotar a primeira coluna
+```
+
+---
+
+# 3. Classes sf
+
+## **3. Simple feature (`sf`)**
+```{r}
+# plot
+plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[2] - plotar a segunda coluna
+```
+
+---
+
+# 3. Classes sf
+
+## **3. Simple feature (`sf`)**
+```{r}
+# plot
+plot(rc_sf$geometry, pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf$geometry - plotar apenas a geometria
+```
 
 ---
 
@@ -499,8 +789,7 @@ library(geobr)
 ```
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
-
-[*] https://github.com/ipeaGIT/geobr
+[geobr](https://github.com/ipeaGIT/geobr)
 
 ---
 
@@ -646,7 +935,7 @@ geobr::list_geobr()
 
 background-image: url(img/package_ropensci.png)
 background-size: 500px
-background-position: 50% 55%
+background-position: 50% 70%
 
 # 4. Importar dados vetoriais
 
@@ -658,11 +947,9 @@ install.packages("rnaturalearth")
 library(rnaturalearth)
 ```
 
-<br><br><br><br><br><br><br><br><br>
-
-[*] http://www.naturalearthdata.com/ 
-
-[*] https://docs.ropensci.org/rnaturalearth/
+<br><br><br><br><br><br><br><br><br><br><br>
+[naturalearthdata](http://www.naturalearthdata.com/),
+[rnaturalearth](https://docs.ropensci.org/rnaturalearth/)
 
 ---
 
@@ -686,12 +973,6 @@ sa
 # plot
 plot(sa$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
-
----
-
-class: inverse, center, middle
-
-# 5. Descrição de objetos sf
 
 ---
 
@@ -789,12 +1070,6 @@ class(rc_2019_tab)
 
 ---
 
-class: inverse, center, middle
-
-# 6. Converter objetos para sf
-
----
-
 background-image: url(img/geo_sp.png),url(img/geo_sp_dep.png)
 background-size: 250px, 700px
 background-position: 20% 90%, 93% 50%
@@ -859,12 +1134,6 @@ co110_sp
 
 ---
 
-class: inverse, center, middle
-
-# 7. Converter CRS de objetos sf
-
----
-
 # 7. Converter CRS de objetos sf
 
 ## Os principais CRSs
@@ -919,11 +1188,9 @@ background-position: 50% 75%
 rc_2019_sirgas2000_utm23s <- sf::st_transform(rc_2019, crs = 31983)
 ```
 
-<br><br><br><br><br><br><br><br>
-
-[*] https://epsg.io/31983
-
-[*] http://www.sirgas.org/pt/sirgas-realizations/sirgas2000/
+<br><br><br><br><br><br><br><br><br><br>
+[EPSG: 31983](https://epsg.io/31983)
+[SIRGAS2000](http://www.sirgas.org/pt/sirgas-realizations/sirgas2000/)
 
 ---
 
@@ -973,11 +1240,9 @@ background-position: 50% 75%
 rc_2019_wgs84_utm23s <- sf::st_transform(rc_2019, crs = 32723)
 ```
 
-<br><br><br><br><br><br><br><br>
-
-[*] https://epsg.io/32723
-
-[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm
+<br><br><br><br><br><br><br><br><br><br>
+[EPSG: 32723](https://epsg.io/32723)
+[ESRI (2021)](https://pro.arcgis.com/en/pro-app/help/mapping/properties/transverse-mercator.htm)
 
 ---
 
@@ -996,9 +1261,8 @@ background-position: 50% 80%
 rc_2019_wgs84_gcs <- sf::st_transform(rc_2019, crs = 4326)
 ```
 
-<br><br><br><br><br><br><br><br><br>
-
-[*] https://epsg.io/4326
+<br><br><br><br><br><br><br><br><br><br>
+[EPSG: 4326](https://epsg.io/4326)
 
 ---
 
@@ -1039,11 +1303,9 @@ background-position: 50% 70%
 co110_sf_moll <- sf::st_transform(co110_sf, crs = "+proj=moll")
 ```
 
-<br><br><br><br><br><br><br><br>
-
-[*] https://epsg.io/54009
-
-[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/mollweide.htm
+<br><br><br><br><br><br><br><br><br><br>
+[EPSG: 54009](https://epsg.io/54009)
+[ESRI (2021)](https://pro.arcgis.com/en/pro-app/help/mapping/properties/mollweide.html)
 
 ---
 
@@ -1062,7 +1324,7 @@ plot(co110_sf_moll$geometry, col = "gray", graticule = TRUE)
 
 background-image: url(img/geo_proj_laea.png)
 background-size: 200px
-background-position: 50% 70%
+background-position: 50% 80%
 
 # 7. Converter CRS de objetos sf
 
@@ -1075,9 +1337,8 @@ background-position: 50% 70%
 co110_sf_laea <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0")
 ```
 
-<br><br><br><br><br><br><br>
-
-[*] https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.htm
+<br><br><br><br><br><br><br><br>
+[ESRI(2021)](https://pro.arcgis.com/en/pro-app/help/mapping/properties/lambert-azimuthal-equal-area.html)
 
 ---
 
@@ -1091,12 +1352,6 @@ co110_sf_laea <- sf::st_transform(co110_sf, crs = "+proj=laea +x_0=0 +y_0=0 +lon
 # plot
 plot(co110_sf_laea$geometry, col = "gray", graticule = TRUE)
 ```
-
----
-
-class: inverse, center, middle
-
-# 8. Operações com objetos sf
 
 ---
 
@@ -1870,15 +2125,9 @@ plot(rc_cob_floresta_polygon["area_ha"], col = viridis::viridis(100),  add = TRU
 
 ---
 
-class: inverse, center, middle
-
-# 9. Exportar dados vetoriais
-
----
-
-background-image: url(img/geo_shp_logo.png),url(img/geo_shp_formats.png)
-background-size: 150px,450px
-background-position: 50% 60%,50% 90%
+background-image: url(img/geo_shp_logo.png), url(img/geo_shp_formats.png)
+background-size: 150px, 450px
+background-position: 50% 50%, 50% 85%
 
 # 9. Exportar dados vetoriais
 
@@ -1891,9 +2140,9 @@ sf::st_write(obj = rc_cob_floresta_polygon, dsn = here::here("03_dados", "vetor"
 
 ---
 
-background-image: url(img/geo_ban_shp.png),url(img/geo_geopackage.png)
-background-size: 200px,500px
-background-position: 13% 60%,90% 70%
+background-image: url(img/geo_ban_shp.png), url(img/geo_geopackage.png)
+background-size: 250px, 600px
+background-position: 15% 65%, 85% 70%
 
 # 9. Exportar dados vetoriais
 
@@ -1905,17 +2154,15 @@ sf::st_write(obj = rc_cob_floresta_polygon, dsn = here::here("03_dados", "vetor"
 
 ```
 
-<br><br><br><br><br><br><br><br><br>
-
-[*] http://switchfromshapefile.org/
-
-[*] https://jsta.rbind.io/blog/2016-07-14-geopackage-r/
+<br><br><br><br><br><br><br><br><br><br><br><br>
+[Switch from Shapefile](http://switchfromshapefile.org/),
+[Using the Geopackage Format with R](https://jsta.rbind.io/blog/2016-07-14-geopackage-r/)
 
 ---
 
-background-image: url(img/geo_ban_shp.png),url(img/geo_geopackage.png)
-background-size: 200px,500px
-background-position: 13% 60%,90% 70%
+background-image: url(img/geo_ban_shp.png), url(img/geo_geopackage.png)
+background-size: 250px, 600px
+background-position: 15% 65%, 85% 70%
 
 # 9. Exportar dados vetoriais
 
@@ -1926,11 +2173,9 @@ background-position: 13% 60%,90% 70%
 sf::st_write(obj = sa, dsn = here::here("03_dados", "vetor", "vetores.gpkg"), layer = "south_america")
 ```
 
-<br><br><br><br><br><br><br><br><br>
-
-[*] http://switchfromshapefile.org/
-
-[*] https://jsta.rbind.io/blog/2016-07-14-geopackage-r/
+<br><br><br><br><br><br><br><br><br><br><br><br>
+[Switch from Shapefile](http://switchfromshapefile.org/),
+[Using the Geopackage Format with R](https://jsta.rbind.io/blog/2016-07-14-geopackage-r/)
 
 ---
 

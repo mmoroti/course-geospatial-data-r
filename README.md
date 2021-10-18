@@ -9,7 +9,7 @@ Prof. Milton Cezar Ribeiro
 Prof. Maurício Humberto Vancine
 
 **Período** <br>
-
+25/10/2021 - 05/11/2021
 
 **Créditos** <br>
 60 horas (4 créditos)
@@ -89,15 +89,16 @@ Para rodar as linhas, basta colocar o cursor na linha de código a ser executada
 
 ## Slides
 
-[0. Apresentações](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/00_pres_geospatial_data_r.html) <br>
-[1. Controle de versão, Git e GitHub](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/01_pres_geospatial_data_r.html) <br>
-[2. Funcionamento da linguagem R](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/02_pres_geospatial_data_r.html) <br>
-[3. Estrutura e manipulação de dados](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/03_pres_geospatial_data_r.html) <br>
-[4. Introdução ao tidyverse](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/04_pres_geospatial_data_r.html) <br>
-[5. Estrutura e fonte de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/05_pres_geospatial_data_r.html) <br>
-[6. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/06_pres_geospatial_data_r.html) <br>
-[7. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/07_pres_geospatial_data_r.html) <br>
-[8. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_aulas/08_pres_geospatial_data_r.html)
+[0. Apresentações](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/00_slides_geospatial_data_r.html#1) <br>
+[1. Controle de versão, Git e GitHub](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/01_slides_geospatial_data_r.html#1) <br>
+[2. Funcionamento da linguagem R](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/02_slides_geospatial_data_r.html#1) <br>
+[3. Estrutura e manipulação de dados](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/03_slides_geospatial_data_r.html#1l) <br>
+[4. Introdução ao tidyverse](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/04_slides_geospatial_data_r.html#1) <br>
+[5. Visualização de dados](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/05_pres_geospatial_data_r.html) <br>
+[6. Estrutura e fonte de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/05_pres_geospatial_data_r.html) <br>
+[7. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/06_pres_geospatial_data_r.html) <br>
+[8. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/07_pres_geospatial_data_r.html) <br>
+[9. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/08_pres_geospatial_data_r.html)
 
 ---
 
@@ -106,8 +107,9 @@ Para rodar as linhas, basta colocar o cursor na linha de código a ser executada
 [1. Instalar pacotes](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/03_script_geospatial_data_r.R) <br>
 [3. Estrutura e manipulação de dados](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/03_script_geospatial_data_r.R) <br>
 [4. Introdução ao tidyverse](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/04_script_geospatial_data_r.R) <br>
-[6. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/06_script_geospatial_data_r.R) <br>
-[7. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/07_script_geospatial_data_r.R) <br>
-[8. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/08_script_geospatial_data_r.R) <br>
+[5. Visualização de dados](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/06_script_geospatial_data_r.R) <br>
+[7. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/07_script_geospatial_data_r.R) <br>
+[8. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/08_script_geospatial_data_r.R) <br>
+[9. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/02_scripts/09_script_geospatial_data_r.R) <br>
 
 ---

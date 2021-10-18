@@ -547,7 +547,7 @@ background-position: 50% 90%
 
 # 8. Iniciando remotamente: git clone
 
-## Primeiro, vamos **criar uma pasta** chamada `github`
+## Primeiro, vamos **criar um diretório** chamado `github`
 
 ```{r eval=FALSE}
 ".                               # raiz"
@@ -570,7 +570,7 @@ background-position: 50% 85%
 
 # 8. Iniciando remotamente: git clone
 
-##  **Download diretamente** do repositório remoto no formato **.zip**
+##  1. **Download diretamente** do repositório remoto no formato **.zip**
 
 ---
 
@@ -721,7 +721,7 @@ background-position: 5% 77%, 90% 75%
 
 <br><br><br><br><br><br><br><br>
 
-[https://medium.com/@devmasterteam/git-ebook-8808f7301054]
+[Git — Os três estados](https://medium.com/@devmasterteam/git-ebook-8808f7301054)
 
 ---
 

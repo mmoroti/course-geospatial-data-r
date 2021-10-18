@@ -140,31 +140,27 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 
 ### 7 Estrutura e manipulação de dados vetoriais
 
-1. Pacotes
+1. Principais pacotes
 1. Geometrias sf
 1. Classes sf
 1. Importar dados vetoriais
 1. Descrição de objetos sf
 1. Converter dados para sf
-1. Converter CRS
-1. Operações de atributos
-1. Operações espaciais
-1. Operações geométricas
+1. Converter CRS de objetos sf
+1. Operações de objetos sf
 1. Exportar dados vetoriais
 
 ### 8 Estrutura e manipulação de dados matriciais
 
-1. Pacotes
-1. Dados raster
+1. Principais pacotes
 1. Classes raster
 1. Importar dados matriciais
 1. Descrição de objetos raster
-1. Converter CRS
-1. Manipulação de dados raster
-1. Operações espaciais
-1. Operações geométricas
+1. Converter CRS de objetos raster
+1. Operações de objetos raster
 1. Interações raster-vetor
 1. Conversões raster-vetor
+1. Índices espectrais
 1. Exportar dados matriciais
 
 ### 9 Visualização de dados geoespaciais
