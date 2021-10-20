@@ -10,6 +10,7 @@ library(here)
 library(readxl)
 library(writexl)
 library(lubridate)
+library(parallel)
 
 # topics ------------------------------------------------------------------
 
@@ -296,7 +297,7 @@ head(penguins_select_names)
 
 # remover colunas pelo nome
 penguins_select_names_remove <- penguins %>% 
-  dplyr::select(-bill_length_mm:body_mass_g)
+  dplyr::select(-(bill_length_mm:body_mass_g))
 head(penguins_select_names_remove)
 
 # selecionar colunas por padrao - starts_with(), ends_with() e contains()
@@ -449,8 +450,8 @@ penguins_summarise_across
 
 # 13. bind_rows() e bind_cols()
 # selecionar as linhas para dois tibbles
-penguins_01 <- dplyr::slice(penguins, 1:5)
-penguins_02 <- dplyr::slice(penguins, 51:55)
+penguins_01 <- dplyr::slice(penguins, 1:5) %>% dplyr::select(1:3)
+penguins_02 <- dplyr::slice(penguins, 51:55) %>% dplyr::select(4:6)
 
 # combinar as linhas
 penguins_bind_rows <- dplyr::bind_rows(penguins_01, penguins_02, .id = "id")

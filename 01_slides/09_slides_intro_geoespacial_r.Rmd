@@ -109,7 +109,7 @@ background-position: 95% 50%
 - [googleway](http://symbolixau.github.io/googleway/): acessa Google Maps APIs para recuperar dados e traçar mapas
 - [rasterVis](https://oscarperpinan.github.io/rastervis/): métodos de visualização para dados raster
 - [mapview](https://r-spatial.github.io/mapview/): visualização interativa de dados espaciais em R
-- [leaflet](http://rstudio.github.io/leaflet/): cria Web Maps interativos with Leaflet
+- [leaflet](http://rstudio.github.io/leaflet/): cria Web Maps interativos com Leaflet
 - [plotly](https://plotly.com/r/maps/): crie gráficos interativos da Web por meio de ‘plotly.js’ 
 - [mapedit](https://r-spatial.github.io/mapview/): edição interativa de dados geoespaciais em R
 
@@ -468,8 +468,11 @@ ggplot() +
 ggplot() +
   geom_sf(data = biomas, aes(fill = name_biome), color = NA) +
   scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
-                               "forestgreen", "yellow", "yellow3")) +
-  theme_bw(base_size = 16)
+                               "forestgreen", "yellow", "yellow3")) + 
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
+        legend.position = c(.2, .2),
+        legend.background = element_rect(colour = "black"))
 ```
 ]
 .pull-right[
@@ -489,7 +492,10 @@ ggplot() +
   geom_sf(data = biomas, aes(fill = name_biome), color = NA) +
   scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
                                "forestgreen", "yellow", "yellow3")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
+        legend.position = c(.2, .2),
+        legend.background = element_rect(colour = "black")) +
   annotation_scale(location = "br") +
   annotation_north_arrow(location = "br", which_north = "true",
                          pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
@@ -514,7 +520,10 @@ ggplot(data = biomas) +
   geom_sf(color = "black") +
   scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
                                "forestgreen", "yellow", "yellow3")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
+        legend.position = c(.2, .2),
+        legend.background = element_rect(colour = "black")) +
   annotation_scale(location = "br") +
   annotation_north_arrow(location = "br", which_north = "true",
                          pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
@@ -542,7 +551,10 @@ map_biomas_ggplot2 <- ggplot(data = biomas) +
   geom_sf(color = "black") +
   scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
                                "forestgreen", "yellow", "yellow3")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
+        legend.position = c(.2, .2),
+        legend.background = element_rect(colour = "black")) +
   annotation_scale(location = "br") +
   annotation_north_arrow(location = "br", which_north = "true",
                          pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
@@ -587,10 +599,13 @@ head(dem_rc_da)
 # plot
 map_dem_rc_ggplot2 <- ggplot() +
   geom_raster(data = dem_rc_da, aes(x = x, y = y, fill = srtm_27_17)) +
-  geom_sf(data = rc_2020, color = "red", fill = NA, size = 1.3) +
+  geom_sf(data = rc_2020, col = "red", fill = NA, size = 1.3) +
   scale_fill_viridis_c() +
   coord_sf() +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
+        legend.position = c(.2, .2),
+        legend.background = element_rect(colour = "black")) +
   annotation_scale(location = "br",
                    pad_x = unit(.5, "cm"), pad_y = unit(.7, "cm"),) +
   annotation_north_arrow(location = "br", which_north = "true",
@@ -1041,19 +1056,25 @@ tm_shape(biomas) +
   tm_fill(col = "name_biome", 
           pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
           title = "Legenda") +
-  tm_grid(lines = FALSE, 
-          labels.format = list(big.mark = ""), 
-          labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
-  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09)) +
-  tm_layout(main.title = "Biomas do Brasil", title.position = c(.25, .95),
-            title.size = 1.8, title.fontface = "bold",
-            legend.frame = TRUE, legend.position = c("left", "bottom"),
-            legend.title.fontface = "bold")
+  tm_graticules(lines = FALSE, 
+                labels.format = list(big.mark = ""), 
+                labels.rot = c(0, 90),
+                labels.size = 1) +
+  tm_compass(size = 3) +
+  tm_scale_bar(size = 1) +
+  tm_xlab("Longitude", size = 1.5) +
+  tm_ylab("Latitude", size = 1.5) +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13), size = 1) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09), size = 1) +
+  tm_layout(main.title = "Biomas do Brasil",
+            main.title.position = c(.1, .95),
+            main.title.size = 3,
+            title.fontface = "bold",
+            legend.frame = TRUE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontface = "bold",
+            legend.title.size = 2,
+            legend.text.size = 1)
 ```
 ].pull-right[
 ```{r ref.label="tmap9", echo=FALSE}
@@ -1072,19 +1093,25 @@ map_biomas_tmap <- tm_shape(biomas) +
   tm_fill(col = "name_biome", 
           pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
           title = "Legenda") +
-  tm_grid(lines = FALSE, 
-          labels.format = list(big.mark = ""), 
-          labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
-  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09)) +
-  tm_layout(main.title = "Biomas do Brasil", title.position = c(.25, .95),
-            title.size = 1.8, title.fontface = "bold",
-            legend.frame = TRUE, legend.position = c("left", "bottom"),
-            legend.title.fontface = "bold")
+  tm_graticules(lines = FALSE, 
+                labels.format = list(big.mark = ""), 
+                labels.rot = c(0, 90),
+                labels.size = 1) +
+  tm_compass(size = 3) +
+  tm_scale_bar(size = 1) +
+  tm_xlab("Longitude", size = 1.5) +
+  tm_ylab("Latitude", size = 1.5) +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13), size = 1) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09), size = 1) +
+  tm_layout(main.title = "Biomas do Brasil",
+            main.title.position = c(.1, .95),
+            main.title.size = 3,
+            title.fontface = "bold",
+            legend.frame = TRUE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontface = "bold",
+            legend.title.size = 2,
+            legend.text.size = 1)
 map_biomas_tmap
 ```
 ]
@@ -1565,7 +1592,7 @@ png(filename = here::here("03_dados", "mapas", "mapa_bioclim_rastervis.png"),
 levelplot(bioclim, 
           layers = 4, 
           margin = 
-          list(FUN = "median"))
+            list(FUN = "median"))
 dev.off()
 ```
 
@@ -1631,8 +1658,8 @@ background-position: 50% 90%
 tmap::tmap_animation(
   tm = map_brasil_tmap_ani, 
   filename = here::here("03_dados", 
-  "mapas", 
-  "mapa_dem_rc_tmap_ani.gif"), 
+                        "mapas", 
+                        "mapa_dem_rc_tmap_ani.gif"), 
   delay = 30)
 ```
 
@@ -1666,6 +1693,20 @@ background-position: 50% 50%
 # mudar o modo de exibicao do tmap
 tmap::tmap_mode(mode = "view")
 
+map_biomas_tmap_int <- map_biomas_tmap
+map_biomas_tmap_int
+```
+
+```{r echo=FALSE, out.width='100%'}
+include_url("img/geo_map_biomas_tmap.html")
+```
+
+---
+
+# 5. Mapas interativos
+
+## **tmap**
+```{r eval=FALSE}
 map_dem_rc_tmap_int <- map_dem_rc_tmap
 map_dem_rc_tmap_int
 ```
@@ -1899,8 +1940,8 @@ map_rc_2020_plotly_int
 # plot
 map_rc_2020_plotly_int <- ggplotly(
   ggplot() +
-  geom_sf(data = rc_2020) +
-  theme_bw(base_size = 16))
+    geom_sf(data = rc_2020) +
+    theme_bw(base_size = 15))
 map_rc_2020_plotly_int
 ```
 
@@ -1914,14 +1955,14 @@ map_rc_2020_plotly_int
 # plot
 map_biomas_plotly_int <- ggplotly(
   ggplot(data = biomas) +
-  aes(fill = name_biome) +
-  geom_sf(color = "black") +
-  scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
-                               "forestgreen", "yellow", "yellow3")) +
-  theme_bw(base_size = 16) +
-  annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 2.5) +
-  annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 2.5) +
-  labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude"))
+    aes(fill = name_biome) +
+    geom_sf(color = "black") +
+    scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
+                                 "forestgreen", "yellow", "yellow3")) +
+    theme_bw(base_size = 15) +
+    annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 2.5) +
+    annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 2.5) +
+    labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude"))
 map_biomas_plotly_int
 ```
 

@@ -113,12 +113,12 @@ attributes(dune)
 ---
 
 background-image: url(img/code_modes.png)
-background-size: 60%
+background-size: 50%
 background-position: 50% 90%
 
 # 1. Atributos dos objetos
 
-## Modos (*natureza*): numeric, character e logical
+## Modos (*natureza*): numeric (double), numeric (integer), character, logical e complex
 
 ### **Natureza** dos **elementos** que compõem os objetos
 
@@ -227,7 +227,7 @@ background-position: 80% 85%
 
 ## Resumindo:
 
-### A **natureza** dos **elementos** irá definir os **modos** dos objetos
+### A **natureza** dos **elementos** definirá os **modos** dos objetos
 
 ### Modos:
 
@@ -711,7 +711,7 @@ background-position: 50% 50%
 
 # 1. Atributos dos objetos
 
-## **3. Matrix**: homogêneo (*um modo*) e bidimensional (*duas dimensão*)
+## **3. Matrix**: homogêneo (*um modo*) e bidimensional (*duas dimensões*)
 
 --
 
@@ -719,7 +719,7 @@ background-position: 50% 50%
 
 --
 
-### As **linhas** representam **unidades amostrais** (locais, transectos, parcelas) e as **coluncas** representam **variáveis quantitativas** (discretas ou contínuas) ou **descrições** (informações em texto)
+### As **linhas** representam **unidades amostrais** (locais, transectos, parcelas) e as **colunas** representam **variáveis quantitativas** (discretas ou contínuas) ou **descrições** (informações em texto)
 
 ---
 
@@ -729,7 +729,7 @@ background-position: 50% 85%
 
 # 1. Atributos dos objetos
 
-## **3. Matrix**: homogêneo (*um modo*) e bidimensional (*duas dimensão*)
+## **3. Matrix**: homogêneo (*um modo*) e bidimensional (*duas dimensões*)
 
 ### Ex.: cinco espécies amostradas em cinco locais
 
@@ -894,7 +894,7 @@ background-position: 50% 90%
 
 # 1. Atributos dos objetos
 
-## **4. Array**: homogêneo (*um modo*) e multidimensional (*mais que duas dimensões*)
+## **4. Array**: homogêneo (*um modo*) e multidimensional (*mais de duas dimensões*)
 
 ### O **array** representa combinação de **tabelas**, com **linhas**, **colunas** e **dimensões**
 
@@ -1818,7 +1818,7 @@ df
 
 ### **5. Seleção condicional**: filtro de linhas
 
-### Selecionar linhas = filtro do planilha eletrônica
+### Selecionar linhas = filtro da planilha eletrônica
 
 ```{r}
 # selecionar linhas de uma matriz ou data frame 
@@ -1833,7 +1833,7 @@ df[df$abu > 4, ]
 
 ### **5. Seleção condicional**: filtro de linhas
 
-### Selecionar linhas = filtro do planilha eletrônica
+### Selecionar linhas = filtro da planilha eletrônica
 
 ```{r}
 # selecionar linhas de uma matriz ou data frame 
@@ -1848,7 +1848,7 @@ df[df$abu2 == 0, ]
 
 ### **5. Seleção condicional**: filtro de linhas
 
-### Selecionar linhas = filtro do planilha eletrônica
+### Selecionar linhas = filtro da planilha eletrônica
 
 ```{r}
 # selecionar linhas de uma matriz ou data frame 

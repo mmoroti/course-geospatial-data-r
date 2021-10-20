@@ -254,7 +254,6 @@ bio01_moll
 # plot
 plot(bio01_moll, col = viridis::viridis(10))
 
-
 # proj4string lambert 
 laea <- "+proj=laea +x_0=0 +y_0=0 +lon_0=0 +lat_0=0"
 laea
@@ -586,7 +585,6 @@ rc_cob_fast
 # plot
 plot(rc_cob_fast, col = viridis::viridis(10))
 plot(rc_cob$geom, add = TRUE)
-
 
 # vetorizacao de pontos
 dem_rc_utm23s_agre_media_pontos <- raster::rasterToPoints(dem_rc_utm23s_agre_media, spatial = TRUE) %>% 

@@ -56,6 +56,7 @@ po <- sf::st_point(vec)
 po
 
 # plot
+dev.off()
 plot(po, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 
 # matrix - multipoint
@@ -199,7 +200,7 @@ rc_hid
 # plot
 plot(rc_hid$geometry, col = "steelblue", main = NA, axes = TRUE, graticule = TRUE)
 
-# import polygons
+# import polygons - pode demorar alguns segundos
 rc_cob <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), quiet = TRUE)
 rc_cob
 
@@ -218,7 +219,7 @@ gps_kml <- sf::read_sf(here::here("03_dados", "vetor", "waypoints.kml"))
 gps_kml
 
 # plot
-plot(gps_kml$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
+plot(gps_kml$geometry, cex = 4, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 
 # importar tabela
 si <- readr::read_csv(
@@ -451,7 +452,7 @@ rc_nas_cob_jun
 plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_nas_cob_jun[1], col = c("blue", "orange", "gray30", "forestgreen", "green"), pch = 20, 
      legend = TRUE, add = TRUE)
-legend(x = 209000, y = 7520000, pch = 15, cex = .7, pt.cex = 2.5, 
+legend(x = 213000, y = 7515000, pch = 15, cex = 1, pt.cex = 2.5, 
        legend = (rc_nas_cob_jun$CLASSE_USO), 
        col = c("blue", "orange", "gray30", "forestgreen", "green"))
 

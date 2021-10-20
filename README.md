@@ -18,7 +18,7 @@ Prof. Maurício Humberto Vancine
 10 + 5 especiais
 
 **Resumo** <br>
-A disciplina oferecerá os principais conceitos teórico-práticos do uso de dados geoespaciais com o R aplicados à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, git e GitHub, (2) funcionamento da linguagem R, (3) estrutura e manipulação de dados, (4) introdução ao tidyverse, (5) visualização de dados, (6) estrutura e fonte de dados geoespaciais, (7) estrutura e manipulação de dados vetoriais, (8) estrutura e manipulação de dados matriciais e (9) visualização de dados geoespaciais. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teórico-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de formulação e execução de um projeto com dados reais como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que as alunas e alunos adquiram conceitos gerais da estrutura, manipulação e visualização de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
+A disciplina oferecerá os principais conceitos teóricos e práticos quanto ao funcionamento da linguagem R e seu uso para manipulação e visualização de dados tabulares e geoespaciais, com enfoque em Ecologia Geral. Serão abordados os seguintes temas: (1) controle de versão, git e GitHub, (2) funcionamento da linguagem R, (3) estrutura e manipulação de dados no R, (4) introdução ao tidyverse, (5) visualização de dados no R, (6) estrutura e fonte de dados geoespaciais, (7) estrutura e manipulação de dados vetoriais no R, (8) estrutura e manipulação de dados matriciais no R e (9) visualização de dados geoespaciais no R. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas de aulas teórico-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à formulação e execução de um projeto com dados reais, como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que as alunas e alunos adquiram conceitos gerais sobre a estrutura, manipulação e visualização de dados tabulares e geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
 
 ---
 
@@ -29,7 +29,7 @@ Teórico-prático: <br>
 Exercícios-atividades assistidas remotamente:
 
 **Plano de ensino** <br> 
-[pdf](https://mauriciovancine.github.io/course-geospatial-data-r/blob/master/00_plano_ensino/plano_ensino_analise_geoespacial_r.pdf)
+[pdf](https://github.com/mauriciovancine/course-geospatial-data-r/blob/master/00_plano_ensino/plano_ensino_analise_geoespacial_r.pdf)
 
 **Contato** <br>
 Para mais informações ou dúvidas, envie e-mail para Maurício Vancine (mauricio.vancine@gmail.com)
@@ -39,7 +39,7 @@ Para mais informações ou dúvidas, envie e-mail para Maurício Vancine (mauric
 ### Instruções aos participantes
 
 **Hardware** <br>
-Será necessário que todos usem seus notebooks
+Será necessário que todos usem seus computadores
 
 **Softwares**<br>
 R, RStudio e git <br>
@@ -50,6 +50,15 @@ R, RStudio e git <br>
 
 2. Instalar o [git (2.33)](https://git-scm.com/downloads)
 - [Vídeo de instalação do git](https://youtu.be/QSfHNEiBd2k)
+
+3. Instalar o [Discord](https://discord.com/download)
+
+**Contas on-line**<br>
+Criem uma conta no GitHub e guardem essas três informações:
+
+- usuário
+- email
+- senha
 
 #### Linux (Ubuntu e Linux Mint)
 
@@ -95,10 +104,10 @@ Para rodar as linhas, basta colocar o cursor na linha de código a ser executada
 [3. Estrutura e manipulação de dados](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/03_slides_intro_geoespacial_r.html#1l) <br>
 [4. Introdução ao tidyverse](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/04_slides_intro_geoespacial_r.html#1) <br>
 [5. Visualização de dados](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/05_slides_intro_geoespacial_r.html) <br>
-[6. Estrutura e fonte de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/05_slides_intro_geoespacial_r.html) <br>
-[7. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/06_slides_intro_geoespacial_r.html) <br>
-[8. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/07_slides_intro_geoespacial_r.html) <br>
-[9. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/08_slides_intro_geoespacial_r.html)
+[6. Estrutura e fonte de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/06_slides_intro_geoespacial_r.html) <br>
+[7. Estrutura e manipulação de dados vetoriais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/07_slides_intro_geoespacial_r.html) <br>
+[8. Estrutura e manipulação de dados matriciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/08_slides_intro_geoespacial_r.html) <br>
+[9. Visualização de dados geoespaciais](https://mauriciovancine.github.io/course-geospatial-data-r/01_slides/09_slides_intro_geoespacial_r.html)
 
 ---
 

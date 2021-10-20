@@ -15,6 +15,7 @@ library(viridis)
 library(wesanderson)
 library(cptcity)
 library(ggspatial)
+library(ggmap)
 library(tmap)
 library(mapsf)
 library(mapview)
@@ -75,7 +76,7 @@ plot(biomas)
 plot(biomas$geom, 
      col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"),
      main = "Biomas do Brasil", axes = TRUE, graticule = TRUE)
-legend(x = -75, y = -20, pch = 15, cex = 1, pt.cex = 2.5, legend = biomas$name_biome, 
+legend(x = -72, y = -20, pch = 15, cex = 1, pt.cex = 2.5, legend = biomas$name_biome, 
        col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"))
 
 # rio claro
@@ -154,7 +155,7 @@ ggplot() +
   geom_sf(data = biomas, aes(fill = name_biome), color = NA) +
   scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
                                "forestgreen", "yellow", "yellow3")) +
-  theme_bw() +
+  theme_bw(base_size = 15) +
   annotation_scale(location = "br") +
   annotation_north_arrow(location = "br", which_north = "true",
                          pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
@@ -170,15 +171,13 @@ ggplot(data = biomas) +
   annotation_north_arrow(location = "br", which_north = "true",
                          pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
                          style = north_arrow_fancy_orienteering) +
-  annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 2.5) +
-  annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 2.5) +
+  annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 4) +
+  annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 4) +
   labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude") +
-  theme_bw() +
-  theme(title = element_text(size = 15, face = "bold"),
-        legend.title = element_text(size = 10, face = "bold"),
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
         legend.position = c(.15, .25),
-        legend.background = element_rect(colour = "black"),
-        axis.title = element_text(size = 10, face = "plain"))
+        legend.background = element_rect(colour = "black"))
 
 # atribuicao
 map_biomas_ggplot2 <- ggplot(data = biomas) +
@@ -190,15 +189,13 @@ map_biomas_ggplot2 <- ggplot(data = biomas) +
   annotation_north_arrow(location = "br", which_north = "true",
                          pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
                          style = north_arrow_fancy_orienteering) +
-  annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 2.5) +
-  annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 2.5) +
+  annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 4) +
+  annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 4) +
   labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude") +
-  theme_bw() +
-  theme(title = element_text(size = 15, face = "bold"),
-        legend.title = element_text(size = 10, face = "bold"),
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
         legend.position = c(.15, .25),
-        legend.background = element_rect(colour = "black"),
-        axis.title = element_text(size = 10, face = "plain"))
+        legend.background = element_rect(colour = "black"))
 map_biomas_ggplot2
 
 # dados
@@ -212,20 +209,17 @@ map_dem_rc_ggplot2 <- ggplot() +
   geom_sf(data = rc_2020, col = "red", fill = NA, size = 1.3) +
   scale_fill_viridis_c() +
   coord_sf() +
+  theme_bw(base_size = 15) +
+  theme(legend.title = element_text(size = 15, face = "bold"),
+        legend.position = c(.2, .2),
+        legend.background = element_rect(colour = "black")) +
   annotation_scale(location = "br",
                    pad_x = unit(.5, "cm"), pad_y = unit(.7, "cm"),) +
   annotation_north_arrow(location = "br", which_north = "true",
                          pad_x = unit(.4, "cm"), pad_y = unit(1.3, "cm"),
                          style = north_arrow_fancy_orienteering) +
   annotate(geom = "text", label = "CRS: WGS84/Geo", x = -47.51, y = -22.53, size = 3) +
-  labs(title = "Elevação de Rio Claro/SP", fill = "Elevação (m)", x = "Longitude", y = "Latitude") +
-  theme_bw() +
-  theme(title = element_text(size = 15, face = "bold"),
-        legend.title = element_text(size = 10, face = "bold"),
-        legend.position = c(.2, .25),
-        legend.background = element_rect(colour = "black"),
-        axis.title = element_text(size = 10, face = "plain"),
-        axis.text.y = element_text(angle = 90, hjust = .4))
+  labs(title = "Elevação de Rio Claro/SP", fill = "Elevação (m)", x = "Longitude", y = "Latitude")
 map_dem_rc_ggplot2
 
 # exportar
@@ -343,44 +337,50 @@ tm_shape(biomas) +
   tm_fill(col = "name_biome", 
           pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
           title = "Legenda") +
-  tm_grid(lines = FALSE, 
-          labels.format = list(big.mark = ""), 
-          labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
-  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09)) +
+  tm_graticules(lines = FALSE, 
+                labels.format = list(big.mark = ""), 
+                labels.rot = c(0, 90),
+                labels.size = 1) +
+  tm_compass(size = 3) +
+  tm_scale_bar(size = 1) +
+  tm_xlab("Longitude", size = 1.5) +
+  tm_ylab("Latitude", size = 1.5) +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13), size = 1) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09), size = 1) +
   tm_layout(main.title = "Biomas do Brasil",
-            title.position = c(.25, .95),
-            title.size = 1.8,
+            main.title.position = c(.1, .95),
+            main.title.size = 3,
             title.fontface = "bold",
             legend.frame = TRUE,
             legend.position = c("left", "bottom"),
-            legend.title.fontface = "bold")
+            legend.title.fontface = "bold",
+            legend.title.size = 2,
+            legend.text.size = 1)
 
 # atribuicao
 map_biomas_tmap <- tm_shape(biomas) +
   tm_fill(col = "name_biome", 
           pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
           title = "Legenda") +
-  tm_grid(lines = FALSE, 
-          labels.format = list(big.mark = ""), 
-          labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
-  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09)) +
+  tm_graticules(lines = FALSE, 
+                labels.format = list(big.mark = ""), 
+                labels.rot = c(0, 90),
+                labels.size = 1) +
+  tm_compass(size = 3) +
+  tm_scale_bar(size = 1) +
+  tm_xlab("Longitude", size = 1.5) +
+  tm_ylab("Latitude", size = 1.5) +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13), size = 1) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09), size = 1) +
   tm_layout(main.title = "Biomas do Brasil",
-            title.position = c(.25, .95),
-            title.size = 1.8,
+            main.title.position = c(.1, .95),
+            main.title.size = 3,
             title.fontface = "bold",
             legend.frame = TRUE,
             legend.position = c("left", "bottom"),
-            legend.title.fontface = "bold")
+            legend.title.fontface = "bold",
+            legend.title.size = 2,
+            legend.text.size = 1)
 map_biomas_tmap
 
 # plot
@@ -388,15 +388,23 @@ map_dem_rc_tmap <- tm_shape(dem_rc) +
   tm_raster(title = "Legenda") +
   tm_shape(rc_2020) +
   tm_borders(col = "red", lwd = 2) +
-  tm_grid(lines = FALSE, 
-          labels.format = list(big.mark = ""), 
-          labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_layout(legend.position = c("left", "bottom"), 
-            main.title = "Elevação Rio Claro/SP")
+  tm_graticules(lines = FALSE, 
+                labels.format = list(big.mark = ""), 
+                labels.rot = c(0, 90),
+                labels.size = 1) +
+  tm_compass(size = 3) +
+  tm_scale_bar(size = 1) +
+  tm_xlab("Longitude", size = 1.5) +
+  tm_ylab("Latitude", size = 1.5) +
+  tm_layout(main.title = "Elevação Rio Claro/SP",
+            main.title.position = c(.1, .95),
+            main.title.size = 3,
+            title.fontface = "bold",
+            legend.frame = TRUE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontface = "bold",
+            legend.title.size = 2,
+            legend.text.size = 1)
 map_dem_rc_tmap
 
 # plot
@@ -404,15 +412,23 @@ map_dem_rc_tmap <- tm_shape(dem_rc) +
   tm_raster(pal = wesanderson::wes_palette("Zissou1"), title = "Legenda") +
   tm_shape(rc_2020) +
   tm_borders(col = "red", lwd = 2) +
-  tm_grid(lines = FALSE, 
-          labels.format = list(big.mark = ""), 
-          labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_layout(legend.position = c("left", "bottom"), 
-            main.title = "Elevação Rio Claro/SP")
+  tm_graticules(lines = FALSE, 
+                labels.format = list(big.mark = ""), 
+                labels.rot = c(0, 90),
+                labels.size = 1) +
+  tm_compass(size = 3) +
+  tm_scale_bar(size = 1) +
+  tm_xlab("Longitude", size = 1.5) +
+  tm_ylab("Latitude", size = 1.5) +
+  tm_layout(main.title = "Elevação Rio Claro/SP",
+            main.title.position = c(.1, .95),
+            main.title.size = 3,
+            title.fontface = "bold",
+            legend.frame = TRUE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontface = "bold",
+            legend.title.size = 2,
+            legend.text.size = 1)
 map_dem_rc_tmap
 
 # plot
@@ -420,15 +436,22 @@ map_dem_rc_tmap <- tm_shape(dem_rc) +
   tm_raster(pal = cptcity::cpt(pal = "gmt_GMT_dem4"), n = 20, title = "Legenda") +
   tm_shape(rc_2020) +
   tm_borders(col = "red", lwd = 2) +
-  tm_grid(lines = FALSE,
-          labels.format = list(big.mark = ""), 
-          labels.rot = c(0, 90)) +
-  tm_compass(position = c("left", "bottom")) +
-  tm_scale_bar(position = c("left", "bottom")) +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_layout(legend.outside = TRUE,
-            main.title = "Elevação Rio Claro/SP")
+  tm_graticules(lines = FALSE, 
+                labels.format = list(big.mark = ""), 
+                labels.rot = c(0, 90),
+                labels.size = 1) +
+  tm_compass(size = 3) +
+  tm_scale_bar(size = 1) +
+  tm_xlab("Longitude", size = 1.5) +
+  tm_ylab("Latitude", size = 1.5) +
+  tm_layout(main.title = "Elevação Rio Claro/SP",
+            main.title.position = c(.1, .95),
+            main.title.size = 3,
+            title.fontface = "bold",
+            legend.outside = TRUE,
+            legend.title.fontface = "bold",
+            legend.title.size = 2,
+            legend.text.size = 1)
 map_dem_rc_tmap
 
 # exportar
@@ -466,14 +489,14 @@ mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15))
+       leg_pos = c(-70, -15))
 
 # plot
 mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15))
+       leg_pos = c(-70, -15))
 mf_title("Biomas do Brasil")
 mf_credits("IBGE, 2019")
 mf_scale()
@@ -485,8 +508,8 @@ mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15),
-        add = TRUE)
+       leg_pos = c(-70, -15),
+       add = TRUE)
 mf_title("Biomas do Brasil")
 mf_credits("IBGE, 2019")
 mf_scale()
@@ -498,7 +521,7 @@ mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15),
+       leg_pos = c(-70, -15),
        add = TRUE)
 mf_title("Biomas do Brasil")
 mf_credits("IBGE, 2019")
@@ -512,7 +535,7 @@ mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15),
+       leg_pos = c(-70, -15),
        add = TRUE)
 mf_title("Biomas do Brasil")
 mf_credits("IBGE, 2019")
@@ -520,20 +543,20 @@ mf_scale()
 mf_arrow()
 
 # plot
-mf_init(x = biomas, theme = "dark")
-mf_shadow(x = biomas, col = "gray10", add = TRUE)
+mf_init(x = biomas, theme = "dark") +
+  mf_shadow(x = biomas, col = "gray10", add = TRUE)
 mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15),
-       add = TRUE)
-mf_inset_on(x = "worldmap", pos = "topright")
+       leg_pos = c(-70, -15),
+       add = TRUE) +
+  mf_inset_on(x = "worldmap", pos = "topright")
 mf_worldmap(biomas, col = "#0E3F5C")
 mf_inset_off()
 mf_title("Biomas do Brasil")
 mf_credits("IBGE, 2019")
-mf_scale()
+mf_scale(lwd = 2)
 mf_arrow()
 
 # export
@@ -601,23 +624,26 @@ map_brasil_tmap <- tm_shape(br_anos) +
   tm_facets(by = "year", nrow = 4)
 map_brasil_tmap
 
-# mapa animado
+# mapa animado - pode demorar uns 10 segundos
 map_brasil_tmap_ani <- tm_shape(br_anos) + 
   tm_polygons() + 
   tm_facets(along = "year", free.coords = FALSE)
 map_brasil_tmap_ani
 
-# exportar
+# exportar - pode demorar uns 10 segundos
 tmap::tmap_animation(tm = map_brasil_tmap_ani, 
                      filename = here::here("03_dados", "mapas", "mapa_dem_rc_tmap_ani.gif"), 
                      delay = 30)
-
 
 # 5. mapas interativos ---------------------------------------------------
 
 # tmap ----
 # mudar o modo de exibicao do tmap
 tmap::tmap_mode(mode = "view")
+
+# mapa interativo
+map_biomas_tmap_int <- map_biomas_tmap
+map_biomas_tmap_int
 
 # mapa interativo
 map_dem_rc_tmap_int <- map_dem_rc_tmap

@@ -50,7 +50,7 @@ background-position: 80% 65%
 1. Interações raster-vetor
 1. Conversões raster-vetor
 1. Índices espectrais
-1. Exportar dados matriciais
+1. Exportar objetos raster
 
 ---
 
@@ -2723,7 +2723,7 @@ background-position: 70% 90%
 
 ## **Definição**
 
-### **Equação matemática** aplicada  por pixel em **várias bandas espectrais** de uma imagem, cuja finalidade é **realçar alguma característica na imagem**
+### **Equação matemática** aplicada por pixel em **várias bandas espectrais** de uma imagem, cuja finalidade é **realçar alguma característica na imagem**
 
 ## **Aplicações**
 
@@ -2863,7 +2863,7 @@ background-image: url(img/general_subdirectory.jpeg)
 background-size: 300px
 background-position: 50% 90%
 
-# 10. Exportar dados matriciais
+# 10. Exportar objetos raster
 
 ## Exportar raster
 
@@ -2881,7 +2881,7 @@ background-image: url(img/geo_raster_single_raster.png)
 background-size: 250px
 background-position: 50% 90%
 
-# 10. Exportar dados matriciais
+# 10. Exportar objetos raster
 
 ## Exportar raster
 
@@ -2902,7 +2902,7 @@ background-image: url(img/geo_raster_multi_raster.png)
 background-size: 230px
 background-position: 50% 95%
 
-# 10. Exportar dados matriciais
+# 10. Exportar objetos raster
 
 ## Exportar stack ou brick
 

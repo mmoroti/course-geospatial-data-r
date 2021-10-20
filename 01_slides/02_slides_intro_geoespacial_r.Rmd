@@ -821,7 +821,7 @@ background-position: 50% 70%
 
 --
 
-5. Nome de objetos não podem ser iguais a **nomes especies**: 
+5. Nome de objetos não podem ser iguais a **nomes especiais**: 
 
 `break, else, FALSE, for, function, if, Inf, NA, NaN, next, repeat, return, TRUE, while`
 
@@ -894,7 +894,7 @@ div
 
 ---
 
-class: clear, clean, inverse, middle, center
+class: inverse, middle, center
 # Exercícios
 
 ---
@@ -1121,7 +1121,7 @@ sq
 
 ---
 
-class: clear, clean, inverse, middle, center
+class: inverse, middle, center
 # Exercícios
 
 ---
@@ -1792,10 +1792,10 @@ Parênteses
 ```{r error=TRUE}
 sum(1, 2
     +
-```
+      ```
     
-Aspas
-```{r error=TRUE}
+    Aspas
+    ```{r error=TRUE}
     "string
 +
 ```

@@ -55,10 +55,10 @@ background-position: 80% 65%
 1. Classes sf
 1. Importar dados vetoriais
 1. Descrição de objetos sf
-1. Converter dados para sf
+1. Converter objetos para sf
 1. Converter CRS de objetos sf
 1. Operações de objetos sf
-1. Exportar dados vetoriais
+1. Exportar objetos sf
 
 <br><br><br><br><br>
 [Lovelace et al. (2020)](https://geocompr.robinlovelace.net/)
@@ -250,7 +250,7 @@ kable(tibble(Classes = c("1. Simple feature geometries (`sfg`)",
 
 -   1. Classe `sfg` - uma geometria única
 -   2. Classe `sfc` - uma coluna de geometria, que é um conjunto de geometrias `sfg` e informações Sistema de Referência de Coordenadas (do inglês *Coordinate Reference Systems - CRS*)
--   3. Classe `sf` - uma camada, que é uma coluna de geometria `sfc` dentro de um dataframe com atributos não espaciais (tabela de atributos)
+-   3. Classe `sf` - uma camada, que é uma coluna de geometria `sfc` dentro de um data frame com atributos não espaciais (tabela de atributos)
 
 ---
 
@@ -480,15 +480,15 @@ plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 
 ## **3. Simple feature (`sf`)**
 
-### A classe sf (simple features) são *data.frames* com **atributos espaciais** armazenados em uma coluna, geralmente chamada de **geometry** 
+### A classe sf (simple features) são *data frames* com **atributos espaciais** armazenados em uma coluna, geralmente chamada de **geometry** 
 
 --
 
-### Essa **dualidade** é central para o conceito de **simple features**: na maioria das vezes, um sf pode **ser tratado e se comporta** como um *data.frame *
+### Essa **dualidade** é central para o conceito de **simple features**: na maioria das vezes, um sf pode **ser tratado e se comporta** como um *data frame *
 
 --
 
-### **Simple features** são, em essência, *data.frames* com uma **extensão espacial**
+### **Simple features** são, em essência, *data frames* com uma **extensão espacial**
 
 ---
 
@@ -500,7 +500,7 @@ plot(points_sfc_wgs, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```{r}
 rc_point <- sf::st_point(c(-47.57, -22.39))         # `sfg` object
 rc_geom <- sf::st_sfc(rc_point, crs = 4326)        # `sfc` object
-rc_attrib <- data.frame(                       # data.frame object
+rc_attrib <- data.frame(                       # data frame object
   name = "Rio Claro",
   temperature = 19,
   date = as.Date("2020-10-13")
@@ -564,10 +564,10 @@ background-position: 50% 90%
 
 ### Fundação Brasileira Desenvolvimento Sustentável (FBDS)
 
-Em 2015, a FBDS deu início ao *Projeto de Mapeamento em Alta Resoluçăo dos Biomas Brasileiros*: 
+Em 2015, a FBDS deu início ao *Projeto de Mapeamento em Alta Resolução dos Biomas Brasileiros*: 
 - Cobertura da terra
 - Hidrografia (nascentes, rios e lagos)
-- Áreas de Preservaçăo Permanente (APP)
+- Áreas de Preservação Permanente (APP)
 
 O mapeamento foi concluído para os municípios dos biomas *Mata Atlântica e Cerrado*
 
@@ -736,7 +736,7 @@ gps_kml
 
 ```{r}
 # plot
-plot(gps_kml$geometry, cex = 4, pch = 20, col = "red", main = NA, axes = TRUE, graticule = TRUE)
+plot(gps_kml$geometry, cex = 4, pch = 20, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -1084,9 +1084,9 @@ background-position: 20% 90%, 93% 50%
 - SpatialPoints 
 - SpatialLines
 - SpatialPolygons
-- SpatialPointsDataFrame
-- SpatialLinesDataFrame
-- SpatialPolygonsDataFrame
+- SpatialPointsdata frame
+- SpatialLinesdata frame
+- SpatialPolygonsdata frame
 
 ---
 
@@ -2132,7 +2132,7 @@ background-image: url(img/geo_shp_logo.png), url(img/geo_shp_formats.png)
 background-size: 150px, 450px
 background-position: 50% 50%, 50% 85%
 
-# 9. Exportar dados vetoriais
+# 9. Exportar objetos sf
 
 ## Exportar como shapefile
 
@@ -2147,7 +2147,7 @@ background-image: url(img/geo_ban_shp.png), url(img/geo_geopackage.png)
 background-size: 250px, 600px
 background-position: 15% 65%, 85% 70%
 
-# 9. Exportar dados vetoriais
+# 9. Exportar objetos sf
 
 ## Exportar como geopackage
 
@@ -2167,7 +2167,7 @@ background-image: url(img/geo_ban_shp.png), url(img/geo_geopackage.png)
 background-size: 250px, 600px
 background-position: 15% 65%, 85% 70%
 
-# 9. Exportar dados vetoriais
+# 9. Exportar objetos sf
 
 ## Exportar como geopackage
 

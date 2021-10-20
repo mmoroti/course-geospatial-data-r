@@ -37,7 +37,7 @@ https://github.com/mauriciovancine/course-geospatial-data-r
 
 ### Resumo
 
-A disciplina oferecerá os principais conceitos teórico-práticos do uso de dados geoespaciais com o R aplicados à Ecologia. A parte prática será desenvolvida através de ferramentas na linguagem R. Serão abordados os seguintes temas: (1) controle de versão, git e GitHub, (2) funcionamento da linguagem R, (3) estrutura e manipulação de dados, (4) introdução ao tidyverse, (5) visualização de dados, (6) estrutura e fonte de dados geoespaciais, (7) estrutura e manipulação de dados vetoriais, (8) estrutura e manipulação de dados matriciais e (9) visualização de dados geoespaciais. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas teórico-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à realização de formulação e execução de um projeto com dados reais como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que as alunas e alunos adquiram conceitos gerais da estrutura, manipulação e visualização de dados geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
+A disciplina oferecerá os principais conceitos teóricos e práticos quanto ao funcionamento da linguagem R e seu uso para manipulação e visualização de dados tabulares e geoespaciais, com enfoque em Ecologia Geral. Serão abordados os seguintes temas: (1) controle de versão, git e GitHub, (2) funcionamento da linguagem R, (3) estrutura e manipulação de dados no R, (4) introdução ao tidyverse, (5) visualização de dados no R, (6) estrutura e fonte de dados geoespaciais, (7) estrutura e manipulação de dados vetoriais no R, (8) estrutura e manipulação de dados matriciais no R e (9) visualização de dados geoespaciais no R. A carga horária total será de 60 horas, onde nos cinco dias iniciais serão ministrados 6 horas de aulas teórico-práticas, num total de 30 horas. As 30 horas restantes serão direcionadas à formulação e execução de um projeto com dados reais, como forma de avaliação para compor a nota final da disciplina. Após a realização da disciplina, espera-se que as alunas e alunos adquiram conceitos gerais sobre a estrutura, manipulação e visualização de dados tabulares e geoespaciais, assim como domínio das técnicas e métodos para alcançar autonomia e produzir soluções para suas próprias questões relativas à geocomputação utilizando a linguagem R.
 
 ### Conteúdo
 
@@ -48,7 +48,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. git e GitHub
 1. Funcionamento do controle de versão
 1. GitHub: Fork
-1. Configuração: RStudio, git, GituHub
+1. Configuração: RStudio, git, GitHub
 1. Iniciando localmente: git init
 1. Iniciando remotamente: git clone
 1. Versionamento: git add, git commit e git status
@@ -59,9 +59,9 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. Ramificações: git branch, git switch e git merge
 1. Remoto: git remote, git push e git pull
 1. GitHub: Pull request
-1. Detalhes do respositório do GitHub
-1. Pacote usethis
+1. Detalhes do repositório do GitHub
 1. Interface gráfica do RStudio
+1. Principal material de estudo
 
 ### 2 Funcionamento da linguagem R
 
@@ -109,8 +109,8 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 
 1. Contextualização
 1. Pacotes para produção de gráficos
-1. Grámatica dos gráficos
-1. Principais livros e sites 
+1. Gramática dos gráficos
+1. Principal material de estudo 
 1. Principais tipos de gráficos 
 1. Histograma e Densidade
 1. Gráfico de setores
@@ -121,7 +121,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. Combinando gráficos
 1. Gráficos animados
 1. Gráficos interativos
-1. Gráficos usando uma interface
+1. Gráficos usando interface
 
 ### 6 Estrutura e fonte de dados geoespaciais
 
@@ -136,7 +136,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. Conversão de dados geoespaciais (vetor-raster)
 1. Banco de dados geoespaciais
 1. Principais fontes de dados geoespaciais
-1. Material para manipulação e análise de dados geoespacias
+1. Principal material de estudo
 
 ### 7 Estrutura e manipulação de dados vetoriais
 
@@ -145,10 +145,10 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. Classes sf
 1. Importar dados vetoriais
 1. Descrição de objetos sf
-1. Converter dados para sf
+1. Converter objetos para sf
 1. Converter CRS de objetos sf
 1. Operações de objetos sf
-1. Exportar dados vetoriais
+1. Exportar objetos sf
 
 ### 8 Estrutura e manipulação de dados matriciais
 
@@ -161,7 +161,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 1. Interações raster-vetor
 1. Conversões raster-vetor
 1. Índices espectrais
-1. Exportar dados matriciais
+1. Exportar objetos raster
 
 ### 9 Visualização de dados geoespaciais
 

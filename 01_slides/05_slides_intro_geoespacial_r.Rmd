@@ -42,8 +42,8 @@ background-position: 85% 75%
 
 1. Contextualização
 1. Pacotes para produção de gráficos
-1. Grámatica dos gráficos
-1. Principais livros e sites 
+1. Gramática dos gráficos
+1. Principal material de estudo 
 1. Principais tipos de gráficos 
 1. Histograma e Densidade
 1. Gráfico de setores
@@ -54,7 +54,7 @@ background-position: 85% 75%
 1. Combinando gráficos
 1. Gráficos animados
 1. Gráficos interativos
-1. Gráficos usando uma interface
+1. Gráficos usando interface
 
 [ggplot2](https://ggplot2.tidyverse.org/)
 
@@ -104,7 +104,7 @@ background-position: 85% 75%
 
 --
 
-#### [ggplot2](https://ggplot2.tidyverse.org/): pacote integrado ao tidyverse, possui uma sintaxe própria baseada na grática de gráficos por camadas (layers)
+#### [ggplot2](https://ggplot2.tidyverse.org/): pacote integrado ao tidyverse, possui uma sintaxe própria baseada na gramática de gráficos por camadas (layers)
 
 --
 
@@ -260,7 +260,7 @@ background-position: 85% 85%
 
 ## **ggpubr**
 
-### Funções fáceis de usar para criar e personalizar plots para publicação baseadas no "ggplot2"
+### Funções fáceis de usar para criar e personalizar plots para publicações baseadas no "ggplot2"
 
 --
 
@@ -295,7 +295,7 @@ background-image: url(img/cover_grammar_graphics.jpg), url(img/ggplot2_structure
 background-size: 200px, 600px
 background-position: 20% 70%, 85% 70%
 
-# 3. Grámatica dos gráficos
+# 3. Gramática dos gráficos
 
 ## Descrição
 
@@ -311,7 +311,7 @@ background-image: url(img/plot_ggplot.gif)
 background-size: 750px
 background-position: 50% 45%
 
-# 3. Grámatica dos gráficos
+# 3. Gramática dos gráficos
 
 ## Descrição
 
@@ -324,7 +324,7 @@ background-image: url(img/plot_ggplot2.png), url(img/ggplot2_gramatica.png)
 background-size: 500px, 600px
 background-position: 5% 70%, 90% 70%
 
-# 3. Grámatica dos gráficos
+# 3. Gramática dos gráficos
 
 ## Descrição
 
@@ -339,7 +339,7 @@ background-image: url(img/person_hadley_wickham.jpg)
 background-size: 500px
 background-position: 50% 70%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Livros
 
@@ -354,7 +354,7 @@ background-image: url(img/cover_ggplot2.jpg)
 background-size: 230px
 background-position: 50% 63%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Livros
 
@@ -369,7 +369,7 @@ background-image: url(img/cover_r_graphics_cookbook.jpg)
 background-size: 250px
 background-position: 50% 63%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Livros
 
@@ -384,7 +384,7 @@ background-image: url(img/cover_data_science_r.png)
 background-size: 250px
 background-position: 50% 70%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Livros
 
@@ -399,7 +399,7 @@ background-image: url(img/cover_data_visualization_with_r.png)
 background-size: 230px
 background-position: 50% 65%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Livros
 
@@ -414,7 +414,7 @@ background-image: url(img/cover_fundamentals_of_data_visualization.png)
 background-size: 260px
 background-position: 50% 63%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Livros
 
@@ -429,7 +429,7 @@ background-image: url(img/cover_interative.png)
 background-size: 260px
 background-position: 50% 68%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Livros
 
@@ -444,7 +444,7 @@ background-image: url(img/package_ggplot2.png)
 background-size: 300px
 background-position: 50% 60%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Sites
 
@@ -459,7 +459,7 @@ background-image: url(img/plot_r_graph_gallery.png)
 background-size: 800px
 background-position: 50% 60%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Sites
 
@@ -474,7 +474,7 @@ background-image: url(img/plot_tree_s.png)
 background-size: 400px
 background-position: 50% 60%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Sites
 
@@ -489,7 +489,7 @@ background-image: url(img/plot_sthda.png)
 background-size: 300px
 background-position: 50% 70%
 
-# 4. Principais livros e sites
+# 4. Principal material de estudo
 
 ## Sites
 
@@ -550,7 +550,7 @@ background-position: 23% 78%, 69% 78%, 50% 15%
 
 class: inverse, center, middle
 
-# O **tipo e quantidade das variáveis** irá indicar o melhor tipo de gráfico para **representar** os dados
+# O **tipo e quantidade das variáveis** indicará o melhor tipo de gráfico para **representar** os dados
 
 ---
 
@@ -817,7 +817,7 @@ polygon(density(na.omit(penguins$flipper_length_mm)),
 ### Exportar
 ```{r eval=FALSE}
 png(here::here("03_dados", "graficos", "plot_densidade.png"), 
-               wi = 15, he = 15, un = "cm", res = 300)
+    wi = 15, he = 15, un = "cm", res = 300)
 ```
 
 --
@@ -1263,6 +1263,7 @@ penguins_prop
 ## graphics
 .pull-left[
 ```{r pie2, eval=FALSE, message=FALSE}
+par(mar = c(5, 5, 5, 5))
 pie(penguins_prop$prop,
     labels = paste(penguins_prop$prop, "%"), 
     main = "Espécies",
@@ -1523,7 +1524,7 @@ ggplot(data = penguins_count,
   geom_bar(stat = "identity") +
   geom_label(aes(label = n), fill = "white") +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   theme(legend.position = "none") +
   labs(x = "Espécie", 
        y = "Número de indivíduos", 
@@ -1549,7 +1550,7 @@ ggplot(data = penguins_count,
   geom_label(aes(label = n), fill = "white") +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
   coord_flip() +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   theme(legend.position = "none") +
   labs(x = "Espécie", 
        y = "Número de indivíduos", 
@@ -1574,7 +1575,7 @@ background-position: 50% 50%
 
 ---
 
-# 9. Gráfico de barras (bar plot)
+# 9. Gráfico de barras (*Bar plot*)
 
 ### ggpubr
 .pull-left[
@@ -1603,7 +1604,7 @@ ggbarplot(penguins_count,
 
 ---
 
-# 9. Gráfico de barras (bar plot)
+# 9. Gráfico de barras (*Bar plot*)
 
 ### ggpubr
 .pull-left[
@@ -1726,7 +1727,7 @@ ggplot(data = penguins,
   geom_boxplot(width = .3, 
                show.legend = FALSE) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Species", y = "Flipper length (mm)")
 ```
 ]
@@ -1751,7 +1752,7 @@ ggplot(data = penguins,
               show.legend = FALSE, 
               position = position_jitter(width = .1, seed = 0)) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Species", y = "Flipper length (mm)")
 ```
 ]
@@ -1776,7 +1777,7 @@ ggplot(data = penguins,
               show.legend = FALSE, 
               position = position_jitter(width = .1, seed = 0)) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(title = "Pontos com jitter", x = "Species", y = "Flipper length (mm)")
 ```
 ]
@@ -1920,7 +1921,7 @@ ggplot(data = penguins,
   geom_point(size = 3, alpha = .8) +
   scale_shape_manual(values = c(19, 15, 17)) +
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies")
@@ -1948,7 +1949,7 @@ ggplot(data = penguins,
   geom_smooth(method = "lm", se = FALSE) +
   scale_shape_manual(values = c(19, 15, 17)) +
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies")
@@ -2272,7 +2273,7 @@ background-position: 10% 97%, 85% 95%
 
 --
 
-### Outras vezes, podemios códigos e pacotes do R para fazer essa tarefa
+### Outras vezes, podemos usar códigos e pacotes do R para fazer essa tarefa
 
 ---
 
@@ -2378,7 +2379,7 @@ ggplot_boxplot <- ggplot(data = penguins,
               show.legend = FALSE, 
               position = position_jitter(width = .1, seed = 0)) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Species", y = "Flipper length (mm)")
 ggplot_boxplot
 ```
@@ -2405,7 +2406,7 @@ ggplot_scatterplot <- ggplot(data = penguins,
   geom_point(size = 3, alpha = .8) +
   scale_shape_manual(values = c(19, 15, 17)) +
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies")
@@ -2546,12 +2547,12 @@ background-position: 50% 50%
 library(gganimate)
 
 plot_animate <- ggplot(data = penguins,
-       aes(x = bill_length_mm, 
-           y = bill_depth_mm, 
-           color = species)) +
+                       aes(x = bill_length_mm, 
+                           y = bill_depth_mm, 
+                           color = species)) +
   geom_point() +
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies") +
@@ -2635,8 +2636,8 @@ plot_ly(data = penguins,
         color = ~species,
         colors = c("darkorange", "purple", "cyan4")) %>% 
   layout(scene = list(xaxis = list(title = "Comprimento do bico (mm)"),
-                    yaxis = list(title = "Profundidade do bico (mm)"),
-                    zaxis = list(title = "Massa (g)")))
+                      yaxis = list(title = "Profundidade do bico (mm)"),
+                      zaxis = list(title = "Massa (g)")))
 ```
 ]
 
@@ -2655,18 +2656,18 @@ plot_ly(data = penguins,
 ```{r int3, eval=FALSE, message=FALSE}
 plot_penguins_scatter_int <- ggplotly(
   ggplot(data = penguins, 
-       aes(x = bill_length_mm, 
-           y = bill_depth_mm,
-           color = species,
-           shape = species)) +
-  geom_point(size = 3, alpha = .8) +
-  geom_smooth(method = "lm", se = FALSE) +
-  scale_shape_manual(values = c(19, 15, 17)) +
-  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
-  labs(x = "Comprimento do bico (mm)", 
-       y = "Profundidade do bico (mm)", 
-       color = "Espécies", shape = "Espécies"))
+         aes(x = bill_length_mm, 
+             y = bill_depth_mm,
+             color = species,
+             shape = species)) +
+    geom_point(size = 3, alpha = .8) +
+    geom_smooth(method = "lm", se = FALSE) +
+    scale_shape_manual(values = c(19, 15, 17)) +
+    scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+    theme_bw(base_size = 15) +
+    labs(x = "Comprimento do bico (mm)", 
+         y = "Profundidade do bico (mm)", 
+         color = "Espécies", shape = "Espécies"))
 plot_penguins_scatter_int
 ```
 ]
@@ -2705,7 +2706,7 @@ background-position: 50% 50%
 
 ---
 
-# 15. Gráficos usando uma interface
+# 15. Gráficos usando interface
 
 ## esquisse
 .pull-left[

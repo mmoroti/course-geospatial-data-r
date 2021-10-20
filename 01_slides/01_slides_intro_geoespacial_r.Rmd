@@ -44,7 +44,7 @@ background-position: 95% 95%
 3 git e GitHub  
 4 Funcionamento do controle de versão  
 5 GitHub: Fork  
-6 Configuração: RStudio, git, GituHub
+6 Configuração: RStudio, git, GitHub
 7 Iniciando localmente: git init  
 8 Iniciando remotamente: git clone  
 9 Versionamento: git add, git commit e git status  
@@ -57,7 +57,7 @@ background-position: 95% 95%
 14 Ramificações: git branch, git switch e git merge  
 15 Remoto: git remote, git push e git pull  
 16 GitHub: Pull request  
-17 Detalhes do respositório do GitHub  
+17 Detalhes do repositório do GitHub  
 18 Interface gráfica do RStudio  
 19 Principal material de estudo
 ]
@@ -383,7 +383,7 @@ background-image: url(img/rstudio.png)
 background-size: 850px
 background-position: 50% 70%
 
-# 6. Configuração: RStudio, git, GituHub
+# 6. Configuração: RStudio, git, GitHub
 
 ## IDE RStudio
 
@@ -393,7 +393,7 @@ background-image: url(img/rstudio_git_config01.png)
 background-size: 750px
 background-position: 50% 100%
 
-# 6. Configuração: RStudio, git, GituHub
+# 6. Configuração: RStudio, git, GitHub
 
 ## Indicar o caminho do git para o RStudio
 
@@ -405,7 +405,7 @@ background-image: url(img/git_logo.png), url(img/rstudio_git_config02.png)
 background-size: 400px, 500px
 background-position: 10% 82%, 83% 82%
 
-# 6. Configuração: RStudio, git, GituHub
+# 6. Configuração: RStudio, git, GitHub
 
 ## Marcar **Enable version control interface...** e em **Git executable**
 
@@ -419,7 +419,7 @@ background-image: url(img/rstudio_git_config03.jpg), url(img/general_key.png), u
 background-size: 500px, 150px, 500px
 background-position: 85% 80%, 10% 85%, 10% 80%
 
-# 6. Configuração: RStudio, git, GituHub
+# 6. Configuração: RStudio, git, GitHub
 
 ## Criar uma chave SSH
 
@@ -441,7 +441,7 @@ background-image: url(img/github_ssh_key.png), url(img/general_key.png), url(img
 background-size: 700px, 70px, 200px
 background-position: 60% 75%, 89.2% 16.6%, 100% 10%
 
-# 6. Configuração: RStudio, git, GituHub
+# 6. Configuração: RStudio, git, GitHub
 
 ## No GitHub
 
@@ -457,7 +457,7 @@ background-image: url(img/github_ssh_key_add.png), url(img/general_key.png), url
 background-size: 700px, 70px, 200px
 background-position: 60% 78%, 89.2% 16.6%, 100% 10%
 
-# 6. Configuração: RStudio, git, GituHub
+# 6. Configuração: RStudio, git, GitHub
 
 ## No GitHub
 
@@ -476,11 +476,35 @@ class: inverse, center, middle
 
 ---
 
+background-image: url(img/rstudio_terminal01.png)
+background-size: 800px
+background-position: 50% 85%
+
+# 6. Configuração: RStudio, git, GitHub
+
+## Terminal
+
+---
+
+background-image: url(img/rstudio_terminal02.png)
+background-size: 700px
+background-position: 50% 85%
+
+# 6. Configuração: RStudio, git, GitHub
+
+## Terminal
+
+> Tools > Terminal > New Terminal
+
+> Atalho: `Alt + Shift + R`
+
+---
+
 background-image: url(img/git_config.png)
 background-size: 830px
 background-position: 50% 85%
 
-# 6. Configuração: RStudio, git, GituHub
+# 6. Configuração: RStudio, git, GitHub
 
 ## **git config**: definir as configurações de usuário do git
 
@@ -518,9 +542,9 @@ class: inverse, center, middle
 background-image: url(img/git_init.png), url(img/git_folder_project.png), url(img/git_logo.png)
 background-size: 400px, 200px, 300px
 background-position: 35% 80%, 80% 30%, 80% 80%
-  
+
 # 7. Iniciando localmente: git init
-  
+
 ## **git init**: inicia o versionamento de um repositório local
 
 ---
@@ -863,8 +887,8 @@ git status
 On branch master
 No commits yet
 Untracked files:
-  (use "git add <file>..." to include in what will be committed)
- 	test.txt
+(use "git add <file>..." to include in what will be committed)
+teste.txt
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
@@ -883,7 +907,7 @@ background-position: 50% 90%
 git add -Av
 ```
 ```{bash eval=FALSE}
-add 'test.txt'
+add 'teste.txt'
 ```
 
 ---
@@ -903,8 +927,8 @@ git status
 On branch master
 No commits yet
 Changes to be committed:
-   (use "git rm --cached <file>..." to unstage)
-	 new file:   test.txt
+(use "git rm --cached <file>..." to unstage)
+new file:  teste.txt
 ```
 
 ---
@@ -918,12 +942,12 @@ background-position: 50% 93%
 ## **git commit**: armazena as mudanças com uma descrição, criando nova versão do repositório (*repository*)
 
 ```{bash eval=FALSE}
-git commit -m "add test.txt"
+git commit -m "add teste.txt"
 ```
 ```{bash eval=FALSE}
-[master (root-commit) 8b33bc5] add test.txt
-  1 file changed, 0 insertions(+), 0 deletions(-)
-  create mode 100644 test.txt
+[master (root-commit) 8b33bc5] add teste.txt
+1 file changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 teste.txt
 ```
 
 ---
@@ -952,7 +976,7 @@ background-position: 50% 80%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Usando a aba **Files** do RStudio, vamos abrir e editar o arquivo **test.txt**
+## Usando a aba **Files** do RStudio, vamos abrir e editar o arquivo **teste.txt**
 
 ```{bash eval=FALSE}
 Acabo de inserir uma edição ao meu arquivo
@@ -973,9 +997,9 @@ git status
 ```
 ```{bash eval=FALSE}
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   test.txt
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
+modified:  teste.txt
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
@@ -994,7 +1018,7 @@ background-position: 50% 90%
 git add -Av
 ```
 ```{bash eval=FALSE}
-add 'test.txt'
+add 'teste.txt'
 ```
 
 ---
@@ -1013,8 +1037,8 @@ git status
 ```{bash eval=FALSE}
 On branch master
 Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
- 	modified:   test.txt
+(use "git restore --staged <file>..." to unstage)
+modified:  teste.txt
 ```
 
 ---
@@ -1028,11 +1052,11 @@ background-position: 50% 93%
 ## **git commit**: armazena as mudanças com uma descrição, criando nova versão do repositório (*repository*)
 
 ```{bash eval=FALSE}
-git commit -m "mod test.txt"
+git commit -m "mod teste.txt"
 ```
 ```{bash eval=FALSE}
-[master dcbd894] mod test.txt
- 1 file changed, 1 insertion(+)
+[master dcbd894] mod teste.txt
+1 file changed, 1 insertion(+)
 ```
 
 ---
@@ -1076,7 +1100,7 @@ git status
 ```{bash eval=FALSE}
 On branch master
 Your branch is ahead of 'origin/master' by 2 commits.
-  (use "git push" to publish your local commits)
+(use "git push" to publish your local commits)
 
 nothing to commit, working tree clean
 ```
@@ -1167,14 +1191,14 @@ background-position: 95% 60%
 ### O tamanho máximo de arquivos é 100 Mb (terminal)
 
 - Arquivos adicionados via terminal é limitado a 25 Mb
-- Se o arquivo exceder esse limite, ocorrá uma mensagem de erro e o envio ao GitHub será bloqueado
+- Se o arquivo exceder esse limite, ocorrerá uma mensagem de erro e o envio ao GitHub será bloqueado
 
 ### O tamanho máximo de um repositório é 5 GB
 
 - O tamanho total do repositório é limitado a 5 Gb
 - Idealmente um repositório dever ser menor que 1 Gb
 - Mensagens de aviso informam que o tamanho do repositório se aproxima do limite
-- Se o repositório exceder o limite, ocorrá uma mensagem de erro e o envio ao GitHub será bloqueado
+- Se o repositório exceder o limite, ocorrerá uma mensagem de erro e o envio ao GitHub será bloqueado
 
 ---
 
@@ -1236,15 +1260,15 @@ git log
 ```{bash eval=FALSE}
 commit dcbd894ade9a85f78e1b0d6ed08cbc76dcc2448f (HEAD -> master)
 Author: mauriciovancine <mauricio.vancine@gmail.com>
-Date:   Mon Mar 15 11:03:26 2021 -0300
+Date:  Mon Mar 15 11:03:26 2021 -0300
 
-    mod test.txt
+mod teste.txt
 
 commit 8b33bc57187a2bcb59172c75ce7266fbddb64eff
 Author: mauriciovancine <mauricio.vancine@gmail.com>
-Date:   Mon Mar 15 11:02:04 2021 -0300
+Date:  Mon Mar 15 11:02:04 2021 -0300
 
-    add test.txt
+add teste.txt
 ```
 
 ---
@@ -1254,20 +1278,20 @@ Date:   Mon Mar 15 11:02:04 2021 -0300
 ## **git log [arquivo]**: registro de todo o histórico de commits para arquivos
 
 ```{bash eval=FALSE}
-git log test.txt
+git log teste.txt
 ```
 ```{bash eval=FALSE}
 commit dcbd894ade9a85f78e1b0d6ed08cbc76dcc2448f (HEAD -> master)
 Author: mauriciovancine <mauricio.vancine@gmail.com>
-Date:   Mon Mar 15 11:03:26 2021 -0300
+Date:  Mon Mar 15 11:03:26 2021 -0300
 
-    mod test.txt
+mod teste.txt
 
 commit 8b33bc57187a2bcb59172c75ce7266fbddb64eff
 Author: mauriciovancine <mauricio.vancine@gmail.com>
-Date:   Mon Mar 15 11:02:04 2021 -0300
+Date:  Mon Mar 15 11:02:04 2021 -0300
 
-    add test.txt
+add teste.txt
 ```
 
 ---
@@ -1280,8 +1304,8 @@ Date:   Mon Mar 15 11:02:04 2021 -0300
 git log --oneline
 ```
 ```{bash eval=FALSE}
-dcbd894 (HEAD -> master) mod test.txt
-8b33bc5 add test.txt
+dcbd894 (HEAD -> master) mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
@@ -1306,14 +1330,14 @@ git show
 ```{bash eval=FALSE}
 commit dcbd894ade9a85f78e1b0d6ed08cbc76dcc2448f (HEAD -> master)
 Author: mauriciovancine <mauricio.vancine@gmail.com>
-Date:   Mon Mar 15 11:03:26 2021 -0300
+Date:  Mon Mar 15 11:03:26 2021 -0300
 
-    mod test.txt
+mod teste.txt
 
-diff --git a/test.txt b/test.txt
+diff --git a/teste.txt b/teste.txt
 index e69de29..f5201c0 100644
---- a/test.txt
-+++ b/test.txt
+--- a/teste.txt
++++ b/teste.txt
 @@ -0,0 +1 @@
 +Acabo de inserir uma edição ao meu arquivo
 \ No newline at end of file
@@ -1331,11 +1355,11 @@ git show 8b33bc5
 ```{bash eval=FALSE}
 commit 8b33bc57187a2bcb59172c75ce7266fbddb64eff
 Author: mauriciovancine <mauricio.vancine@gmail.com>
-Date:   Mon Mar 15 11:02:04 2021 -0300
+Date:  Mon Mar 15 11:02:04 2021 -0300
 
-    add test.txt
+add teste.txt
 
-diff --git a/test.txt b/test.txt
+diff --git a/teste.txt b/teste.txt
 new file mode 100644
 index 0000000..e69de29
 ```
@@ -1376,7 +1400,7 @@ background-position: 50% 80%
 
 ## **git diff**: mostra as diferenças dos arquivos no *working directory*
 
-### Vamos editar o arquivo "test.txt"
+### Vamos editar o arquivo "teste.txt"
 
 ```{bash eval=FALSE}
 Outra linha
@@ -1392,10 +1416,10 @@ Outra linha
 git diff
 ```
 ```{bash eval=FALSE}
-diff --git a/test.txt b/test.txt
+diff --git a/teste.txt b/teste.txt
 index f5201c0..71f35ef 100644
---- a/test.txt
-+++ b/test.txt
+--- a/teste.txt
++++ b/teste.txt
 @@ -1 +1,3 @@
 -Acabo de inserir uma edição ao meu arquivo
 \ No newline at end of file
@@ -1412,13 +1436,13 @@ index f5201c0..71f35ef 100644
 ## **git diff [arquivo]**: mostra as diferenças para o arquivo no *working directory*
 
 ```{bash eval=FALSE}
-git diff test.txt
+git diff teste.txt
 ```
 ```{bash eval=FALSE}
-diff --git a/test.txt b/test.txt
+diff --git a/teste.txt b/teste.txt
 index f5201c0..71f35ef 100644
---- a/test.txt
-+++ b/test.txt
+--- a/teste.txt
++++ b/teste.txt
 @@ -1 +1,3 @@
 -Acabo de inserir uma edição ao meu arquivo
 \ No newline at end of file
@@ -1438,10 +1462,10 @@ index f5201c0..71f35ef 100644
 git diff --staged
 ```
 ```{bash eval=FALSE}
-diff --git a/test.txt b/test.txt
+diff --git a/teste.txt b/teste.txt
 index f5201c0..71f35ef 100644
---- a/test.txt
-+++ b/test.txt
+--- a/teste.txt
++++ b/teste.txt
 @@ -1 +1,3 @@
 -Acabo de inserir uma edição ao meu arquivo
 \ No newline at end of file
@@ -1481,7 +1505,7 @@ background-position: 25% 80%, 95% 50%
 ## Desfazendo operações no git
 
 1. **git revert**: desfaz um commit **preservando o histórico** (criando outro commit)
-1. **git reset**:  desfaz um commit **deletando o histórico** (deletando commits)
+1. **git reset**: desfaz um commit **deletando o histórico** (deletando commits)
 
 ---
 
@@ -1544,9 +1568,9 @@ nothing to commit, working tree clean
 git log --oneline
 ```
 ```{bash eval=FALSE}
-f9f2e9c (HEAD -> master) mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+f9f2e9c (HEAD -> master) mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
@@ -1561,7 +1585,7 @@ dcbd894 mod test.txt
 git revert f9f2e9c
 ```
 ```{bash eval=FALSE}
-Revert "mod2 test.txt"
+Revert "mod2 teste.txt"
 
 This reverts commit f9f2e9c867cfd549d0efcab1519a5ec9d86e7d0d.
 
@@ -1570,7 +1594,7 @@ This reverts commit f9f2e9c867cfd549d0efcab1519a5ec9d86e7d0d.
 #
 # On branch master
 # Changes to be committed:
-#       modified:   test.txt
+#       modified:  teste.txt
 #
 ```
 
@@ -1586,8 +1610,8 @@ This reverts commit f9f2e9c867cfd549d0efcab1519a5ec9d86e7d0d.
 git revert f9f2e9c
 ```
 ```{bash eval=FALSE}
-[master fca02a2] Revert "mod2 test.txt"
- 1 file changed, 1 insertion(+), 3 deletions(-)
+[master fca02a2] Revert "mod2 teste.txt"
+1 file changed, 1 insertion(+), 3 deletions(-)
 ```
 
 ### Estado
@@ -1612,10 +1636,10 @@ nothing to commit, working tree clean
 git log --oneline
 ```
 ```{bash eval=FALSE}
-fca02a2 (HEAD -> master) Revert "mod2 test.txt"
-f9f2e9c mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+fca02a2 (HEAD -> master) Revert "mod2 teste.txt"
+f9f2e9c mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
@@ -1626,7 +1650,7 @@ background-position: 87% 90%
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Sintaxe
 
@@ -1653,7 +1677,7 @@ background-position: 10% 90%, 85% 90%
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Modos principais
 
@@ -1665,7 +1689,7 @@ background-position: 10% 90%, 85% 90%
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Exemplos
 
@@ -1673,9 +1697,9 @@ background-position: 10% 90%, 85% 90%
 
 Reseta a *staging area* (retira os arquivos) para corresponder ao commit mais recente, sem modificar o *working directory*
 
-**git reset test.txt**
+**git reset teste.txt**
 
-Retira o test.txt da *staging area*, sem modificar o *working directory*
+Retira o teste.txt da *staging area*, sem modificar o *working directory*
 
 **git reset --hard**
 
@@ -1685,7 +1709,7 @@ Reseta a *staging area* e o *working directory* para corresponder ao commit mais
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Exemplos
 
@@ -1701,7 +1725,7 @@ Move a versão para o commit indicado e reseta tanto a *staging area*, quanto o 
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Estado
 
@@ -1721,9 +1745,9 @@ background-position: 50% 80%
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
-### Vamos editar o arquivo "test.txt"
+### Vamos editar o arquivo "teste.txt"
 
 ```{bash eval=FALSE}
 Acabo de inserir uma edição ao meu arquivo
@@ -1734,7 +1758,7 @@ Viagens no tempo podem ser perigosas...
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Estado
 
@@ -1744,9 +1768,9 @@ git status
 ```{bash eval=FALSE}
 On branch master
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   test.txt
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
+modified:  teste.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -1755,7 +1779,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Adicionar
 
@@ -1763,14 +1787,14 @@ no changes added to commit (use "git add" and/or "git commit -a")
 git add -Av
 ```
 ```{bash eval=FALSE}
-add 'test.txt'
+add 'teste.txt'
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Estado
 
@@ -1780,33 +1804,33 @@ git status
 ```{bash eval=FALSE}
 On branch master
 Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	modified:   test.txt
+(use "git restore --staged <file>..." to unstage)
+modified:  teste.txt
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Remover do staged area
 
 ### Resetar
 
 ```{bash eval=FALSE}
-git reset test.txt
+git reset teste.txt
 ```
 ```{bash eval=FALSE}
 Unstaged changes after reset:
-M	test.txt
+M	teste.txt
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Estado
 
@@ -1816,9 +1840,9 @@ git status
 ```{bash eval=FALSE}
 On branch master
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   test.txt
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
+modified:  teste.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -1827,12 +1851,12 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Ver o conteúdo do arquivo
 
 ```{bash eval=FALSE}
-cat test.txt
+cat teste.txt
 ```
 ```{bash eval=FALSE}
 Acabo de inserir uma edição ao meu arquivo
@@ -1843,7 +1867,7 @@ Viagens no tempo podem ser perigosas...
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Histórico
 
@@ -1851,17 +1875,17 @@ Viagens no tempo podem ser perigosas...
 git log --oneline
 ```
 ```{bash eval=FALSE}
-fca02a2 (HEAD -> master) Revert "mod2 test.txt"
-f9f2e9c mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+fca02a2 (HEAD -> master) Revert "mod2 teste.txt"
+f9f2e9c mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Adicionar
 
@@ -1869,24 +1893,24 @@ dcbd894 mod test.txt
 git add -Av
 ```
 ```{bash eval=FALSE}
-add 'test.txt'
+add 'teste.txt'
 ```
 
 ### Commitar
 
 ```{bash eval=FALSE}
-git commit -m "mod3 test.txt"
+git commit -m "mod3 teste.txt"
 ```
 ```{bash eval=FALSE}
-[master 4b0c4e8] mod3 test.txt
- 1 file changed, 2 insertions(+), 1 deletion(-)
+[master 4b0c4e8] mod3 teste.txt
+1 file changed, 2 insertions(+), 1 deletion(-)
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Histórico
 
@@ -1894,18 +1918,18 @@ git commit -m "mod3 test.txt"
 git log --oneline
 ```
 ```{bash eval=FALSE}
-4b0c4e8 (HEAD -> master) mod3 test.txt
-fca02a2 Revert "mod2 test.txt"
-f9f2e9c mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+4b0c4e8 (HEAD -> master) mod3 teste.txt
+fca02a2 Revert "mod2 teste.txt"
+f9f2e9c mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Resetar
 
@@ -1913,7 +1937,7 @@ dcbd894 mod test.txt
 git reset --hard f9f2e9c
 ```
 ```{bash eval=FALSE}
-HEAD is now at f9f2e9c mod2 test.txt
+HEAD is now at f9f2e9c mod2 teste.txt
 ```
 
 --
@@ -1924,21 +1948,21 @@ HEAD is now at f9f2e9c mod2 test.txt
 git log --oneline
 ```
 ```{bash eval=FALSE}
-f9f2e9c (HEAD -> master) mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+f9f2e9c (HEAD -> master) mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Remover arquivo
 
 ```{bash eval=FALSE}
-rm test.txt
+rm teste.txt
 ```
 
 ### Adicionar
@@ -1957,7 +1981,7 @@ git commit -m "rem text.txt"
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Histórico
 
@@ -1966,16 +1990,16 @@ git log --oneline
 ```
 ```{bash eval=FALSE}
 6a417c5 (HEAD -> master) rem text.txt
-f9f2e9c mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+f9f2e9c mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
 
 # 13. Desfazer: git revert e git reset
 
-## 2. **git reset**:  desfaz um commit deletando o histórico (deletando commits)
+## 2. **git reset**: desfaz um commit deletando o histórico (deletando commits)
 
 ### Resetar
 
@@ -1983,7 +2007,7 @@ dcbd894 mod test.txt
 git reset --hard f9f2e9c
 ```
 ```{bash eval=FALSE}
-HEAD is now at f9f2e9c mod2 test.txt
+HEAD is now at f9f2e9c mod2 teste.txt
 ```
 
 --
@@ -1994,9 +2018,9 @@ HEAD is now at f9f2e9c mod2 test.txt
 git log --oneline
 ```
 ```{bash eval=FALSE}
-f9f2e9c (HEAD -> master) mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+f9f2e9c (HEAD -> master) mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
@@ -2018,7 +2042,7 @@ background-position: 50% 95%
 
 ### 1. **git revert**: desfaz um commit **preservando o histórico** (criando outro commit)
 
-### 2. **git reset**:  desfaz um commit **deletando o histórico** (deletando commits)
+### 2. **git reset**: desfaz um commit **deletando o histórico** (deletando commits)
 
 ---
 
@@ -2166,9 +2190,9 @@ git merge branch-1
 ```{bash eval=FALSE}
 Updating f9f2e9c..7aeb06d
 Fast-forward
- teste_branch1.txt | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 teste_branch1.txt
+teste_branch1.txt | 0
+1 file changed, 0 insertions(+), 0 deletions(-)
+create mode 100644 teste_branch1.txt
 ```
 
 ---
@@ -2186,9 +2210,9 @@ git log --oneline
 ```
 ```{bash eval=FALSE}
 7aeb06d (HEAD -> master, branch-1) add teste_branch1.txt
-f9f2e9c mod2 test.txt
-dcbd894 mod test.txt
-8b33bc5 add test.txt
+f9f2e9c mod2 teste.txt
+dcbd894 mod teste.txt
+8b33bc5 add teste.txt
 ```
 
 ---
@@ -2289,7 +2313,7 @@ Writing objects: 100% (35/35), 4.99 MiB | 155.00 KiB/s, done.
 Total 35 (delta 6), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
 To github.com:mauriciovancine/course-geospatial-data-r.git
-   accc9db..8f70e96  master -> master
+accc9db..8f70e96  master -> master
 ```
 
 ---
@@ -2354,7 +2378,7 @@ background-image: url(img/github_repository_details.png)
 background-size: 800px
 background-position: 50% 85%
 
-# 17. Detalhes do respositório do GitHub
+# 17. Detalhes do repositório do GitHub
 
 ## Vamos detalhar alguns pontos dos repositórios no GitHub
 

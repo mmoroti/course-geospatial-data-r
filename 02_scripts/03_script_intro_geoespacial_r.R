@@ -1,7 +1,7 @@
 #' ---
 #' title: aula 03 - estrutura e manipulacao de dados na linguagem R
 #' author: mauricio vancine
-#' date: 2020-10-20
+#' date: 2021-10-20
 #' ---
 
 # topics ------------------------------------------------------------------

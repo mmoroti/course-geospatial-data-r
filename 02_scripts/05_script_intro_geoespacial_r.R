@@ -5,8 +5,9 @@
 #' ---
 
 # pacotes -----------------------------------------------------------------
+
+library(tidyverse)
 library(palmerpenguins)
-library(ggplot2)
 library(ggpubr)
 library(datasauRus)
 library(GGally)
@@ -89,7 +90,7 @@ hist(penguins$flipper_length_mm,
      br = 50,
      cex.main = 2,
      cex.lab = 2, 
-     cex.axis = 2)
+     cex.axis = 1.5)
 
 par(mar = c(5, 5, 5, 5))
 hist(penguins$flipper_length_mm,
@@ -101,7 +102,7 @@ hist(penguins$flipper_length_mm,
      br = 50,
      cex.main = 2,
      cex.lab = 2, 
-     cex.axis = 2,
+     cex.axis = 1.5,
      prob = TRUE)
 lines(density(na.omit(penguins$flipper_length_mm)))
 
@@ -113,7 +114,7 @@ plot(density(na.omit(penguins$flipper_length_mm)),
      ylab = "Densidade",
      cex.main = 2,
      cex.lab = 2, 
-     cex.axis = 2)
+     cex.axis = 1.5)
 polygon(density(na.omit(penguins$flipper_length_mm)), 
         col = "gray50")
 
@@ -129,7 +130,7 @@ plot(density(na.omit(penguins$flipper_length_mm)),
      main = "Comprimento da nadadeira dos penguins",
      xlab = "Comprimento da nadadeira (mm)",
      ylab = "Frequência (%)",
-     cex.main = 2,  cex.lab = 2, cex.axis = 2)
+     cex.main = 2,  cex.lab = 2, cex.axis = 1.5)
 polygon(density(na.omit(penguins$flipper_length_mm)), col = "gray50")
 
 dev.off()
@@ -256,6 +257,7 @@ penguins_prop <- penguins %>%
 penguins_prop
 
 # graphics
+par(mar = c(5, 5, 5, 5))
 pie(penguins_prop$prop,
     labels = paste(penguins_prop$prop, "%"), 
     main = "Espécies",
@@ -331,7 +333,7 @@ ggplot(data = penguins_count,
   geom_bar(stat = "identity") +
   geom_label(aes(label = n), fill = "white") +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   theme(legend.position = "none") +
   labs(x = "Espécie", 
        y = "Número de indivíduos", 
@@ -343,7 +345,7 @@ ggplot(data = penguins_count,
   geom_label(aes(label = n), fill = "white") +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
   coord_flip() +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   theme(legend.position = "none") +
   labs(x = "Espécie", 
        y = "Número de indivíduos", 
@@ -401,7 +403,7 @@ ggplot(data = penguins,
   geom_boxplot(width = .3, 
                show.legend = FALSE) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Species", y = "Flipper length (mm)")
 
 ggplot(data = penguins, 
@@ -412,7 +414,7 @@ ggplot(data = penguins,
               show.legend = FALSE, 
               position = position_jitter(width = .1, seed = 0)) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Species", y = "Flipper length (mm)")
 
 ggplot(data = penguins, 
@@ -423,7 +425,7 @@ ggplot(data = penguins,
               show.legend = FALSE, 
               position = position_jitter(width = .1, seed = 0)) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(title = "Pontos com jitter", x = "Species", y = "Flipper length (mm)")
 
 # ggpubr
@@ -474,7 +476,7 @@ ggplot(data = penguins,
   geom_point(size = 3, alpha = .8) +
   scale_shape_manual(values = c(19, 15, 17))+
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies")
@@ -488,7 +490,7 @@ ggplot(data = penguins,
   geom_smooth(method = "lm", se = FALSE) +
   scale_shape_manual(values = c(19, 15, 17))+
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies")
@@ -635,7 +637,7 @@ ggplot_boxplot <- ggplot(data = penguins,
               show.legend = FALSE, 
               position = position_jitter(width = .1, seed = 0)) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Species", y = "Flipper length (mm)")
 ggplot_boxplot
 
@@ -647,7 +649,7 @@ ggplot_scatterplot <- ggplot(data = penguins,
   geom_point(size = 3, alpha = .8) +
   scale_shape_manual(values = c(19, 15, 17))+
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies")
@@ -674,14 +676,13 @@ ggplot_boxplot / ggplot_scatterplot
 # 13. graficos animados ---------------------------------------------------
 
 # gganimate - demora uns 10 segundos!!!
-dev.off()
-ggplot(data = penguins,
+plot_animate <- ggplot(data = penguins,
        aes(x = bill_length_mm, 
            y = bill_depth_mm, 
            color = species)) +
   geom_point() +
   scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16) +
+  theme_bw(base_size = 15) +
   labs(x = "Comprimento do bico (mm)", 
        y = "Profundidade do bico (mm)", 
        color = "Espécies", shape = "Espécies") +
@@ -689,6 +690,7 @@ ggplot(data = penguins,
   transition_states(species) +
   enter_grow() + 
   exit_fade()
+plot_animate
 
 # exportar
 gganimate::anim_save(filename = here::here("03_dados", 
@@ -729,7 +731,7 @@ plot_penguins_scatter_int <- ggplotly(
     geom_smooth(method = "lm", se = FALSE) +
     scale_shape_manual(values = c(19, 15, 17)) +
     scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
-    theme_bw(base_size = 16) +
+    theme_bw(base_size = 15) +
     labs(x = "Comprimento do bico (mm)", 
          y = "Profundidade do bico (mm)", 
          color = "Espécies", shape = "Espécies"))
