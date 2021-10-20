@@ -256,11 +256,11 @@ sp_mun_2019
 plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # rio claro
-rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019)
-rc_2019
+rc_2020 <- geobr::read_municipality(code_muni = 3543907, year = 2020)
+rc_2020
 
 # plot
-plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # biomes
 bi_2019 <- geobr::read_biomes(year = 2019)
@@ -281,23 +281,23 @@ plot(sa$geometry, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # 5. descricao de objetos sf ---------------------------------------------
 # rio claro
-rc_2019
+rc_2020
 
 # geometry type
-sf::st_geometry_type(rc_2019)
+sf::st_geometry_type(rc_2020)
 
 # extention
-sf::st_bbox(rc_2019)
+sf::st_bbox(rc_2020)
 
 # coordinate reference system
-sf::st_crs(rc_2019)
+sf::st_crs(rc_2020)
 
 # acessar a tabela de atributos
-rc_2019_tab <- sf::st_drop_geometry(rc_2019)
-rc_2019_tab
+rc_2020_tab <- sf::st_drop_geometry(rc_2020)
+rc_2020_tab
 
 # classe
-class(rc_2019_tab)
+class(rc_2020_tab)
 
 # 6. converter dados sf --------------------------------------------------
 # countries sp
@@ -319,25 +319,25 @@ co110_sp
 
 # crs local
 # converter sistema de coordenadas
-rc_2019_sirgas2000_utm23s <- sf::st_transform(rc_2019, crs = 31983)
-rc_2019_sirgas2000_utm23s
+rc_2020_sirgas2000_utm23s <- sf::st_transform(rc_2020, crs = 31983)
+rc_2020_sirgas2000_utm23s
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", graticule = TRUE, axes = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", graticule = TRUE, axes = TRUE)
 
 # converter sistema de coordenadas e datum
-rc_2019_wgs84_utm23s <- sf::st_transform(rc_2019, crs = 32723)
-rc_2019_wgs84_utm23s
+rc_2020_wgs84_utm23s <- sf::st_transform(rc_2020, crs = 32723)
+rc_2020_wgs84_utm23s
 
 # plot
-plot(rc_2019_wgs84_utm23s$geom, col = "gray", graticule = TRUE, axes = TRUE)
+plot(rc_2020_wgs84_utm23s$geom, col = "gray", graticule = TRUE, axes = TRUE)
 
 # converter datum
-rc_2019_wgs84_gcs <- sf::st_transform(rc_2019, crs = 4326)
-rc_2019_wgs84_gcs
+rc_2020_wgs84_gcs <- sf::st_transform(rc_2020, crs = 4326)
+rc_2020_wgs84_gcs
 
 # plot
-plot(rc_2019_wgs84_gcs$geom, col = "gray", graticule = TRUE, axes = TRUE)
+plot(rc_2020_wgs84_gcs$geom, col = "gray", graticule = TRUE, axes = TRUE)
 
 # crs global
 # paises - WGS84/GCS
@@ -371,7 +371,7 @@ rc_cob_floresta <- rc_cob %>%
 rc_cob_floresta
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_cob_floresta$geometry, col = "forestgreen", add = TRUE)
 
 # 1.2 juncao
@@ -392,7 +392,7 @@ rc_nas_n <- rc_nas %>%
 rc_nas_n
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_nas_n$geometry, pch = 20, col = "blue", add = TRUE)
 
 # 1.4 Manipulação da tabela de atributos
@@ -422,7 +422,7 @@ rc_nas_floresta_int <- rc_nas[rc_cob_floresta, ]
 rc_nas_floresta_int
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_cob_floresta$geometry, col = "forestgreen", add = TRUE)
 plot(rc_nas_floresta_int$geometry, col = "blue", pch = 20, cex = 1, add = TRUE)
 
@@ -435,7 +435,7 @@ rc_nas_floresta_ext
 rc_nas_floresta_ext <- rc_nas[rc_cob_floresta, , op = st_disjoint]
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_cob_floresta$geometry, col = "forestgreen", add = TRUE)
 plot(rc_nas_floresta_ext$geometry, col = "steelblue", pch = 20, cex = 1, add = TRUE)
 
@@ -448,7 +448,7 @@ rc_nas_cob_jun <- rc_nas %>%
 rc_nas_cob_jun
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_nas_cob_jun[1], col = c("blue", "orange", "gray30", "forestgreen", "green"), pch = 20, 
      legend = TRUE, add = TRUE)
 legend(x = 209000, y = 7520000, pch = 15, cex = .7, pt.cex = 2.5, 
@@ -480,122 +480,122 @@ rc_hid_simplificado <- sf::st_simplify(x = rc_hid, dTolerance = 1000)
 rc_hid_simplificado
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_hid$geometry, col = "steelblue", lwd = 2, add = TRUE)
 plot(rc_hid_simplificado$geometry, col = adjustcolor("black", .7), add = TRUE)
 
 # 3.2 centroides
 # centroides
-rc_2019_sirgas2000_utm23s_cent <- sf::st_centroid(rc_2019_sirgas2000_utm23s)
-rc_2019_sirgas2000_utm23s_cent
+rc_2020_sirgas2000_utm23s_cent <- sf::st_centroid(rc_2020_sirgas2000_utm23s)
+rc_2020_sirgas2000_utm23s_cent
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_cent$geom, cex = 3, pch = 20, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_cent$geom, cex = 3, pch = 20, add = TRUE)
 
 # 3.3 pontos aleatorios
 # fixar amostragem
 set.seed(42)
 
 # pontos aleatorios
-rc_2019_sirgas2000_utm23s_pontos_aleatorios <- sf::st_sample(rc_2019_sirgas2000_utm23s, size = 30)
-rc_2019_sirgas2000_utm23s_pontos_aleatorios
+rc_2020_sirgas2000_utm23s_pontos_aleatorios <- sf::st_sample(rc_2020_sirgas2000_utm23s, size = 30)
+rc_2020_sirgas2000_utm23s_pontos_aleatorios
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios, pch = 20, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios, pch = 20, add = TRUE)
 
 # 3.4 Buffer
 # buffer
-rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer <- sf::st_buffer(x = rc_2019_sirgas2000_utm23s_pontos_aleatorios, dist = 1000)
-rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer
+rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer <- sf::st_buffer(x = rc_2020_sirgas2000_utm23s_pontos_aleatorios, dist = 1000)
+rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer, col = NA, lwd = 2, border = "red", add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer, col = NA, lwd = 2, border = "red", add = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1, add = TRUE)
 
 # 3.5 poligono convexo
 # poligono convexo
-rc_2019_sirgas2000_utm23s_convexo <- rc_2019_sirgas2000_utm23s_pontos_aleatorios %>% 
+rc_2020_sirgas2000_utm23s_convexo <- rc_2020_sirgas2000_utm23s_pontos_aleatorios %>% 
   sf::st_union() %>% 
   sf::st_convex_hull()
-rc_2019_sirgas2000_utm23s_convexo
+rc_2020_sirgas2000_utm23s_convexo
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_convexo, col = NA, lwd = 2, border = "red", add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_convexo, col = NA, lwd = 2, border = "red", add = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1, add = TRUE)
 
 # 3.6 Poligonos de voronoi
 # poligono de voronoi
-rc_2019_sirgas2000_utm23s_voronoi <- rc_2019_sirgas2000_utm23s_pontos_aleatorios %>% 
+rc_2020_sirgas2000_utm23s_voronoi <- rc_2020_sirgas2000_utm23s_pontos_aleatorios %>% 
   sf::st_union() %>% 
   sf::st_voronoi()
-rc_2019_sirgas2000_utm23s_voronoi
+rc_2020_sirgas2000_utm23s_voronoi
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_voronoi, col = NA, lwd = 2, border = "red", add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_voronoi, col = NA, lwd = 2, border = "red", add = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios, pch = 20, cex = 1, add = TRUE)
 
 # 3.7 quadriculas e hexagonos
 # quadriculas
-rc_2019_sirgas2000_utm23s_grid <- sf::st_make_grid(x = rc_2019_sirgas2000_utm23s, cellsize = 2000, what = "polygons") %>%
+rc_2020_sirgas2000_utm23s_grid <- sf::st_make_grid(x = rc_2020_sirgas2000_utm23s, cellsize = 2000, what = "polygons") %>%
   sf::st_as_sf() %>%
-  dplyr::filter(sf::st_intersects(x = ., y = rc_2019_sirgas2000_utm23s, sparse = FALSE))
+  dplyr::filter(sf::st_intersects(x = ., y = rc_2020_sirgas2000_utm23s, sparse = FALSE))
 
 # centroides das quadriculas
-rc_2019_sirgas2000_utm23s_grid_cent <- rc_2019_sirgas2000_utm23s %>% 
+rc_2020_sirgas2000_utm23s_grid_cent <- rc_2020_sirgas2000_utm23s %>% 
   sf::st_make_grid(cellsize = 2000, what = "centers") %>%
   sf::st_as_sf() %>%
-  dplyr::filter(sf::st_intersects(x = ., y = sf::st_union(rc_2019_sirgas2000_utm23s_grid), sparse = FALSE))
+  dplyr::filter(sf::st_intersects(x = ., y = sf::st_union(rc_2020_sirgas2000_utm23s_grid), sparse = FALSE))
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid, col = NA, border = "red", lwd = 2, add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_grid_cent, pch = 20, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_grid, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s_grid_cent, pch = 20, add = TRUE)
 
 # hexagonos
-rc_2019_sirgas2000_utm23s_hex <- rc_2019_sirgas2000_utm23s %>% 
+rc_2020_sirgas2000_utm23s_hex <- rc_2020_sirgas2000_utm23s %>% 
   sf::st_make_grid(cellsize = 2000, square = FALSE) %>% 
   sf::st_as_sf() %>%
-  dplyr::filter(sf::st_intersects(x = ., y = rc_2019_sirgas2000_utm23s, sparse = FALSE))
+  dplyr::filter(sf::st_intersects(x = ., y = rc_2020_sirgas2000_utm23s, sparse = FALSE))
 
 # centroides de hexagonos
-rc_2019_sirgas2000_utm23s_hex_cent <- rc_2019_sirgas2000_utm23s %>% 
+rc_2020_sirgas2000_utm23s_hex_cent <- rc_2020_sirgas2000_utm23s %>% 
   sf::st_make_grid(cellsize = 2000, square = FALSE, what = "centers") %>% 
   sf::st_as_sf() %>% 
-  dplyr::filter(sf::st_intersects(x = ., y = sf::st_union(rc_2019_sirgas2000_utm23s_hex), sparse = FALSE))
+  dplyr::filter(sf::st_intersects(x = ., y = sf::st_union(rc_2020_sirgas2000_utm23s_hex), sparse = FALSE))
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_hex, col = NA, border = "red", lwd = 2, add = TRUE)
-plot(rc_2019_sirgas2000_utm23s_hex_cent, pch = 20, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_hex, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020_sirgas2000_utm23s_hex_cent, pch = 20, add = TRUE)
 
 # 3.8 uniao ("dissolver")
 # uniao
-rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao <- sf::st_union(rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer)
+rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao <- sf::st_union(rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer)
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
 
 # 3.9 Recorte ("clipar")
 # recorte - interseccao
-rc_hid_interseccao <- sf::st_intersection(x = rc_hid, y = rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao)
+rc_hid_interseccao <- sf::st_intersection(x = rc_hid, y = rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao)
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
 plot(rc_hid_interseccao$geometry, col = "blue", add = TRUE)
 
 # recorte - diferenca
-rc_hid_diferenca <- sf::st_difference(x = rc_hid, y = rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao)
+rc_hid_diferenca <- sf::st_difference(x = rc_hid, y = rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao)
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s_pontos_aleatorios_buffer_uniao, col = adjustcolor("blue", .1), add = TRUE)
 plot(rc_hid_diferenca$geometry, col = "blue", add = TRUE)
 
 # 3.10 transformacoes de tipo
@@ -606,7 +606,7 @@ rc_cob_floresta_polygon <- rc_cob_floresta %>%
 rc_cob_floresta_polygon
 
 # plot
-plot(rc_2019_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(rc_2020_sirgas2000_utm23s$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 plot(rc_cob_floresta_polygon["area_ha_id"], col = viridis::viridis(100),  add = TRUE)
 
 # 9. exportar dados vetoriais --------------------------------------------

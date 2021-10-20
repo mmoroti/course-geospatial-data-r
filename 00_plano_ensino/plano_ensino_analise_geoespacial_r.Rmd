@@ -108,7 +108,7 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 ### 5 Visualização de dados
 
 1. Contextualização
-1. Principais pacotes para gráficos 
+1. Pacotes para produção de gráficos
 1. Grámatica dos gráficos
 1. Principais livros e sites 
 1. Principais tipos de gráficos 
@@ -167,14 +167,9 @@ A disciplina oferecerá os principais conceitos teórico-práticos do uso de dad
 
 1. Elementos de um mapa
 1. Pacotes para produção de mapas
-1. Pacote ggplot2
-1. Pacote tmap
-1. Pacote mapsf
-1. Pacote mapview
 1. Mapas estáticos
 1. Mapas animados
 1. Mapas interativos
-1. Exportar mapas
 
 ### Referências
 

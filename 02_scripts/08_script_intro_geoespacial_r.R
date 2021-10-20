@@ -91,21 +91,21 @@ dem <- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif"))
 dem
 
 # rio claro
-rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019, showProgress = FALSE) %>% 
+rc_2020 <- geobr::read_municipality(code_muni = 3543907, year = 2020, showProgress = FALSE) %>% 
   sf::st_transform(crs = 4326)
-rc_2019
+rc_2020
 
 # plot
 plot(dem, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # ajuste do limite
-dem_rc <- raster::crop(dem, rc_2019)
+dem_rc <- raster::crop(dem, rc_2020)
 dem_rc
 
 # plot
 plot(dem_rc, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # listar arquivos
 files <- dir(path = here::here("03_dados", "raster"), pattern = "wc", full.names = TRUE) %>% 
@@ -229,12 +229,12 @@ dem_rc_utm23s <- raster::projectRaster(dem_rc, crs = utm23s, res = 90, method = 
 dem_rc_utm23s
 
 # reprojection vector
-rc_2019_utm23s <- sf::st_transform(rc_2019, crs = utm23s)
-rc_2019_utm23s
+rc_2020_utm23s <- sf::st_transform(rc_2020, crs = utm23s)
+rc_2020_utm23s
 
 # plot
 plot(dem_rc_utm23s, col = viridis::viridis(10))
-plot(rc_2019_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # crs global
 # WGS84/GCS
@@ -339,7 +339,7 @@ dem_rc2
 
 # plot
 plot(dem_rc2, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # log10
 dem_rc_log10 <- log10(dem_rc)
@@ -347,7 +347,7 @@ dem_rc_log10
 
 # plot
 plot(dem_rc_log10, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # upper 600
 dem_rc_up_600 <- dem_rc > 600
@@ -355,7 +355,7 @@ dem_rc_up_600
 
 # plot
 plot(dem_rc_up_600, col = viridis::viridis(2))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # produto dos pixel - calc
 dem_rc_prod <- raster::calc(x = dem_rc, fun = function(x){x * x})
@@ -363,7 +363,7 @@ dem_rc_prod
 
 # plot
 plot(dem_rc_prod, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # matriz de reclassificacao
 rcl  <- matrix(
@@ -379,7 +379,7 @@ dem_rc_rcl
 
 # plot
 plot(dem_rc_rcl, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # janela movel
 dem_rc_focal_sd <- raster::focal(x = dem_rc, w = matrix(data = 1, nrow = 3, ncol = 3), fun = sd)
@@ -391,11 +391,11 @@ dem_rc_dec
 
 # plot
 plot(dem_rc_focal_sd, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # plot
 plot(dem_rc_dec, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # estatistica zonal
 dem_rc_zonal <- data.frame(raster::zonal(dem_rc, dem_rc_rcl, fun = "summary"))
@@ -411,7 +411,7 @@ dem_rc_abaixo_500
 
 # plot
 plot(dem_rc_abaixo_500, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # distancia euclideana - demora uns 15 a 20 segundos!!!
 dem_rc_global_dist <- raster::distance(dem_rc_abaixo_500)
@@ -420,7 +420,7 @@ dem_rc_global_dist
 # plot
 plot(dem_rc_global_dist, col = viridis::viridis(10))
 plot(dem_rc_abaixo_500, add = TRUE, col = "white", legend = FALSE)
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # agregacao
 # resolucao
@@ -432,7 +432,7 @@ dem_rc_utm23s_agre_media
 
 # plot
 plot(dem_rc_utm23s_agre_media, col = viridis::viridis(10))
-plot(rc_2019_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # desagregacao
 # resolucao
@@ -444,7 +444,7 @@ dem_rc_utm23s_dis_bil
 
 # plot
 plot(dem_rc_utm23s_dis_bil, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # reamostragem
 st_rc <- raster::resample(x = bioclim$bio01, y = dem_rc, method = "bilinear")
@@ -452,45 +452,45 @@ st_rc
 
 # plot
 plot(st_rc, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # 7. interacoes raster vetor --------------------------------------------
 
 # crop - ajustar da extensao
-dem_rc_crop <- raster::crop(dem, rc_2019)
+dem_rc_crop <- raster::crop(dem, rc_2020)
 dem_rc_crop
 
 # plot
 plot(dem_rc_crop, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # mask - ajuste o limite
-dem_rc_mask <- raster::mask(dem, rc_2019)
+dem_rc_mask <- raster::mask(dem, rc_2020)
 dem_rc_mask
 
 # plot
 plot(dem_rc_mask, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # crop e mask - ajuste da extensao e do limite
 dem_rc_crop_mask <- dem %>% 
-  raster::crop(rc_2019) %>% 
-  raster::mask(rc_2019)
+  raster::crop(rc_2020) %>% 
+  raster::mask(rc_2020)
 dem_rc_crop_mask
 
 # plot
 plot(dem_rc_crop_mask, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # crop and mask inverse - adjust extension and limit
 dem_rc_crop_mask_inv <- dem %>% 
-  raster::crop(rc_2019) %>% 
-  raster::mask(rc_2019, inverse = TRUE)
+  raster::crop(rc_2020) %>% 
+  raster::mask(rc_2020, inverse = TRUE)
 dem_rc_crop_mask_inv
 
 # plot
 plot(dem_rc_crop_mask_inv, col = viridis::viridis(10))
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 
 # importar pontos
@@ -524,7 +524,7 @@ rc_nas_buf
 
 # plot
 plot(rc_nas_buf$geometry, col = adjustcolor("steelblue", .7), pch = 20, main = NA, axes = TRUE, graticule = TRUE)
-plot(rc_2019$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # zonal statistics
 raster::extract(x = dem_rc, y = rc_nas_buf, fun = mean, na.rm = TRUE, df = TRUE)
@@ -596,7 +596,7 @@ dem_rc_utm23s_agre_media_pontos
 # plot
 plot(dem_rc_utm23s_agre_media, col = viridis::viridis(10, alpha = .8))
 plot(dem_rc_utm23s_agre_media_pontos, pch = 20, cex = .7, main = FALSE, add = TRUE)
-plot(rc_2019_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # vetorizacao de linhas
 dem_rc_utm23s_agre_media_linhas <- raster::rasterToContour(x = dem_rc_utm23s_agre_media) %>% 
@@ -607,7 +607,7 @@ dem_rc_utm23s_agre_media_linhas
 plot(dem_rc_utm23s_agre_media, col = viridis::viridis(10, alpha = .8))
 contour(dem_rc_utm23s_agre_media, levels =  seq(500, 900, by = 50),
         col = "white", pch = 20, lwd = 1.5, labcex = 2, main = FALSE, add = TRUE)
-plot(rc_2019_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
+plot(rc_2020_utm23s$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
 # vetorizacao de poligonos
 rc_cob_rasterizacao_poligonos <- raster::rasterToPolygons(rc_cob_rasterizacao) %>% 

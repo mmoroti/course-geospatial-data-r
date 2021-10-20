@@ -5,276 +5,329 @@
 #' ---
 
 # packages ----------------------------------------------------------------
+
 library(tidyverse)
 library(sf)
 library(raster)
 library(geobr)
 library(rnaturalearth)
-library(ggspatial)
-library(tmap)
 library(viridis)
 library(wesanderson)
 library(cptcity)
+library(ggspatial)
+library(tmap)
+library(mapsf)
+library(mapview)
+library(plotly)
+library(mapedit)
 
 # topics ------------------------------------------------------------------
-# 8.1 Elementos de um mapa
-# 8.2 Pacotes para produção de mapas
-# 8.3 Pacote ggplot2
-# 8.4 Pacote tmap
-# 8.5 Mapas vetoriais
-# 8.6 Mapas matriciais
-# 8.7 Mapas estáticos
-# 8.8 Mapas animados
-# 8.9 Mapas interativos
-# 8.10 Exportar mapas
 
-# 8.1 elementos de um mapa ------------------------------------------------
+# 1. Elementos de um mapa
+# 2. Pacotes para produção de mapas
+# 3. Mapas estáticos
+# 4. Mapas animados
+# 5. Mapas interativos
+
+# 1. principais elementos de um mapa -------------------------------------
+
 # elementos 
-# - titutlo
 # - mapa principal
 # - mapa secundario
+# - titutlo
 # - legenda
-# - coordenadas
-# - orientacao (Norte)
+# - gride de coordenadas
 # - barra de escala
-# - src
-# - fontes
+# - orientacao (norte)
+# - descricao do src
+# - informacao de origem~
+# - outras informacoes
 
-# 8.2 pacotes para producao de mapas --------------------------------------
+# 2. pacotes para producao de mapas --------------------------------------
+
 # principais pacotes para producao de mapas no R
-# - tmap
 # - ggplot2
 # - ggspatial
+# - ggmap
+# - tmap
+# - mapsf
+# - linemap
 # - cartography
+# - cartogram
 # - googleway
-# - leaflet
-# - mapview
-# - plotly
 # - rasterVis
+# - mapview
+# - leaflet
+# - plotly
+# - mapedit
 
-# 8.3 pacote ggplot2 ------------------------------------------------------
-# ggplot(...) 
-# aes(...) 
-# geom_(...) 
-# stats_(...) 
-# coord_(...) 
-# facet_(...) 
-# theme_(...)
+# 3. mapas estaticos -----------------------------------------------------
 
-# 8.4 pacote tmap ---------------------------------------------------------
-# tm_shape(...)
-# tm_*(...)
-# tm_facets(...)
-# tm_layout(...)
+# biomas
+biomas <- geobr::read_biomes(showProgress = FALSE) %>%
+  dplyr::filter(name_biome != "Sistema Costeiro")
+biomas
 
-# tm_style(...)
-# tmap_arrange(...)
-# tm_mode(...)
+# plot
+plot(biomas)
 
-# 8.5 mapas vetoriais -----------------------------------------------------
+# plot
+plot(biomas$geom, 
+     col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"),
+     main = "Biomas do Brasil", axes = TRUE, graticule = TRUE)
+legend(x = -75, y = -20, pch = 15, cex = 1, pt.cex = 2.5, legend = biomas$name_biome, 
+       col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"))
+
 # rio claro
-rc_2019 <- geobr::read_municipality(code_muni = 3543907, year = 2019)
-rc_2019
-plot(rc_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+rc_2020 <- geobr::read_municipality(code_muni = 3543907, year = 2020, showProgress = FALSE) %>% 
+  sf::st_transform(crs = 4326)
+rc_2020
 
-# rio claro utm
-rc_2019_utm <- geobr::read_municipality(code_muni = 3543907, year = 2019) %>% sf::st_transform(crs = 31983)
-rc_2019_utm
-plot(rc_2019_utm$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+# importar raster
+dem_rc <- raster::raster(here::here("03_dados", "raster", "srtm_27_17.tif")) %>% 
+  raster::crop(rc_2020)
+dem_rc
 
-# import points
-rc_spr <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_NASCENTES.shp"), quiet = TRUE)
-rc_spr
-plot(rc_spr$geometry, col = "blue", main = NA, axes = TRUE, graticule = TRUE)
+# plot
+plot(dem_rc)
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
-# import lines
-rc_riv <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_RIOS_SIMPLES.shp"), quiet = TRUE)
-rc_riv
-plot(rc_riv$geometry, col = "steelblue", main = NA, axes = TRUE, graticule = TRUE)
+# plot
+plot(dem_rc, col = viridis::viridis(10))
+plot(rc_2020$geom, col = NA, border = "red", lwd = 2, add = TRUE)
 
-# import polygons
-rc_use <- sf::st_read(here::here("03_dados", "vetor", "SP_3543907_USO.shp"), quiet = TRUE) %>% sf::st_transform(crs = 31983)
-rc_use
-plot(rc_use$geometry, col = c("blue", "orange", "gray30", "forestgreen", "green"), main = NA, axes = TRUE, graticule = TRUE)
+# listar arquivos
+files <- dir(path = here::here("03_dados", "raster"), pattern = "wc", full.names = TRUE) %>% 
+  grep(".tif", ., value = TRUE)
+files
 
+# importar
+bioclim <- raster::stack(files)
+bioclim
 
-## ggplot2
-# rio claro limit
+# plot
+plot(bioclim[[1:2]], col = viridis::viridis(10))
+
+# diretorio
+dir.create(here::here("03_dados", "mapas"))
+
+# exportar mapa
+png(filename = here::here("03_dados", "mapas", "mapa_biomas.png"), width = 20, height = 20, units = "cm", res = 300)
+plot(biomas$geom, 
+     col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"),
+     main = "Biomas do Brasil", axes = TRUE, graticule = TRUE)
+legend(x = -75, y = -20, pch = 15, cex = 1, pt.cex = 2.5, legend = biomas$name_biome, 
+       col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"))
+dev.off()
+
+# ggplot2 ----
+# dados
 ggplot() +
-  geom_sf(data = rc_2019_utm)
+  geom_sf(data = biomas)
 
-# rio claro limit fill + land use
+# cor e preenchimento
 ggplot() +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) +
-  geom_sf(data = rc_use)
+  geom_sf(data = biomas, color = "black", fill = NA)
 
-# rio claro limit fill + land use with colors
+# cor e preenchimento
 ggplot() +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) +
-  geom_sf(data = rc_use, aes(fill = CLASSE_USO), color = NA)
+  geom_sf(data = biomas, aes(color = name_biome), fill = NA)
 
-# land use with colors + rio claro limit fill
+# cor e preenchimento
 ggplot() +
-  geom_sf(data = rc_use, aes(fill = CLASSE_USO), color = NA) +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) 
+  geom_sf(data = biomas, aes(fill = name_biome), color = NA)
 
-# land use and choose colors + rio claro limit fill 
+# definir cor
 ggplot() +
-  geom_sf(data = rc_use, aes(fill = CLASSE_USO), color = NA) +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green"))
-
-# land use and choose colors + rio claro limit fill + coords
+  geom_sf(data = biomas, aes(fill = name_biome), color = NA) +
+  scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
+                               "forestgreen", "yellow", "yellow3"))
+# tema
 ggplot() +
-  geom_sf(data = rc_use, aes(fill = CLASSE_USO), color = NA) +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
-  coord_sf(datum = 31983)
-
-# land use and choose colors + rio claro limit fill + coords + themes
-ggplot() +
-  geom_sf(data = rc_use, aes(fill = CLASSE_USO), color = NA) +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
-  coord_sf(datum = 31983) +
+  geom_sf(data = biomas, aes(fill = name_biome), color = NA) +
+  scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
+                               "forestgreen", "yellow", "yellow3")) +
   theme_bw()
 
-# land use and choose colors + rio claro limit fill + coords + themes + scalebar + north
+# barra de escala e norte
 ggplot() +
-  geom_sf(data = rc_use, aes(fill = CLASSE_USO), color = NA) +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
-  coord_sf(datum = 31983) +
+  geom_sf(data = biomas, aes(fill = name_biome), color = NA) +
+  scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
+                               "forestgreen", "yellow", "yellow3")) +
   theme_bw() +
-  annotation_scale(location = "br", width_hint = .3) +
-  annotation_north_arrow(location = "br", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.7, "cm"),
+  annotation_scale(location = "br") +
+  annotation_north_arrow(location = "br", which_north = "true",
+                         pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
                          style = north_arrow_fancy_orienteering)
 
-# land use and choose colors + rio claro limit fill + coords + themes + scalebar + north + names
-map_use_gg <- ggplot() +
-  geom_sf(data = rc_use, aes(fill = CLASSE_USO), color = NA) +
-  geom_sf(data = rc_2019_utm, color = "black", fill = NA) +
-  scale_fill_manual(values = c("blue", "orange", "gray30", "forestgreen", "green")) +
-  coord_sf(datum = 31983) +
-  theme_bw() +
-  annotation_scale(location = "br", width_hint = .3) +
-  annotation_north_arrow(location = "br", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.7, "cm"),
+# nomes e anotacoes
+ggplot(data = biomas) +
+  aes(fill = name_biome) +
+  geom_sf(color = "black") +
+  scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
+                               "forestgreen", "yellow", "yellow3")) +
+  annotation_scale(location = "br") +
+  annotation_north_arrow(location = "br", which_north = "true",
+                         pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
                          style = north_arrow_fancy_orienteering) +
-  labs(x = "Longitude", y = "Latitude", title = "Cobertura da terra Rio Claro/SP (2015)", fill = "Legenda") +
-  theme(legend.position = c(.18,.18),
-        legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90, hjust = .5))
-map_use_gg
-
-# springs 
-ggplot() +
-  geom_sf(data = rc_2019_utm, color = "black", fill = "gray") +
-  geom_sf(data = rc_spr, aes(color = HIDRO), shape = 20) +
-  coord_sf(datum = 31983) +
-  scale_color_manual(values = "blue") +
+  annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 2.5) +
+  annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 2.5) +
+  labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude") +
   theme_bw() +
-  annotation_scale(location = "br", width_hint = .3) +
-  annotation_north_arrow(location = "br", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.7, "cm"),
-                         style = north_arrow_fancy_orienteering) +
-  labs(x = "Longitude", y = "Latitude", title = "Nascentes Rio Claro/SP (2015)", color = "Legenda") +
-  theme(legend.position = c(.18,.18),
-        legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90, hjust = .5))
+  theme(title = element_text(size = 15, face = "bold"),
+        legend.title = element_text(size = 10, face = "bold"),
+        legend.position = c(.15, .25),
+        legend.background = element_rect(colour = "black"),
+        axis.title = element_text(size = 10, face = "plain"))
 
-# rivers
-ggplot() +
-  geom_sf(data = rc_2019_utm, color = "black", fill = "gray") +
-  geom_sf(data = rc_riv, shape = 20, color = "steelblue") +
-  coord_sf(datum = 31983) +
+# atribuicao
+map_biomas_ggplot2 <- ggplot(data = biomas) +
+  aes(fill = name_biome) +
+  geom_sf(color = "black") +
+  scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
+                               "forestgreen", "yellow", "yellow3")) +
+  annotation_scale(location = "br") +
+  annotation_north_arrow(location = "br", which_north = "true",
+                         pad_x = unit(0, "cm"), pad_y = unit(.5, "cm"),
+                         style = north_arrow_fancy_orienteering) +
+  annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 2.5) +
+  annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 2.5) +
+  labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude") +
   theme_bw() +
-  annotation_scale(location = "br", width_hint = .3) +
-  annotation_north_arrow(location = "br", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.7, "cm"),
+  theme(title = element_text(size = 15, face = "bold"),
+        legend.title = element_text(size = 10, face = "bold"),
+        legend.position = c(.15, .25),
+        legend.background = element_rect(colour = "black"),
+        axis.title = element_text(size = 10, face = "plain"))
+map_biomas_ggplot2
+
+# dados
+dem_rc_da <- raster::rasterToPoints(dem_rc) %>% 
+  tibble::as_tibble()
+head(dem_rc_da)
+
+# plot
+map_dem_rc_ggplot2 <- ggplot() +
+  geom_raster(data = dem_rc_da, aes(x = x, y = y, fill = srtm_27_17)) +
+  geom_sf(data = rc_2020, col = "red", fill = NA, size = 1.3) +
+  scale_fill_viridis_c() +
+  coord_sf() +
+  annotation_scale(location = "br",
+                   pad_x = unit(.5, "cm"), pad_y = unit(.7, "cm"),) +
+  annotation_north_arrow(location = "br", which_north = "true",
+                         pad_x = unit(.4, "cm"), pad_y = unit(1.3, "cm"),
                          style = north_arrow_fancy_orienteering) +
-  labs(x = "Longitude", y = "Latitude", title = "Rios Rio Claro/SP (2015)") +
-  theme(legend.position = c(.18,.18),
-        legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90, hjust = .5))
+  annotate(geom = "text", label = "CRS: WGS84/Geo", x = -47.51, y = -22.53, size = 3) +
+  labs(title = "Elevação de Rio Claro/SP", fill = "Elevação (m)", x = "Longitude", y = "Latitude") +
+  theme_bw() +
+  theme(title = element_text(size = 15, face = "bold"),
+        legend.title = element_text(size = 10, face = "bold"),
+        legend.position = c(.2, .25),
+        legend.background = element_rect(colour = "black"),
+        axis.title = element_text(size = 10, face = "plain"),
+        axis.text.y = element_text(angle = 90, hjust = .4))
+map_dem_rc_ggplot2
+
+# exportar
+ggsave(
+  filename = here::here("03_dados", "mapas", "mapa_biomas_ggplot2.png"),
+  plot = map_biomas_ggplot2, 
+  width = 20, 
+  height = 20, 
+  units = "cm", 
+  dpi = 300
+)
+
+# exportar
+ggsave(
+  filename = here::here("03_dados", "mapas", "mapa_dem_rc_rc_ggplot2.png"), 
+  plot = map_dem_rc_ggplot2, 
+  width = 20, 
+  height = 20, 
+  units = "cm", 
+  dpi = 300
+)
+
+# ggmap ----
+
+# pacote
+# install.packages("ggmap)
+library(ggmap)
+
+# limite
+brasil <- c(left = -80, bottom = -35, right = -30, top = 5)
+rio_claro <- c(left = -47.67, bottom = -22.48, right = -47.46, top = -22.32)
+
+# plot
+get_stamenmap(brasil, maptype = "terrain", zoom = 5) %>% 
+  ggmap()
+
+# plot
+get_stamenmap(brasil, maptype = "toner", zoom = 5) %>% 
+  ggmap()
+
+# plot
+get_stamenmap(brasil, maptype = "toner-lite", zoom = 5) %>% 
+  ggmap()
+
+# plot
+get_stamenmap(brasil, maptype = "watercolor", zoom = 5) %>% 
+  ggmap()
+
+# plot
+get_stamenmap(rio_claro, maptype = "terrain", zoom = 12) %>% 
+  ggmap()
 
 
+# tmap ----
 
-## tmap
-# rio claro limit
-tm_shape(rc_2019_utm) +
-  tm_borders(lwd = 2, col = "black") 
+# poligonos
+tm_shape(biomas) +
+  tm_polygons()
 
-# rio claro limit fill + land use
-tm_shape(rc_use) +
-  tm_fill(col = "CLASSE_USO", title = "Legenda") +
-  tm_shape(rc_2019_utm) +
-  tm_borders(lwd = 2, col = "black") 
+# bordas
+tm_shape(biomas) +
+  tm_borders()
 
-# rio claro limit fill + land use with colors
-tm_shape(rc_use) +
-  tm_fill(col = "CLASSE_USO", title = "Legenda") +
-  tm_shape(rc_2019_utm) +
-  tm_borders(lwd = 2, col = "black") 
+# prenchimento
+tm_shape(biomas) +
+  tm_fill()
 
-# land use and choose colors + rio claro limit fill 
-tm_shape(rc_use) +
-  tm_fill(col = "CLASSE_USO", 
-          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
-  tm_shape(rc_2019_utm) +
-  tm_borders(lwd = 2, col = "black") 
+# cores
+tm_shape(biomas) +
+  tm_fill(col = "name_biome", title = "Legenda")
 
-# land use and choose colors + rio claro limit fill + coords
-tm_shape(rc_use) +
-  tm_fill(col = "CLASSE_USO", 
-          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
-  tm_shape(rc_2019_utm) +
-  tm_borders(lwd = 2, col = "black") +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90))
+# definir cores
+tm_shape(biomas) +
+  tm_fill(col = "name_biome", 
+          pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"),
+          title = "Legenda")
 
-# land use and choose colors + rio claro limit fill + coords + scalebar + north
-tm_shape(rc_use) +
-  tm_fill(col = "CLASSE_USO", 
-          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
-  tm_shape(rc_2019_utm) +
-  tm_borders(lwd = 2, col = "black") +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
+# gride coordenadas
+tm_shape(biomas) +
+  tm_fill(col = "name_biome", 
+          pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
+          title = "Legenda") +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90))
+
+# barra de escala e norte
+tm_shape(biomas) +
+  tm_fill(col = "name_biome", 
+          pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
+          title = "Legenda") +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar()
 
-# land use and choose colors + rio claro limit fill + coords + themes + scalebar + north + names
-map_use_tmap <- tm_shape(rc_use) +
-  tm_fill(col = "CLASSE_USO", 
-          pal = c("blue", "orange", "gray30", "forestgreen", "green"), title = "Legenda") +
-  tm_shape(rc_2019_utm) +
-  tm_borders(lwd = 2, col = "black") +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_layout(main.title = "Cobertura da terra Rio Claro/SP (2015)")
-map_use_tmap
-
-# springs 
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_spr) +
-  tm_bubbles(col = "HIDRO", pal = "blue",
-             size = .2, alpha = .5) +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
-  tm_xlab("Longitude") +
-  tm_ylab("Latitude") +
-  tm_layout(main.title = "Nascentes Rio Claro/SP (2015)")
-
-# rivers
-tm_shape(rc_2019_utm) +
-  tm_polygons() +
-  tm_shape(rc_riv) +
-  tm_lines(col = "HIDRO", pal = "steelblue") +
+# nomes
+tm_shape(biomas) +
+  tm_fill(col = "name_biome", 
+          pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
+          title = "Legenda") +
   tm_grid(lines = FALSE, 
           labels.format = list(big.mark = ""), 
           labels.rot = c(0, 90)) +
@@ -282,159 +335,375 @@ tm_shape(rc_2019_utm) +
   tm_scale_bar() +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
-  tm_layout(main.title = "Rios Rio Claro/SP (2015)")
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09))
 
-# 8.6 mapas matriciais --------------------------------------------------
-# import raster
-elev <- raster::raster(here::here("03_dados", "raster", "srtm_27_17_rc.tif")) %>% 
-  raster::mask(rc_2019)
-elev
-plot(elev, col = viridis::viridis(10))
+# titulos
+tm_shape(biomas) +
+  tm_fill(col = "name_biome", 
+          pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
+          title = "Legenda") +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
+  tm_compass() +
+  tm_scale_bar() +
+  tm_xlab("Longitude") +
+  tm_ylab("Latitude") +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09)) +
+  tm_layout(main.title = "Biomas do Brasil",
+            title.position = c(.25, .95),
+            title.size = 1.8,
+            title.fontface = "bold",
+            legend.frame = TRUE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontface = "bold")
 
-## ggplot2
-# raster to tibble
-da_elev <- raster::rasterToPoints(elev) %>% 
-  tibble::as_tibble() %>% 
-  dplyr::rename(elev = srtm_27_17_rc)
-head(da_elev)
+# atribuicao
+map_biomas_tmap <- tm_shape(biomas) +
+  tm_fill(col = "name_biome", 
+          pal = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"), 
+          title = "Legenda") +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
+  tm_compass() +
+  tm_scale_bar() +
+  tm_xlab("Longitude") +
+  tm_ylab("Latitude") +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09)) +
+  tm_layout(main.title = "Biomas do Brasil",
+            title.position = c(.25, .95),
+            title.size = 1.8,
+            title.fontface = "bold",
+            legend.frame = TRUE,
+            legend.position = c("left", "bottom"),
+            legend.title.fontface = "bold")
+map_biomas_tmap
 
-# elevation map
-map_elev_gg <- ggplot() +
-  geom_raster(data = da_elev, aes(x = x, y = y, fill = elev)) +
-  geom_sf(data = rc_2019, color = "black", fill = NA) +
-  scale_fill_gradientn(colors = viridis::viridis(10)) +
-  theme_bw() +
-  annotation_scale(location = "br", width_hint = .3) +
-  annotation_north_arrow(location = "br", which_north = "true", 
-                         pad_x = unit(0, "cm"), pad_y = unit(.7, "cm"),
-                         style = north_arrow_fancy_orienteering) +
-  labs(x = "Longitude", y = "Latitude", title = "Elevação Rio Claro/SP (2007)", fill = "Legenda") +
-  theme(legend.position = c(.18,.18),
-        legend.box.background = element_rect(colour = "black"),
-        axis.text.y = element_text(angle = 90, hjust = .5))
-map_elev_gg
-
-
-## tmap
-# elevation map
-map_elev_tmap <- tm_shape(elev) +
+# plot
+map_dem_rc_tmap <- tm_shape(dem_rc) +
   tm_raster(title = "Legenda") +
-  tm_shape(rc_2019) +
-  tm_borders() +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
+  tm_shape(rc_2020) +
+  tm_borders(col = "red", lwd = 2) +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
   tm_layout(legend.position = c("left", "bottom"), 
-            main.title = "Elevação Rio Claro/SP (2015)")
-map_elev_tmap
+            main.title = "Elevação Rio Claro/SP")
+map_dem_rc_tmap
 
-# elevation map
-map_elev_tmap <- tm_shape(elev) +
+# plot
+map_dem_rc_tmap <- tm_shape(dem_rc) +
   tm_raster(pal = wesanderson::wes_palette("Zissou1"), title = "Legenda") +
-  tm_shape(rc_2019) +
-  tm_borders() +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
+  tm_shape(rc_2020) +
+  tm_borders(col = "red", lwd = 2) +
+  tm_grid(lines = FALSE, 
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
   tm_compass() +
   tm_scale_bar() +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
   tm_layout(legend.position = c("left", "bottom"), 
-            main.title = "Elevação Rio Claro/SP (2015)")
-map_elev_tmap
+            main.title = "Elevação Rio Claro/SP")
+map_dem_rc_tmap
 
-# elevation map
-map_elev_tmap <- tm_shape(elev) +
-  tm_raster(pal = cptcity::cpt(pal = "gmt_GMT_dem4"), 
-            # breaks = c(400, 500, 600, 700, 800, 900), 
-            n = 20,
-            title = "Legenda") +
-  tm_shape(rc_2019) +
-  tm_borders() +
-  tm_grid(lines = FALSE, labels.format = list(big.mark = ""), labels.rot = c(0, 90)) +
-  tm_compass() +
-  tm_scale_bar() +
+# plot
+map_dem_rc_tmap <- tm_shape(dem_rc) +
+  tm_raster(pal = cptcity::cpt(pal = "gmt_GMT_dem4"), n = 20, title = "Legenda") +
+  tm_shape(rc_2020) +
+  tm_borders(col = "red", lwd = 2) +
+  tm_grid(lines = FALSE,
+          labels.format = list(big.mark = ""), 
+          labels.rot = c(0, 90)) +
+  tm_compass(position = c("left", "bottom")) +
+  tm_scale_bar(position = c("left", "bottom")) +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
-  tm_layout(legend.position = c("left", "bottom"), 
-            legend.outside = TRUE,
-            main.title = "Elevação Rio Claro/SP (2015)")
-map_elev_tmap
+  tm_layout(legend.outside = TRUE,
+            main.title = "Elevação Rio Claro/SP")
+map_dem_rc_tmap
 
-# 8.8 Mapas animados ------------------------------------------------------
-# download
-year <- geobr::list_geobr()[3, 3] %>% 
-  dplyr::pull() %>% 
-  stringr::str_split(", ", simplify = TRUE) %>% 
-  as.character()
-year
+# exportar
+tmap::tmap_save(tm = map_biomas_tmap, 
+                filename = here::here("03_dados", "mapas", "mapa_biomas_tmap.png"), 
+                width = 20, 
+                height = 20, 
+                units = "cm", 
+                dpi = 300)
 
-br <- NULL
+# exportar
+tmap::tmap_save(tm = map_dem_rc_tmap, 
+                filename = here::here("03_dados", "mapas", "mapa_dem_rc_tmap.png"), 
+                width = 20, 
+                height = 20, 
+                units = "cm", 
+                dpi = 300)
 
-for(i in year){
+# mapsf ----
+# pacote
+# install.packages("mapsf")
+library(mapsf)
+
+# sintaxe
+# mf_map(x, var, type)
+
+# plot
+mf_map(x = biomas)
+
+# plot
+mf_map(x = biomas, var = "name_biome", type = "typo")
+
+# plot
+mf_map(x = biomas, var = "name_biome", type = "typo",
+       pal = c("darkgreen", "orange", "orange4", 
+               "forestgreen", "yellow", "yellow3"),
+       leg_title = "Biomas",
+       leg_pos = c(-75, -15))
+
+# plot
+mf_map(x = biomas, var = "name_biome", type = "typo",
+       pal = c("darkgreen", "orange", "orange4", 
+               "forestgreen", "yellow", "yellow3"),
+       leg_title = "Biomas",
+       leg_pos = c(-75, -15))
+mf_title("Biomas do Brasil")
+mf_credits("IBGE, 2019")
+mf_scale()
+mf_arrow()
+
+# plot
+mf_init(x = biomas, theme = "dark")
+mf_map(x = biomas, var = "name_biome", type = "typo",
+       pal = c("darkgreen", "orange", "orange4", 
+               "forestgreen", "yellow", "yellow3"),
+       leg_title = "Biomas",
+       leg_pos = c(-75, -15),
+        add = TRUE)
+mf_title("Biomas do Brasil")
+mf_credits("IBGE, 2019")
+mf_scale()
+mf_arrow()
+
+# plot
+mf_theme(bg = "lightblue", fg = "gray20")
+mf_map(x = biomas, var = "name_biome", type = "typo",
+       pal = c("darkgreen", "orange", "orange4", 
+               "forestgreen", "yellow", "yellow3"),
+       leg_title = "Biomas",
+       leg_pos = c(-75, -15),
+       add = TRUE)
+mf_title("Biomas do Brasil")
+mf_credits("IBGE, 2019")
+mf_scale()
+mf_arrow()
+
+# plot
+mf_init(x = biomas, theme = "dark")
+mf_shadow(x = biomas, col = "gray10", add = TRUE)
+mf_map(x = biomas, var = "name_biome", type = "typo",
+       pal = c("darkgreen", "orange", "orange4", 
+               "forestgreen", "yellow", "yellow3"),
+       leg_title = "Biomas",
+       leg_pos = c(-75, -15),
+       add = TRUE)
+mf_title("Biomas do Brasil")
+mf_credits("IBGE, 2019")
+mf_scale()
+mf_arrow()
+
+# plot
+mf_init(x = biomas, theme = "dark")
+mf_shadow(x = biomas, col = "gray10", add = TRUE)
+mf_map(x = biomas, var = "name_biome", type = "typo",
+       pal = c("darkgreen", "orange", "orange4", 
+               "forestgreen", "yellow", "yellow3"),
+       leg_title = "Biomas",
+       leg_pos = c(-75, -15),
+       add = TRUE)
+mf_inset_on(x = "worldmap", pos = "topright")
+mf_worldmap(biomas, col = "#0E3F5C")
+mf_inset_off()
+mf_title("Biomas do Brasil")
+mf_credits("IBGE, 2019")
+mf_scale()
+mf_arrow()
+
+# export
+mf_export(x = biomas, 
+          filename = here::here("03_dados", "mapas", "mapa_biomas_mapsf.png"), 
+          wi = 20, he = 20, un = "cm", res = 300)
+mf_init(x = biomas, theme = "dark")
+mf_shadow(x = biomas, col = "gray10", add = TRUE)
+mf_map(x = biomas, var = "name_biome", type = "typo",
+       pal = c("darkgreen", "orange", "orange4", 
+               "forestgreen", "yellow", "yellow3"),
+       leg_title = "Biomas",
+       leg_pos = c(-70, -17),
+       add = TRUE)
+mf_inset_on(x = "worldmap", pos = "topright")
+mf_worldmap(biomas, col = "#0E3F5C")
+mf_inset_off()
+mf_title("Biomas do Brasil")
+mf_credits("IBGE, 2019")
+mf_scale()
+mf_arrow()
+dev.off()
+
+# rastervis ----
+# pacote
+# install.packages('rasterVis')
+library(rasterVis)
+
+# plot
+levelplot(bioclim[[8:11]])
+
+# plot
+levelplot(bioclim, 
+          layers = 1, 
+          margin = list(FUN = "median"))
+
+# plot
+levelplot(bioclim, 
+          layers = 4, 
+          margin = list(FUN = "median"))
+
+# export
+png(filename = here::here("03_dados", "mapas", "mapa_bioclim_rastervis.png"), 
+    wi = 20, he = 20, un = "cm", res = 300)
+levelplot(bioclim, layers = 4, margin = list(FUN = "median"))
+dev.off()
+
+# 4. mapas animados ------------------------------------------------------
+
+# dados
+br_anos <- NULL
+for(i in c(1872, 1900, 1911, 1920, 1933, 1940, 1950, 1960, 1970, 1980, 1991, 2001, 2010, 2020)){
   
-  br <- geobr::read_state("all", i) %>% 
+  br_anos <- geobr::read_state(code_state = "all", year = i, showProgress = FALSE) %>% 
+    sf::st_geometry() %>% 
+    sf::st_as_sf() %>% 
     dplyr::mutate(year = i) %>% 
-    dplyr::bind_rows(br, .)
+    dplyr::bind_rows(br_anos, .)
   
 }
 
-br$year %>% table
-
-# create facet
-br_years <- tm_shape(br) + 
+# mapa facetado - demora uns 10 segundos
+map_brasil_tmap <- tm_shape(br_anos) + 
   tm_polygons() + 
-  tm_facets(by = "year", free.coords = FALSE)
-br_years
+  tm_facets(by = "year", nrow = 4)
+map_brasil_tmap
 
-# export
-tmap_animation(br_years, filename = here::here("03_dados", "mapas", "geo_br_years.gif"), delay = 25)
+# mapa animado
+map_brasil_tmap_ani <- tm_shape(br_anos) + 
+  tm_polygons() + 
+  tm_facets(along = "year", free.coords = FALSE)
+map_brasil_tmap_ani
 
-# 8.9 mapas interativos ---------------------------------------------------
-# change plot tmap
-tmap_mode("view")
-map_use_tmap
+# exportar
+tmap::tmap_animation(tm = map_brasil_tmap_ani, 
+                     filename = here::here("03_dados", "mapas", "mapa_dem_rc_tmap_ani.gif"), 
+                     delay = 30)
 
-# change plot tmap
-map_elev_tmap
 
-# 8.10 exportar mapas ---------------------------------------------------
-## ggplot2
-# export 
-ggsave(map_use_gg, 
-       filename = "map_rio_claro_land_use_gg.png",
-       path = here::here("03_dados"),
-       width = 20, 
-       height = 20, 
-       units = "cm", 
-       dpi = 300)
+# 5. mapas interativos ---------------------------------------------------
 
-# export
-ggsave(map_elev_gg, 
-       filename = "map_rio_claro_elevation_gg.png",
-       path = here::here("03_dados"),
-       width = 20, 
-       height = 20, 
-       units = "cm", 
-       dpi = 300)
+# tmap ----
+# mudar o modo de exibicao do tmap
+tmap::tmap_mode(mode = "view")
 
-## tmap
-# export
-tmap_save(map_use_tmap, 
-          filename = here::here("03_dados", "map_rio_claro_land_use_tmap.png"),
-          width = 20, 
-          height = 20, 
-          units = "cm", 
-          dpi = 300)
+# mapa interativo
+map_dem_rc_tmap_int <- map_dem_rc_tmap
+map_dem_rc_tmap_int
 
-# export
-tmap_save(map_elev_tmap, 
-          filename = here::here("03_dados", "map_rio_claro_elevation_tmap.png"),
-          width = 20, 
-          height = 20, 
-          units = "cm", 
-          dpi = 300)
+# mapview ----
+# pacote
+# install.packge("mapview")
+library(mapview)
+
+# plot
+map_dem_rc_mapview_int <- mapview::mapview(dem_rc, col.regions = viridis::viridis(100))
+map_dem_rc_mapview_int
+
+# exportar mapa tmap interativo
+tmap::tmap_save(tm = map_dem_rc_tmap_int, 
+                filename = here::here("dados", "mapas", "mapa_dem_rc_tmap_int.html"))
+
+# leaflet ----
+# pacote
+# install.packge("leaflet")
+library(leaflet)
+
+# paleta de cores
+pal <- colorNumeric(viridis::viridis(10), raster::values(dem_rc))
+
+# mapa
+map_dem_rc_leaflet_int <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>% 
+  addRasterImage(dem_rc, colors = pal, opacity = .8) %>%
+  addLegend(pal = pal, values = raster::values(dem_rc), title = "Elevação (m)") %>% 
+  addPolygons(data = rc_2020, col = "red", fill = NA)
+map_dem_rc_leaflet_int
+
+# exportar mapa tmap interativo
+mapview::mapshot(x = map_dem_rc_leaflet_int, 
+                 url = here::here("03_dados", "mapas", "mapa_dem_rc_leaflet_int.html"))
+
+# plotly ----
+# pacote
+# install.packge("plotly")
+library(plotly)
+
+# plot
+map_rc_2020_plotly_int <- plot_geo(rc_2020)
+map_rc_2020_plotly_int
+
+# plot
+map_rc_2020_plotly_int <- ggplotly(
+  ggplot() +
+    geom_sf(data = rc_2020) +
+    theme_bw(base_size = 16))
+map_rc_2020_plotly_int
+
+# plot
+map_biomas_plotly_int <- ggplotly(
+  ggplot(data = biomas) +
+    aes(fill = name_biome) +
+    geom_sf(color = "black") +
+    scale_fill_manual(values = c("darkgreen", "orange", "orange4", 
+                                 "forestgreen", "yellow", "yellow3")) +
+    theme_bw(base_size = 16) +
+    annotate(geom = "text", label = "CRS: SIRGAS2000/Geo", x = -38, y = -31, size = 2.5) +
+    annotate(geom = "text", label = "Fonte: IBGE (2019)", x = -39, y = -32.5, size = 2.5) +
+    labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude"))
+map_biomas_plotly_int
+
+# exportar mapa tmap interativo
+mapview::mapshot(x = map_biomas_plotly_int, 
+                 url = here::here("03_dados", "mapas", "mapa_dem_rc_leaflet_int.html"))
+
+# mapedit ----
+# pacote
+# install.packages("mapedit")
+library(mapedit)
+
+# criar
+unesp <- mapedit::drawFeatures()
+unesp
+
+# editar
+unesp_editado <- mapedit::editFeatures(unesp)
+unesp_editado
+
+# mapa
+mapview::mapview(unesp_editado)
 
 # muito obrigado pela paciencia e atencao =]
 

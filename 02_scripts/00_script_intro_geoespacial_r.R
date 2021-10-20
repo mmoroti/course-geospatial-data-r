@@ -29,6 +29,7 @@ if(!require(cowplot)) install.packages("cowplot", dep = TRUE)
 if(!require(patchwork)) install.packages("patchwork", dep = TRUE)
 if(!require(gganimate)) devtools::install_github('thomasp85/gganimate')
 if(!require(plotly)) install.packages("plotly", dep = TRUE)
+if(!require(plotly)) install.packages("htmlwidgets", dep = TRUE)
 if(!require(esquisse)) install.packages("esquisse", dep = TRUE)
 
 # geospatial data ---------------------------------------------------------
@@ -44,15 +45,15 @@ if(!require(raster)) install.packages("raster", dep = TRUE)
 if(!require(fasterize)) install.packages("fasterize", dep = TRUE)
 if(!require(RStoolbox)) install.packages("RStoolbox", dep = TRUE)
 
-# projection
-if(!require(lwgeom)) install.packages("lwgeom", dep = TRUE)
-
 # maps
 if(!require(ggspatial)) install.packages("ggspatial", dep = TRUE)
 if(!require(tmap)) install.packages("tmap", dep = TRUE)
 if(!require(mapsf)) install.packages("mapsf", dep = TRUE)
 if(!require(mapview)) install.packages("tmap", dep = TRUE)
+if(!require(mapedit)) install.packages("mapedit", dep =TRUE)
 if(!require(leaflet)) install.packages("tmap", dep = TRUE)
+if(!require(leafpm)) install.packages("leafpm", dep = TRUE)
+if(!require(lwgeom)) install.packages("lwgeom", dep = TRUE)
 if(!require(viridis)) install.packages("viridis", dep = TRUE)
 if(!require(cptcity)) install.packages("cptcity", dep = TRUE)
 if(!require(wesanderson)) install.packages("wesanderson", dep = TRUE)

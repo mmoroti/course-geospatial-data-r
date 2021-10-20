@@ -15,6 +15,7 @@ library(cowplot)
 library(patchwork)
 library(gganimate)
 library(plotly)
+library(htmlwidgets)
 library(esquisse)
 
 # end ---------------------------------------------------------------------
@@ -689,6 +690,12 @@ ggplot(data = penguins,
   enter_grow() + 
   exit_fade()
 
+# exportar
+gganimate::anim_save(filename = here::here("03_dados", 
+                                           "graficos" ,
+                                           "plot_animate.gif"),
+                     animation = plot_animate)
+
 # 14. graficos interativos ------------------------------------------------
 
 # plotly
@@ -711,6 +718,26 @@ plot_ly(data = penguins,
   layout(scene = list(xaxis = list(title = "Comprimento do bico (mm)"),
                       yaxis = list(title = "Profundidade do bico (mm)"),
                       zaxis = list(title = "Massa (g)")))
+
+plot_penguins_scatter_int <- ggplotly(
+  ggplot(data = penguins, 
+         aes(x = bill_length_mm, 
+             y = bill_depth_mm,
+             color = species,
+             shape = species)) +
+    geom_point(size = 3, alpha = .8) +
+    geom_smooth(method = "lm", se = FALSE) +
+    scale_shape_manual(values = c(19, 15, 17)) +
+    scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+    theme_bw(base_size = 16) +
+    labs(x = "Comprimento do bico (mm)", 
+         y = "Profundidade do bico (mm)", 
+         color = "Espécies", shape = "Espécies"))
+plot_penguins_scatter_int
+
+# export
+htmlwidgets::saveWidget(widget = plot_penguins_scatter_int, 
+                        file = here::here("03_dados", "graficos" ,"plot_penguins_scatter_int.html"))
 
 # 15. graficos usando uma interface ---------------------------------------
 
