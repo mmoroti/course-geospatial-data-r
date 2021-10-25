@@ -335,7 +335,7 @@ background-position: 90% 30%, 90% 85%
 - **ctrl + Shift + R**: insere uma sessão (# ----------------------)
 - **ctrl + Shift + H**: abre uma janela para selecionar o diretório de trabalho
 - **ctrl + Shift + f10**: reinicia o console
-- **ctrl + L**: limpa os comandos do console 
+- **ctrl + L**: limpa os códigos do console 
 - **alt + Shift + K**: abre uma janela com todos os atalhos disponíveis
 
 ---
@@ -582,9 +582,9 @@ background-position: 70% 80%
 
 ```{r}
 #' ---
-#' titulo: Introdução à modelagem de distribuição de espécies usando a linguagem R
+#' titulo: Introdução ao uso de dados geoespaciais no R
 #' autor: seu nome
-#' data: 25-09-2021
+#' data: 25-10-2021
 #' ---
 ```
 
@@ -1114,7 +1114,7 @@ sq
 
 ## 1. **Atribuição** de dados a objetos
 
-##  **Funções** que **operam e mudam** esses dados
+## 2. **Funções** que **operam e mudam** esses dados
 
 ## 3. Nova **atribuição** desses resultados a novos objetos
 
@@ -1211,7 +1211,7 @@ background-position: 90% 100%
 
 ## 1. Pacotes já **instalados por padrão** e que são **carregados** quando abrimos o R
 
-## 2. Pacotes que **instalamos** e **carregamos** com comandos
+## 2. Pacotes que **instalamos** e **carregamos** com códigos
 
 ---
 
@@ -1786,17 +1786,19 @@ background-position: 50% 50%
 
 # 12. Principais erros
 
-## 1. Esquecer de completar um comando (+)
+## 1. Esquecer de completar um código (+)
 
 Parênteses
 ```{r error=TRUE}
 sum(1, 2
-    +
-      ```
++
+```
+
+--
     
-    Aspas
-    ```{r error=TRUE}
-    "string
+Aspas
+```{r error=TRUE}
+"string
 +
 ```
 
@@ -1829,10 +1831,10 @@ detach("package:vegan", unload = TRUE)
 ```
 
 ```{r error=TRUE}
-## carregar dados
+# carregar dados
 data(dune)
 
-## funcao do pacote vegan
+# funcao do pacote vegan
 decostand(dune, "hell")
 ```
 
@@ -1845,10 +1847,10 @@ decostand(dune, "hell")
 # carregar o pacote
 library(vegan)
 
-## carregar dados
+# carregar dados
 data(dune)
 
-## funcao do pacote vegan
+# funcao do pacote vegan
 decostand(dune, "hell")
 ```
 
@@ -1856,7 +1858,7 @@ decostand(dune, "hell")
 
 background-image: url(img/code_camel_case.png)
 background-size: 350px
-background-position: 50% 90%
+background-position: 90% 90%
 
 # 12. Principais erros
 
@@ -1869,7 +1871,7 @@ colsums(dune)
 
 background-image: url(img/code_camel_case.png)
 background-size: 350px
-background-position: 50% 90%
+background-position: 90% 90%
 
 # 12. Principais erros
 

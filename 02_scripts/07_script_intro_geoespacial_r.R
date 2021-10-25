@@ -235,9 +235,9 @@ si_ve
 plot(si_ve$geometry, pch = 20, main = NA, axes = TRUE, graticule = TRUE)
 
 # import data from packages
-# brazil 2019
-br_2019 <- geobr::read_country(year = 2019)
-br_2019
+# brazil 2020
+br_2020 <- geobr::read_country(year = 2020)
+br_2020
 
 # plot
 plot(br_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
@@ -250,11 +250,11 @@ br_1872
 plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # sao paulo municipalities
-sp_mun_2019 <- geobr::read_municipality(code_muni = "SP", year = 2019)
-sp_mun_2019
+sp_mun_2020 <- geobr::read_municipality(code_muni = "SP", year = 2020)
+sp_mun_2020
 
 # plot
-plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(sp_mun_2020$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 # rio claro
 rc_2020 <- geobr::read_municipality(code_muni = 3543907, year = 2020)

@@ -701,6 +701,50 @@ plot(landsat_rc$landsat_rc.2)
 
 ---
 
+background-image: url(img/geo_raster_brick.png)
+background-size: 800px
+background-position: 50% 65%
+
+# 2. Classes raster
+
+## RasterBrick
+
+### Plot RGB (*Red*, *Green* e *Blue*)
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+[National Ecological Observatory Network (NEON)](https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r)
+
+
+---
+
+background-image: url(img/geo_stretch.png)
+background-size: 1000px
+background-position: 50% 65%
+
+# 3. Importar dados matriciais
+
+## Stretch
+
+### Ajustar o **stretch** da imagem para aumentar ou diminuir o contraste
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+[National Ecological Observatory Network (NEON)](https://www.neonscience.org/resources/learning-hub/tutorials/dc-raster-data-r)
+
+---
+
+# 3. Importar dados matriciais
+
+## Importar várias camadas
+
+### RasterBrick
+
+```{r}
+# plot - cores naturais
+plotRGB(landsat_rc, r = 4, g = 3, b = 2, stretch = "lin")
+```
+
+---
+
 # 3. Importar dados matriciais
 
 ## Importar várias camadas

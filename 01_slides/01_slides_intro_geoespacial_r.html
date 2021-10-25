@@ -35,7 +35,7 @@ name: contents-slide
 
 background-image: url(img/git_github.png)
 background-size: 600px
-background-position: 95% 95%
+background-position: 95% 100%
 
 # 1 Controle de versão: git, GitHub e RStudio
 
@@ -717,15 +717,15 @@ background-position: 80% 75%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Estados de um arquivo no diretório
+## Estados de um arquivo no **diretório**
 
 &lt;br&gt;
 
-### 1. Modificados
+### 1. Adicionados
 
-### 2. Deletados
+### 2. Modificados
 
-### 3. Adicionados
+### 3. Deletados
 
 ---
 
@@ -735,7 +735,7 @@ background-position: 5% 77%, 90% 75%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Estados dos arquivos para o git
+## Estados dos arquivos para o **git**
 
 --
 
@@ -761,7 +761,7 @@ background-position: 50% 78%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Estados dos arquivos para o git
+## Estados dos arquivos para o **git**
 
 1. **Modificado (*modified*)**: qualquer arquivo modificado, removido ou adicionado, mas ainda não informado que fará parte da versão consolidada, ou seja, ainda não preparado (*working directory*)
 
@@ -781,7 +781,7 @@ background-position: 15% 22%, 50% 78%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Estados dos arquivos para o git
+## Estados dos arquivos para o **git**
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
@@ -795,7 +795,7 @@ background-position: 51.5% 22%, 15% 22%, 50% 78%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Estados dos arquivos para o git
+## Estados dos arquivos para o **git**
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
@@ -809,7 +809,7 @@ background-position: 88% 22%, 51.5% 22%, 15% 22%, 50% 78%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Estados dos arquivos para o git
+## Estados dos arquivos para o **git**
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
@@ -823,7 +823,7 @@ background-position: 50% 90%
 
 # 9. Versionamento: git add, git commit e git status
 
-## Estados do repositório local do git
+## Estados do **repositório local** do git
 
 --
 
@@ -1083,7 +1083,7 @@ git commit -m "mod teste.txt"
 ```
 
 ```bash
-[master dcbd894] mod teste.txt
+[master dcbd894] modifiquei o teste.txt
 1 file changed, 1 insertion(+)
 ```
 
@@ -1139,6 +1139,31 @@ nothing to commit, working tree clean
 
 class: inverse, center, middle
 
+# Recapitulando!
+
+---
+
+background-image: url(img/git_add_commit_flow.png), url(img/git_files_states.png)
+background-size: 400px, 700px
+background-position: 5% 77%, 90% 75%
+
+# 9. Versionamento: git add, git commit e git status
+
+## Estados dos arquivos para o **git**
+
+1. **Modificado (*modified*)**: qualquer arquivo modificado, removido ou adicionado, mas ainda não informado que fará parte da versão consolidada, ou seja, ainda não preparado (*working directory*)
+
+2. **Preparado (*staged*)**: arquivos adicionados e preparados para serem consolidados na versão final (*staged area*)
+
+3. **Consolidado (*committed*)**: criação da versão consolidada de todos os arquivos que estavam no *staged* (não considera os que estão no *modified*) (*.git*)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+[Git — Os três estados](https://medium.com/@devmasterteam/git-ebook-8808f7301054)
+
+---
+
+class: inverse, center, middle
+
 # E se houver arquivos que eu não quero versionar?
 
 ---
@@ -1176,7 +1201,7 @@ background-size: 800px
 
 ```bash
 # criar um arquivo
-touch ~/.gitignore
+&gt; .gitignore
 ```
 
 --

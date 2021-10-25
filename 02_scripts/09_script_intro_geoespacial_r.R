@@ -618,6 +618,9 @@ for(i in c(1872, 1900, 1911, 1920, 1933, 1940, 1950, 1960, 1970, 1980, 1991, 200
   
 }
 
+# numero de estados ao longo do tempo
+br_anos$year %>% table()
+
 # mapa facetado - demora uns 10 segundos
 map_brasil_tmap <- tm_shape(br_anos) + 
   tm_polygons() + 

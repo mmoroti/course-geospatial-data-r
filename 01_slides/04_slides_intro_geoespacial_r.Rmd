@@ -910,6 +910,12 @@ sum(sort(sample(1:10, 10000, rep = TRUE)))
 
 ---
 
+class: inverse, center, middle
+
+# Para apresentar os próximos pacotes, vamos usar dados de pinguins!
+
+---
+
 class: clear
 background-image: url(img/package_palmerpenguins.png)
 background-size: 400px
@@ -938,7 +944,7 @@ background-position: 50% 80%
 
 background-image: url(img/culmen_depth.png), url(img/lter_penguins.png)
 background-size: 400px, 400px
-background-position: 20% 90%, 80% 90%
+background-position: 30% 90%, 80% 90%
 
 # palmerpenguins
 
@@ -963,7 +969,7 @@ library(palmerpenguins)
 
 background-image: url(img/culmen_depth.png), url(img/lter_penguins.png)
 background-size: 400px, 400px
-background-position: 20% 90%, 80% 90%
+background-position: 30% 90%, 80% 90%
 
 # palmerpenguins
 

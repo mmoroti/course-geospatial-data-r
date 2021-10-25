@@ -247,10 +247,14 @@ tidyverse::tidyverse_packages(include_self = TRUE)
 ```
 
 ```
-##  [1] "broom"         "cli"           "crayon"        "dbplyr"        "dplyr"         "dtplyr"        "forcats"       "googledrive"  
-##  [9] "googlesheets4" "ggplot2"       "haven"         "hms"           "httr"          "jsonlite"      "lubridate"     "magrittr"     
-## [17] "modelr"        "pillar"        "purrr"         "readr"         "readxl"        "reprex"        "rlang"         "rstudioapi"   
-## [25] "rvest"         "stringr"       "tibble"        "tidyr"         "xml2"          "tidyverse"
+##  [1] "broom"         "cli"           "crayon"        "dbplyr"       
+##  [5] "dplyr"         "dtplyr"        "forcats"       "googledrive"  
+##  [9] "googlesheets4" "ggplot2"       "haven"         "hms"          
+## [13] "httr"          "jsonlite"      "lubridate"     "magrittr"     
+## [17] "modelr"        "pillar"        "purrr"         "readr"        
+## [21] "readxl"        "reprex"        "rlang"         "rstudioapi"   
+## [25] "rvest"         "stringr"       "tibble"        "tidyr"        
+## [29] "xml2"          "tidyverse"
 ```
 
 ---
@@ -455,22 +459,26 @@ si
 ```
 
 ```
-## [90m# A tibble: 1,163 × 25[39m
-##    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period  month_start year_start
-##    [3m[90m&lt;chr&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;chr&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m amp1001             [4m1[24m001             19 ab     fo,ll           as             pt              [31mNA[39m                mo,da,…           9       [4m2[24m000
-## [90m 2[39m amp1002             [4m1[24m002             16 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 3[39m amp1003             [4m1[24m002             14 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 4[39m amp1004             [4m1[24m002             13 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 5[39m amp1005             [4m1[24m003             30 co     fo,ll,br        as             [31mNA[39m              [31mNA[39m                mo,da,…           7       [4m1[24m988
-## [90m 6[39m amp1006             [4m1[24m004             42 co     tp,pp,la,ll,is  [31mNA[39m             [31mNA[39m              [31mNA[39m                [31mNA[39m               [31mNA[39m         [31mNA[39m
-## [90m 7[39m amp1007             [4m1[24m005             23 co     sp              as             [31mNA[39m              [31mNA[39m                [31mNA[39m                4       [4m2[24m007
-## [90m 8[39m amp1008             [4m1[24m005             19 co     sp,la,sw        as,sb,tr       [31mNA[39m              [31mNA[39m                tw,ni             4       [4m2[24m007
-## [90m 9[39m amp1009             [4m1[24m005             13 ab     fo              [31mNA[39m             pt              [31mNA[39m                mo,da,…           4       [4m2[24m007
-## [90m10[39m amp1010             [4m1[24m006              1 ab     fo              [31mNA[39m             pt              [31mNA[39m                mo,da,…           5       [4m2[24m011
-## [90m# … with 1,153 more rows, and 14 more variables: month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;,[39m
-## [90m#   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;,[39m
-## [90m#   temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;[39m
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              &lt;NA&gt;          
+## 10 amp1010             1006              1 ab     fo              &lt;NA&gt;          
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
+## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
+## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
+## #   precipitation &lt;dbl&gt;
 ```
 
 ---
@@ -491,22 +499,26 @@ si
 
 
 ```
-## [90m# A tibble: 1,163 × 25[39m
-##    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period  month_start year_start
-##    [3m[90m&lt;chr&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;chr&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m amp1001             [4m1[24m001             19 ab     fo,ll           as             pt              [31mNA[39m                mo,da,…           9       [4m2[24m000
-## [90m 2[39m amp1002             [4m1[24m002             16 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 3[39m amp1003             [4m1[24m002             14 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 4[39m amp1004             [4m1[24m002             13 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 5[39m amp1005             [4m1[24m003             30 co     fo,ll,br        as             [31mNA[39m              [31mNA[39m                mo,da,…           7       [4m1[24m988
-## [90m 6[39m amp1006             [4m1[24m004             42 co     tp,pp,la,ll,is  [31mNA[39m             [31mNA[39m              [31mNA[39m                [31mNA[39m               [31mNA[39m         [31mNA[39m
-## [90m 7[39m amp1007             [4m1[24m005             23 co     sp              as             [31mNA[39m              [31mNA[39m                [31mNA[39m                4       [4m2[24m007
-## [90m 8[39m amp1008             [4m1[24m005             19 co     sp,la,sw        as,sb,tr       [31mNA[39m              [31mNA[39m                tw,ni             4       [4m2[24m007
-## [90m 9[39m amp1009             [4m1[24m005             13 ab     fo              [31mNA[39m             pt              [31mNA[39m                mo,da,…           4       [4m2[24m007
-## [90m10[39m amp1010             [4m1[24m006              1 ab     fo              [31mNA[39m             pt              [31mNA[39m                mo,da,…           5       [4m2[24m011
-## [90m# … with 1,153 more rows, and 14 more variables: month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;,[39m
-## [90m#   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;,[39m
-## [90m#   temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;[39m
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              &lt;NA&gt;          
+## 10 amp1010             1006              1 ab     fo              &lt;NA&gt;          
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
+## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
+## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
+## #   precipitation &lt;dbl&gt;
 ```
 
 ---
@@ -525,22 +537,26 @@ si
 ```
 
 ```
-## [90m# A tibble: 1,163 × 25[39m
-##    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period  month_start year_start
-##    [3m[90m&lt;chr&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;chr&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m amp1001             [4m1[24m001             19 ab     fo,ll           as             pt              [31mNA[39m                mo,da,…           9       [4m2[24m000
-## [90m 2[39m amp1002             [4m1[24m002             16 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 3[39m amp1003             [4m1[24m002             14 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 4[39m amp1004             [4m1[24m002             13 co     fo,la,ll        as             pt              [31mNA[39m                mo,da,…          12       [4m2[24m007
-## [90m 5[39m amp1005             [4m1[24m003             30 co     fo,ll,br        as             [31mNA[39m              [31mNA[39m                mo,da,…           7       [4m1[24m988
-## [90m 6[39m amp1006             [4m1[24m004             42 co     tp,pp,la,ll,is  [31mNA[39m             [31mNA[39m              [31mNA[39m                [31mNA[39m               [31mNA[39m         [31mNA[39m
-## [90m 7[39m amp1007             [4m1[24m005             23 co     sp              as             [31mNA[39m              [31mNA[39m                [31mNA[39m                4       [4m2[24m007
-## [90m 8[39m amp1008             [4m1[24m005             19 co     sp,la,sw        as,sb,tr       [31mNA[39m              [31mNA[39m                tw,ni             4       [4m2[24m007
-## [90m 9[39m amp1009             [4m1[24m005             13 ab     fo              [31mNA[39m             pt              [31mNA[39m                mo,da,…           4       [4m2[24m007
-## [90m10[39m amp1010             [4m1[24m006              1 ab     fo              [31mNA[39m             pt              [31mNA[39m                mo,da,…           5       [4m2[24m011
-## [90m# … with 1,153 more rows, and 14 more variables: month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;, effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;,[39m
-## [90m#   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;,[39m
-## [90m#   temperature &lt;dbl&gt;, precipitation &lt;dbl&gt;[39m
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  &lt;NA&gt;          
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              &lt;NA&gt;          
+## 10 amp1010             1006              1 ab     fo              &lt;NA&gt;          
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;dbl&gt;,
+## #   year_start &lt;dbl&gt;, month_finish &lt;dbl&gt;, year_finish &lt;dbl&gt;,
+## #   effort_months &lt;dbl&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;dbl&gt;,
+## #   precipitation &lt;dbl&gt;
 ```
 
 ---
@@ -619,22 +635,26 @@ si
 ```
 
 ```
-## [90m# A tibble: 1,163 × 25[39m
-##    id      reference_number species_number record sampled_habitat active_methods passive_methods complementary_me… period  month_start year_start
-##    [3m[90m&lt;chr&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;chr&gt;[39m[23m     
-## [90m 1[39m amp1001             [4m1[24m001             19 ab     fo,ll           as             pt              NA                mo,da,… 9           2000      
-## [90m 2[39m amp1002             [4m1[24m002             16 co     fo,la,ll        as             pt              NA                mo,da,… 12          2007      
-## [90m 3[39m amp1003             [4m1[24m002             14 co     fo,la,ll        as             pt              NA                mo,da,… 12          2007      
-## [90m 4[39m amp1004             [4m1[24m002             13 co     fo,la,ll        as             pt              NA                mo,da,… 12          2007      
-## [90m 5[39m amp1005             [4m1[24m003             30 co     fo,ll,br        as             NA              NA                mo,da,… 7           1988      
-## [90m 6[39m amp1006             [4m1[24m004             42 co     tp,pp,la,ll,is  NA             NA              NA                NA      NA          NA        
-## [90m 7[39m amp1007             [4m1[24m005             23 co     sp              as             NA              NA                NA      4           2007      
-## [90m 8[39m amp1008             [4m1[24m005             19 co     sp,la,sw        as,sb,tr       NA              NA                tw,ni   4           2007      
-## [90m 9[39m amp1009             [4m1[24m005             13 ab     fo              NA             pt              NA                mo,da,… 4           2007      
-## [90m10[39m amp1010             [4m1[24m006              1 ab     fo              NA             pt              NA                mo,da,… 5           2011      
-## [90m# … with 1,153 more rows, and 14 more variables: month_finish &lt;chr&gt;, year_finish &lt;chr&gt;, effort_months &lt;chr&gt;, country &lt;chr&gt;, state &lt;chr&gt;,[39m
-## [90m#   state_abbreviation &lt;chr&gt;, municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;,[39m
-## [90m#   temperature &lt;chr&gt;, precipitation &lt;chr&gt;[39m
+## # A tibble: 1,163 × 25
+##    id      reference_number species_number record sampled_habitat active_methods
+##    &lt;chr&gt;              &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;         
+##  1 amp1001             1001             19 ab     fo,ll           as            
+##  2 amp1002             1002             16 co     fo,la,ll        as            
+##  3 amp1003             1002             14 co     fo,la,ll        as            
+##  4 amp1004             1002             13 co     fo,la,ll        as            
+##  5 amp1005             1003             30 co     fo,ll,br        as            
+##  6 amp1006             1004             42 co     tp,pp,la,ll,is  NA            
+##  7 amp1007             1005             23 co     sp              as            
+##  8 amp1008             1005             19 co     sp,la,sw        as,sb,tr      
+##  9 amp1009             1005             13 ab     fo              NA            
+## 10 amp1010             1006              1 ab     fo              NA            
+## # … with 1,153 more rows, and 19 more variables: passive_methods &lt;chr&gt;,
+## #   complementary_methods &lt;chr&gt;, period &lt;chr&gt;, month_start &lt;chr&gt;,
+## #   year_start &lt;chr&gt;, month_finish &lt;chr&gt;, year_finish &lt;chr&gt;,
+## #   effort_months &lt;chr&gt;, country &lt;chr&gt;, state &lt;chr&gt;, state_abbreviation &lt;chr&gt;,
+## #   municipality &lt;chr&gt;, site &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,
+## #   coordinate_precision &lt;chr&gt;, altitude &lt;dbl&gt;, temperature &lt;chr&gt;,
+## #   precipitation &lt;chr&gt;
 ```
 
 ---
@@ -713,31 +733,31 @@ tibble::glimpse(si)
 ```
 ## Rows: 1,163
 ## Columns: 25
-## $ id                    [3m[90m&lt;chr&gt;[39m[23m "amp1001", "amp1002", "amp1003", "amp1004", "amp1005", "amp1006", "amp1007", "amp1008", "amp1009", "amp1010", "am…
-## $ reference_number      [3m[90m&lt;dbl&gt;[39m[23m 1001, 1002, 1002, 1002, 1003, 1004, 1005, 1005, 1005, 1006, 1006, 1006, 1006, 1006, 1006, 1006, 1006, 1006, 1006,…
-## $ species_number        [3m[90m&lt;dbl&gt;[39m[23m 19, 16, 14, 13, 30, 42, 23, 19, 13, 1, 1, 2, 4, 4, 6, 5, 8, 2, 5, 1, 2, 2, 1, 2, 2, 1, 2, 3, 7, 8, 7, 7, 7, 7, 7,…
-## $ record                [3m[90m&lt;chr&gt;[39m[23m "ab", "co", "co", "co", "co", "co", "co", "co", "ab", "ab", "ab", "ab", "ab", "ab", "ab", "ab", "ab", "ab", "ab",…
-## $ sampled_habitat       [3m[90m&lt;chr&gt;[39m[23m "fo,ll", "fo,la,ll", "fo,la,ll", "fo,la,ll", "fo,ll,br", "tp,pp,la,ll,is", "sp", "sp,la,sw", "fo", "fo", "fo", "f…
-## $ active_methods        [3m[90m&lt;chr&gt;[39m[23m "as", "as", "as", "as", "as", NA, "as", "as,sb,tr", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-## $ passive_methods       [3m[90m&lt;chr&gt;[39m[23m "pt", "pt", "pt", "pt", NA, NA, NA, NA, "pt", "pt", "pt", "pt", "pt", "pt", "pt", "pt", "pt", "pt", "pt", "pt", "…
-## $ complementary_methods [3m[90m&lt;chr&gt;[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-## $ period                [3m[90m&lt;chr&gt;[39m[23m "mo,da,tw,ni", "mo,da,tw,ni", "mo,da,tw,ni", "mo,da,tw,ni", "mo,da,ni", NA, NA, "tw,ni", "mo,da,tw,ni", "mo,da,tw…
-## $ month_start           [3m[90m&lt;dbl&gt;[39m[23m 9, 12, 12, 12, 7, NA, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3…
-## $ year_start            [3m[90m&lt;dbl&gt;[39m[23m 2000, 2007, 2007, 2007, 1988, NA, 2007, 2007, 2007, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2…
-## $ month_finish          [3m[90m&lt;dbl&gt;[39m[23m 1, 5, 5, 5, 8, NA, 4, 4, 4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 2, 2, 2, 2, 2, 2…
-## $ year_finish           [3m[90m&lt;dbl&gt;[39m[23m 2002, 2009, 2009, 2009, 2001, NA, 2009, 2009, 2009, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2…
-## $ effort_months         [3m[90m&lt;dbl&gt;[39m[23m 16, 17, 17, 17, 157, NA, 24, 24, 24, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11, 11,…
-## $ country               [3m[90m&lt;chr&gt;[39m[23m "Brazil", "Brazil", "Brazil", "Brazil", "Brazil", "Brazil", "Brazil", "Brazil", "Brazil", "Brazil", "Brazil", "Br…
-## $ state                 [3m[90m&lt;chr&gt;[39m[23m "PiauÃ­", "CearÃ¡", "CearÃ¡", "CearÃ¡", "CearÃ¡", "CearÃ¡", "CearÃ¡", "CearÃ¡", "CearÃ¡", "Rio Grande do Norte", …
-## $ state_abbreviation    [3m[90m&lt;chr&gt;[39m[23m "BR-PI", "BR-CE", "BR-CE", "BR-CE", "BR-CE", "BR-CE", "BR-CE", "BR-CE", "BR-CE", "BR-RN", "BR-RN", "BR-RN", "BR-R…
-## $ municipality          [3m[90m&lt;chr&gt;[39m[23m "Canto do Buriti", "SÃ£o GonÃ§alo do Amarante", "SÃ£o GonÃ§alo do Amarante", "SÃ£o GonÃ§alo do Amarante", "Baturi…
-## $ site                  [3m[90m&lt;chr&gt;[39m[23m "Parque Nacional Serra das ConfusÃµes", "Dunas", "Jardim BotÃ¢nicoÂ Municipal deÂ Bauru", "TaÃ­ba", "Serra de Bat…
-## $ latitude              [3m[90m&lt;dbl&gt;[39m[23m -8.680000, -3.545527, -3.574194, -3.515250, -4.280556, -9.229167, -3.846111, -3.825833, -3.837500, -6.136944, -6.…
-## $ longitude             [3m[90m&lt;dbl&gt;[39m[23m -43.42194, -38.85783, -38.88869, -38.91880, -38.91083, -36.42806, -40.89444, -40.91944, -40.91028, -35.22944, -35…
-## $ coordinate_precision  [3m[90m&lt;chr&gt;[39m[23m "gm", "dd", "dd", "dd", "gm", NA, "gms", "gms", "gms", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
-## $ altitude              [3m[90m&lt;dbl&gt;[39m[23m 543, 15, 29, 25, 750, 745, 863, 878, 826, 93, 35, 69, 93, 130, 69, 93, 59, 58, 38, 122, 117, 100, 111, 57, 95, 95…
-## $ temperature           [3m[90m&lt;dbl&gt;[39m[23m 24.98, 26.53, 26.45, 26.55, 21.35, 20.45, 21.57, 21.47, 21.76, 25.40, 25.78, 25.59, 25.42, 25.14, 25.57, 25.41, 2…
-## $ precipitation         [3m[90m&lt;dbl&gt;[39m[23m 853, 1318, 1248, 1376, 1689, 1249, 1520, 1474, 1450, 1332, 1331, 1352, 1327, 1133, 1147, 1223, 1349, 1356, 1421, …
+## $ id                    &lt;chr&gt; "amp1001", "amp1002", "amp1003", "amp1004", "amp…
+## $ reference_number      &lt;dbl&gt; 1001, 1002, 1002, 1002, 1003, 1004, 1005, 1005, …
+## $ species_number        &lt;dbl&gt; 19, 16, 14, 13, 30, 42, 23, 19, 13, 1, 1, 2, 4, …
+## $ record                &lt;chr&gt; "ab", "co", "co", "co", "co", "co", "co", "co", …
+## $ sampled_habitat       &lt;chr&gt; "fo,ll", "fo,la,ll", "fo,la,ll", "fo,la,ll", "fo…
+## $ active_methods        &lt;chr&gt; "as", "as", "as", "as", "as", NA, "as", "as,sb,t…
+## $ passive_methods       &lt;chr&gt; "pt", "pt", "pt", "pt", NA, NA, NA, NA, "pt", "p…
+## $ complementary_methods &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ period                &lt;chr&gt; "mo,da,tw,ni", "mo,da,tw,ni", "mo,da,tw,ni", "mo…
+## $ month_start           &lt;dbl&gt; 9, 12, 12, 12, 7, NA, 4, 4, 4, 5, 5, 5, 5, 5, 5,…
+## $ year_start            &lt;dbl&gt; 2000, 2007, 2007, 2007, 1988, NA, 2007, 2007, 20…
+## $ month_finish          &lt;dbl&gt; 1, 5, 5, 5, 8, NA, 4, 4, 4, 7, 7, 7, 7, 7, 7, 7,…
+## $ year_finish           &lt;dbl&gt; 2002, 2009, 2009, 2009, 2001, NA, 2009, 2009, 20…
+## $ effort_months         &lt;dbl&gt; 16, 17, 17, 17, 157, NA, 24, 24, 24, 2, 2, 2, 2,…
+## $ country               &lt;chr&gt; "Brazil", "Brazil", "Brazil", "Brazil", "Brazil"…
+## $ state                 &lt;chr&gt; "PiauÃ­", "CearÃ¡", "CearÃ¡", "CearÃ¡", "CearÃ¡"…
+## $ state_abbreviation    &lt;chr&gt; "BR-PI", "BR-CE", "BR-CE", "BR-CE", "BR-CE", "BR…
+## $ municipality          &lt;chr&gt; "Canto do Buriti", "SÃ£o GonÃ§alo do Amarante", …
+## $ site                  &lt;chr&gt; "Parque Nacional Serra das ConfusÃµes", "Dunas",…
+## $ latitude              &lt;dbl&gt; -8.680000, -3.545527, -3.574194, -3.515250, -4.2…
+## $ longitude             &lt;dbl&gt; -43.42194, -38.85783, -38.88869, -38.91880, -38.…
+## $ coordinate_precision  &lt;chr&gt; "gm", "dd", "dd", "dd", "gm", NA, "gms", "gms", …
+## $ altitude              &lt;dbl&gt; 543, 15, 29, 25, 750, 745, 863, 878, 826, 93, 35…
+## $ temperature           &lt;dbl&gt; 24.98, 26.53, 26.45, 26.55, 21.35, 20.45, 21.57,…
+## $ precipitation         &lt;dbl&gt; 853, 1318, 1248, 1376, 1689, 1249, 1520, 1474, 1…
 ```
 
 ---
@@ -755,16 +775,16 @@ tibble::glimpse(sp)
 ```
 ## Rows: 17,618
 ## Columns: 10
-## $ id          [3m[90m&lt;chr&gt;[39m[23m "amp1001", "amp1001", "amp1009", "amp1009", "amp1009", "amp1009", "amp1009", "amp1011", "amp1013", "amp1014", "amp1014", "a…
-## $ order       [3m[90m&lt;chr&gt;[39m[23m "Anura", NA, "Anura", NA, "Anura", "Anura", "Anura", "Anura", "Anura", "Anura", NA, "Anura", "Anura", "Anura", "Anura", "An…
-## $ superfamily [3m[90m&lt;chr&gt;[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ family      [3m[90m&lt;chr&gt;[39m[23m "Hylidae", NA, "Hylidae", NA, "Odontophrynidae", "Phyllomedusidae", "Bufonidae", "Leptodactylidae", "Leptodactylidae", "Lep…
-## $ subfamily   [3m[90m&lt;chr&gt;[39m[23m "Dendropsophinae", NA, "Lophyohylinae", NA, NA, NA, NA, "Leiuperinae", "Leptodactylinae", "Leptodactylinae", NA, "Gastrophr…
-## $ genus       [3m[90m&lt;chr&gt;[39m[23m "Dendropsophus", NA, "Corythomantis", NA, "Odontophrynus", "Pithecopus", "Rhinella", "Physalaemus", "Leptodactylus", "Lepto…
-## $ species     [3m[90m&lt;chr&gt;[39m[23m "Dendropsophus soaresi", "Scinax sp.", "Corythomantis greeningi", "Leptodactylus sp. (aff. andreae)", "Odontophrynus carval…
-## $ valid_name  [3m[90m&lt;chr&gt;[39m[23m "Dendropsophus soaresi", NA, "Corythomantis greeningi", NA, "Odontophrynus carvalhoi", "Pithecopus nordestinus", "Rhinella …
-## $ individuals [3m[90m&lt;dbl&gt;[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
-## $ endemic     [3m[90m&lt;dbl&gt;[39m[23m 0, NA, NA, NA, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, NA, 0, 1, NA, 1, 1,…
+## $ id          &lt;chr&gt; "amp1001", "amp1001", "amp1009", "amp1009", "amp1009", "am…
+## $ order       &lt;chr&gt; "Anura", NA, "Anura", NA, "Anura", "Anura", "Anura", "Anur…
+## $ superfamily &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ family      &lt;chr&gt; "Hylidae", NA, "Hylidae", NA, "Odontophrynidae", "Phyllome…
+## $ subfamily   &lt;chr&gt; "Dendropsophinae", NA, "Lophyohylinae", NA, NA, NA, NA, "L…
+## $ genus       &lt;chr&gt; "Dendropsophus", NA, "Corythomantis", NA, "Odontophrynus",…
+## $ species     &lt;chr&gt; "Dendropsophus soaresi", "Scinax sp.", "Corythomantis gree…
+## $ valid_name  &lt;chr&gt; "Dendropsophus soaresi", NA, "Corythomantis greeningi", NA…
+## $ individuals &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ endemic     &lt;dbl&gt; 0, NA, NA, NA, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 1, 0, 0, …
 ```
 
 ---
@@ -796,8 +816,8 @@ tibble::glimpse(tb)
 ```
 ## Rows: 2
 ## Columns: 2
-## $ ch [3m[90m&lt;chr&gt;[39m[23m "a", "b"
-## $ nu [3m[90m&lt;int&gt;[39m[23m 1, 2
+## $ ch &lt;chr&gt; "a", "b"
+## $ nu &lt;int&gt; 1, 2
 ```
 
 ---
@@ -1058,7 +1078,7 @@ class: inverse, center, middle
 &lt;br&gt;
 `sum(sort(sample(1:10, 10000, rep = TRUE)))`
 
-<div class="countdown" id="timer_617077a8" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6175f889" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1111,6 +1131,12 @@ sum(sort(sample(1:10, 10000, rep = TRUE)))
 
 ---
 
+class: inverse, center, middle
+
+# Para apresentar os próximos pacotes, vamos usar dados de pinguins!
+
+---
+
 class: clear
 background-image: url(img/package_palmerpenguins.png)
 background-size: 400px
@@ -1139,7 +1165,7 @@ background-position: 50% 80%
 
 background-image: url(img/culmen_depth.png), url(img/lter_penguins.png)
 background-size: 400px, 400px
-background-position: 20% 90%, 80% 90%
+background-position: 30% 90%, 80% 90%
 
 # palmerpenguins
 
@@ -1165,7 +1191,7 @@ library(palmerpenguins)
 
 background-image: url(img/culmen_depth.png), url(img/lter_penguins.png)
 background-size: 400px, 400px
-background-position: 20% 90%, 80% 90%
+background-position: 30% 90%, 80% 90%
 
 # palmerpenguins
 
@@ -1280,15 +1306,15 @@ head(penguins_raw_unir[, c("Region", "Island", "region_island")])
 ```
 
 ```
-## [90m# A tibble: 6 × 3[39m
+## # A tibble: 6 × 3
 ##   Region Island    region_island    
-##   [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;chr&gt;[39m[23m            
-## [90m1[39m Anvers Torgersen Anvers, Torgersen
-## [90m2[39m Anvers Torgersen Anvers, Torgersen
-## [90m3[39m Anvers Torgersen Anvers, Torgersen
-## [90m4[39m Anvers Torgersen Anvers, Torgersen
-## [90m5[39m Anvers Torgersen Anvers, Torgersen
-## [90m6[39m Anvers Torgersen Anvers, Torgersen
+##   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;            
+## 1 Anvers Torgersen Anvers, Torgersen
+## 2 Anvers Torgersen Anvers, Torgersen
+## 3 Anvers Torgersen Anvers, Torgersen
+## 4 Anvers Torgersen Anvers, Torgersen
+## 5 Anvers Torgersen Anvers, Torgersen
+## 6 Anvers Torgersen Anvers, Torgersen
 ```
 
 ---
@@ -1311,15 +1337,15 @@ head(penguins_raw_separar[, c("Stage", "stage", "egg_stage")])
 ```
 
 ```
-## [90m# A tibble: 6 × 3[39m
+## # A tibble: 6 × 3
 ##   Stage              stage egg_stage  
-##   [3m[90m&lt;chr&gt;[39m[23m              [3m[90m&lt;chr&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m      
-## [90m1[39m Adult, 1 Egg Stage Adult 1 Egg Stage
-## [90m2[39m Adult, 1 Egg Stage Adult 1 Egg Stage
-## [90m3[39m Adult, 1 Egg Stage Adult 1 Egg Stage
-## [90m4[39m Adult, 1 Egg Stage Adult 1 Egg Stage
-## [90m5[39m Adult, 1 Egg Stage Adult 1 Egg Stage
-## [90m6[39m Adult, 1 Egg Stage Adult 1 Egg Stage
+##   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;      
+## 1 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 2 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 3 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 4 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 5 Adult, 1 Egg Stage Adult 1 Egg Stage
+## 6 Adult, 1 Egg Stage Adult 1 Egg Stage
 ```
 
 ---
@@ -1341,15 +1367,15 @@ head(penguins_raw_separar_linhas[, c("studyName", "Sample Number", "Species",
 ```
 
 ```
-## [90m# A tibble: 6 × 6[39m
-##   studyName `Sample Number` Species                             Region Island    Stage      
-##   [3m[90m&lt;chr&gt;[39m[23m               [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m                               [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;chr&gt;[39m[23m      
-## [90m1[39m PAL0708                 1 Adelie Penguin (Pygoscelis adeliae) Anvers Torgersen Adult      
-## [90m2[39m PAL0708                 1 Adelie Penguin (Pygoscelis adeliae) Anvers Torgersen 1 Egg Stage
-## [90m3[39m PAL0708                 2 Adelie Penguin (Pygoscelis adeliae) Anvers Torgersen Adult      
-## [90m4[39m PAL0708                 2 Adelie Penguin (Pygoscelis adeliae) Anvers Torgersen 1 Egg Stage
-## [90m5[39m PAL0708                 3 Adelie Penguin (Pygoscelis adeliae) Anvers Torgersen Adult      
-## [90m6[39m PAL0708                 3 Adelie Penguin (Pygoscelis adeliae) Anvers Torgersen 1 Egg Stage
+## # A tibble: 6 × 6
+##   studyName `Sample Number` Species                    Region Island   Stage    
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;    
+## 1 PAL0708                 1 Adelie Penguin (Pygosceli… Anvers Torgers… Adult    
+## 2 PAL0708                 1 Adelie Penguin (Pygosceli… Anvers Torgers… 1 Egg St…
+## 3 PAL0708                 2 Adelie Penguin (Pygosceli… Anvers Torgers… Adult    
+## 4 PAL0708                 2 Adelie Penguin (Pygosceli… Anvers Torgers… 1 Egg St…
+## 5 PAL0708                 3 Adelie Penguin (Pygosceli… Anvers Torgers… Adult    
+## 6 PAL0708                 3 Adelie Penguin (Pygosceli… Anvers Torgers… 1 Egg St…
 ```
 
 ---
@@ -1368,17 +1394,19 @@ head(penguins_raw_todas_na)
 ```
 
 ```
-## [90m# A tibble: 6 × 17[39m
-##   studyName `Sample Number` Species        Region Island  Stage    `Individual ID` `Clutch Completi… `Date Egg` `Culmen Length … `Culmen Depth (…
-##   [3m[90m&lt;chr&gt;[39m[23m               [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m    [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;date&gt;[39m[23m                [3m[90m&lt;dbl&gt;[39m[23m            [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m PAL0708                 7 Adelie Pengui… Anvers Torger… Adult, … N4A1            No                2007-11-15             38.9             17.8
-## [90m2[39m PAL0708                 8 Adelie Pengui… Anvers Torger… Adult, … N4A2            No                2007-11-15             39.2             19.6
-## [90m3[39m PAL0708                29 Adelie Pengui… Anvers Biscoe  Adult, … N18A1           No                2007-11-10             37.9             18.6
-## [90m4[39m PAL0708                30 Adelie Pengui… Anvers Biscoe  Adult, … N18A2           No                2007-11-10             40.5             18.9
-## [90m5[39m PAL0708                39 Adelie Pengui… Anvers Dream   Adult, … N25A1           No                2007-11-13             37.6             19.3
-## [90m6[39m PAL0809                69 Adelie Pengui… Anvers Torger… Adult, … N32A1           No                2008-11-11             35.9             16.6
-## [90m# … with 6 more variables: Flipper Length (mm) &lt;dbl&gt;, Body Mass (g) &lt;dbl&gt;, Sex &lt;chr&gt;, Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;,[39m
-## [90m#   Comments &lt;chr&gt;[39m
+## # A tibble: 6 × 17
+##   studyName `Sample Number` Species       Region Island  Stage   `Individual ID`
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;          
+## 1 PAL0708                 7 Adelie Pengu… Anvers Torger… Adult,… N4A1           
+## 2 PAL0708                 8 Adelie Pengu… Anvers Torger… Adult,… N4A2           
+## 3 PAL0708                29 Adelie Pengu… Anvers Biscoe  Adult,… N18A1          
+## 4 PAL0708                30 Adelie Pengu… Anvers Biscoe  Adult,… N18A2          
+## 5 PAL0708                39 Adelie Pengu… Anvers Dream   Adult,… N25A1          
+## 6 PAL0809                69 Adelie Pengu… Anvers Torger… Adult,… N32A1          
+## # … with 10 more variables: Clutch Completion &lt;chr&gt;, Date Egg &lt;date&gt;,
+## #   Culmen Length (mm) &lt;dbl&gt;, Culmen Depth (mm) &lt;dbl&gt;,
+## #   Flipper Length (mm) &lt;dbl&gt;, Body Mass (g) &lt;dbl&gt;, Sex &lt;chr&gt;,
+## #   Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;, Comments &lt;chr&gt;
 ```
 
 ---
@@ -1398,15 +1426,15 @@ head(penguins_raw_colunas_na[, "Comments"])
 ```
 
 ```
-## [90m# A tibble: 6 × 1[39m
+## # A tibble: 6 × 1
 ##   Comments                             
-##   [3m[90m&lt;chr&gt;[39m[23m                                
-## [90m1[39m Not enough blood for isotopes.       
-## [90m2[39m Adult not sampled.                   
-## [90m3[39m Nest never observed with full clutch.
-## [90m4[39m Nest never observed with full clutch.
-## [90m5[39m No blood sample obtained.            
-## [90m6[39m No blood sample obtained for sexing.
+##   &lt;chr&gt;                                
+## 1 Not enough blood for isotopes.       
+## 2 Adult not sampled.                   
+## 3 Nest never observed with full clutch.
+## 4 Nest never observed with full clutch.
+## 5 No blood sample obtained.            
+## 6 No blood sample obtained for sexing.
 ```
 
 ---
@@ -1426,15 +1454,15 @@ head(penguins_raw_subs_na[, "Comments"])
 ```
 
 ```
-## [90m# A tibble: 6 × 1[39m
+## # A tibble: 6 × 1
 ##   Comments                      
-##   [3m[90m&lt;chr&gt;[39m[23m                         
-## [90m1[39m Not enough blood for isotopes.
-## [90m2[39m Unknown                       
-## [90m3[39m Unknown                       
-## [90m4[39m Adult not sampled.            
-## [90m5[39m Unknown                       
-## [90m6[39m Unknown
+##   &lt;chr&gt;                         
+## 1 Not enough blood for isotopes.
+## 2 Unknown                       
+## 3 Unknown                       
+## 4 Adult not sampled.            
+## 5 Unknown                       
+## 6 Unknown
 ```
 
 ---
@@ -1471,15 +1499,15 @@ head(penguins_raw_pivot_wider)
 ```
 
 ```
-## [90m# A tibble: 6 × 4[39m
-##   `Sample Number` `Adelie Penguin (Pygoscelis adeliae)` `Gentoo penguin (Pygoscelis papua)` `Chinstrap penguin (Pygoscelis antarctica)`
-##             [3m[90m&lt;dbl&gt;[39m[23m                                 [3m[90m&lt;dbl&gt;[39m[23m                               [3m[90m&lt;dbl&gt;[39m[23m                                       [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m               1                                  [4m3[24m750                                [4m4[24m500                                        [4m3[24m500
-## [90m2[39m               2                                  [4m3[24m800                                [4m5[24m700                                        [4m3[24m900
-## [90m3[39m               3                                  [4m3[24m250                                [4m4[24m450                                        [4m3[24m650
-## [90m4[39m               4                                    [31mNA[39m                                [4m5[24m700                                        [4m3[24m525
-## [90m5[39m               5                                  [4m3[24m450                                [4m5[24m400                                        [4m3[24m725
-## [90m6[39m               6                                  [4m3[24m650                                [4m4[24m550                                        [4m3[24m950
+## # A tibble: 6 × 4
+##   `Sample Number` `Adelie Penguin (Py… `Gentoo penguin (Py… `Chinstrap penguin …
+##             &lt;dbl&gt;                &lt;dbl&gt;                &lt;dbl&gt;                &lt;dbl&gt;
+## 1               1                 3750                 4500                 3500
+## 2               2                 3800                 5700                 3900
+## 3               3                 3250                 4450                 3650
+## 4               4                   NA                 5700                 3525
+## 5               5                 3450                 5400                 3725
+## 6               6                 3650                 4550                 3950
 ```
 
 ---
@@ -1504,15 +1532,15 @@ head(penguins_raw_pivot_longer)
 ```
 
 ```
-## [90m# A tibble: 6 × 4[39m
-##   `Sample Number` Species                             medidas             valores
-##             [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m                               [3m[90m&lt;chr&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m               1 Adelie Penguin (Pygoscelis adeliae) Culmen Length (mm)     39.1
-## [90m2[39m               1 Adelie Penguin (Pygoscelis adeliae) Culmen Depth (mm)      18.7
-## [90m3[39m               1 Adelie Penguin (Pygoscelis adeliae) Flipper Length (mm)   181  
-## [90m4[39m               1 Adelie Penguin (Pygoscelis adeliae) Body Mass (g)        [4m3[24m750  
-## [90m5[39m               2 Adelie Penguin (Pygoscelis adeliae) Culmen Length (mm)     39.5
-## [90m6[39m               2 Adelie Penguin (Pygoscelis adeliae) Culmen Depth (mm)      17.4
+## # A tibble: 6 × 4
+##   `Sample Number` Species                             medidas            valores
+##             &lt;dbl&gt; &lt;chr&gt;                               &lt;chr&gt;                &lt;dbl&gt;
+## 1               1 Adelie Penguin (Pygoscelis adeliae) Culmen Length (mm)    39.1
+## 2               1 Adelie Penguin (Pygoscelis adeliae) Culmen Depth (mm)     18.7
+## 3               1 Adelie Penguin (Pygoscelis adeliae) Flipper Length (m…   181  
+## 4               1 Adelie Penguin (Pygoscelis adeliae) Body Mass (g)       3750  
+## 5               2 Adelie Penguin (Pygoscelis adeliae) Culmen Length (mm)    39.5
+## 6               2 Adelie Penguin (Pygoscelis adeliae) Culmen Depth (mm)     17.4
 ```
 
 ---
@@ -1527,7 +1555,7 @@ class: inverse, center, middle
 
 ### Separe os nomes comuns dos nomes científicos dos pinguins dos dados `penguins_raw`
 
-<div class="countdown" id="timer_61707844" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6175f574" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1549,17 +1577,19 @@ head(penguins_raw_sep)
 ```
 
 ```
-## [90m# A tibble: 6 × 19[39m
-##   studyName `Sample Number` Species          common_names   scientific_names  Region Island  Stage    `Individual ID` `Clutch Complet… `Date Egg`
-##   [3m[90m&lt;chr&gt;[39m[23m               [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m            [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;chr&gt;[39m[23m             [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m    [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;chr&gt;[39m[23m            [3m[90m&lt;date&gt;[39m[23m    
-## [90m1[39m PAL0708                 1 Adelie Penguin … [90m"[39mAdelie Pengu… Pygoscelis adeli… Anvers Torger… Adult, … N1A1            Yes              2007-11-11
-## [90m2[39m PAL0708                 2 Adelie Penguin … [90m"[39mAdelie Pengu… Pygoscelis adeli… Anvers Torger… Adult, … N1A2            Yes              2007-11-11
-## [90m3[39m PAL0708                 3 Adelie Penguin … [90m"[39mAdelie Pengu… Pygoscelis adeli… Anvers Torger… Adult, … N2A1            Yes              2007-11-16
-## [90m4[39m PAL0708                 4 Adelie Penguin … [90m"[39mAdelie Pengu… Pygoscelis adeli… Anvers Torger… Adult, … N2A2            Yes              2007-11-16
-## [90m5[39m PAL0708                 5 Adelie Penguin … [90m"[39mAdelie Pengu… Pygoscelis adeli… Anvers Torger… Adult, … N3A1            Yes              2007-11-16
-## [90m6[39m PAL0708                 6 Adelie Penguin … [90m"[39mAdelie Pengu… Pygoscelis adeli… Anvers Torger… Adult, … N3A2            Yes              2007-11-16
-## [90m# … with 8 more variables: Culmen Length (mm) &lt;dbl&gt;, Culmen Depth (mm) &lt;dbl&gt;, Flipper Length (mm) &lt;dbl&gt;, Body Mass (g) &lt;dbl&gt;, Sex &lt;chr&gt;,[39m
-## [90m#   Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;, Comments &lt;chr&gt;[39m
+## # A tibble: 6 × 19
+##   studyName `Sample Number` Species  common_names scientific_names Region Island
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt; 
+## 1 PAL0708                 1 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 2 PAL0708                 2 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 3 PAL0708                 3 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 4 PAL0708                 4 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 5 PAL0708                 5 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## 6 PAL0708                 6 Adelie … "Adelie Pen… Pygoscelis adel… Anvers Torge…
+## # … with 12 more variables: Stage &lt;chr&gt;, Individual ID &lt;chr&gt;,
+## #   Clutch Completion &lt;chr&gt;, Date Egg &lt;date&gt;, Culmen Length (mm) &lt;dbl&gt;,
+## #   Culmen Depth (mm) &lt;dbl&gt;, Flipper Length (mm) &lt;dbl&gt;, Body Mass (g) &lt;dbl&gt;,
+## #   Sex &lt;chr&gt;, Delta 15 N (o/oo) &lt;dbl&gt;, Delta 13 C (o/oo) &lt;dbl&gt;, Comments &lt;chr&gt;
 ```
 
 ---
@@ -1568,7 +1598,7 @@ head(penguins_raw_sep)
 
 ### Calcule a massa média dos indivíduos das espécies de penguins por ilha. Dicas: `tidyr::replace_na()` e `tidyr::pivot_wider()`
 
-<div class="countdown" id="timer_6170794d" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6175f84d" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -1590,12 +1620,12 @@ head(penguins_raw_pivot_wider)
 ```
 
 ```
-## [90m# A tibble: 3 × 4[39m
-##   Island    `Adelie Penguin (Pygoscelis adeliae)` `Gentoo penguin (Pygoscelis papua)` `Chinstrap penguin (Pygoscelis antarctica)`
-##   [3m[90m&lt;chr&gt;[39m[23m                                     [3m[90m&lt;dbl&gt;[39m[23m                               [3m[90m&lt;dbl&gt;[39m[23m                                       [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m Torgersen                                 [4m3[24m635.                                 [31mNA[39m                                          [31mNA[39m 
-## [90m2[39m Biscoe                                    [4m3[24m710.                               [4m5[24m035.                                         [31mNA[39m 
-## [90m3[39m Dream                                     [4m3[24m688.                                 [31mNA[39m                                        [4m3[24m733.
+## # A tibble: 3 × 4
+##   Island    `Adelie Penguin (Pygo… `Gentoo penguin (Pyg… `Chinstrap penguin (Py…
+##   &lt;chr&gt;                      &lt;dbl&gt;                 &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 Torgersen                  3635.                   NA                      NA 
+## 2 Biscoe                     3710.                 5035.                     NA 
+## 3 Dream                      3688.                   NA                    3733.
 ```
 
 ---
@@ -1733,15 +1763,16 @@ head(penguins_relocate_col)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen male    [4m2[24m007           39.1          18.7               181        [4m3[24m750
-## [90m2[39m Adelie  Torgersen female  [4m2[24m007           39.5          17.4               186        [4m3[24m800
-## [90m3[39m Adelie  Torgersen female  [4m2[24m007           40.3          18                 195        [4m3[24m250
-## [90m4[39m Adelie  Torgersen [31mNA[39m      [4m2[24m007           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m5[39m Adelie  Torgersen female  [4m2[24m007           36.7          19.3               193        [4m3[24m450
-## [90m6[39m Adelie  Torgersen male    [4m2[24m007           39.3          20.6               190        [4m3[24m650
+## # A tibble: 6 × 8
+##   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+## 1 Adelie  Torgersen male    2007           39.1          18.7               181
+## 2 Adelie  Torgersen female  2007           39.5          17.4               186
+## 3 Adelie  Torgersen female  2007           40.3          18                 195
+## 4 Adelie  Torgersen &lt;NA&gt;    2007           NA            NA                  NA
+## 5 Adelie  Torgersen female  2007           36.7          19.3               193
+## 6 Adelie  Torgersen male    2007           39.3          20.6               190
+## # … with 1 more variable: body_mass_g &lt;int&gt;
 ```
 
 ---
@@ -1761,15 +1792,16 @@ head(penguins_relocate_ncol)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen male    [4m2[24m007           39.1          18.7               181        [4m3[24m750
-## [90m2[39m Adelie  Torgersen female  [4m2[24m007           39.5          17.4               186        [4m3[24m800
-## [90m3[39m Adelie  Torgersen female  [4m2[24m007           40.3          18                 195        [4m3[24m250
-## [90m4[39m Adelie  Torgersen [31mNA[39m      [4m2[24m007           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m5[39m Adelie  Torgersen female  [4m2[24m007           36.7          19.3               193        [4m3[24m450
-## [90m6[39m Adelie  Torgersen male    [4m2[24m007           39.3          20.6               190        [4m3[24m650
+## # A tibble: 6 × 8
+##   species island    sex     year bill_length_mm bill_depth_mm flipper_length_mm
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;          &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+## 1 Adelie  Torgersen male    2007           39.1          18.7               181
+## 2 Adelie  Torgersen female  2007           39.5          17.4               186
+## 3 Adelie  Torgersen female  2007           40.3          18                 195
+## 4 Adelie  Torgersen &lt;NA&gt;    2007           NA            NA                  NA
+## 5 Adelie  Torgersen female  2007           36.7          19.3               193
+## 6 Adelie  Torgersen male    2007           39.3          20.6               190
+## # … with 1 more variable: body_mass_g &lt;int&gt;
 ```
 
 ---
@@ -1792,15 +1824,15 @@ head(penguins_rename)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
+## # A tibble: 6 × 8
 ##   species island    bill_length bill_depth flipper_length body_mass sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m      [3m[90m&lt;dbl&gt;[39m[23m          [3m[90m&lt;int&gt;[39m[23m     [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen        39.1       18.7            181      [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen        39.5       17.4            186      [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen        40.3       18              195      [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen        [31mNA[39m         [31mNA[39m               [31mNA[39m        [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen        36.7       19.3            193      [4m3[24m450 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen        39.3       20.6            190      [4m3[24m650 male    [4m2[24m007
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;      &lt;dbl&gt;          &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;
+## 1 Adelie  Torgersen        39.1       18.7            181      3750 male    2007
+## 2 Adelie  Torgersen        39.5       17.4            186      3800 female  2007
+## 3 Adelie  Torgersen        40.3       18              195      3250 female  2007
+## 4 Adelie  Torgersen        NA         NA               NA        NA &lt;NA&gt;    2007
+## 5 Adelie  Torgersen        36.7       19.3            193      3450 female  2007
+## 6 Adelie  Torgersen        39.3       20.6            190      3650 male    2007
 ```
 
 ---
@@ -1820,15 +1852,16 @@ head(penguins_rename_with)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   SPECIES ISLAND    BILL_LENGTH_MM BILL_DEPTH_MM FLIPPER_LENGTH_MM BODY_MASS_G SEX     YEAR
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007
+## # A tibble: 6 × 8
+##   SPECIES ISLAND BILL_LENGTH_MM BILL_DEPTH_MM FLIPPER_LENGTH_… BODY_MASS_G SEX  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: YEAR &lt;int&gt;
 ```
 
 ---
@@ -1848,15 +1881,15 @@ head(penguins_select_position)
 ```
 
 ```
-## [90m# A tibble: 6 × 4[39m
+## # A tibble: 6 × 4
 ##   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##            [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m           39.1          18.7               181        [4m3[24m750
-## [90m2[39m           39.5          17.4               186        [4m3[24m800
-## [90m3[39m           40.3          18                 195        [4m3[24m250
-## [90m4[39m           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m5[39m           36.7          19.3               193        [4m3[24m450
-## [90m6[39m           39.3          20.6               190        [4m3[24m650
+##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1           39.1          18.7               181        3750
+## 2           39.5          17.4               186        3800
+## 3           40.3          18                 195        3250
+## 4           NA            NA                  NA          NA
+## 5           36.7          19.3               193        3450
+## 6           39.3          20.6               190        3650
 ```
 
 ---
@@ -1876,15 +1909,15 @@ head(penguins_select_names)
 ```
 
 ```
-## [90m# A tibble: 6 × 4[39m
+## # A tibble: 6 × 4
 ##   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##            [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m           39.1          18.7               181        [4m3[24m750
-## [90m2[39m           39.5          17.4               186        [4m3[24m800
-## [90m3[39m           40.3          18                 195        [4m3[24m250
-## [90m4[39m           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m5[39m           36.7          19.3               193        [4m3[24m450
-## [90m6[39m           39.3          20.6               190        [4m3[24m650
+##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1           39.1          18.7               181        3750
+## 2           39.5          17.4               186        3800
+## 3           40.3          18                 195        3250
+## 4           NA            NA                  NA          NA
+## 5           36.7          19.3               193        3450
+## 6           39.3          20.6               190        3650
 ```
 
 ---
@@ -1904,15 +1937,15 @@ head(penguins_select_names_remove)
 ```
 
 ```
-## [90m# A tibble: 6 × 4[39m
+## # A tibble: 6 × 4
 ##   species island    sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen male    [4m2[24m007
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;
+## 1 Adelie  Torgersen male    2007
+## 2 Adelie  Torgersen female  2007
+## 3 Adelie  Torgersen female  2007
+## 4 Adelie  Torgersen &lt;NA&gt;    2007
+## 5 Adelie  Torgersen female  2007
+## 6 Adelie  Torgersen male    2007
 ```
 ---
 
@@ -1931,15 +1964,15 @@ head(penguins_select_contains)
 ```
 
 ```
-## [90m# A tibble: 6 × 3[39m
+## # A tibble: 6 × 3
 ##   bill_length_mm bill_depth_mm flipper_length_mm
-##            [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m           39.1          18.7               181
-## [90m2[39m           39.5          17.4               186
-## [90m3[39m           40.3          18                 195
-## [90m4[39m           [31mNA[39m            [31mNA[39m                  [31mNA[39m
-## [90m5[39m           36.7          19.3               193
-## [90m6[39m           39.3          20.6               190
+##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+## 1           39.1          18.7               181
+## 2           39.5          17.4               186
+## 3           40.3          18                 195
+## 4           NA            NA                  NA
+## 5           36.7          19.3               193
+## 6           39.3          20.6               190
 ```
 
 ---
@@ -1979,15 +2012,16 @@ head(penguins_mutate)
 ```
 
 ```
-## [90m# A tibble: 6 × 9[39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g body_mass_kg sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750         3.75 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800         3.8  female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250         3.25 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m        [31mNA[39m    [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450         3.45 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650         3.65 male    [4m2[24m007
+## # A tibble: 6 × 9
+##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7               181        3750
+## 2 Adelie  Torgersen           39.5          17.4               186        3800
+## 3 Adelie  Torgersen           40.3          18                 195        3250
+## 4 Adelie  Torgersen           NA            NA                  NA          NA
+## 5 Adelie  Torgersen           36.7          19.3               193        3450
+## 6 Adelie  Torgersen           39.3          20.6               190        3650
+## # … with 3 more variables: body_mass_kg &lt;dbl&gt;, sex &lt;fct&gt;, year &lt;int&gt;
 ```
 
 ---
@@ -2007,15 +2041,16 @@ head(penguins_mutate_across)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;chr&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2035,15 +2070,16 @@ head(penguins_arrange)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Chinstrap Dream               46.9          16.6               192        [4m2[24m700 female  [4m2[24m008
-## [90m2[39m Adelie    Biscoe              36.5          16.6               181        [4m2[24m850 female  [4m2[24m008
-## [90m3[39m Adelie    Biscoe              36.4          17.1               184        [4m2[24m850 female  [4m2[24m008
-## [90m4[39m Adelie    Biscoe              34.5          18.1               187        [4m2[24m900 female  [4m2[24m008
-## [90m5[39m Adelie    Dream               33.1          16.1               178        [4m2[24m900 female  [4m2[24m008
-## [90m6[39m Adelie    Torgersen           38.6          17                 188        [4m2[24m900 female  [4m2[24m009
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Chinst… Dream            46.9          16.6              192        2700 fema…
+## 2 Adelie  Biscoe           36.5          16.6              181        2850 fema…
+## 3 Adelie  Biscoe           36.4          17.1              184        2850 fema…
+## 4 Adelie  Biscoe           34.5          18.1              187        2900 fema…
+## 5 Adelie  Dream            33.1          16.1              178        2900 fema…
+## 6 Adelie  Torge…           38.6          17                188        2900 fema…
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2063,15 +2099,16 @@ head(penguins_arrange_desc)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Gentoo  Biscoe           49.2          15.2               221        [4m6[24m300 male   [4m2[24m007
-## [90m2[39m Gentoo  Biscoe           59.6          17                 230        [4m6[24m050 male   [4m2[24m007
-## [90m3[39m Gentoo  Biscoe           51.1          16.3               220        [4m6[24m000 male   [4m2[24m008
-## [90m4[39m Gentoo  Biscoe           48.8          16.2               222        [4m6[24m000 male   [4m2[24m009
-## [90m5[39m Gentoo  Biscoe           45.2          16.4               223        [4m5[24m950 male   [4m2[24m008
-## [90m6[39m Gentoo  Biscoe           49.8          15.9               229        [4m5[24m950 male   [4m2[24m009
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 2 Gentoo  Biscoe           59.6          17                230        6050 male 
+## 3 Gentoo  Biscoe           51.1          16.3              220        6000 male 
+## 4 Gentoo  Biscoe           48.8          16.2              222        6000 male 
+## 5 Gentoo  Biscoe           45.2          16.4              223        5950 male 
+## 6 Gentoo  Biscoe           49.8          15.9              229        5950 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2091,15 +2128,16 @@ head(penguins_arrange_desc_m)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Gentoo  Biscoe           49.2          15.2               221        [4m6[24m300 male   [4m2[24m007
-## [90m2[39m Gentoo  Biscoe           59.6          17                 230        [4m6[24m050 male   [4m2[24m007
-## [90m3[39m Gentoo  Biscoe           51.1          16.3               220        [4m6[24m000 male   [4m2[24m008
-## [90m4[39m Gentoo  Biscoe           48.8          16.2               222        [4m6[24m000 male   [4m2[24m009
-## [90m5[39m Gentoo  Biscoe           45.2          16.4               223        [4m5[24m950 male   [4m2[24m008
-## [90m6[39m Gentoo  Biscoe           49.8          15.9               229        [4m5[24m950 male   [4m2[24m009
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 2 Gentoo  Biscoe           59.6          17                230        6050 male 
+## 3 Gentoo  Biscoe           51.1          16.3              220        6000 male 
+## 4 Gentoo  Biscoe           48.8          16.2              222        6000 male 
+## 5 Gentoo  Biscoe           45.2          16.4              223        5950 male 
+## 6 Gentoo  Biscoe           49.8          15.9              229        5950 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2119,15 +2157,16 @@ head(penguins_arrange_across)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Dream               32.1          15.5               188        [4m3[24m050 female  [4m2[24m009
-## [90m2[39m Adelie  Dream               33.1          16.1               178        [4m2[24m900 female  [4m2[24m008
-## [90m3[39m Adelie  Torgersen           33.5          19                 190        [4m3[24m600 female  [4m2[24m008
-## [90m4[39m Adelie  Dream               34            17.1               185        [4m3[24m400 female  [4m2[24m008
-## [90m5[39m Adelie  Torgersen           34.1          18.1               193        [4m3[24m475 [31mNA[39m      [4m2[24m007
-## [90m6[39m Adelie  Torgersen           34.4          18.4               184        [4m3[24m325 female  [4m2[24m007
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Dream            32.1          15.5              188        3050 fema…
+## 2 Adelie  Dream            33.1          16.1              178        2900 fema…
+## 3 Adelie  Torge…           33.5          19                190        3600 fema…
+## 4 Adelie  Dream            34            17.1              185        3400 fema…
+## 5 Adelie  Torge…           34.1          18.1              193        3475 &lt;NA&gt; 
+## 6 Adelie  Torge…           34.4          18.4              184        3325 fema…
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2244,15 +2283,16 @@ head(penguins_slice)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species   island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie    Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie    Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m3[39m Chinstrap Dream               50.6          19.4               193        [4m3[24m800 male    [4m2[24m007
-## [90m4[39m Chinstrap Dream               46.7          17.9               195        [4m3[24m300 female  [4m2[24m007
-## [90m5[39m Chinstrap Dream               52            19                 197        [4m4[24m150 male    [4m2[24m007
-## [90m6[39m Chinstrap Dream               50.5          18.4               200        [4m3[24m400 female  [4m2[24m008
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           40.3          18                195        3250 fema…
+## 3 Chinst… Dream            50.6          19.4              193        3800 male 
+## 4 Chinst… Dream            46.7          17.9              195        3300 fema…
+## 5 Chinst… Dream            52            19                197        4150 male 
+## 6 Chinst… Dream            50.5          18.4              200        3400 fema…
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2272,14 +2312,15 @@ head(penguins_slice_head)
 ```
 
 ```
-## [90m# A tibble: 5 × 8[39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007
+## # A tibble: 5 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2299,15 +2340,16 @@ head(penguins_slice_max)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Gentoo  Biscoe           49.2          15.2               221        [4m6[24m300 male   [4m2[24m007
-## [90m2[39m Gentoo  Biscoe           59.6          17                 230        [4m6[24m050 male   [4m2[24m007
-## [90m3[39m Gentoo  Biscoe           51.1          16.3               220        [4m6[24m000 male   [4m2[24m008
-## [90m4[39m Gentoo  Biscoe           48.8          16.2               222        [4m6[24m000 male   [4m2[24m009
-## [90m5[39m Gentoo  Biscoe           45.2          16.4               223        [4m5[24m950 male   [4m2[24m008
-## [90m6[39m Gentoo  Biscoe           49.8          15.9               229        [4m5[24m950 male   [4m2[24m009
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           49.2          15.2              221        6300 male 
+## 2 Gentoo  Biscoe           59.6          17                230        6050 male 
+## 3 Gentoo  Biscoe           51.1          16.3              220        6000 male 
+## 4 Gentoo  Biscoe           48.8          16.2              222        6000 male 
+## 5 Gentoo  Biscoe           45.2          16.4              223        5950 male 
+## 6 Gentoo  Biscoe           49.8          15.9              229        5950 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2327,15 +2369,16 @@ head(penguins_slice_sample)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Gentoo  Biscoe           48.2          15.6               221        [4m5[24m100 male    [4m2[24m008
-## [90m2[39m Adelie  Biscoe           35.7          16.9               185        [4m3[24m150 female  [4m2[24m008
-## [90m3[39m Adelie  Biscoe           41            20                 203        [4m4[24m725 male    [4m2[24m009
-## [90m4[39m Gentoo  Biscoe           46.2          14.5               209        [4m4[24m800 female  [4m2[24m007
-## [90m5[39m Adelie  Dream            37.8          18.1               193        [4m3[24m750 male    [4m2[24m009
-## [90m6[39m Gentoo  Biscoe           50            15.3               220        [4m5[24m550 male    [4m2[24m007
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           48.2          15.6              221        5100 male 
+## 2 Adelie  Biscoe           35.7          16.9              185        3150 fema…
+## 3 Adelie  Biscoe           41            20                203        4725 male 
+## 4 Gentoo  Biscoe           46.2          14.5              209        4800 fema…
+## 5 Adelie  Dream            37.8          18.1              193        3750 male 
+## 6 Gentoo  Biscoe           50            15.3              220        5550 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2355,15 +2398,15 @@ head(penguins_distinct)
 ```
 
 ```
-## [90m# A tibble: 6 × 1[39m
+## # A tibble: 6 × 1
 ##   body_mass_g
-##         [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m        [4m3[24m750
-## [90m2[39m        [4m3[24m800
-## [90m3[39m        [4m3[24m250
-## [90m4[39m          [31mNA[39m
-## [90m5[39m        [4m3[24m450
-## [90m6[39m        [4m3[24m650
+##         &lt;int&gt;
+## 1        3750
+## 2        3800
+## 3        3250
+## 4          NA
+## 5        3450
+## 6        3650
 ```
 
 ---
@@ -2383,15 +2426,16 @@ head(penguins_distinct_keep_all)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2411,15 +2455,16 @@ head(penguins_distinct_keep_all_across)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2439,12 +2484,12 @@ penguins_count
 ```
 
 ```
-## [90m# A tibble: 3 × 2[39m
+## # A tibble: 3 × 2
 ##   species       n
-##   [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie      152
-## [90m2[39m Chinstrap    68
-## [90m3[39m Gentoo      124
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Adelie      152
+## 2 Chinstrap    68
+## 3 Gentoo      124
 ```
 
 ---
@@ -2464,14 +2509,14 @@ penguins_count_two
 ```
 
 ```
-## [90m# A tibble: 5 × 3[39m
+## # A tibble: 5 × 3
 ##   species   island        n
-##   [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie    Biscoe       44
-## [90m2[39m Adelie    Dream        56
-## [90m3[39m Adelie    Torgersen    52
-## [90m4[39m Chinstrap Dream        68
-## [90m5[39m Gentoo    Biscoe      124
+##   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
+## 1 Adelie    Biscoe       44
+## 2 Adelie    Dream        56
+## 3 Adelie    Torgersen    52
+## 4 Chinstrap Dream        68
+## 5 Gentoo    Biscoe      124
 ```
 
 ---
@@ -2491,16 +2536,17 @@ head(penguins_group_by)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-## [90m# Groups:   species [1][39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007
+## # A tibble: 6 × 8
+## # Groups:   species [1]
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2520,16 +2566,17 @@ head(penguins_group_by_across)
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-## [90m# Groups:   species, island, sex [3][39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007
+## # A tibble: 6 × 8
+## # Groups:   species, island, sex [3]
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -2551,12 +2598,12 @@ penguins_summarise
 ```
 
 ```
-## [90m# A tibble: 3 × 3[39m
+## # A tibble: 3 × 3
 ##   species   body_mass_g_mean body_mass_g_sd
-##   [3m[90m&lt;fct&gt;[39m[23m                [3m[90m&lt;dbl&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m Adelie               [4m3[24m701.           459.
-## [90m2[39m Chinstrap            [4m3[24m733.           384.
-## [90m3[39m Gentoo               [4m5[24m076.           504.
+##   &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Adelie               3701.           459.
+## 2 Chinstrap            3733.           384.
+## 3 Gentoo               5076.           504.
 ```
 
 ---
@@ -2577,12 +2624,12 @@ penguins_summarise_across
 ```
 
 ```
-## [90m# A tibble: 3 × 6[39m
+## # A tibble: 3 × 6
 ##   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
-##   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;dbl&gt;[39m[23m       [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m Adelie              38.8          18.3              190.       [4m3[24m701. [4m2[24m008.
-## [90m2[39m Chinstrap           48.8          18.4              196.       [4m3[24m733. [4m2[24m008.
-## [90m3[39m Gentoo              47.5          15.0              217.       [4m5[24m076. [4m2[24m008.
+##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Adelie              38.8          18.3              190.       3701. 2008.
+## 2 Chinstrap           48.8          18.4              196.       3733. 2008.
+## 3 Gentoo              47.5          15.0              217.       5076. 2008.
 ```
 
 ---
@@ -2605,15 +2652,15 @@ head(penguins_bind_rows)
 ```
 
 ```
-## [90m# A tibble: 6 × 7[39m
-##   id    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##   [3m[90m&lt;chr&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m 1     Adelie  Torgersen           39.1          [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m2[39m 1     Adelie  Torgersen           39.5          [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m3[39m 1     Adelie  Torgersen           40.3          [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m4[39m 1     Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m5[39m 1     Adelie  Torgersen           36.7          [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m6[39m 2     [31mNA[39m      [31mNA[39m                  [31mNA[39m            17.7               186        [4m3[24m500
+## # A tibble: 6 × 7
+##   id    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##   &lt;chr&gt; &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+## 1 1     Adelie  Torge…           39.1          NA                 NA          NA
+## 2 1     Adelie  Torge…           39.5          NA                 NA          NA
+## 3 1     Adelie  Torge…           40.3          NA                 NA          NA
+## 4 1     Adelie  Torge…           NA            NA                 NA          NA
+## 5 1     Adelie  Torge…           36.7          NA                 NA          NA
+## 6 2     &lt;NA&gt;    &lt;NA&gt;             NA            17.7              186        3500
 ```
 
 ---
@@ -2636,16 +2683,19 @@ head(penguins_bind_cols)
 ```
 
 ```
-## [90m# A tibble: 5 × 16[39m
-##   species...1 island...2 bill_length_mm...3 bill_depth_mm...4 flipper_length_mm...5 body_mass_g...6 sex...7 year...8 species...9 island...10
-##   [3m[90m&lt;fct&gt;[39m[23m       [3m[90m&lt;fct&gt;[39m[23m                   [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;dbl&gt;[39m[23m                 [3m[90m&lt;int&gt;[39m[23m           [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m      [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m       [3m[90m&lt;fct&gt;[39m[23m      
-## [90m1[39m Adelie      Torgersen                39.1              18.7                   181            [4m3[24m750 male        [4m2[24m007 Adelie      Biscoe     
-## [90m2[39m Adelie      Torgersen                39.5              17.4                   186            [4m3[24m800 female      [4m2[24m007 Adelie      Biscoe     
-## [90m3[39m Adelie      Torgersen                40.3              18                     195            [4m3[24m250 female      [4m2[24m007 Adelie      Biscoe     
-## [90m4[39m Adelie      Torgersen                [31mNA[39m                [31mNA[39m                      [31mNA[39m              [31mNA[39m [31mNA[39m          [4m2[24m007 Adelie      Biscoe     
-## [90m5[39m Adelie      Torgersen                36.7              19.3                   193            [4m3[24m450 female      [4m2[24m007 Adelie      Biscoe     
-## [90m# … with 6 more variables: bill_length_mm...11 &lt;dbl&gt;, bill_depth_mm...12 &lt;dbl&gt;, flipper_length_mm...13 &lt;int&gt;, body_mass_g...14 &lt;int&gt;,[39m
-## [90m#   sex...15 &lt;fct&gt;, year...16 &lt;int&gt;[39m
+## # A tibble: 5 × 16
+##   species...1 island...2 bill_length_mm...3 bill_depth_mm...4 flipper_length_mm…
+##   &lt;fct&gt;       &lt;fct&gt;                   &lt;dbl&gt;             &lt;dbl&gt;              &lt;int&gt;
+## 1 Adelie      Torgersen                39.1              18.7                181
+## 2 Adelie      Torgersen                39.5              17.4                186
+## 3 Adelie      Torgersen                40.3              18                  195
+## 4 Adelie      Torgersen                NA                NA                   NA
+## 5 Adelie      Torgersen                36.7              19.3                193
+## # … with 11 more variables: body_mass_g...6 &lt;int&gt;, sex...7 &lt;fct&gt;,
+## #   year...8 &lt;int&gt;, species...9 &lt;fct&gt;, island...10 &lt;fct&gt;,
+## #   bill_length_mm...11 &lt;dbl&gt;, bill_depth_mm...12 &lt;dbl&gt;,
+## #   flipper_length_mm...13 &lt;int&gt;, body_mass_g...14 &lt;int&gt;, sex...15 &lt;fct&gt;,
+## #   year...16 &lt;int&gt;
 ```
 
 ---
@@ -2731,13 +2781,13 @@ penguin_islands
 ```
 
 ```
-## [90m# A tibble: 4 × 3[39m
+## # A tibble: 4 × 3
 ##   island    longitude latitude
-##   [3m[90m&lt;chr&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m Torgersen     -[31m64[39m[31m.[39m[31m1[39m    -[31m64[39m[31m.[39m[31m8[39m
-## [90m2[39m Biscoe        -[31m63[39m[31m.[39m[31m8[39m    -[31m64[39m[31m.[39m[31m8[39m
-## [90m3[39m Dream         -[31m64[39m[31m.[39m[31m2[39m    -[31m64[39m[31m.[39m[31m7[39m
-## [90m4[39m Alpha         -[31m63[39m      -[31m64[39m[31m.[39m[31m3[39m
+##   &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Torgersen     -64.1    -64.8
+## 2 Biscoe        -63.8    -64.8
+## 3 Dream         -64.2    -64.7
+## 4 Alpha         -63      -64.3
 ```
 
 ---
@@ -2756,15 +2806,16 @@ head(penguins_left_join)
 ```
 
 ```
-## [90m# A tibble: 6 × 10[39m
-##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year longitude latitude
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007     -[31m64[39m[31m.[39m[31m1[39m    -[31m64[39m[31m.[39m[31m8[39m
-## [90m2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007     -[31m64[39m[31m.[39m[31m1[39m    -[31m64[39m[31m.[39m[31m8[39m
-## [90m3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007     -[31m64[39m[31m.[39m[31m1[39m    -[31m64[39m[31m.[39m[31m8[39m
-## [90m4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007     -[31m64[39m[31m.[39m[31m1[39m    -[31m64[39m[31m.[39m[31m8[39m
-## [90m5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007     -[31m64[39m[31m.[39m[31m1[39m    -[31m64[39m[31m.[39m[31m8[39m
-## [90m6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007     -[31m64[39m[31m.[39m[31m1[39m    -[31m64[39m[31m.[39m[31m8[39m
+## # A tibble: 6 × 10
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 3 more variables: year &lt;int&gt;, longitude &lt;dbl&gt;, latitude &lt;dbl&gt;
 ```
 
 ---
@@ -2805,20 +2856,20 @@ penguins_dplyr
 ```
 
 ```
-## [90m# A tibble: 344 × 5[39m
+## # A tibble: 344 × 5
 ##    species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##    [3m[90m&lt;fct&gt;[39m[23m            [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m
-## [90m 1[39m Adelie            39.1          18.7               181        [4m3[24m750
-## [90m 2[39m Adelie            39.5          17.4               186        [4m3[24m800
-## [90m 3[39m Adelie            40.3          18                 195        [4m3[24m250
-## [90m 4[39m Adelie            [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m
-## [90m 5[39m Adelie            36.7          19.3               193        [4m3[24m450
-## [90m 6[39m Adelie            39.3          20.6               190        [4m3[24m650
-## [90m 7[39m Adelie            38.9          17.8               181        [4m3[24m625
-## [90m 8[39m Adelie            39.2          19.6               195        [4m4[24m675
-## [90m 9[39m Adelie            34.1          18.1               193        [4m3[24m475
-## [90m10[39m Adelie            42            20.2               190        [4m4[24m250
-## [90m# … with 334 more rows[39m
+##    &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie            39.1          18.7               181        3750
+##  2 Adelie            39.5          17.4               186        3800
+##  3 Adelie            40.3          18                 195        3250
+##  4 Adelie            NA            NA                  NA          NA
+##  5 Adelie            36.7          19.3               193        3450
+##  6 Adelie            39.3          20.6               190        3650
+##  7 Adelie            38.9          17.8               181        3625
+##  8 Adelie            39.2          19.6               195        4675
+##  9 Adelie            34.1          18.1               193        3475
+## 10 Adelie            42            20.2               190        4250
+## # … with 334 more rows
 ```
 
 ---
@@ -2835,20 +2886,20 @@ penguins_dplyr
 ```
 
 ```
-## [90m# A tibble: 342 × 5[39m
+## # A tibble: 342 × 5
 ##    species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##    [3m[90m&lt;fct&gt;[39m[23m            [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m
-## [90m 1[39m Adelie            39.1          18.7               181        [4m3[24m750
-## [90m 2[39m Adelie            39.5          17.4               186        [4m3[24m800
-## [90m 3[39m Adelie            40.3          18                 195        [4m3[24m250
-## [90m 4[39m Adelie            36.7          19.3               193        [4m3[24m450
-## [90m 5[39m Adelie            39.3          20.6               190        [4m3[24m650
-## [90m 6[39m Adelie            38.9          17.8               181        [4m3[24m625
-## [90m 7[39m Adelie            39.2          19.6               195        [4m4[24m675
-## [90m 8[39m Adelie            34.1          18.1               193        [4m3[24m475
-## [90m 9[39m Adelie            42            20.2               190        [4m4[24m250
-## [90m10[39m Adelie            37.8          17.1               186        [4m3[24m300
-## [90m# … with 332 more rows[39m
+##    &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie            39.1          18.7               181        3750
+##  2 Adelie            39.5          17.4               186        3800
+##  3 Adelie            40.3          18                 195        3250
+##  4 Adelie            36.7          19.3               193        3450
+##  5 Adelie            39.3          20.6               190        3650
+##  6 Adelie            38.9          17.8               181        3625
+##  7 Adelie            39.2          19.6               195        4675
+##  8 Adelie            34.1          18.1               193        3475
+##  9 Adelie            42            20.2               190        4250
+## 10 Adelie            37.8          17.1               186        3300
+## # … with 332 more rows
 ```
 
 ---
@@ -2867,12 +2918,12 @@ penguins_dplyr
 ```
 
 ```
-## [90m# A tibble: 3 × 5[39m
+## # A tibble: 3 × 5
 ##   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;dbl&gt;[39m[23m       [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m Adelie              38.8          18.3              190.       [4m3[24m701.
-## [90m2[39m Chinstrap           48.8          18.4              196.       [4m3[24m733.
-## [90m3[39m Gentoo              47.5          15.0              217.       [4m5[24m076.
+##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Adelie              38.8          18.3              190.       3701.
+## 2 Chinstrap           48.8          18.4              196.       3733.
+## 3 Gentoo              47.5          15.0              217.       5076.
 ```
 
 ---
@@ -2887,7 +2938,7 @@ class: inverse, center, middle
 
 ### Usando o conjunto de dados `penguins`, adicione essas novas colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10`, que são a operação `log10` das colunas `bill_length_mm_log10, bill_depth_mm_log10, flipper_length_mm_log10, body_mass_g_log10` e atribua ao mesmo objeto `penguins_log` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_617076f3" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6175f756" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -2909,20 +2960,22 @@ penguins_log
 ```
 
 ```
-## [90m# A tibble: 344 × 12[39m
-##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year bill_length_mm_l… bill_depth_mm_l… flipper_length_m…
-##    [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m              [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m             [3m[90m&lt;dbl&gt;[39m[23m            [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;dbl&gt;[39m[23m
-## [90m 1[39m Adelie  Torgersen           39.1          18.7               181        [4m3[24m750 male    [4m2[24m007              1.59             1.27              2.26
-## [90m 2[39m Adelie  Torgersen           39.5          17.4               186        [4m3[24m800 female  [4m2[24m007              1.60             1.24              2.27
-## [90m 3[39m Adelie  Torgersen           40.3          18                 195        [4m3[24m250 female  [4m2[24m007              1.61             1.26              2.29
-## [90m 4[39m Adelie  Torgersen           [31mNA[39m            [31mNA[39m                  [31mNA[39m          [31mNA[39m [31mNA[39m      [4m2[24m007             [31mNA[39m               [31mNA[39m                [31mNA[39m   
-## [90m 5[39m Adelie  Torgersen           36.7          19.3               193        [4m3[24m450 female  [4m2[24m007              1.56             1.29              2.29
-## [90m 6[39m Adelie  Torgersen           39.3          20.6               190        [4m3[24m650 male    [4m2[24m007              1.59             1.31              2.28
-## [90m 7[39m Adelie  Torgersen           38.9          17.8               181        [4m3[24m625 female  [4m2[24m007              1.59             1.25              2.26
-## [90m 8[39m Adelie  Torgersen           39.2          19.6               195        [4m4[24m675 male    [4m2[24m007              1.59             1.29              2.29
-## [90m 9[39m Adelie  Torgersen           34.1          18.1               193        [4m3[24m475 [31mNA[39m      [4m2[24m007              1.53             1.26              2.29
-## [90m10[39m Adelie  Torgersen           42            20.2               190        [4m4[24m250 [31mNA[39m      [4m2[24m007              1.62             1.31              2.28
-## [90m# … with 334 more rows, and 1 more variable: body_mass_g_log10 &lt;dbl&gt;[39m
+## # A tibble: 344 × 12
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # … with 334 more rows, and 6 more variables: sex &lt;fct&gt;, year &lt;int&gt;,
+## #   bill_length_mm_log10 &lt;dbl&gt;, bill_depth_mm_log10 &lt;dbl&gt;,
+## #   flipper_length_mm_log10 &lt;dbl&gt;, body_mass_g_log10 &lt;dbl&gt;
 ```
 
 ---
@@ -2931,7 +2984,7 @@ penguins_log
 
 ### Usando o conjunto de dados `penguins`, ordene as linhas em forma decrescente pela coluna `body_mass_g`, atribuindo o resultado a um novo objeto `penguins_arrange` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_61707735" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6175f764" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -2950,20 +3003,20 @@ penguins_arrange
 ```
 
 ```
-## [90m# A tibble: 344 × 8[39m
-##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
-##    [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m [3m[90m&lt;int&gt;[39m[23m
-## [90m 1[39m Gentoo  Biscoe           49.2          15.2               221        [4m6[24m300 male   [4m2[24m007
-## [90m 2[39m Gentoo  Biscoe           59.6          17                 230        [4m6[24m050 male   [4m2[24m007
-## [90m 3[39m Gentoo  Biscoe           51.1          16.3               220        [4m6[24m000 male   [4m2[24m008
-## [90m 4[39m Gentoo  Biscoe           48.8          16.2               222        [4m6[24m000 male   [4m2[24m009
-## [90m 5[39m Gentoo  Biscoe           45.2          16.4               223        [4m5[24m950 male   [4m2[24m008
-## [90m 6[39m Gentoo  Biscoe           49.8          15.9               229        [4m5[24m950 male   [4m2[24m009
-## [90m 7[39m Gentoo  Biscoe           48.4          14.6               213        [4m5[24m850 male   [4m2[24m007
-## [90m 8[39m Gentoo  Biscoe           49.3          15.7               217        [4m5[24m850 male   [4m2[24m007
-## [90m 9[39m Gentoo  Biscoe           55.1          16                 230        [4m5[24m850 male   [4m2[24m009
-## [90m10[39m Gentoo  Biscoe           49.5          16.2               229        [4m5[24m800 male   [4m2[24m008
-## [90m# … with 334 more rows[39m
+## # A tibble: 344 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo  Biscoe           49.2          15.2               221        6300
+##  2 Gentoo  Biscoe           59.6          17                 230        6050
+##  3 Gentoo  Biscoe           51.1          16.3               220        6000
+##  4 Gentoo  Biscoe           48.8          16.2               222        6000
+##  5 Gentoo  Biscoe           45.2          16.4               223        5950
+##  6 Gentoo  Biscoe           49.8          15.9               229        5950
+##  7 Gentoo  Biscoe           48.4          14.6               213        5850
+##  8 Gentoo  Biscoe           49.3          15.7               217        5850
+##  9 Gentoo  Biscoe           55.1          16                 230        5850
+## 10 Gentoo  Biscoe           49.5          16.2               229        5800
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
 ```
 
 ---
@@ -2972,7 +3025,7 @@ penguins_arrange
 
 ### Usando o conjunto de dados `penguins`, filtre as linhas com `bill_length_mm` maior que 50 mm, `bill_depth_mm` menor que 20 mm, `flipper_length_mm` maior que 220 mm e `body_mass_g` menor que 5500 g, atribuindo o resultado a um novo objeto `penguins_filter` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_617077a2" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6175f7dd" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">04</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -2994,15 +3047,16 @@ penguins_filter
 ```
 
 ```
-## [90m# A tibble: 6 × 8[39m
-##   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex    year
-##   [3m[90m&lt;fct&gt;[39m[23m   [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m [3m[90m&lt;int&gt;[39m[23m
-## [90m1[39m Gentoo  Biscoe           50.5          15.9               225        [4m5[24m400 male   [4m2[24m008
-## [90m2[39m Gentoo  Biscoe           50.1          15                 225        [4m5[24m000 male   [4m2[24m008
-## [90m3[39m Gentoo  Biscoe           52.5          15.6               221        [4m5[24m450 male   [4m2[24m009
-## [90m4[39m Gentoo  Biscoe           52.2          17.1               228        [4m5[24m400 male   [4m2[24m009
-## [90m5[39m Gentoo  Biscoe           50.8          15.7               226        [4m5[24m200 male   [4m2[24m009
-## [90m6[39m Gentoo  Biscoe           51.1          16.5               225        [4m5[24m250 male   [4m2[24m009
+## # A tibble: 6 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Gentoo  Biscoe           50.5          15.9              225        5400 male 
+## 2 Gentoo  Biscoe           50.1          15                225        5000 male 
+## 3 Gentoo  Biscoe           52.5          15.6              221        5450 male 
+## 4 Gentoo  Biscoe           52.2          17.1              228        5400 male 
+## 5 Gentoo  Biscoe           50.8          15.7              226        5200 male 
+## 6 Gentoo  Biscoe           51.1          16.5              225        5250 male 
+## # … with 1 more variable: year &lt;int&gt;
 ```
 
 ---
@@ -3011,7 +3065,7 @@ penguins_filter
 
 ### Usando o conjunto de dados `penguins`, amostre 70% das linhas aleatoriamente com `body_mass_g` menor que  5000 g, atribuindo o resultado a um novo objeto `penguins_sample` utilizando o formato tidyverse
 
-<div class="countdown" id="timer_61707a3f" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6175f5fc" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">30</span></code>
 </div>
 
@@ -3031,20 +3085,20 @@ penguins_sample
 ```
 
 ```
-## [90m# A tibble: 192 × 8[39m
-##    species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
-##    [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;fct&gt;[39m[23m           [3m[90m&lt;dbl&gt;[39m[23m         [3m[90m&lt;dbl&gt;[39m[23m             [3m[90m&lt;int&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;fct&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
-## [90m 1[39m Gentoo    Biscoe           47.2          13.7               214        [4m4[24m925 female  [4m2[24m009
-## [90m 2[39m Adelie    Dream            39.6          18.1               186        [4m4[24m450 male    [4m2[24m008
-## [90m 3[39m Gentoo    Biscoe           45.5          13.9               210        [4m4[24m200 female  [4m2[24m008
-## [90m 4[39m Chinstrap Dream            50.8          18.5               201        [4m4[24m450 male    [4m2[24m009
-## [90m 5[39m Adelie    Dream            41.1          17.5               190        [4m3[24m900 male    [4m2[24m009
-## [90m 6[39m Chinstrap Dream            50.7          19.7               203        [4m4[24m050 male    [4m2[24m009
-## [90m 7[39m Gentoo    Biscoe           45.8          14.6               210        [4m4[24m200 female  [4m2[24m007
-## [90m 8[39m Adelie    Dream            40.6          17.2               187        [4m3[24m475 male    [4m2[24m009
-## [90m 9[39m Adelie    Dream            39.5          16.7               178        [4m3[24m250 female  [4m2[24m007
-## [90m10[39m Adelie    Biscoe           34.5          18.1               187        [4m2[24m900 female  [4m2[24m008
-## [90m# … with 182 more rows[39m
+## # A tibble: 192 × 8
+##    species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo    Biscoe           47.2          13.7               214        4925
+##  2 Adelie    Dream            39.6          18.1               186        4450
+##  3 Gentoo    Biscoe           45.5          13.9               210        4200
+##  4 Chinstrap Dream            50.8          18.5               201        4450
+##  5 Adelie    Dream            41.1          17.5               190        3900
+##  6 Chinstrap Dream            50.7          19.7               203        4050
+##  7 Gentoo    Biscoe           45.8          14.6               210        4200
+##  8 Adelie    Dream            40.6          17.2               187        3475
+##  9 Adelie    Dream            39.5          16.7               178        3250
+## 10 Adelie    Biscoe           34.5          18.1               187        2900
+## # … with 182 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
 ```
 
 ---
@@ -3288,7 +3342,8 @@ stringr::str_sort(x = letters)
 ```
 
 ```
-##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+## [20] "t" "u" "v" "w" "x" "y" "z"
 ```
 
 ```r
@@ -3297,7 +3352,8 @@ stringr::str_sort(x = letters, dec = TRUE)
 ```
 
 ```
-##  [1] "z" "y" "x" "w" "v" "u" "t" "s" "r" "q" "p" "o" "n" "m" "l" "k" "j" "i" "h" "g" "f" "e" "d" "c" "b" "a"
+##  [1] "z" "y" "x" "w" "v" "u" "t" "s" "r" "q" "p" "o" "n" "m" "l" "k" "j" "i" "h"
+## [20] "g" "f" "e" "d" "c" "b" "a"
 ```
 
 ---
@@ -3375,9 +3431,10 @@ forcats::as_factor(penguins_raw$Species) %&gt;% head()
 ```
 
 ```
-## [1] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
-## [4] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
-## Levels: Adelie Penguin (Pygoscelis adeliae) Gentoo penguin (Pygoscelis papua) Chinstrap penguin (Pygoscelis antarctica)
+## [1] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
+## [3] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
+## [5] Adelie Penguin (Pygoscelis adeliae) Adelie Penguin (Pygoscelis adeliae)
+## 3 Levels: Adelie Penguin (Pygoscelis adeliae) ...
 ```
 
 --
@@ -3586,7 +3643,7 @@ lubridate::today()
 ```
 
 ```
-## [1] "2021-10-20"
+## [1] "2021-10-24"
 ```
 
 ```r
@@ -3595,7 +3652,7 @@ lubridate::now()
 ```
 
 ```
-## [1] "2021-10-20 17:04:52 -03"
+## [1] "2021-10-24 21:08:00 -03"
 ```
 
 ---
@@ -3685,12 +3742,12 @@ dados
 ```
 
 ```
-## [90m# A tibble: 3 × 5[39m
+## # A tibble: 3 × 5
 ##     ano   mes   dia  hora minuto
-##   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
-## [90m1[39m  [4m2[24m021     1    12     2      2
-## [90m2[39m  [4m2[24m021     2    20    14     44
-## [90m3[39m  [4m2[24m021     3    31    18     55
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2021     1    12     2      2
+## 2  2021     2    20    14     44
+## 3  2021     3    31    18     55
 ```
 
 ---
@@ -3707,12 +3764,12 @@ dados %&gt;%
 ```
 
 ```
-## [90m# A tibble: 3 × 6[39m
+## # A tibble: 3 × 6
 ##     ano   mes   dia  hora minuto data               
-##   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m             
-## [90m1[39m  [4m2[24m021     1    12     2      2 2021-01-12 [90m02:02:00[39m
-## [90m2[39m  [4m2[24m021     2    20    14     44 2021-02-20 [90m14:44:00[39m
-## [90m3[39m  [4m2[24m021     3    31    18     55 2021-03-31 [90m18:55:00[39m
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dttm&gt;             
+## 1  2021     1    12     2      2 2021-01-12 02:02:00
+## 2  2021     2    20    14     44 2021-02-20 14:44:00
+## 3  2021     3    31    18     55 2021-03-31 18:55:00
 ```
 
 ---
@@ -3728,7 +3785,7 @@ lubridate::as_datetime(today())
 ```
 
 ```
-## [1] "2021-10-20 UTC"
+## [1] "2021-10-24 UTC"
 ```
 
 ```r
@@ -3737,7 +3794,7 @@ lubridate::as_date(now())
 ```
 
 ```
-## [1] "2021-10-20"
+## [1] "2021-10-24"
 ```
 
 ---
@@ -3920,7 +3977,7 @@ lubridate::today() + lubridate::ddays(1)
 ```
 
 ```
-## [1] "2021-10-21"
+## [1] "2021-10-25"
 ```
 
 ```r
@@ -3929,7 +3986,7 @@ lubridate::today() - lubridate::dyears(1)
 ```
 
 ```
-## [1] "2020-10-19 18:00:00 UTC"
+## [1] "2020-10-23 18:00:00 UTC"
 ```
 
 ```r
@@ -4021,7 +4078,7 @@ lubridate::today() + lubridate::weeks(10)
 ```
 
 ```
-## [1] "2021-12-29"
+## [1] "2022-01-02"
 ```
 
 ```r
@@ -4030,7 +4087,7 @@ lubridate::today() - lubridate::weeks(10)
 ```
 
 ```
-## [1] "2021-08-11"
+## [1] "2021-08-15"
 ```
 
 ```r
@@ -4039,8 +4096,9 @@ lubridate::today() + lubridate::weeks(0:10)
 ```
 
 ```
-##  [1] "2021-10-20" "2021-10-27" "2021-11-03" "2021-11-10" "2021-11-17" "2021-11-24" "2021-12-01" "2021-12-08" "2021-12-15" "2021-12-22"
-## [11] "2021-12-29"
+##  [1] "2021-10-24" "2021-10-31" "2021-11-07" "2021-11-14" "2021-11-21"
+##  [6] "2021-11-28" "2021-12-05" "2021-12-12" "2021-12-19" "2021-12-26"
+## [11] "2022-01-02"
 ```
 
 ---
@@ -4157,7 +4215,7 @@ r_intervalo / lubridate::years()
 ```
 
 ```
-## [1] 9.887671
+## [1] 9.89863
 ```
 
 ```r
@@ -4174,7 +4232,7 @@ filho_intervalo / lubridate::days()
 ```
 
 ```
-## [1] 2946
+## [1] 2950
 ```
 
 ```r
@@ -4182,7 +4240,7 @@ filho_intervalo / lubridate::weeks()
 ```
 
 ```
-## [1] 420.8571
+## [1] 421.4286
 ```
 
 ---
@@ -4200,7 +4258,7 @@ lubridate::as.period(r_intervalo)
 ```
 
 ```
-## [1] "9y 10m 20d 0H 0M 0S"
+## [1] "9y 10m 24d 0H 0M 0S"
 ```
 
 ```r
@@ -4209,7 +4267,7 @@ lubridate::as.period(filho_intervalo)
 ```
 
 ```
-## [1] "8y 0m 24d 0H 0M 0S"
+## [1] "8y 0m 28d 0H 0M 0S"
 ```
 
 ---
@@ -4262,7 +4320,8 @@ head(OlsonNames())
 ```
 
 ```
-## [1] "Africa/Abidjan"     "Africa/Accra"       "Africa/Addis_Ababa" "Africa/Algiers"     "Africa/Asmara"      "Africa/Asmera"
+## [1] "Africa/Abidjan"     "Africa/Accra"       "Africa/Addis_Ababa"
+## [4] "Africa/Algiers"     "Africa/Asmara"      "Africa/Asmera"
 ```
 
 ---
@@ -4280,7 +4339,7 @@ lubridate::with_tz(lubridate::now(), tzone = "America/Sao_Paulo")
 ```
 
 ```
-## [1] "2021-10-20 17:04:52 -03"
+## [1] "2021-10-24 21:08:00 -03"
 ```
 
 ```r
@@ -4288,7 +4347,7 @@ lubridate::with_tz(lubridate::now(), tzone = "GMT")
 ```
 
 ```
-## [1] "2021-10-20 20:04:52 GMT"
+## [1] "2021-10-25 00:08:00 GMT"
 ```
 
 ```r
@@ -4296,7 +4355,7 @@ lubridate::with_tz(lubridate::now(), tzone = "Europe/Berlin")
 ```
 
 ```
-## [1] "2021-10-20 22:04:52 CEST"
+## [1] "2021-10-25 02:08:00 CEST"
 ```
 
 ```r
@@ -4305,7 +4364,7 @@ lubridate::force_tz(lubridate::now(), tzone = "GMT")
 ```
 
 ```
-## [1] "2021-10-20 17:04:52 GMT"
+## [1] "2021-10-24 21:08:00 GMT"
 ```
 
 ---
@@ -4561,8 +4620,10 @@ penguins %&gt;%
 ```
 
 ```
-##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g              year 
-##          43.92193          17.15117         200.91520        4201.75439        2008.02924
+##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
+##          43.92193          17.15117         200.91520        4201.75439 
+##              year 
+##        2008.02924
 ```
 
 ---

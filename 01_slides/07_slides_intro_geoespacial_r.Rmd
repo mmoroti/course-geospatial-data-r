@@ -306,7 +306,7 @@ po <- sf::st_point(vec)
 po
 ```
 
-```{r out.width='30%'}
+```{r out.width='25%'}
 # plot
 plot(po, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
@@ -324,7 +324,7 @@ po_mul <- sf::st_multipoint(multipoint_matrix)
 po_mul
 ```
 
-```{r out.width='30%'}
+```{r out.width='25%'}
 # plot
 plot(po_mul, pch = 20, cex = 4, axes = TRUE, graticule = TRUE)
 ```
@@ -360,7 +360,7 @@ pol <- sf::st_polygon(polygon_list)
 pol
 ```
 
-```{r out.width='30%'}
+```{r out.width='25%'}
 # plot
 plot(pol, col = "gray", axes = TRUE, graticule = TRUE)
 ```
@@ -529,7 +529,7 @@ class(rc_sf)
 # 3. Classes sf
 
 ## **3. Simple feature (`sf`)**
-```{r}
+```{r out.width='35%'}
 # plot
 plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - plotar a primeira coluna
 ```
@@ -539,7 +539,7 @@ plot(rc_sf[1], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[1] - pl
 # 3. Classes sf
 
 ## **3. Simple feature (`sf`)**
-```{r}
+```{r out.width='35%'}
 # plot
 plot(rc_sf[2], pch = 20, cex = 4, axes = TRUE, graticule = TRUE) # rc_sf[2] - plotar a segunda coluna
 ```
@@ -801,9 +801,9 @@ library(geobr)
 ## Dados de pacotes: *geobr*
 
 ```{r message=FALSE, warning=FALSE}
-# brasil 2019
-br_2019 <- geobr::read_country(year = 2019, showProgress = FALSE)
-br_2019
+# brasil 2020
+br_2020 <- geobr::read_country(year = 2020, showProgress = FALSE)
+br_2020
 ```
 
 ---
@@ -814,7 +814,7 @@ br_2019
 
 ```{r}
 # plot
-plot(br_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(br_2020$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---
@@ -847,8 +847,8 @@ plot(br_1872$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 
 ```{r}
 # sao paulo municipios
-sp_mun_2019 <- geobr::read_municipality(code_muni = "SP", year = 2019, showProgress = FALSE)
-sp_mun_2019
+sp_mun_2020 <- geobr::read_municipality(code_muni = "SP", year = 2020, showProgress = FALSE)
+sp_mun_2020
 ```
 
 ---
@@ -859,7 +859,7 @@ sp_mun_2019
 
 ```{r}
 # plot
-plot(sp_mun_2019$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
+plot(sp_mun_2020$geom, col = "gray", main = NA, axes = TRUE, graticule = TRUE)
 ```
 
 ---

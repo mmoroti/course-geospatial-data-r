@@ -152,7 +152,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
   labs(title = "Comprimento da nadadeira dos penguins",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
@@ -161,7 +161,7 @@ ggplot(data = penguins,
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
@@ -170,7 +170,7 @@ ggplot(data = penguins,
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
@@ -180,7 +180,7 @@ ggplot(data = penguins,
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
@@ -191,7 +191,7 @@ ggplot(data = penguins,
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
@@ -202,7 +202,7 @@ ggplot(data = penguins,
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot(data = penguins) +
   aes(x = flipper_length_mm) +
@@ -210,7 +210,7 @@ ggplot(data = penguins) +
   labs(title = "Comprimento da nadadeira dos penguins",
        x = "Comprimento da nadadeira (mm)", 
        y = "Densidade") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
@@ -219,7 +219,7 @@ ggplot(data = penguins,
   labs(x = "Comprimento da nadadeira (mm)", 
        y = "Densidade", 
        fill = "Espécie") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 ggplot_densidade <- ggplot(data = penguins, 
                            aes(x = flipper_length_mm, fill = species)) +
@@ -228,7 +228,7 @@ ggplot_densidade <- ggplot(data = penguins,
   labs(x = "Comprimento da nadadeira (mm)", 
        y = "Densidade", 
        fill = "Espécie") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ggsave(filename = "histogram_ggplot2.png", plot = ggplot_densidade, wi = 20, he = 15, un = "cm", dpi = 300)
 
 # ggpubr
@@ -502,7 +502,7 @@ datasaurus_dozen %>%
   aes(x = x, y = y) +
   geom_point(colour = "black", fill = "black", 
              size = 5, alpha = .75, pch = 21) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 # dados totais
 datasaurus_dozen %>% 
@@ -511,7 +511,7 @@ datasaurus_dozen %>%
   geom_point(colour = "black", fill = "black", 
              size = 1, alpha = .75, pch = 21) +
   facet_wrap(~dataset) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 # ggpubr
 ggscatter(data = penguins,
@@ -567,14 +567,14 @@ penguins %>%
 penguins %>%
   dplyr::select(body_mass_g, ends_with("_mm")) %>%
   ggpairs() +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 penguins %>%
   dplyr::select(species, sex, body_mass_g, ends_with("_mm")) %>%
   GGally::ggpairs(aes(color = species)) +
   scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 
 # psych
 penguins %>%

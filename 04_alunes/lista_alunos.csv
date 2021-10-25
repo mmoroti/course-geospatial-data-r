@@ -1,0 +1,62 @@
+id,id_uni,nome,e-mail,matricula
+1,E663044,Ariane Ferreira,ariane.ferreira07@unesp.br,Aluno Regularmente Matriculado
+2,E663045,Arthur Setsuo Tahara,arthur.tahara@estudante.ufla.br,Aluno Regularmente Matriculado
+3,E663046,Beryl Eirene Lutz de Moura,beryl.lutz@unesp.br,Aluno Regularmente Matriculado
+4,PGZ200077F,Bianca Raissa Nogueira,br.nogueira@unesp.br,Aluno Regularmente Matriculado
+5,E663047,Bibiana Terra Dasoler de Oliveira,bibianadasoler@gmail.com,Aluno Regularmente Matriculado
+6,E663056,Carina Isabella Motta,carina.i.motta@unesp.br,Aluno Regularmente Matriculado
+7,E663020,Caroline Santos Portal,carolsportal@gmail.com,Aluno Regularmente Matriculado
+8,ECO210056,Daiana Jeronimo Polli,daiana.polli@unesp.br,Aluno Regularmente Matriculado
+9,ECO210072,Diego Rezende da Fonseca,diego.rezende@unesp.br,Aluno Regularmente Matriculado
+10,ECO210013,Felipe Soares Bufalo,felipe.bufalo@unesp.br,Aluno Regularmente Matriculado
+11,E663018,Francielson da Silva Barbosa,francielson.barbosa@unesp.br,Aluno Regularmente Matriculado
+12,ECO210048,Fulbert Kodjovi Julie Gnonlonfoun,fulbert.gnonlonfoun@unesp.br,Aluno Regularmente Matriculado
+13,E663017,Gilbevan Ramos de Almeida,gilbevanramos@gmail.com,Aluno Regularmente Matriculado
+14,CS0190322,Gislaine Costa de Mendonça,gislaine.costa@unesp.br,Aluno Regularmente Matriculado
+15,E663023,Ingridi Camboim Franceschi,ingridicfranceschi@hotmail.com,Aluno Regularmente Matriculado
+16,E663011,José Vagner Reobouças Filho,vagnerreboucas@outlook.com,Aluno Regularmente Matriculado
+17,E663015,Luan Moldan Motta,luan.motta@unesp.br,Aluno Regularmente Matriculado
+18,E663012,Luana Burg Mayer,lburgmayer@hotmail.com,Aluno Regularmente Matriculado
+19,ACF210226,Luca Gomes Nunes,luca.gomes@unesp.br,Aluno Regularmente Matriculado
+20,E663016,Lucas Alencar,alencar.lucasc@gmail.com,Aluno Regularmente Matriculado
+21,E663099,Lukas Rodrigues Souza,lukasrs@usp.br,Aluno Regularmente Matriculado
+22,E663093,Marcos Martins Silva,bioturismologo@gmail.com,Aluno Regularmente Matriculado
+23,PGZ190012,Maria Alice Garcia Bento,maria.alice@unesp.br,Aluno Regularmente Matriculado
+24,BVG200051,Mariana Aragao de Macedo,ma.macedo@unesp.br,Aluno Regularmente Matriculado
+25,E663038,Mariana Moreira da Silva Murakami,m.murakami@unesp.br,Aluno Regularmente Matriculado
+26,E663081,Nielson Aparecido Pasqualotto Salvador,pasqualotto@usp.br,Aluno Regularmente Matriculado
+27,ACF190209,Paula Luísa Bombarda Andrade Furlan,paula.furlan@unesp.br,Aluno Regularmente Matriculado
+28,E663087,Paulo Roberto Furini,prfurini.bio@gmail.com,Aluno Regularmente Matriculado
+29,DTP200115,Rafael Augusto Forti Perroni,forti.perroni@unesp.br,Aluno Regularmente Matriculado
+30,BAN210072,Rodolpho Gonçalves da Silva,rodolpho.goncalves@unesp.br,Aluno Regularmente Matriculado
+31,E663092,Tales Barbosa Tercetti,tales.tercetti@hotmail.com,Aluno Regularmente Matriculado
+32,E663091,Talita Menger Ribeiro,talitamenger.r@gmail.com,Aluno Regularmente Matriculado
+33,E663090,Thassiana Lacerda Coelho,thassy@live.com,Aluno Regularmente Matriculado
+34,ECO210064,Willian Barbosa Simioni,willian.simioni@unesp.br,Aluno Regularmente Matriculado
+35,NA,Arthur Setsuo Tahara,setsuotahara@gmail.com,Aluno Ouvinte
+36,NA,Matheus Moroti,mmoroti@gmail.com,Aluno Ouvinte
+37,NA,Bruno X. Pinho,bxpinho@hotmail.com,Aluno Ouvinte
+38,NA,Samanta Iop,samantaiop.bio@gmail.com,Aluno Ouvinte
+39,NA,Guilherme Cavicchioli,gcavicchioli@gmail.com,Aluno Ouvinte
+40,NA,Ana Karolina Moreno,akarolina_moreno@ufg.br,Aluno Ouvinte
+41,NA,Pedro Reis,pedro.tecnicoambiental@hotmail.com,Aluno Ouvinte
+42,NA,Luana Martins Ferraz,luanamferraz@gmail.com,Aluno Ouvinte
+43,NA,Aníbal Silva Cantalice,anibalcantalice@gmail.com,Aluno Ouvinte
+44,NA,Matheus Moroti,mmoroti@gmail.com,Aluno Ouvinte
+45,NA,Manoel Cardoso,manoel.cardoso@inpe.br,Aluno Ouvinte
+46,NA,Hellen Pecchi,hellenpecchi@gmail.com,Aluno Ouvinte
+47,NA,Phillip Theles,philip13ph@gmail.com,Aluno Ouvinte
+48,NA,Paula Ribeiro,drs.paula@gmail.com,Aluno Ouvinte
+49,NA,Yuri Silva de Souza,desouza.s.yuri@gmail.com,Aluno Ouvinte
+50,NA,Otto Marques dos Santos Neves,otto.neves@ibge.gov.br,Aluno Ouvinte
+51,NA,Anderson Ribeiro Santiago,anderson.santiago@ibge.gov.br,Aluno Ouvinte
+52,NA,Caroline Portal,carolsportal@gmail.com,Aluno Ouvinte
+53,NA,Thamara Almeida,thamara.almeida231@hotmail.com,Aluno Ouvinte
+54,NA,Luan Moldan Motta,luan.motta@usp.br,Aluno Ouvinte
+55,NA,Lukas Rodrigues Souza,lukasrs@usp.br,Aluno Ouvinte
+56,NA,Allan Alvarenga,allan_alvarenga@msn.com,Aluno Ouvinte
+57,NA,Beatriz Silva,beatrizbrascabos@gmail.com,Aluno Ouvinte
+58,NA,Heloisa,alencar.hmq@gmail.com,Aluno Ouvinte
+59,NA,Maíra Prestes Margarido,mairaprestesmargarido@gmail.com,Aluno Ouvinte
+60,NA,Bea Milz,milz.bea@gmail.com,Aluno Ouvinte
+61,NA,Guilherme Cavicchioli,gcavicchioli@gmail.com,Aluno Ouvinte

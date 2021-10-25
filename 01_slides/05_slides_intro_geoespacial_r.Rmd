@@ -120,6 +120,10 @@ background-position: 85% 75%
 
 --
 
+#### [cowplot]((https://wilkelab.org/cowplot/): pacote que permite combinar vários gráficos de forma elaborada
+
+--
+
 #### [pacthwork](https://patchwork.data-imaginist.com/): pacote que permite combinar vários gráficos em um só de forma extremamente simples e com alta qualidade
 
 --
@@ -596,7 +600,7 @@ background-position: 20% 85%, 80% 85%
 
 ## Dados de medidas de pinguins chamados `palmerpenguins`
 
-```{r}
+```{r eval=FALSE}
 # carregar
 library(palmerpenguins)
 
@@ -905,8 +909,10 @@ ggplot(data = penguins, aes(x = flipper_length_mm)) +
 ## ggplot2
 .pull-left[
 ```{r hist_ggplot4, eval=FALSE, message=FALSE}
-ggplot(data = penguins,  aes(x = flipper_length_mm)) +
-  geom_histogram(color = "black", fill = "cyan4", bins = 10)
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(color = "black", 
+                 fill = "cyan4",
+                 bins = 10)
 ```
 ]
 
@@ -923,12 +929,14 @@ ggplot(data = penguins,  aes(x = flipper_length_mm)) +
 .pull-left[
 ```{r hist_ggplot5, eval=FALSE, message=FALSE}
 ggplot(data = penguins, aes(x = flipper_length_mm)) +
-  geom_histogram(color = "black", fill = "cyan4", 
-                 bins = 10, alpha = .5) +
+  geom_histogram(color = "black", 
+                 fill = "cyan4", 
+                 bins = 10, 
+                 alpha = .5) +
   labs(title = "Comprimento da nadadeira dos penguins",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -951,7 +959,7 @@ ggplot(data = penguins,
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -969,12 +977,13 @@ ggplot(data = penguins,
 ```{r hist_ggplot7, eval=FALSE, message=FALSE}
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
-  geom_histogram(bins = 10, alpha = .5, position = "dodge") +
+  geom_histogram(bins = 10, alpha = .5, 
+                 position = "dodge") +
   labs(title = "Comprimento da nadadeira dos penguins",
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -993,12 +1002,13 @@ ggplot(data = penguins,
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
   geom_histogram(alpha = .5, position = "identity") +
-  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", 
+                               "darkorchid", "cyan4")) +
   labs(title = "Comprimento da nadadeira dos penguins",
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -1017,13 +1027,14 @@ ggplot(data = penguins,
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
   geom_histogram() +
-  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", 
+                               "darkorchid", "cyan4")) +
   facet_wrap(~ species, ncol = 2, scale = "free_y") +
   labs(title = "Comprimento da nadadeira dos penguins",
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -1042,13 +1053,14 @@ ggplot(data = penguins,
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, fill = species)) +
   geom_histogram() +
-  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  scale_fill_manual(values = c("darkorange",
+                               "darkorchid", "cyan4")) +
   facet_grid(species ~ .) +
   labs(title = "Comprimento da nadadeira dos penguins",
        fill = "Espécies",
        x = "Comprimento da nadadeira (mm)", 
        y = "Frequência (%)") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -1066,11 +1078,12 @@ ggplot(data = penguins,
 ```{r hist_ggplot11, eval=FALSE, message=FALSE}
 ggplot(data = penguins) +
   aes(x = flipper_length_mm) +
-  geom_density(color = "black", fill = "cyan4", alpha = .5) + 
+  geom_density(color = "black", 
+               fill = "cyan4", alpha = .5) + 
   labs(title = "Comprimento da nadadeira dos penguins",
        x = "Comprimento da nadadeira (mm)", 
        y = "Densidade") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -1087,13 +1100,15 @@ ggplot(data = penguins) +
 .pull-left[
 ```{r hist_ggplot12, eval=FALSE, message=FALSE}
 ggplot(data = penguins, 
-       aes(x = flipper_length_mm, fill = species)) +
+       aes(x = flipper_length_mm, 
+           fill = species)) +
   geom_density(alpha = .5) +
-  scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
+  scale_fill_manual(values = c("darkorange", 
+                               "darkorchid", "cyan4")) +
   labs(x = "Comprimento da nadadeira (mm)", 
        y = "Densidade", 
        fill = "Espécie") +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -1110,14 +1125,11 @@ ggplot(data = penguins,
 
 ### Exportar
 ```{r eval = FALSE}
-ggplot_densidade <- ggplot(data = penguins, 
-                           aes(x = flipper_length_mm, fill = species)) +
+ggplot_densidade <- ggplot(data = penguins, aes(x = flipper_length_mm, fill = species)) +
   geom_density(alpha = .5) +
   scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4")) +
-  labs(x = "Comprimento da nadadeira (mm)", 
-       y = "Densidade", 
-       fill = "Espécie") +
-  theme_bw(base_size = 16)
+  labs(x = "Comprimento da nadadeira (mm)",  y = "Densidade", fill = "Espécie") +
+  theme_bw(base_size = 15)
 
 ggsave(filename = here::here("03_dados", "graficos", "histogram_ggplot2.png"), 
        plot = ggplot_densidade, wi = 20, he = 15, un = "cm", dpi = 300)
@@ -1295,10 +1307,12 @@ background-position: 50% 50%
 ## ggplot2
 .pull-left[
 ```{r pie3, eval=FALSE, message=FALSE}
-ggplot(data = penguins_prop, aes(x = "", y = prop, fill = species)) + 
+ggplot(data = penguins_prop, 
+       aes(x = "", y = prop, fill = species)) + 
   geom_bar(stat = "identity", color = "white") +
   coord_polar("y", start = 0) +
-  geom_text(aes(label = paste0(prop, "%")), color = "white", 
+  geom_text(aes(label = paste0(prop, "%")), 
+            color = "white", 
             position = position_stack(vjust = .5), size = 8) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
   theme_void() +
@@ -1391,10 +1405,12 @@ background-position: 50% 50%
 ## ggplot2
 .pull-left[
 ```{r donut1, eval=FALSE, message=FALSE}
-ggplot(data = penguins_prop, aes(x = 2, y = prop, fill = species)) +
+ggplot(data = penguins_prop, 
+       aes(x = 2, y = prop, fill = species)) +
   geom_bar(stat = "identity") +
   coord_polar(theta = "y", start = 0) +
-  geom_text(aes(label = paste0(prop, "%")), color = "white",
+  geom_text(aes(label = paste0(prop, "%")),
+            color = "white",
             position = position_stack(vjust = .5), size = 5) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
   xlim(0, 2.5) +
@@ -1488,7 +1504,7 @@ penguins_count
 barplot(n ~ species,
         data = penguins_count, 
         col = c("darkorange", "purple", "cyan4"),
-        main = "Número de indivíduos coletados por espécie",
+        main = "Número de indivíduos medido por espécie",
         xlab = "Espécies",
         ylab = "Frequência absoluta",
         cex.main = 1.5,
@@ -1590,7 +1606,7 @@ ggbarplot(penguins_count,
           lab.pos = "in", 
           lab.col = "white",
           lab.size = 8,
-          main = "Número de indivíduos coletados por espécie",
+          main = "Número de indivíduos medido por espécie",
           xlab = "Espécies",
           ylab = "Frequência absoluta",
           legend = "none")
@@ -1619,7 +1635,7 @@ ggbarplot(penguins_count,
           lab.pos = "out", 
           lab.col = "black",
           lab.size = 8,
-          main = "Número de indivíduos coletados por espécie",
+          main = "Número de indivíduos medido por espécie",
           xlab = "Espécies",
           ylab = "Frequência absoluta",
           legend = "none",
@@ -1993,7 +2009,7 @@ datasaurus_dozen %>%
   aes(x = x, y = y) +
   geom_point(colour = "black", fill = "black", 
              size = 5, alpha = .75, pch = 21) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -2015,7 +2031,7 @@ datasaurus_dozen %>%
   geom_point(colour = "black", fill = "black", 
              size = 1, alpha = .75, pch = 21) +
   facet_wrap(~dataset) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -2195,7 +2211,7 @@ library(GGally)
 penguins %>%
   dplyr::select(body_mass_g, ends_with("_mm")) %>%
   ggpairs() +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -2216,7 +2232,7 @@ penguins %>%
   GGally::ggpairs(aes(color = species)) +
   scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
   scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
-  theme_bw(base_size = 16)
+  theme_bw(base_size = 15)
 ```
 ]
 
@@ -2269,7 +2285,7 @@ background-position: 10% 97%, 85% 95%
 
 --
 
-### Essa tarefa pode ser realizada depois da criação dos gráficos em aplicativos como [Inkskape](https://inkscape.org/pt-br/) ou [GIMP](https://www.gimp.org/)
+### Essa tarefa pode ser realizada depois da criação dos gráficos em aplicativos como [Inkscape](https://inkscape.org/pt-br/) ou [GIMP](https://www.gimp.org/)
 
 --
 

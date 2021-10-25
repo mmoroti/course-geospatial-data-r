@@ -181,7 +181,7 @@ plot(biomas$geom,
      graticule = TRUE)
 
 # legend
-legend(x = -75, y = -20, pch = 15, cex = 1, 
+legend(x = -73, y = -20, pch = 15, cex = 1, 
        pt.cex = 2.5, legend = biomas$name_biome, 
        col = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"))
@@ -307,7 +307,7 @@ png(filename = here::here("03_dados", "mapas", "mapa_biomas.png"),
 plot(biomas$geom, 
      col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"),
      main = "Biomas do Brasil", axes = TRUE, graticule = TRUE)
-legend(x = -75, y = -20, pch = 15, cex = 1, pt.cex = 2.5, legend = biomas$name_biome, 
+legend(x = -73, y = -20, pch = 15, cex = 1, pt.cex = 2.5, legend = biomas$name_biome, 
        col = c("darkgreen", "orange", "orange4", "forestgreen", "yellow", "yellow3"))
 dev.off()
 ```
@@ -1034,8 +1034,8 @@ tm_shape(biomas) +
   tm_scale_bar() +
   tm_xlab("Longitude") +
   tm_ylab("Latitude") +
-  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13)) +
-  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09))
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.58, .13)) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.58, .09))
 ```
 ]
 
@@ -1064,8 +1064,8 @@ tm_shape(biomas) +
   tm_scale_bar(size = 1) +
   tm_xlab("Longitude", size = 1.5) +
   tm_ylab("Latitude", size = 1.5) +
-  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13), size = 1) +
-  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09), size = 1) +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.58, .13), size = 1) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.58, .09), size = 1) +
   tm_layout(main.title = "Biomas do Brasil",
             main.title.position = c(.1, .95),
             main.title.size = 3,
@@ -1101,8 +1101,8 @@ map_biomas_tmap <- tm_shape(biomas) +
   tm_scale_bar(size = 1) +
   tm_xlab("Longitude", size = 1.5) +
   tm_ylab("Latitude", size = 1.5) +
-  tm_credits("CRS: SIRGAS2000/Geo", position = c(.63, .13), size = 1) +
-  tm_credits("Fonte: IBGE (2019)", position = c(.63, .09), size = 1) +
+  tm_credits("CRS: SIRGAS2000/Geo", position = c(.58, .13), size = 1) +
+  tm_credits("Fonte: IBGE (2019)", position = c(.58, .09), size = 1) +
   tm_layout(main.title = "Biomas do Brasil",
             main.title.position = c(.1, .95),
             main.title.size = 3,
@@ -1332,7 +1332,7 @@ mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15))
+       leg_pos = c(-73, -15))
 ```
 ]
 
@@ -1353,7 +1353,7 @@ mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15))
+       leg_pos = c(-73, -15))
 mf_title("Biomas do Brasil")
 mf_credits("IBGE, 2019")
 mf_scale()
@@ -1406,7 +1406,7 @@ mf_map(x = biomas, var = "name_biome", type = "typo",
        pal = c("darkgreen", "orange", "orange4", 
                "forestgreen", "yellow", "yellow3"),
        leg_title = "Biomas",
-       leg_pos = c(-75, -15))
+       leg_pos = c(-73, -15))
 mf_title("Biomas do Brasil")
 mf_credits("IBGE, 2019")
 mf_scale()
@@ -1612,16 +1612,23 @@ background-position: 50% 110%
 
 ## Mudança dos estados do Brasil ao longo do tempo
 
-```{r}
+```{r eval=TRUE}
 # dados
 br_anos <- NULL
-for(i in c(1872, 1900, 1911, 1920, 1933, 1940, 1950, 1960, 1970, 1980, 1991, 2001, 2010, 2020)){
+for(i in c(1872, 1900, 1911, 1920, 1933, 1940, 1950, 1960, 1970, 1980, 1991, 2001, 2010, 2019, 2020)){
   br_anos <- geobr::read_state(code_state = "all", year = i, showProgress = FALSE) %>% 
     sf::st_geometry() %>% 
     sf::st_as_sf() %>%
     dplyr::mutate(year = i) %>% 
     dplyr::bind_rows(br_anos, .)
 }
+```
+
+--
+
+```{r}
+# numero de estados ao longo do tempo
+br_anos$year %>% table()
 ```
 
 ---
@@ -1646,22 +1653,39 @@ map_brasil_tmap
 
 ---
 
-background-image: url(img/geo_br_years.gif)
-background-size: 400px
-background-position: 50% 90%
-
 # 4. Mapas animados
 
 ## Mudança dos estados do Brasil ao longo do tempo
+.pull-left[
+```{r ani2, eval=FALSE}
+# mapa animado
+map_brasil_tmap_ani <- tm_shape(br_anos) + 
+  tm_polygons() + 
+  tm_facets(along = "year", free.coords = FALSE)
+map_brasil_tmap_ani
+```
+]
+
+.pull-right[
+```{r ref.label="ani2", echo=FALSE}
+```
+]
+
+---
+
+background-image: url(img/geo_br_anos.gif)
+background-size: 500px
+background-position: 50% 70%
+
+# 4. Mapas animados
+
 ```{r eval=FALSE}
 # exportar
-tmap::tmap_animation(
-  tm = map_brasil_tmap_ani, 
-  filename = here::here("03_dados", 
-                        "mapas", 
-                        "mapa_dem_rc_tmap_ani.gif"), 
-  delay = 30)
+tmap::tmap_animation(tm = map_brasil_tmap_ani, 
+                     filename = here::here("03_dados", "mapas", "mapa_dem_rc_tmap_ani.gif"), 
+                     delay = 30)
 ```
+
 
 ---
 
@@ -1697,7 +1721,7 @@ map_biomas_tmap_int <- map_biomas_tmap
 map_biomas_tmap_int
 ```
 
-```{r echo=FALSE, out.width='100%'}
+```{r echo=FALSE, out.width='80%'}
 include_url("img/geo_map_biomas_tmap.html")
 ```
 
@@ -1923,20 +1947,26 @@ library(plotly)
 # 5. Mapas interativos
 
 ## **plotly**
-
-```{r eval=FALSE}
+.pull-left[
+```{r int1, eval=FALSE}
 # plot
 map_rc_2020_plotly_int <- plot_geo(rc_2020)
 map_rc_2020_plotly_int
 ```
+]
+
+.pull-right[
+```{r ref.label="int1", echo=FALSE}
+```
+]
 
 ---
 
 # 5. Mapas interativos
 
 ## **plotly**
-
-```{r eval=FALSE}
+.pull-left[
+```{r int2, eval=FALSE}
 # plot
 map_rc_2020_plotly_int <- ggplotly(
   ggplot() +
@@ -1944,14 +1974,20 @@ map_rc_2020_plotly_int <- ggplotly(
     theme_bw(base_size = 15))
 map_rc_2020_plotly_int
 ```
+]
+
+.pull-right[
+```{r ref.label="int2", echo=FALSE}
+```
+]
 
 ---
 
 # 5. Mapas interativos
 
 ## **plotly**
-
-```{r eval=FALSE}
+.pull-left[
+```{r int3, eval=FALSE}
 # plot
 map_biomas_plotly_int <- ggplotly(
   ggplot(data = biomas) +
@@ -1965,6 +2001,12 @@ map_biomas_plotly_int <- ggplotly(
     labs(title = "Biomas do Brasil", fill = "Legenda", x = "Longitude", y = "Latitude"))
 map_biomas_plotly_int
 ```
+]
+
+.pull-right[
+```{r ref.label="int3", echo=FALSE}
+```
+]
 
 ---
 
@@ -1975,7 +2017,6 @@ background-position: 50% 90%
 # 5. Mapas interativos
 
 ## **plotly**
-
 ```{r eval=FALSE}
 # exportar mapa tmap interativo
 mapview::mapshot(x = map_biomas_plotly_int, 
